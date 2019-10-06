@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.flexbox.FlexboxLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".features.lockscreen.LockScreenActivity"
+    app:flexDirection="column">
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/lock_screen_checkbox_container"
+        android:layout_height="wrap_content"
+        app:layout_flexBasisPercent="20%"
+        android:paddingHorizontal="50dp"
+        app:alignItems="center"
+        app:justifyContent="space_between">
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <fragment
+        android:id="@+id/look_screen_fragment_number_pad"
+        android:name="com.tytv.beentogether.fragments.pad.NumberPadFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_flexBasisPercent="80%"
+      />
+
+</com.google.android.flexbox.FlexboxLayout>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.widget.Button"/>
+        <variable
+            name="manager"
+            type="com.tytv.beentogether.fragments.pad.NumberPadFragment" />
+    </data>
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="50dp"
+        android:paddingVertical="10dp"
+        app:flexDirection="column"
+        app:justifyContent="space_between">
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:flexDirection="row"
+            app:justifyContent="space_between">
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/circle_button"
+                android:text="1"
+                android:textColor="@android:color/white"
+                android:textFontWeight="800"
+                android:textSize="20dp"
+                android:onClick="@{(v) -> manager.onPressOn(v)}"/>
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/circle_button"
+                android:text="2"
+                android:textColor="@android:color/white"
+                android:textFontWeight="800"
+                android:onClick="@{(v) -> manager.onPressOn(v)}"/>
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/circle_button"
+                android:text="3"
+                android:textColor="@android:color/white"
+                android:textFontWeight="800"
+                android:onClick="@{(v) -> manager.onPressOn(v)}"/>
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:flexDirection="row"
+            app:justifyContent="space_between">
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/circle_button"
+                android:text="4"
+                android:textColor="@android:color/white"
+                android:textFontWeight="800"
+                android:textSize="20dp"
+                android:onClick="@{(v) -> manager.onPressOn(v)}"/>
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/circle_button"
+                android:text="5"
+                android:textColor="@android:color/white"
+                android:textFontWeight="800"
+                android:textSize="20dp"
+                android:onClick="@{(v) -> manager.onPressOn(v)}"/>
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/circle_button"
+                android:text="6"
+                android:textColor="@android:color/white"
+                android:textFontWeight="800"
+                android:textSize="20dp"
+                android:onClick="@{(v) -> manager.onPressOn(v)}"/>
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:flexDirection="row"
+            app:justifyContent="space_between">
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/circle_button"
+                android:text="7"
+                android:textColor="@android:color/white"
+                android:textFontWeight="800"
+                android:textSize="20dp"
+                android:onClick="@{(v) -> manager.onPressOn(v)}"/>
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/circle_button"
+                android:text="8"
+                android:textColor="@android:color/white"
+                android:textFontWeight="800"
+                android:textSize="20dp"
+                android:onClick="@{(v) -> manager.onPressOn(v)}"/>
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/circle_button"
+                android:text="9"
+                android:textColor="@android:color/white"
+                android:textFontWeight="800"
+                android:textSize="20dp"
+                android:onClick="@{(v) -> manager.onPressOn(v)}"/>
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:flexDirection="row"
+            app:justifyContent="space_between">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@android:color/transparent"
+                android:text="" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/circle_button"
+                android:text="0"
+                android:textColor="@android:color/white"
+                android:textFontWeight="800"
+                android:textSize="20dp"
+                android:onClick="@{(v) -> manager.onPressOn(v)}"/>
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/circle_button"
+                android:text="Del"
+                android:textColor="@android:color/white"
+                android:textFontWeight="800"
+                android:textSize="20dp"
+                android:onClick="@{(v) -> manager.onPressOn(v)}"/>
+        </com.google.android.flexbox.FlexboxLayout>
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+</layout>
