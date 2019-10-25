@@ -20,39 +20,39 @@
             android:id="@+id/lock_screen_checkbox_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="50dp"
+            android:paddingHorizontal="100dp"
             app:alignItems="center"
             app:justifyContent="space_between"
             app:layout_flexBasisPercent="20%">
 
-            <RadioButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+            <com.tytv.beentogether.components.CheckBox
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:checked="@{viewModel.passwordNumbers.size() > 0}" />
 
-            <RadioButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+            <com.tytv.beentogether.components.CheckBox
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:checked="@{viewModel.passwordNumbers.size() > 1}" />
 
-            <RadioButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+            <com.tytv.beentogether.components.CheckBox
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:checked="@{viewModel.passwordNumbers.size() > 2}" />
 
-            <RadioButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+            <com.tytv.beentogether.components.CheckBox
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:checked="@{viewModel.passwordNumbers.size() > 3}" />
 
-            <RadioButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+            <com.tytv.beentogether.components.CheckBox
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:checked="@{viewModel.passwordNumbers.size() > 4}" />
 
-            <RadioButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+            <com.tytv.beentogether.components.CheckBox
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:checked="@{viewModel.passwordNumbers.size() > 5}" />
         </com.google.android.flexbox.FlexboxLayout>
 

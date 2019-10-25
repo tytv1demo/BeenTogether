@@ -14,8 +14,13 @@
 		2DCD954D1E0B4F2C00145EB5 /* BeenTogetherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BeenTogetherTests.m */; };
 		3FBD331072E6BB763472E947 /* libPods-BeenTogether-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1611229075EF03466056F1D3 /* libPods-BeenTogether-tvOS.a */; };
 		9C1A8CC918D878FA857CCCFF /* libPods-BeenTogether-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C80455AC0D7BF346E69D12C /* libPods-BeenTogether-tvOSTests.a */; };
+		B6E2E2E023629523001046E5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2DF23629523001046E5 /* HomeViewController.swift */; };
+		B6E2E2E32362A7F7001046E5 /* UIViewExts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2E22362A7F7001046E5 /* UIViewExts.swift */; };
+		B6E2E2E72362AB73001046E5 /* UIColorExts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2E62362AB73001046E5 /* UIColorExts.swift */; };
+		B6E2E2EA2362E764001046E5 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2E92362E764001046E5 /* MessagesViewController.swift */; };
+		B6E2E2ED2362F561001046E5 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2EC2362F561001046E5 /* Avatar.swift */; };
 		B6F4F919234737E8002B7B36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F4F918234737E8002B7B36 /* AppDelegate.swift */; };
-		B6F4F91C23473A1A002B7B36 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F4F91B23473A1A002B7B36 /* DashboardViewController.swift */; };
+		B6F4F91C23473A1A002B7B36 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F4F91B23473A1A002B7B36 /* MainTabBarViewController.swift */; };
 		E3D0629D337AFC2561FA0CB8 /* libPods-BeenTogetherTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64E75A63FB793874F7C42EB9 /* libPods-BeenTogetherTests.a */; };
 		E9196AB1971ABF35B079E2C0 /* libPods-BeenTogether.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 85B63FB11ADCC081B2A99B31 /* libPods-BeenTogether.a */; };
 /* End PBXBuildFile section */
@@ -39,18 +44,18 @@
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* BeenTogetherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeenTogetherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* CupidTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CupidTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* BeenTogetherTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeenTogetherTests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* BeenTogether.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeenTogether.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* Cupid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cupid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = BeenTogether/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = BeenTogether/Info.plist; sourceTree = "<group>"; };
 		1611229075EF03466056F1D3 /* libPods-BeenTogether-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeenTogether-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21471134800E90BF1F15E8B3 /* Pods-BeenTogether-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogether-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-BeenTogether-tvOSTests/Pods-BeenTogether-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2468A578A0988E6257AAFCFE /* Pods-BeenTogetherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogetherTests.debug.xcconfig"; path = "Target Support Files/Pods-BeenTogetherTests/Pods-BeenTogetherTests.debug.xcconfig"; sourceTree = "<group>"; };
-		2D02E47B1E0B4A5D006451C7 /* BeenTogether-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BeenTogether-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* BeenTogether-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BeenTogether-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E47B1E0B4A5D006451C7 /* Cupid-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cupid-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* Cupid-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cupid-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37FFA031CA3C4A6B260DB914 /* Pods-BeenTogether-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogether-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-BeenTogether-tvOSTests/Pods-BeenTogether-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		4C782350347DE81685E9C150 /* Pods-BeenTogether.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogether.debug.xcconfig"; path = "Target Support Files/Pods-BeenTogether/Pods-BeenTogether.debug.xcconfig"; sourceTree = "<group>"; };
 		64E75A63FB793874F7C42EB9 /* libPods-BeenTogetherTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeenTogetherTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,9 +64,14 @@
 		85B63FB11ADCC081B2A99B31 /* libPods-BeenTogether.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeenTogether.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		93727D99D2538C3C8FDC2435 /* Pods-BeenTogether-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogether-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-BeenTogether-tvOS/Pods-BeenTogether-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		AE5225EDAAE57D4D67321A6B /* Pods-BeenTogetherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogetherTests.release.xcconfig"; path = "Target Support Files/Pods-BeenTogetherTests/Pods-BeenTogetherTests.release.xcconfig"; sourceTree = "<group>"; };
+		B6E2E2DF23629523001046E5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		B6E2E2E22362A7F7001046E5 /* UIViewExts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExts.swift; sourceTree = "<group>"; };
+		B6E2E2E62362AB73001046E5 /* UIColorExts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExts.swift; sourceTree = "<group>"; };
+		B6E2E2E92362E764001046E5 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		B6E2E2EC2362F561001046E5 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
 		B6F4F917234737E8002B7B36 /* BeenTogether-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BeenTogether-Bridging-Header.h"; sourceTree = "<group>"; };
 		B6F4F918234737E8002B7B36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B6F4F91B23473A1A002B7B36 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		B6F4F91B23473A1A002B7B36 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		FE916A3DC3A89F7F89CA3D68 /* Pods-BeenTogether-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogether-tvOS.release.xcconfig"; path = "Target Support Files/Pods-BeenTogether-tvOS/Pods-BeenTogether-tvOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -120,9 +130,11 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* BeenTogether */ = {
+		13B07FAE1A68108700A75B9A /* Cupid */ = {
 			isa = PBXGroup;
 			children = (
+				B6E2E2EB2362F51B001046E5 /* CommonComponents */,
+				B6E2E2E12362A7DF001046E5 /* Extensions */,
 				B6F4F91A23473A04002B7B36 /* Features */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -131,7 +143,7 @@
 				B6F4F918234737E8002B7B36 /* AppDelegate.swift */,
 				B6F4F917234737E8002B7B36 /* BeenTogether-Bridging-Header.h */,
 			);
-			name = BeenTogether;
+			name = Cupid;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -172,7 +184,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* BeenTogether */,
+				13B07FAE1A68108700A75B9A /* Cupid */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* BeenTogetherTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
@@ -187,18 +199,61 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* BeenTogether.app */,
-				00E356EE1AD99517003FC87E /* BeenTogetherTests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* BeenTogether-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* BeenTogether-tvOSTests.xctest */,
+				13B07F961A680F5B00A75B9A /* Cupid.app */,
+				00E356EE1AD99517003FC87E /* CupidTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* Cupid-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* Cupid-tvOSTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B6E2E2E12362A7DF001046E5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B6E2E2E22362A7F7001046E5 /* UIViewExts.swift */,
+				B6E2E2E62362AB73001046E5 /* UIColorExts.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		B6E2E2E42362A809001046E5 /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				B6F4F91B23473A1A002B7B36 /* MainTabBarViewController.swift */,
+			);
+			name = MainTabBar;
+			sourceTree = "<group>";
+		};
+		B6E2E2E52362A829001046E5 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B6E2E2DF23629523001046E5 /* HomeViewController.swift */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		B6E2E2E82362E641001046E5 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				B6E2E2E92362E764001046E5 /* MessagesViewController.swift */,
+			);
+			name = Messages;
+			sourceTree = "<group>";
+		};
+		B6E2E2EB2362F51B001046E5 /* CommonComponents */ = {
+			isa = PBXGroup;
+			children = (
+				B6E2E2EC2362F561001046E5 /* Avatar.swift */,
+			);
+			name = CommonComponents;
 			sourceTree = "<group>";
 		};
 		B6F4F91A23473A04002B7B36 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				B6F4F91B23473A1A002B7B36 /* DashboardViewController.swift */,
+				B6E2E2E82362E641001046E5 /* Messages */,
+				B6E2E2E52362A829001046E5 /* Home */,
+				B6E2E2E42362A809001046E5 /* MainTabBar */,
 			);
 			name = Features;
 			sourceTree = "<group>";
@@ -206,9 +261,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* BeenTogetherTests */ = {
+		00E356ED1AD99517003FC87E /* CupidTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "BeenTogetherTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "CupidTests" */;
 			buildPhases = (
 				42D734682F3096B80E915F10 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -220,14 +275,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = BeenTogetherTests;
+			name = CupidTests;
 			productName = BeenTogetherTests;
-			productReference = 00E356EE1AD99517003FC87E /* BeenTogetherTests.xctest */;
+			productReference = 00E356EE1AD99517003FC87E /* CupidTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* BeenTogether */ = {
+		13B07F861A680F5B00A75B9A /* Cupid */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "BeenTogether" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Cupid" */;
 			buildPhases = (
 				D1478092B52E59F0B674A9C5 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -241,14 +296,14 @@
 			);
 			dependencies = (
 			);
-			name = BeenTogether;
+			name = Cupid;
 			productName = BeenTogether;
-			productReference = 13B07F961A680F5B00A75B9A /* BeenTogether.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* Cupid.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E47A1E0B4A5D006451C7 /* BeenTogether-tvOS */ = {
+		2D02E47A1E0B4A5D006451C7 /* Cupid-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "BeenTogether-tvOS" */;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Cupid-tvOS" */;
 			buildPhases = (
 				6B701E795F0293B6C423E4AF /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
@@ -261,14 +316,14 @@
 			);
 			dependencies = (
 			);
-			name = "BeenTogether-tvOS";
+			name = "Cupid-tvOS";
 			productName = "BeenTogether-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* BeenTogether-tvOS.app */;
+			productReference = 2D02E47B1E0B4A5D006451C7 /* Cupid-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E48F1E0B4A5D006451C7 /* BeenTogether-tvOSTests */ = {
+		2D02E48F1E0B4A5D006451C7 /* Cupid-tvOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "BeenTogether-tvOSTests" */;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Cupid-tvOSTests" */;
 			buildPhases = (
 				4834EAB16E8B94B465E195CA /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
@@ -280,9 +335,9 @@
 			dependencies = (
 				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
 			);
-			name = "BeenTogether-tvOSTests";
+			name = "Cupid-tvOSTests";
 			productName = "BeenTogether-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* BeenTogether-tvOSTests.xctest */;
+			productReference = 2D02E4901E0B4A5D006451C7 /* Cupid-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -312,7 +367,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "BeenTogether" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Cupid" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -326,10 +381,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* BeenTogether */,
-				00E356ED1AD99517003FC87E /* BeenTogetherTests */,
-				2D02E47A1E0B4A5D006451C7 /* BeenTogether-tvOS */,
-				2D02E48F1E0B4A5D006451C7 /* BeenTogether-tvOSTests */,
+				13B07F861A680F5B00A75B9A /* Cupid */,
+				00E356ED1AD99517003FC87E /* CupidTests */,
+				2D02E47A1E0B4A5D006451C7 /* Cupid-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* Cupid-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -556,8 +611,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6E2E2EA2362E764001046E5 /* MessagesViewController.swift in Sources */,
+				B6E2E2E32362A7F7001046E5 /* UIViewExts.swift in Sources */,
 				B6F4F919234737E8002B7B36 /* AppDelegate.swift in Sources */,
-				B6F4F91C23473A1A002B7B36 /* DashboardViewController.swift in Sources */,
+				B6E2E2E023629523001046E5 /* HomeViewController.swift in Sources */,
+				B6E2E2ED2362F561001046E5 /* Avatar.swift in Sources */,
+				B6F4F91C23473A1A002B7B36 /* MainTabBarViewController.swift in Sources */,
+				B6E2E2E72362AB73001046E5 /* UIColorExts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,12 +641,12 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* BeenTogether */;
+			target = 13B07F861A680F5B00A75B9A /* Cupid */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D02E47A1E0B4A5D006451C7 /* BeenTogether-tvOS */;
+			target = 2D02E47A1E0B4A5D006451C7 /* Cupid-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -624,7 +684,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeenTogether.app/BeenTogether";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cupid.app/Cupid";
 			};
 			name = Debug;
 		};
@@ -645,7 +705,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeenTogether.app/BeenTogether";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cupid.app/Cupid";
 			};
 			name = Release;
 		};
@@ -665,7 +725,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = BeenTogether;
+				PRODUCT_NAME = Cupid;
 				SWIFT_OBJC_BRIDGING_HEADER = "BeenTogether-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -688,7 +748,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = BeenTogether;
+				PRODUCT_NAME = Cupid;
 				SWIFT_OBJC_BRIDGING_HEADER = "BeenTogether-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -773,7 +833,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.BeenTogether-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeenTogether-tvOS.app/BeenTogether-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cupid-tvOS.app/Cupid-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
@@ -800,7 +860,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.BeenTogether-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeenTogether-tvOS.app/BeenTogether-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cupid-tvOS.app/Cupid-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -907,7 +967,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "BeenTogetherTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "CupidTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -916,7 +976,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "BeenTogether" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Cupid" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -925,7 +985,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "BeenTogether-tvOS" */ = {
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Cupid-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4971E0B4A5E006451C7 /* Debug */,
@@ -934,7 +994,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "BeenTogether-tvOSTests" */ = {
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Cupid-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
@@ -943,7 +1003,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "BeenTogether" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Cupid" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
