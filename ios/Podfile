@@ -53,15 +53,20 @@ def database
   pod 'KeychainAccess'
 end 
 
-target 'BeenTogether' do
-  # Pods for BeenTogether
+def ultilities
+  pod "PromiseKit", "~> 6.8"
+end
+
+target 'Cupid' do
+  # Pods for Cupid
   reactnative
   layout
   networking
   database
+  ultilities
   ui
   
-  target 'BeenTogetherTests' do
+  target 'CupidTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -69,10 +74,10 @@ target 'BeenTogether' do
   use_native_modules!
 end
 
-target 'BeenTogether-tvOS' do
-  # Pods for BeenTogether-tvOS
+target 'Cupid-tvOS' do
+  # Pods for Cupid-tvOS
 
-  target 'BeenTogether-tvOSTests' do
+  target 'Cupid-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

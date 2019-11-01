@@ -15,9 +15,14 @@ class MessageViewController: UIViewController {
   var loverNameLabel: UILabel!
   var loverAvatar: Avatar!
   
+  var smartChat: SmartChart!
+  
+  var viewModel: MessageViewModel = MessageViewModel()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     settupNavigation()
+    setupChatUI()
   }
   
   func settupNavigation(){
@@ -42,6 +47,21 @@ class MessageViewController: UIViewController {
     loverNameLabel.text = "Lover"
     
     navigationItem.leftBarButtonItems = [avatarBarItem, nameLabelTabBarItem]
+  }
+  
+  func setupChatUI() {
+    smartChat = SmartChart(user: viewModel.user)
+    smartChat.data = viewModel.messages
+    view.addSubview(smartChat)
+    smartChat.snp.makeConstraints { (m) in
+      m.top.equalTo(view)
+      m.trailing.equalTo(view)
+      m.leading.equalTo(view)
+      if let tab = tabBarController?.tabBar {
+        m.bottom.equalTo(view).inset(tab.frame.height)
+      }
+     
+    }
   }
   
   @objc func onGpsButtonPress(){

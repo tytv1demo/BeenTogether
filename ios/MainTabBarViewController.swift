@@ -51,14 +51,17 @@ class MainTabBarViewController: UITabBarController {
   
   func settupTabBarUI(){
     let homeTabButton = UIButton()
+    let img: UIImageView = UIImageView(image: UIImage(named: "heart"))
     homeTabButton.frame = CGRect(x: 0.0, y: 0.0, width: uiConfiguration.centerCircleButtonSize, height: uiConfiguration.centerCircleButtonSize)
     homeTabButton.layer.cornerRadius = uiConfiguration.centerCircleButtonSize * 0.5
     homeTabButton.layer.masksToBounds = true
     homeTabButton.setGradientBackground()
     homeTabButton.dropShadow()
     homeTabButton.center = CGPoint(x: tabBar.center.x, y: tabBar.center.y - 40)
-    
+    homeTabButton.addSubview(img)
+    img.center = homeTabButton.center
     view.addSubview(homeTabButton)
+    view.addSubview(img)
     homeTabButton.addTarget(self, action: #selector(onHomTabButtonTapped), for: [.touchUpInside])
     
     messageVC.tabBarItem =  UITabBarItem(title: "", image: UIImage(named: "message"), selectedImage: UIImage(named: "message"))

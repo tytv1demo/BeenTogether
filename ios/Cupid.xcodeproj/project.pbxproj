@@ -10,19 +10,32 @@
 		00E356F31AD99517003FC87E /* BeenTogetherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BeenTogetherTests.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		172262E967C2843B2C451109 /* libPods-Cupid-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E07C6758DAF172F61641B653 /* libPods-Cupid-tvOSTests.a */; };
+		17E0995B92EB27DC2C428F53 /* libPods-Cupid.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6ED815D63F4AA78F36968BE /* libPods-Cupid.a */; };
+		1BA3F880F1E0519F8B3CEA81 /* libPods-Cupid-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FA4788D947D3431727CA4AA /* libPods-Cupid-tvOS.a */; };
+		22A78B505A88A37A640D5123 /* libPods-CupidTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B48CF14D50A412DE50CDE077 /* libPods-CupidTests.a */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2DCD954D1E0B4F2C00145EB5 /* BeenTogetherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BeenTogetherTests.m */; };
-		3FBD331072E6BB763472E947 /* libPods-BeenTogether-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1611229075EF03466056F1D3 /* libPods-BeenTogether-tvOS.a */; };
-		9C1A8CC918D878FA857CCCFF /* libPods-BeenTogether-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C80455AC0D7BF346E69D12C /* libPods-BeenTogether-tvOSTests.a */; };
+		B66F3CA3236482D400B35D4D /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66F3CA2236482D400B35D4D /* Message.swift */; };
+		B66F3CA62364841F00B35D4D /* SCUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66F3CA52364841F00B35D4D /* SCUser.swift */; };
+		B66F3CA82364859600B35D4D /* TextMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66F3CA72364859500B35D4D /* TextMessage.swift */; };
+		B66F3CAD2364889700B35D4D /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66F3CAC2364889700B35D4D /* MessageViewModel.swift */; };
+		B6771FD12365DD7E00942868 /* GalleryInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6771FD02365DD7E00942868 /* GalleryInput.swift */; };
+		B6771FD32365DEBB00942868 /* GalleryImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6771FD22365DEBB00942868 /* GalleryImage.swift */; };
+		B692F72423651D1800431047 /* InputToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B692F72323651D1800431047 /* InputToolBar.swift */; };
+		B692F7262365274B00431047 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B692F7252365274B00431047 /* InputView.swift */; };
+		B692F72A2365289200431047 /* ActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B692F7292365289200431047 /* ActionsView.swift */; };
 		B6E2E2E023629523001046E5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2DF23629523001046E5 /* HomeViewController.swift */; };
 		B6E2E2E32362A7F7001046E5 /* UIViewExts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2E22362A7F7001046E5 /* UIViewExts.swift */; };
 		B6E2E2E72362AB73001046E5 /* UIColorExts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2E62362AB73001046E5 /* UIColorExts.swift */; };
 		B6E2E2EA2362E764001046E5 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2E92362E764001046E5 /* MessagesViewController.swift */; };
 		B6E2E2ED2362F561001046E5 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2EC2362F561001046E5 /* Avatar.swift */; };
+		B6E2E2F02362FB76001046E5 /* MessageTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2EF2362FB76001046E5 /* MessageTableView.swift */; };
+		B6E2E2F22362FC33001046E5 /* SmartChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2F12362FC33001046E5 /* SmartChart.swift */; };
+		B6E2E2F42362FE95001046E5 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2F32362FE95001046E5 /* MessageCell.swift */; };
+		B6E2E2F62362FEE3001046E5 /* Bubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2F52362FEE3001046E5 /* Bubble.swift */; };
 		B6F4F919234737E8002B7B36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F4F918234737E8002B7B36 /* AppDelegate.swift */; };
 		B6F4F91C23473A1A002B7B36 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F4F91B23473A1A002B7B36 /* MainTabBarViewController.swift */; };
-		E3D0629D337AFC2561FA0CB8 /* libPods-BeenTogetherTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64E75A63FB793874F7C42EB9 /* libPods-BeenTogetherTests.a */; };
-		E9196AB1971ABF35B079E2C0 /* libPods-BeenTogether.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 85B63FB11ADCC081B2A99B31 /* libPods-BeenTogether.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,33 +60,54 @@
 		00E356EE1AD99517003FC87E /* CupidTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CupidTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* BeenTogetherTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeenTogetherTests.m; sourceTree = "<group>"; };
+		1201022ECF81D73CE24AB605 /* Pods-CupidTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CupidTests.debug.xcconfig"; path = "Target Support Files/Pods-CupidTests/Pods-CupidTests.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Cupid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cupid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = BeenTogether/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = BeenTogether/Info.plist; sourceTree = "<group>"; };
-		1611229075EF03466056F1D3 /* libPods-BeenTogether-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeenTogether-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FA4788D947D3431727CA4AA /* libPods-Cupid-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cupid-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21471134800E90BF1F15E8B3 /* Pods-BeenTogether-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogether-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-BeenTogether-tvOSTests/Pods-BeenTogether-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2468A578A0988E6257AAFCFE /* Pods-BeenTogetherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogetherTests.debug.xcconfig"; path = "Target Support Files/Pods-BeenTogetherTests/Pods-BeenTogetherTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2C48C8D9AEF93AEEC7E9BB9F /* Pods-Cupid-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cupid-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-Cupid-tvOS/Pods-Cupid-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* Cupid-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cupid-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Cupid-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cupid-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37FFA031CA3C4A6B260DB914 /* Pods-BeenTogether-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogether-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-BeenTogether-tvOSTests/Pods-BeenTogether-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		4C782350347DE81685E9C150 /* Pods-BeenTogether.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogether.debug.xcconfig"; path = "Target Support Files/Pods-BeenTogether/Pods-BeenTogether.debug.xcconfig"; sourceTree = "<group>"; };
-		64E75A63FB793874F7C42EB9 /* libPods-BeenTogetherTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeenTogetherTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6C80455AC0D7BF346E69D12C /* libPods-BeenTogether-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeenTogether-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		50F40441CB0C3AB88992F5E4 /* Pods-CupidTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CupidTests.release.xcconfig"; path = "Target Support Files/Pods-CupidTests/Pods-CupidTests.release.xcconfig"; sourceTree = "<group>"; };
+		5CC0C1EB72A73FDCB598FAC9 /* Pods-Cupid-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cupid-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-Cupid-tvOSTests/Pods-Cupid-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		77075A41F0C5A168FB7717DD /* Pods-BeenTogether.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogether.release.xcconfig"; path = "Target Support Files/Pods-BeenTogether/Pods-BeenTogether.release.xcconfig"; sourceTree = "<group>"; };
-		85B63FB11ADCC081B2A99B31 /* libPods-BeenTogether.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeenTogether.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		81847AFE4797956372E759F9 /* Pods-Cupid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cupid.debug.xcconfig"; path = "Target Support Files/Pods-Cupid/Pods-Cupid.debug.xcconfig"; sourceTree = "<group>"; };
 		93727D99D2538C3C8FDC2435 /* Pods-BeenTogether-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogether-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-BeenTogether-tvOS/Pods-BeenTogether-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		9939EFA61F59F675BBCE3ECC /* Pods-Cupid-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cupid-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Cupid-tvOSTests/Pods-Cupid-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AE5225EDAAE57D4D67321A6B /* Pods-BeenTogetherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogetherTests.release.xcconfig"; path = "Target Support Files/Pods-BeenTogetherTests/Pods-BeenTogetherTests.release.xcconfig"; sourceTree = "<group>"; };
+		B48CF14D50A412DE50CDE077 /* libPods-CupidTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CupidTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B66F3CA2236482D400B35D4D /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		B66F3CA52364841F00B35D4D /* SCUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCUser.swift; sourceTree = "<group>"; };
+		B66F3CA72364859500B35D4D /* TextMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessage.swift; sourceTree = "<group>"; };
+		B66F3CAC2364889700B35D4D /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
+		B6771FD02365DD7E00942868 /* GalleryInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryInput.swift; sourceTree = "<group>"; };
+		B6771FD22365DEBB00942868 /* GalleryImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryImage.swift; sourceTree = "<group>"; };
+		B692F72323651D1800431047 /* InputToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputToolBar.swift; sourceTree = "<group>"; };
+		B692F7252365274B00431047 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
+		B692F7292365289200431047 /* ActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsView.swift; sourceTree = "<group>"; };
 		B6E2E2DF23629523001046E5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B6E2E2E22362A7F7001046E5 /* UIViewExts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExts.swift; sourceTree = "<group>"; };
 		B6E2E2E62362AB73001046E5 /* UIColorExts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExts.swift; sourceTree = "<group>"; };
 		B6E2E2E92362E764001046E5 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		B6E2E2EC2362F561001046E5 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
+		B6E2E2EF2362FB76001046E5 /* MessageTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableView.swift; sourceTree = "<group>"; };
+		B6E2E2F12362FC33001046E5 /* SmartChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartChart.swift; sourceTree = "<group>"; };
+		B6E2E2F32362FE95001046E5 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		B6E2E2F52362FEE3001046E5 /* Bubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bubble.swift; sourceTree = "<group>"; };
 		B6F4F917234737E8002B7B36 /* BeenTogether-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BeenTogether-Bridging-Header.h"; sourceTree = "<group>"; };
 		B6F4F918234737E8002B7B36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6F4F91B23473A1A002B7B36 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		C403D03DD73EEE6412F64DB0 /* Pods-Cupid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cupid.release.xcconfig"; path = "Target Support Files/Pods-Cupid/Pods-Cupid.release.xcconfig"; sourceTree = "<group>"; };
+		D5763673876EA0C5CE568C13 /* Pods-Cupid-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cupid-tvOS.release.xcconfig"; path = "Target Support Files/Pods-Cupid-tvOS/Pods-Cupid-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		E07C6758DAF172F61641B653 /* libPods-Cupid-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cupid-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		F6ED815D63F4AA78F36968BE /* libPods-Cupid.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cupid.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE916A3DC3A89F7F89CA3D68 /* Pods-BeenTogether-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogether-tvOS.release.xcconfig"; path = "Target Support Files/Pods-BeenTogether-tvOS/Pods-BeenTogether-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,7 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3D0629D337AFC2561FA0CB8 /* libPods-BeenTogetherTests.a in Frameworks */,
+				22A78B505A88A37A640D5123 /* libPods-CupidTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9196AB1971ABF35B079E2C0 /* libPods-BeenTogether.a in Frameworks */,
+				17E0995B92EB27DC2C428F53 /* libPods-Cupid.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,7 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FBD331072E6BB763472E947 /* libPods-BeenTogether-tvOS.a in Frameworks */,
+				1BA3F880F1E0519F8B3CEA81 /* libPods-Cupid-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,7 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C1A8CC918D878FA857CCCFF /* libPods-BeenTogether-tvOSTests.a in Frameworks */,
+				172262E967C2843B2C451109 /* libPods-Cupid-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,10 +185,10 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				85B63FB11ADCC081B2A99B31 /* libPods-BeenTogether.a */,
-				1611229075EF03466056F1D3 /* libPods-BeenTogether-tvOS.a */,
-				6C80455AC0D7BF346E69D12C /* libPods-BeenTogether-tvOSTests.a */,
-				64E75A63FB793874F7C42EB9 /* libPods-BeenTogetherTests.a */,
+				F6ED815D63F4AA78F36968BE /* libPods-Cupid.a */,
+				1FA4788D947D3431727CA4AA /* libPods-Cupid-tvOS.a */,
+				E07C6758DAF172F61641B653 /* libPods-Cupid-tvOSTests.a */,
+				B48CF14D50A412DE50CDE077 /* libPods-CupidTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -170,6 +204,14 @@
 				37FFA031CA3C4A6B260DB914 /* Pods-BeenTogether-tvOSTests.release.xcconfig */,
 				2468A578A0988E6257AAFCFE /* Pods-BeenTogetherTests.debug.xcconfig */,
 				AE5225EDAAE57D4D67321A6B /* Pods-BeenTogetherTests.release.xcconfig */,
+				81847AFE4797956372E759F9 /* Pods-Cupid.debug.xcconfig */,
+				C403D03DD73EEE6412F64DB0 /* Pods-Cupid.release.xcconfig */,
+				2C48C8D9AEF93AEEC7E9BB9F /* Pods-Cupid-tvOS.debug.xcconfig */,
+				D5763673876EA0C5CE568C13 /* Pods-Cupid-tvOS.release.xcconfig */,
+				9939EFA61F59F675BBCE3ECC /* Pods-Cupid-tvOSTests.debug.xcconfig */,
+				5CC0C1EB72A73FDCB598FAC9 /* Pods-Cupid-tvOSTests.release.xcconfig */,
+				1201022ECF81D73CE24AB605 /* Pods-CupidTests.debug.xcconfig */,
+				50F40441CB0C3AB88992F5E4 /* Pods-CupidTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -207,6 +249,29 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		B66F3CA4236482D700B35D4D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B66F3CA2236482D400B35D4D /* Message.swift */,
+				B66F3CA52364841F00B35D4D /* SCUser.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		B66F3CA92364859C00B35D4D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B66F3CA72364859500B35D4D /* TextMessage.swift */,
+				B6E2E2F52362FEE3001046E5 /* Bubble.swift */,
+				B692F72323651D1800431047 /* InputToolBar.swift */,
+				B692F7252365274B00431047 /* InputView.swift */,
+				B692F7292365289200431047 /* ActionsView.swift */,
+				B6771FD02365DD7E00942868 /* GalleryInput.swift */,
+				B6771FD22365DEBB00942868 /* GalleryImage.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		B6E2E2E12362A7DF001046E5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,7 +300,9 @@
 		B6E2E2E82362E641001046E5 /* Messages */ = {
 			isa = PBXGroup;
 			children = (
+				B6E2E2EE2362FB39001046E5 /* SmartChat */,
 				B6E2E2E92362E764001046E5 /* MessagesViewController.swift */,
+				B66F3CAC2364889700B35D4D /* MessageViewModel.swift */,
 			);
 			name = Messages;
 			sourceTree = "<group>";
@@ -246,6 +313,18 @@
 				B6E2E2EC2362F561001046E5 /* Avatar.swift */,
 			);
 			name = CommonComponents;
+			sourceTree = "<group>";
+		};
+		B6E2E2EE2362FB39001046E5 /* SmartChat */ = {
+			isa = PBXGroup;
+			children = (
+				B66F3CA92364859C00B35D4D /* Views */,
+				B66F3CA4236482D700B35D4D /* Models */,
+				B6E2E2EF2362FB76001046E5 /* MessageTableView.swift */,
+				B6E2E2F12362FC33001046E5 /* SmartChart.swift */,
+				B6E2E2F32362FE95001046E5 /* MessageCell.swift */,
+			);
+			name = SmartChat;
 			sourceTree = "<group>";
 		};
 		B6F4F91A23473A04002B7B36 /* Features */ = {
@@ -467,7 +546,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BeenTogetherTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-CupidTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -489,7 +568,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BeenTogether-tvOSTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Cupid-tvOSTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -511,7 +590,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BeenTogether-tvOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Cupid-tvOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -524,7 +603,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BeenTogether/Pods-BeenTogether-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Cupid/Pods-Cupid-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/SwiftMessages/SwiftMessages.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -533,7 +612,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BeenTogether/Pods-BeenTogether-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Cupid/Pods-Cupid-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D1478092B52E59F0B674A9C5 /* [CP] Check Pods Manifest.lock */ = {
@@ -551,7 +630,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BeenTogether-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Cupid-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -611,11 +690,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B692F72423651D1800431047 /* InputToolBar.swift in Sources */,
+				B66F3CA62364841F00B35D4D /* SCUser.swift in Sources */,
+				B6E2E2F22362FC33001046E5 /* SmartChart.swift in Sources */,
+				B6771FD12365DD7E00942868 /* GalleryInput.swift in Sources */,
+				B66F3CA82364859600B35D4D /* TextMessage.swift in Sources */,
+				B692F72A2365289200431047 /* ActionsView.swift in Sources */,
+				B6E2E2F42362FE95001046E5 /* MessageCell.swift in Sources */,
 				B6E2E2EA2362E764001046E5 /* MessagesViewController.swift in Sources */,
+				B6E2E2F02362FB76001046E5 /* MessageTableView.swift in Sources */,
 				B6E2E2E32362A7F7001046E5 /* UIViewExts.swift in Sources */,
+				B692F7262365274B00431047 /* InputView.swift in Sources */,
+				B66F3CAD2364889700B35D4D /* MessageViewModel.swift in Sources */,
+				B6771FD32365DEBB00942868 /* GalleryImage.swift in Sources */,
 				B6F4F919234737E8002B7B36 /* AppDelegate.swift in Sources */,
+				B6E2E2F62362FEE3001046E5 /* Bubble.swift in Sources */,
 				B6E2E2E023629523001046E5 /* HomeViewController.swift in Sources */,
 				B6E2E2ED2362F561001046E5 /* Avatar.swift in Sources */,
+				B66F3CA3236482D400B35D4D /* Message.swift in Sources */,
 				B6F4F91C23473A1A002B7B36 /* MainTabBarViewController.swift in Sources */,
 				B6E2E2E72362AB73001046E5 /* UIColorExts.swift in Sources */,
 			);
@@ -666,7 +758,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2468A578A0988E6257AAFCFE /* Pods-BeenTogetherTests.debug.xcconfig */;
+			baseConfigurationReference = 1201022ECF81D73CE24AB605 /* Pods-CupidTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -690,7 +782,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AE5225EDAAE57D4D67321A6B /* Pods-BeenTogetherTests.release.xcconfig */;
+			baseConfigurationReference = 50F40441CB0C3AB88992F5E4 /* Pods-CupidTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -711,7 +803,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C782350347DE81685E9C150 /* Pods-BeenTogether.debug.xcconfig */;
+			baseConfigurationReference = 81847AFE4797956372E759F9 /* Pods-Cupid.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -735,7 +827,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 77075A41F0C5A168FB7717DD /* Pods-BeenTogether.release.xcconfig */;
+			baseConfigurationReference = C403D03DD73EEE6412F64DB0 /* Pods-Cupid.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -757,7 +849,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93727D99D2538C3C8FDC2435 /* Pods-BeenTogether-tvOS.debug.xcconfig */;
+			baseConfigurationReference = 2C48C8D9AEF93AEEC7E9BB9F /* Pods-Cupid-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -785,7 +877,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE916A3DC3A89F7F89CA3D68 /* Pods-BeenTogether-tvOS.release.xcconfig */;
+			baseConfigurationReference = D5763673876EA0C5CE568C13 /* Pods-Cupid-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -813,7 +905,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21471134800E90BF1F15E8B3 /* Pods-BeenTogether-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = 9939EFA61F59F675BBCE3ECC /* Pods-Cupid-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -840,7 +932,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 37FFA031CA3C4A6B260DB914 /* Pods-BeenTogether-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 5CC0C1EB72A73FDCB598FAC9 /* Pods-Cupid-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;

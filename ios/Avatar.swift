@@ -36,6 +36,7 @@ class Avatar: UIView {
     
     imageView.snp.makeConstraints { (make) in
       make.size.equalTo(self)
+      make.center.equalTo(self)
     }
     
     imageView.layer.masksToBounds = true
