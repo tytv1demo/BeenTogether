@@ -282,19 +282,18 @@ DEPENDENCIES:
   - YogaKit (~> 1.7)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - Alamofire
     - boost-for-react-native
     - KeychainAccess
     - Kingfisher
     - Moya
+    - PromiseKit
     - Result
     - SnapKit
     - SwiftMessages
     - Yoga
     - YogaKit
-  trunk:
-    - PromiseKit
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -394,4 +393,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: db4460d9646c7372767fed5cc0e6d0d0d251d0d9
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4

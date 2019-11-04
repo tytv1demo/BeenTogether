@@ -11,12 +11,13 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: NSObject, UIApplicationDelegate {
-  var window: UIWindow?
-
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-    self.window = UIWindow(frame: UIScreen.main.bounds)
-    self.window?.rootViewController = MainTabBarViewController()
-    self.window?.makeKeyAndVisible()
-    return true
-  }
+    var window: UIWindow?
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = MainTabBarViewController()
+        self.window?.makeKeyAndVisible()
+        return true
+    }
+    
 }

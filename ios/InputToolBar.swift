@@ -60,13 +60,13 @@ class InputToolBar: UIView {
     
     galleryInput = GalleryInput()
     
-    inputRow.snp.makeConstraints { (m) in
-      m.top.equalToSuperview()
-      m.trailing.equalToSuperview()
-      m.leading.equalToSuperview()
+    inputRow.snp.makeConstraints { (make) in
+      make.top.equalToSuperview()
+      make.trailing.equalToSuperview()
+      make.leading.equalToSuperview()
     }
-    input.snp.makeConstraints { (m) in
-      m.width.greaterThanOrEqualTo(inputRow).multipliedBy(0.3)
+    input.snp.makeConstraints { (make) in
+      make.width.greaterThanOrEqualTo(inputRow).multipliedBy(0.3)
     }
     
     contentView = UIStackView(arrangedSubviews: [inputRow, galleryInput])
@@ -74,8 +74,8 @@ class InputToolBar: UIView {
     contentView.spacing = 8
     addSubview(contentView)
     
-    contentView.snp.makeConstraints { (m) in
-      m.edges.equalTo(self).inset(8)
+    contentView.snp.makeConstraints { (make) in
+      make.edges.equalTo(self).inset(8)
     }
   }
   
@@ -106,8 +106,8 @@ class InputToolBar: UIView {
     self.keyboarHeight = keyboardSize.cgRectValue.height
     
     UIView.animate(withDuration: animationTimeInterval) {
-      self.snp.updateConstraints { (m) in
-        m.height.equalTo(self.height)
+      self.snp.updateConstraints { make in
+        make.height.equalTo(self.height)
       }
     }
   }
@@ -132,8 +132,8 @@ extension InputToolBar: InputViewDelegate {
   }
   
   func inputViewDidChange(_ inputView: InputView) {
-    self.snp.updateConstraints { (m) in
-      m.height.equalTo(self.height)
+    self.snp.updateConstraints { (make) in
+      make.height.equalTo(self.height)
     }
   }
   
@@ -141,8 +141,8 @@ extension InputToolBar: InputViewDelegate {
     UIView.animate(withDuration: 0.2) {
       self.actionsView.isHidden = false
       self.inputRow.distribution = .equalSpacing
-      self.snp.updateConstraints { (m) in
-        m.height.equalTo(self.height)
+      self.snp.updateConstraints { (make) in
+        make.height.equalTo(self.height)
       }
     }
   }

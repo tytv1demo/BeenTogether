@@ -23,8 +23,8 @@ class Avatar: UIView {
   
   convenience init (frame: CGRect = CGRect.zero, size: CGSize = CGSize(width: 40, height: 40), url: String) {
     self.init(frame: frame)
-    snp.makeConstraints { (m) in
-      m.size.equalTo(size)
+    snp.makeConstraints { (make) in
+      make.size.equalTo(size)
     }
     
     imageView = UIImageView()

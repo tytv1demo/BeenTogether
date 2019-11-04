@@ -9,9 +9,7 @@
 import Foundation
 
 class GalleryImage: UICollectionViewCell {
-  
-  static let CELL_IDENTIFER = "GalleryImage"
-  
+    
   var imageView: UIImageView!
   
   required init?(coder: NSCoder) {
@@ -27,8 +25,8 @@ class GalleryImage: UICollectionViewCell {
     imageView = UIImageView()
     contentView.addSubview(imageView)
     
-    imageView.snp.makeConstraints { (m) in
-      m.edges.equalTo(contentView)
+    imageView.snp.makeConstraints { make in
+      make.edges.equalTo(contentView)
     }
   }
   

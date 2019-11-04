@@ -32,11 +32,12 @@ class GalleryInput: UIView {
     collectionView.backgroundColor = .white
     collectionView.dataSource = self
     collectionView.delegate = self
-    collectionView.register(GalleryImage.self, forCellWithReuseIdentifier: GalleryImage.CELL_IDENTIFER)
+    collectionView.register(GalleryImage.self)
+    
     addSubview(collectionView)
     
-    collectionView.snp.makeConstraints { (m) in
-      m.edges.equalTo(self)
+    collectionView.snp.makeConstraints { (make) in
+      make.edges.equalTo(self)
     }
     
     fetchData()
@@ -71,8 +72,8 @@ extension GalleryInput {
       
       let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
       
-      for i in 0...fetchResult.count - 1 {
-        let asset: PHAsset = fetchResult.object(at: i)
+      for index in 0...fetchResult.count - 1 {
+        let asset: PHAsset = fetchResult.object(at: index)
         imageManager.requestImage(for: asset, targetSize: CGSize(width: 200, height: 200), contentMode: .aspectFill, options: requestOptions) { (photo, error) in
           if photo != nil {
             self.photos.append(photo!)
@@ -105,8 +106,8 @@ extension GalleryInput: UICollectionViewDataSource, UICollectionViewDelegate {
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryImage.CELL_IDENTIFER, for: indexPath) as! GalleryImage
-    
+    let cell: GalleryImage = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+
     cell.configCellWith(image: photos[indexPath.item])
     
     return cell

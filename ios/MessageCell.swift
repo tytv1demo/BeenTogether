@@ -9,7 +9,7 @@
 import Foundation
 
 class MessageCell: UITableViewCell {
-  static let CELL_IDENTIFY: String = "MessageCell"
+  static let kCellIdentify: String = "MessageCell"
   
   var messageView: MessageView!
   
@@ -24,15 +24,15 @@ class MessageCell: UITableViewCell {
   }
   
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-    super.init(style: style, reuseIdentifier: MessageCell.CELL_IDENTIFY)
+    super.init(style: style, reuseIdentifier: MessageCell.kCellIdentify)
 //    initUI()
   }
   
   func initUI() {
     messageView = MessageView()
     addSubview(messageView)
-    messageView.snp.makeConstraints { (m) in
-      m.edges.equalTo(self)
+    messageView.snp.makeConstraints { (make) in
+      make.edges.equalTo(self)
     }
   }
   
