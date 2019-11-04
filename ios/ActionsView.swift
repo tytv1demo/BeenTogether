@@ -44,8 +44,8 @@ class ActionsView: UIView {
     stack.alignment = .center
     addSubview(stack)
     
-    stack.snp.makeConstraints { (m) in
-      m.edges.equalTo(self).inset(8)
+    stack.snp.makeConstraints { (make) in
+      make.edges.equalTo(self).inset(8)
     }
   }
 }

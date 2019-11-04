@@ -39,8 +39,8 @@ class Bubble: UIView {
     messageLabel.text = message.body
     messageLabel.textColor = isUserMessage ? .white : .black
     
-    messageLabel.snp.makeConstraints { (m) in
-      m.edges.equalTo(self).inset(8)
+    messageLabel.snp.makeConstraints { (make) in
+      make.edges.equalTo(self).inset(8)
     }
     messageLabel.numberOfLines = 0
     messageLabel.sizeToFit()

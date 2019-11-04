@@ -1,0 +1,7 @@
+input_dir: Resources
+output_dir: Resources/Generated/
+strings:
+  inputs: en.lproj/Localizable.strings
+  outputs: 
+    - templateName: flat-swift4
+      output: L10n-Constants.swift

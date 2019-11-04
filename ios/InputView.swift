@@ -18,7 +18,7 @@ protocol InputViewDelegate {
 
 class InputView: UIView {
   
-  static let DEFAULT_HEIGHT: CGFloat = 25
+  static let kDefaultHeight: CGFloat = 25
   
   var delegate: InputViewDelegate?
   
@@ -46,12 +46,12 @@ class InputView: UIView {
     inputField.layer.cornerRadius = 8
     
     addSubview(inputField)
-    inputField.snp.makeConstraints { (m) in
-      m.edges.equalTo(self)
+    inputField.snp.makeConstraints { (make) in
+      make.edges.equalTo(self)
     }
     
-    snp.makeConstraints { (m) in
-      m.height.equalTo(InputView.DEFAULT_HEIGHT)
+    snp.makeConstraints { (make) in
+      make.height.equalTo(InputView.kDefaultHeight)
     }
     
     inputField.delegate = self
@@ -59,8 +59,8 @@ class InputView: UIView {
   
   func clearValue() {
     inputField.text = ""
-    snp.updateConstraints { (m) in
-      m.height.equalTo(InputView.DEFAULT_HEIGHT)
+    snp.updateConstraints { (make) in
+      make.height.equalTo(InputView.kDefaultHeight)
     }
   }
 }
@@ -71,8 +71,8 @@ extension InputView: UITextViewDelegate {
   }
   
   func textViewDidChange(_ textView: UITextView) {
-    snp.updateConstraints { (m) in
-      m.height.equalTo(textView.contentSize.height)
+    snp.updateConstraints { (make) in
+      make.height.equalTo(textView.contentSize.height)
     }
     delegate?.inputViewDidChange(self)
   }

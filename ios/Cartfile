@@ -1,0 +1,3 @@
+github "SwiftyJSON/SwiftyJSON" ~> 4.1
+github "DaveWoodCom/XCGLogger" ~> 6.0
+github "dennisweissmann/DeviceKit" ~> 1.7

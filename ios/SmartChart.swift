@@ -43,18 +43,18 @@ class SmartChart: UIView {
     inputToolBar = InputToolBar()
     addSubview(inputToolBar)
     
-    messageTableView.snp.makeConstraints { (m) in
-      m.top.equalTo(self)
-      m.trailing.equalTo(self)
-      m.leading.equalTo(self)
-      m.bottom.equalTo(inputToolBar.snp.top)
+    messageTableView.snp.makeConstraints { make in
+      make.top.equalTo(self)
+      make.trailing.equalTo(self)
+      make.leading.equalTo(self)
+      make.bottom.equalTo(inputToolBar.snp.top)
     }
     
-    inputToolBar.snp.makeConstraints { (m) in
-      m.bottom.equalTo(self)
-      m.trailing.equalTo(self)
-      m.leading.equalTo(self)
-      m.height.equalTo(self.inputToolBar.height)
+    inputToolBar.snp.makeConstraints { (make) in
+      make.bottom.equalTo(self)
+      make.trailing.equalTo(self)
+      make.leading.equalTo(self)
+      make.height.equalTo(self.inputToolBar.height)
     }
   }
 }
