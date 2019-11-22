@@ -32,7 +32,7 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
         setupChatUI()
     }
     
-    func settupNavigation(){
+    func settupNavigation() {
         navigationController?.navigationBar.backgroundColor = .white
         
         gpsButton = UIButton(type: .custom)
@@ -71,11 +71,11 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
         }
     }
     
-    @objc func onGpsButtonPress(){
+    @objc func onGpsButtonPress() {
         
     }
     
-    @objc func onPhoneButtonPress(){
+    @objc func onPhoneButtonPress() {
         
     }
     

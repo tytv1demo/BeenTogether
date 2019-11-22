@@ -9,13 +9,13 @@
 import Foundation
 
 protocol MessageViewModelProtocol: AnyObject {
-    var messages: Array<SCMessage> { get set }
+    var messages: [SCMessage] { get set }
     var user: SCUser { get set }
 }
 
 class MessageViewModel: MessageViewModelProtocol {
 
-    var messages: Array<SCMessage> = []
+    var messages: [SCMessage] = []
     var user: SCUser = SCUser(id: 1, name: "anh yeu", avatar: "")
     init() {
       let tuser: SCUser = SCUser(id: 2, name: "em yeu", avatar: "")

@@ -7,8 +7,9 @@
 //
 
 import Foundation
+
 struct SCUser {
-  var id: Int
-  var name: String?
-  var avatar: String?
+    var id: Int
+    var name: String?
+    var avatar: String?
 }

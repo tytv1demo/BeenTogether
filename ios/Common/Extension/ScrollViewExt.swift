@@ -8,8 +8,8 @@
 
 import UIKit
 
-private let kRefreshViewTag             = 9999
-private let kViewNoneDataTag            = 8888
+private let kRefreshViewTag = 9999
+private let kViewNoneDataTag = 8888
 
 extension UIScrollView {
     

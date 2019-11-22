@@ -11,17 +11,11 @@ import Foundation
 class MessageView: UIView {
     
     var rowContentStack: UIStackView!
-    
     var bubble: Bubble!
-    
     var avatar: Avatar!
-    
-    var messages: Array<SCMessage>!
-    
+    var messages: [SCMessage]!
     var message: SCMessage!
-    
     var user: SCUser!
-    
     var indexPath: IndexPath!
     
     var isFirstMessageInGroup: Bool {
@@ -51,7 +45,7 @@ class MessageView: UIView {
         guard let message = message as? SCTextMessage else { return }
         bubble = Bubble(message: message, isUserMessage: isUserMessage)
         
-        let arrayView: Array<UIView> = isUserMessage ? [UIView(), bubble, avatar] : [avatar, bubble, UIView()]
+        let arrayView: [UIView] = isUserMessage ? [UIView(), bubble, avatar] : [avatar, bubble, UIView()]
         
         rowContentStack = UIStackView(arrangedSubviews: arrayView)
         //    contentStack.distribution = .equalSpacing

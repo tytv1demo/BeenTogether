@@ -11,7 +11,7 @@ import Foundation
 class MessageTableView: UIView {
     var tableView: UITableView!
     
-    var messages: Array<SCMessage> = [] {
+    var messages: [SCMessage] = [] {
         didSet {
             tableView.reloadData()
         }
@@ -50,7 +50,7 @@ class MessageTableView: UIView {
     }
     
 }
-extension MessageTableView: UITableViewDelegate, UITableViewDataSource{
+extension MessageTableView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
     }

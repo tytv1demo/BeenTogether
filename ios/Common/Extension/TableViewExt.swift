@@ -8,7 +8,7 @@
 
 import UIKit
 
-private let kActivityViewTag            = 9998
+private let kActivityViewTag = 9998
 
 protocol ReusableView: class {
     static var nibName: String { get }

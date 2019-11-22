@@ -10,51 +10,51 @@ import Foundation
 import YogaKit
 
 class SmartChart: UIView {
-  
-  var messageTableView: MessageTableView!
-  var inputToolBar: InputToolBar!
-  
-  var data: Array<SCMessage> = [] {
-    didSet {
-      messageTableView.messages = self.data
-    }
-  }
-  
-  var user: SCUser!
-  
-  required init?(coder: NSCoder) {
-    fatalError()
-  }
-  
-  override init(frame: CGRect) {
-    super.init(frame: frame)
-  }
-  
-  convenience init (frame: CGRect = .zero, user: SCUser) {
-    self.init(frame: frame)
-    self.user = user
-    setupUI()
-  }
-  
-  func setupUI() {
-    messageTableView = MessageTableView(user: user)
-    addSubview(messageTableView)
     
-    inputToolBar = InputToolBar()
-    addSubview(inputToolBar)
+    var messageTableView: MessageTableView!
+    var inputToolBar: InputToolBar!
     
-    messageTableView.snp.makeConstraints { make in
-      make.top.equalTo(self)
-      make.trailing.equalTo(self)
-      make.leading.equalTo(self)
-      make.bottom.equalTo(inputToolBar.snp.top)
+    var data: [SCMessage] = [] {
+        didSet {
+            messageTableView.messages = self.data
+        }
     }
     
-    inputToolBar.snp.makeConstraints { (make) in
-      make.bottom.equalTo(self)
-      make.trailing.equalTo(self)
-      make.leading.equalTo(self)
-      make.height.equalTo(self.inputToolBar.height)
+    var user: SCUser!
+    
+    required init?(coder: NSCoder) {
+        fatalError()
     }
-  }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    convenience init (frame: CGRect = .zero, user: SCUser) {
+        self.init(frame: frame)
+        self.user = user
+        setupUI()
+    }
+    
+    func setupUI() {
+        messageTableView = MessageTableView(user: user)
+        addSubview(messageTableView)
+        
+        inputToolBar = InputToolBar()
+        addSubview(inputToolBar)
+        
+        messageTableView.snp.makeConstraints { make in
+            make.top.equalTo(self)
+            make.trailing.equalTo(self)
+            make.leading.equalTo(self)
+            make.bottom.equalTo(inputToolBar.snp.top)
+        }
+        
+        inputToolBar.snp.makeConstraints { (make) in
+            make.bottom.equalTo(self)
+            make.trailing.equalTo(self)
+            make.leading.equalTo(self)
+            make.height.equalTo(self.inputToolBar.height)
+        }
+    }
 }
