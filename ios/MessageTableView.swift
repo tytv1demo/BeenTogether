@@ -8,7 +8,14 @@
 
 import Foundation
 
+protocol MessageTableViewDelegate: AnyObject {
+    func messageTableView(didTap: MessageTableView, atIndexPath: IndexPath)
+}
+
 class MessageTableView: UIView {
+    
+    weak var delegate: MessageTableViewDelegate?
+    
     var tableView: UITableView!
     
     var messages: [SCMessage] = [] {
@@ -50,16 +57,34 @@ class MessageTableView: UIView {
     }
     
 }
+
+extension MessageTableView {
+    func scrollToBottomIfNeeded() {
+        tableView.scrollToRow(at: IndexPath(item: messages.count - 1, section: 0), at: .bottom, animated: true)
+    }
+}
+
 extension MessageTableView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MessageCell.kCellIdentify) as? MessageCell else { return UITableViewCell() }
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: MessageCell.kCellIdentify) as? MessageCell else { return UITableViewCell() }
+        let cell: MessageCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
         cell.configWith(messages: messages, at: indexPath, andUser: user)
+        cell.messageView.delegate = self
         
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.messageTableView(didTap: self, atIndexPath: indexPath)
+    }
+}
+
+extension MessageTableView: MessageViewDelegate {
+    func messageView(didTap messageView: MessageView, onView: UIView?) {
+      
+    }
 }

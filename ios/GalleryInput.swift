@@ -39,7 +39,7 @@ class GalleryInput: UIView {
             make.edges.equalTo(self)
         }
         
-        fetchData()
+//        fetchData()
     }
 }
 
@@ -99,16 +99,32 @@ extension GalleryInput {
     }
 }
 
-extension GalleryInput: UICollectionViewDataSource, UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos.count
+extension GalleryInput: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return photos.count
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    guard let cell: GalleryImage = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryImage.CellIdentifer, for: indexPath) as? GalleryImage else {
+        return UICollectionViewCell()
+    }
+
+    cell.configCellWith(image: photos[indexPath.item])
+    
+    return cell
+  }
+  
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size = self.frame.width * 0.5 - 8
+        return CGSize(width: size, height: size)
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: GalleryImage = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell: GalleryImage = collectionView.cellForItem(at: indexPath) as? GalleryImage else {
+            return
+        }
         
-        cell.configCellWith(image: photos[indexPath.item])
-        
-        return cell
+        cell.onTapImage()
     }
+    
 }

@@ -9,34 +9,35 @@
 import Foundation
 import YogaKit
 
-class SmartChart: UIView {
-    
-    var messageTableView: MessageTableView!
-    var inputToolBar: InputToolBar!
-    
-    var data: [SCMessage] = [] {
-        didSet {
-            messageTableView.messages = self.data
-        }
+class SmartChat: UIView {
+  
+  var messageTableView: MessageTableView!
+  var inputToolBar: InputToolBar!
+  
+  var data: [SCMessage] = [] {
+    didSet {
+      messageTableView.messages = self.data
     }
-    
-    var user: SCUser!
-    
-    required init?(coder: NSCoder) {
-        fatalError()
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    convenience init (frame: CGRect = .zero, user: SCUser) {
-        self.init(frame: frame)
-        self.user = user
-        setupUI()
-    }
-    
-    func setupUI() {
+  }
+  
+  var user: SCUser!
+  
+  required init?(coder: NSCoder) {
+    fatalError()
+  }
+  
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+  }
+  
+  convenience init (frame: CGRect = .zero, user: SCUser) {
+    self.init(frame: frame)
+    self.user = user
+    setupUI()
+  }
+  
+  func setupUI() {
+
         messageTableView = MessageTableView(user: user)
         addSubview(messageTableView)
         
@@ -57,4 +58,17 @@ class SmartChart: UIView {
             make.height.equalTo(self.inputToolBar.height)
         }
     }
+}
+
+extension SmartChat: InputToolBarDelegate {
+    func inputToolBar(didChangeHeight toolBar: InputToolBar) {
+        messageTableView.scrollToBottomIfNeeded()
+    }
+}
+
+extension SmartChat: MessageTableViewDelegate {
+    func messageTableView(didTap: MessageTableView, atIndexPath: IndexPath) {
+        inputToolBar.requestEndEditing()
+    }
+
 }

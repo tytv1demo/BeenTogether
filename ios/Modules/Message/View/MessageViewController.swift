@@ -24,7 +24,7 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
     var loverNameLabel: UILabel!
     var loverAvatar: Avatar!
     
-    var smartChat: SmartChart!
+    var smartChat: SmartChat!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +57,7 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
     }
     
     func setupChatUI() {
-        smartChat = SmartChart(user: viewModel.user)
+        smartChat = SmartChat(user: viewModel.user)
         smartChat.data = viewModel.messages
         view.addSubview(smartChat)
         smartChat.snp.makeConstraints { (make) in
@@ -67,7 +67,6 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
             if let tab = tabBarController?.tabBar {
                 make.bottom.equalTo(view).inset(tab.frame.height)
             }
-            
         }
     }
     

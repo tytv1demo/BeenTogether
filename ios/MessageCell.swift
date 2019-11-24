@@ -18,36 +18,35 @@ class MessageCell: UITableViewCell {
     var indexPath: IndexPath!
     
     var messages: [SCMessage]!
-    
+
     required init?(coder: NSCoder) {
         fatalError()
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: MessageCell.kCellIdentify)
-        //    initUI()
-    }
-    
-    func initUI() {
-        messageView = MessageView()
-        addSubview(messageView)
-        messageView.snp.makeConstraints { (make) in
-            make.edges.equalTo(self)
-        }
+        selectionStyle = .none
+        
     }
     
     func configWith(messages: [SCMessage], at indexPath: IndexPath, andUser user: SCUser) {
-        initUI()
         let message = messages[indexPath.item]
         self.messages = messages
         self.indexPath = indexPath
         self.user = user
         
+        messageView = MessageViewFactory.getMessageView(fromMessage: message)
+        addSubview(messageView)
+        messageView.snp.makeConstraints { (make) in
+            make.edges.equalTo(self)
+        }
+        messageView.isUserInteractionEnabled = true
+        
         messageView.indexPath = indexPath
         messageView.message = message
         messageView.user = user
         messageView.messages = messages
-        messageView.configUI()
+        messageView.startConfigForUse()
     }
     
     override func prepareForReuse() {

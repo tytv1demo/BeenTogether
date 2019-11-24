@@ -10,7 +10,11 @@ import Foundation
 
 class GalleryImage: UICollectionViewCell {
     
+    static let CellIdentifer: String = "GalleryImage"
+    
     var imageView: UIImageView!
+    
+    var isChoosingAction: Bool = false
     
     required init?(coder: NSCoder) {
         fatalError()
@@ -28,6 +32,15 @@ class GalleryImage: UICollectionViewCell {
         imageView.snp.makeConstraints { make in
             make.edges.equalTo(contentView)
         }
+    }
+    
+    func onTapImage() {
+        if isChoosingAction {
+            imageView.removeBlurEffect()
+        } else {
+            imageView.addBlurEffect()
+        }
+        isChoosingAction = !isChoosingAction
     }
     
     func configCellWith(image: UIImage) {

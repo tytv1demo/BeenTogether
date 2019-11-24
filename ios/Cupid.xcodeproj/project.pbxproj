@@ -72,9 +72,10 @@
 		B6E2E2E72362AB73001046E5 /* UIColorExts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2E62362AB73001046E5 /* UIColorExts.swift */; };
 		B6E2E2ED2362F561001046E5 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2EC2362F561001046E5 /* Avatar.swift */; };
 		B6E2E2F02362FB76001046E5 /* MessageTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2EF2362FB76001046E5 /* MessageTableView.swift */; };
-		B6E2E2F22362FC33001046E5 /* SmartChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2F12362FC33001046E5 /* SmartChart.swift */; };
+		B6E2E2F22362FC33001046E5 /* SmartChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2F12362FC33001046E5 /* SmartChat.swift */; };
 		B6E2E2F42362FE95001046E5 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2F32362FE95001046E5 /* MessageCell.swift */; };
 		B6E2E2F62362FEE3001046E5 /* Bubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2F52362FEE3001046E5 /* Bubble.swift */; };
+		B6EFFFF4238194360093E730 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EFFFF3238194360093E730 /* MessageView.swift */; };
 		B6F4F919234737E8002B7B36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F4F918234737E8002B7B36 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -177,9 +178,10 @@
 		B6E2E2E62362AB73001046E5 /* UIColorExts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExts.swift; sourceTree = "<group>"; };
 		B6E2E2EC2362F561001046E5 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
 		B6E2E2EF2362FB76001046E5 /* MessageTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableView.swift; sourceTree = "<group>"; };
-		B6E2E2F12362FC33001046E5 /* SmartChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartChart.swift; sourceTree = "<group>"; };
+		B6E2E2F12362FC33001046E5 /* SmartChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartChat.swift; sourceTree = "<group>"; };
 		B6E2E2F32362FE95001046E5 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		B6E2E2F52362FEE3001046E5 /* Bubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bubble.swift; sourceTree = "<group>"; };
+		B6EFFFF3238194360093E730 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		B6F4F917234737E8002B7B36 /* BeenTogether-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BeenTogether-Bridging-Header.h"; sourceTree = "<group>"; };
 		B6F4F918234737E8002B7B36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C403D03DD73EEE6412F64DB0 /* Pods-Cupid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cupid.release.xcconfig"; path = "Target Support Files/Pods-Cupid/Pods-Cupid.release.xcconfig"; sourceTree = "<group>"; };
@@ -714,6 +716,7 @@
 				B692F7292365289200431047 /* ActionsView.swift */,
 				B6771FD02365DD7E00942868 /* GalleryInput.swift */,
 				B6771FD22365DEBB00942868 /* GalleryImage.swift */,
+				B6EFFFF3238194360093E730 /* MessageView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -736,7 +739,7 @@
 				B66F3CA92364859C00B35D4D /* Views */,
 				B66F3CA4236482D700B35D4D /* Models */,
 				B6E2E2EF2362FB76001046E5 /* MessageTableView.swift */,
-				B6E2E2F12362FC33001046E5 /* SmartChart.swift */,
+				B6E2E2F12362FC33001046E5 /* SmartChat.swift */,
 				B6E2E2F32362FE95001046E5 /* MessageCell.swift */,
 			);
 			name = SmartChat;
@@ -1174,7 +1177,7 @@
 				B692F72423651D1800431047 /* InputToolBar.swift in Sources */,
 				7F5D1C5E236FC429005A4961 /* TaskViewModel.swift in Sources */,
 				B66F3CA62364841F00B35D4D /* SCUser.swift in Sources */,
-				B6E2E2F22362FC33001046E5 /* SmartChart.swift in Sources */,
+				B6E2E2F22362FC33001046E5 /* SmartChat.swift in Sources */,
 				B6771FD12365DD7E00942868 /* GalleryInput.swift in Sources */,
 				B66F3CA82364859600B35D4D /* TextMessage.swift in Sources */,
 				7F5D1C4B236FC39C005A4961 /* MainTabBarViewController.swift in Sources */,
@@ -1184,6 +1187,7 @@
 				7F5D1C96236FC4C7005A4961 /* MessageViewModel.swift in Sources */,
 				46B83CA723867E990040D1F1 /* DateExts.swift in Sources */,
 				B6E2E2F02362FB76001046E5 /* MessageTableView.swift in Sources */,
+				B6EFFFF4238194360093E730 /* MessageView.swift in Sources */,
 				7FB507DD236FCB3400A00CF6 /* LoadingViewController.swift in Sources */,
 				7F5D1C49236FC39C005A4961 /* MainTabBarViewModel.swift in Sources */,
 				B6E2E2E32362A7F7001046E5 /* UIViewExts.swift in Sources */,
