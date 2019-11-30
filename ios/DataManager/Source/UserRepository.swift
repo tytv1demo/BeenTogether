@@ -8,6 +8,10 @@
 
 import UIKit
 
-class UserRepository: NSObject {
+protocol UserRepository: AnyObject {
+    
+}
 
+class BaseUserRepository: UserRepository {
+    
 }

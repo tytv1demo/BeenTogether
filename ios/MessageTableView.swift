@@ -48,7 +48,7 @@ class MessageTableView: UIView {
             make.edges.equalTo(self)
         }
         
-        tableView.register(MessageCell.self, forCellReuseIdentifier: MessageCell.kCellIdentify)
+        tableView.register(TextMessageCell.self, forCellReuseIdentifier: TextMessageCell.kCellIdentify)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.estimatedRowHeight = 50
@@ -60,6 +60,9 @@ class MessageTableView: UIView {
 
 extension MessageTableView {
     func scrollToBottomIfNeeded() {
+        if messages.count == 0 {
+            return
+        }
         tableView.scrollToRow(at: IndexPath(item: messages.count - 1, section: 0), at: .bottom, animated: true)
     }
 }
@@ -71,7 +74,7 @@ extension MessageTableView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        guard let cell = tableView.dequeueReusableCell(withIdentifier: MessageCell.kCellIdentify) as? MessageCell else { return UITableViewCell() }
-        let cell: MessageCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+        let cell: TextMessageCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
         cell.configWith(messages: messages, at: indexPath, andUser: user)
         cell.messageView.delegate = self
         

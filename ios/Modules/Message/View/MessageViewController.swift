@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 protocol MessageViewControllerProtocol: AnyObject {
     
@@ -25,6 +26,8 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
     var loverAvatar: Avatar!
     
     var smartChat: SmartChat!
+    
+    var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +61,13 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
     
     func setupChatUI() {
         smartChat = SmartChat(user: viewModel.user)
-        smartChat.data = viewModel.messages
+        smartChat.data = try! viewModel.messages.value()
+        smartChat.delegate = self
+        
+        viewModel.messages
+            .subscribe(onNext: { self.smartChat.data = $0 })
+            .disposed(by: disposeBag)
+        
         view.addSubview(smartChat)
         smartChat.snp.makeConstraints { (make) in
             make.top.equalTo(view)
@@ -78,4 +87,10 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
         
     }
     
+}
+
+extension MessageViewController: SmartChatDelegate {
+    func smartChat(onSendMessage type: MessageType, content: String) {
+        viewModel.sendMessage(type: type, content: content)
+    }
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>110346131944-ul6pcl0cbreg4flo5bpunc282rfd2lb2.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.110346131944-ul6pcl0cbreg4flo5bpunc282rfd2lb2</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDqqmoBM1VPdKdTQNwfLluf59rxuJGkwlA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>110346131944</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.tmlq.cupid</string>
+	<key>PROJECT_ID</key>
+	<string>cupid-8425d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cupid-8425d.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:110346131944:ios:a977194153776e377f2c5d</string>
+	<key>DATABASE_URL</key>
+	<string>https://cupid-8425d.firebaseio.com</string>
+</dict>
+</plist>

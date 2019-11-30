@@ -8,12 +8,16 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: NSObject, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+        
+        FirebaseApp.configure()
+        
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = MainTabBarViewController()
         self.window?.makeKeyAndVisible()

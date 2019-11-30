@@ -19,28 +19,23 @@ class Bubble: UIView {
   
     override init(frame: CGRect) {
         super.init(frame: frame)
-    }
-  
-    convenience init (frame: CGRect = CGRect.zero, message: SCTextMessage, isUserMessage: Bool) {
-        self.init(frame: frame)
-        self.message = message
-        setupUI(isUserMessage: isUserMessage)
-    }
-  
-    func setupUI(isUserMessage: Bool = true) {
-        backgroundColor = isUserMessage ? UIColor(rgb: 0xEE4E9B) : UIColor.groupTableViewBackground
+        
         layer.masksToBounds = true
         layer.cornerRadius = 8
         
         messageLabel = UILabel()
         addSubview(messageLabel)
-        messageLabel.text = message.body
-        messageLabel.textColor = isUserMessage ? .white : .black
         
+        messageLabel.numberOfLines = 0
         messageLabel.snp.makeConstraints { (make) in
             make.edges.equalTo(self).inset(8)
         }
-        messageLabel.numberOfLines = 0
-        messageLabel.sizeToFit()
+    }
+  
+    func setupWithMessage(_ message: SCTextMessage, isUserMessage: Bool) {
+        self.message = message
+        backgroundColor = isUserMessage ? UIColor(rgb: 0xEE4E9B) : UIColor.groupTableViewBackground
+        messageLabel.text = message.body
+        messageLabel.textColor = isUserMessage ? .white : .black
     }
 }

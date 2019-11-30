@@ -59,10 +59,3 @@ extension MessageView {
     }
     
 }
-
-class MessageViewFactory {
-    static func getMessageView(fromMessage: SCMessage) -> MessageView {
-        let messageView = TextMessageView()
-        return messageView
-    }
-}

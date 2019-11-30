@@ -95,5 +95,4 @@ extension InputView: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         delegate?.inputViewDidEndEditing(self)
     }
-    
 }

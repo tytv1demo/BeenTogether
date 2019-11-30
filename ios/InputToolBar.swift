@@ -10,6 +10,8 @@ import Foundation
 
 protocol InputToolBarDelegate: AnyObject {
     func inputToolBar(didChangeHeight toolBar: InputToolBar)
+    
+    func inputToolBar(onSendMessage type: MessageType, content: String)
 }
 
 enum InputToolBarState {
@@ -128,7 +130,7 @@ class InputToolBar: UIView {
     }
     
     @objc func onSendButtonPress() {
-        endEditing(true)
+        delegate?.inputToolBar(onSendMessage: .text, content: input.value)
         input.clearValue()
     }
     
