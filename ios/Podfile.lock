@@ -88,6 +88,7 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.3.1):
     - GoogleUtilities/Logger
+  - IBAnimatable (6.0.0)
   - KeychainAccess (3.2.0)
   - Kingfisher (4.10.0)
   - leveldb-library (1.22)
@@ -332,6 +333,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - IBAnimatable
   - KeychainAccess
   - Kingfisher (= 4.10.0)
   - Moya (~> 13.0)
@@ -381,6 +383,7 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
+    - IBAnimatable
     - KeychainAccess
     - Kingfisher
     - leveldb-library
@@ -474,6 +477,7 @@ SPEC CHECKSUMS:
   GoogleDataTransport: 166f9b9f82cbf60a204e8fe2daa9db3e3ec1fb15
   GoogleDataTransportCCTSupport: f6ab1962e9dc05ab1fb938b795e5b310209edeec
   GoogleUtilities: f895fde57977df4e0233edda0dbeac490e3703b6
+  IBAnimatable: d49f9fee0c401b5b08d31b77256b77fb067e0e92
   KeychainAccess: 3b1bf8a77eb4c6ea1ce9404c292e48f948954c6b
   Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
@@ -509,6 +513,6 @@ SPEC CHECKSUMS:
   Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
   YogaKit: 5d1dc899cecd5946e5a758a0c3997704a4b48d01
 
-PODFILE CHECKSUM: 9f2f3ac38b337b50af3e1589bdcdf78373a25c4d
+PODFILE CHECKSUM: e886410ac531feba53e03c077ca2b10d202da506
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4

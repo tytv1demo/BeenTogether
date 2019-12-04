@@ -49,6 +49,7 @@ end
 def ui
   pod 'SwiftMessages'
   pod 'SkeletonView', :git => 'https://github.com/dangthaison91/SkeletonView.git', :branch => 'develop'
+  pod 'IBAnimatable'
 end 
 
 def database
