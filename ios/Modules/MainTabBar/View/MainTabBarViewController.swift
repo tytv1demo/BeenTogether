@@ -8,6 +8,7 @@
 
 import Foundation
 import YogaKit
+import UIKit
 
 class MainTabBarUIConfiguration {
     var centerCircleButtonSize: CGFloat = 68
@@ -29,8 +30,7 @@ class MainTabBarViewController: UITabBarController {
     }
     
     func settupViewController() {
-        let firstVc = UIViewController()
-        firstVc.view.backgroundColor = .blue
+        let firstVc = UIStoryboard(name: "Event", bundle: nil).instantiateViewController(withIdentifier: "EventViewControllerNav") as! UINavigationController
         firstVc.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
         
         let secVc = UIViewController()
