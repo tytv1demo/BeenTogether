@@ -18,7 +18,7 @@ protocol InputViewDelegate: AnyObject {
 
 class InputView: UIView {
     
-    static let kDefaultHeight: CGFloat = 25
+    static let kDefaultHeight: CGFloat = 24
     
     weak var delegate: InputViewDelegate?
     
@@ -43,11 +43,11 @@ class InputView: UIView {
     }
     
     func initUI() {
-        layer.borderWidth = 0.5
-        layer.borderColor = UIColor(rgb: 0xEE4E9B).cgColor
-        layer.cornerRadius = 8
+        backgroundColor = .groupTableViewBackground
+        layer.cornerRadius = 16
         
         inputField = UITextView()
+        inputField.backgroundColor = .clear
         inputField.delegate = self
         
         emojiButton = UIButton()

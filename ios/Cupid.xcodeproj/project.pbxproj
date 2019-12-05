@@ -54,6 +54,7 @@
 		7FF7E797236FD7EE006AC2BF /* AppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF7E796236FD7EE006AC2BF /* AppService.swift */; };
 		7FF7E7A2236FDA09006AC2BF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7FF7E7A4236FDA09006AC2BF /* Localizable.strings */; };
 		7FF7E7A7236FDA36006AC2BF /* L10n-Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF7E7A6236FDA35006AC2BF /* L10n-Constants.swift */; };
+		B67252272397FC1E00E13339 /* RemoteMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67252262397FC1E00E13339 /* RemoteMessage.swift */; };
 		B68E245823922C860014A53E /* MessageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E245723922C860014A53E /* MessageRepository.swift */; };
 		B68E245A23922EE60014A53E /* MessageRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E245923922EE60014A53E /* MessageRemoteDataSource.swift */; };
 		B68E245D239230420014A53E /* MessageApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E245C239230420014A53E /* MessageApi.swift */; };
@@ -78,6 +79,9 @@
 		B68E249B239271630014A53E /* Bubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E249A239271630014A53E /* Bubble.swift */; };
 		B68E249F2392720A0014A53E /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B68E249D2392720A0014A53E /* Home.storyboard */; };
 		B68E24A02392720A0014A53E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E249E2392720A0014A53E /* HomeViewController.swift */; };
+		B6972B342393D04E002EE07B /* ImageMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6972B332393D04E002EE07B /* ImageMessageCell.swift */; };
+		B6972B362393D0AD002EE07B /* ImageMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6972B352393D0AD002EE07B /* ImageMessage.swift */; };
+		B6B9D121239559F0003527B4 /* MessageStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B9D120239559F0003527B4 /* MessageStatusIndicator.swift */; };
 		B6E2E2E32362A7F7001046E5 /* UIViewExts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2E22362A7F7001046E5 /* UIViewExts.swift */; };
 		B6E2E2E72362AB73001046E5 /* UIColorExts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2E62362AB73001046E5 /* UIColorExts.swift */; };
 		B6E2E2ED2362F561001046E5 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2EC2362F561001046E5 /* Avatar.swift */; };
@@ -165,6 +169,7 @@
 		9939EFA61F59F675BBCE3ECC /* Pods-Cupid-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cupid-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Cupid-tvOSTests/Pods-Cupid-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AE5225EDAAE57D4D67321A6B /* Pods-BeenTogetherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogetherTests.release.xcconfig"; path = "Target Support Files/Pods-BeenTogetherTests/Pods-BeenTogetherTests.release.xcconfig"; sourceTree = "<group>"; };
 		B48CF14D50A412DE50CDE077 /* libPods-CupidTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CupidTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B67252262397FC1E00E13339 /* RemoteMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMessage.swift; sourceTree = "<group>"; };
 		B68E245723922C860014A53E /* MessageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRepository.swift; sourceTree = "<group>"; };
 		B68E245923922EE60014A53E /* MessageRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRemoteDataSource.swift; sourceTree = "<group>"; };
 		B68E245C239230420014A53E /* MessageApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageApi.swift; sourceTree = "<group>"; };
@@ -189,6 +194,9 @@
 		B68E249A239271630014A53E /* Bubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bubble.swift; sourceTree = "<group>"; };
 		B68E249D2392720A0014A53E /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		B68E249E2392720A0014A53E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		B6972B332393D04E002EE07B /* ImageMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMessageCell.swift; sourceTree = "<group>"; };
+		B6972B352393D0AD002EE07B /* ImageMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMessage.swift; sourceTree = "<group>"; };
+		B6B9D120239559F0003527B4 /* MessageStatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStatusIndicator.swift; sourceTree = "<group>"; };
 		B6E2E2E22362A7F7001046E5 /* UIViewExts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExts.swift; sourceTree = "<group>"; };
 		B6E2E2E62362AB73001046E5 /* UIColorExts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExts.swift; sourceTree = "<group>"; };
 		B6E2E2EC2362F561001046E5 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
@@ -362,6 +370,7 @@
 			children = (
 				7F5D1C20236FBD5A005A4961 /* Source */,
 				7F5D1C26236FBD5A005A4961 /* User.swift */,
+				B67252262397FC1E00E13339 /* RemoteMessage.swift */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -710,16 +719,10 @@
 		B68E247D2392712B0014A53E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B68E249A239271630014A53E /* Bubble.swift */,
-				B68E247E2392712B0014A53E /* ActionsView.swift */,
-				B68E247F2392712B0014A53E /* TextMessage.swift */,
-				B68E24802392712B0014A53E /* GalleryInput.swift */,
+				B68E24A62392C5B00014A53E /* Components */,
+				B68E24A42392C5810014A53E /* Inputs */,
+				B68E24A32392C52E0014A53E /* Cells */,
 				B68E24812392712B0014A53E /* MessageTableView.swift */,
-				B68E24822392712B0014A53E /* TextMessageCell.swift */,
-				B68E24832392712B0014A53E /* InputToolBar.swift */,
-				B68E24842392712B0014A53E /* GalleryImage.swift */,
-				B68E24852392712B0014A53E /* InputView.swift */,
-				B68E24862392712B0014A53E /* MessageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -757,6 +760,39 @@
 				B68E245923922EE60014A53E /* MessageRemoteDataSource.swift */,
 			);
 			path = Datasources;
+			sourceTree = "<group>";
+		};
+		B68E24A32392C52E0014A53E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B68E247F2392712B0014A53E /* TextMessage.swift */,
+				B68E24862392712B0014A53E /* MessageView.swift */,
+				B68E24822392712B0014A53E /* TextMessageCell.swift */,
+				B6972B332393D04E002EE07B /* ImageMessageCell.swift */,
+				B6972B352393D0AD002EE07B /* ImageMessage.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		B68E24A42392C5810014A53E /* Inputs */ = {
+			isa = PBXGroup;
+			children = (
+				B68E24852392712B0014A53E /* InputView.swift */,
+				B68E247E2392712B0014A53E /* ActionsView.swift */,
+				B68E24842392712B0014A53E /* GalleryImage.swift */,
+				B68E24832392712B0014A53E /* InputToolBar.swift */,
+				B68E24802392712B0014A53E /* GalleryInput.swift */,
+			);
+			path = Inputs;
+			sourceTree = "<group>";
+		};
+		B68E24A62392C5B00014A53E /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B68E249A239271630014A53E /* Bubble.swift */,
+				B6B9D120239559F0003527B4 /* MessageStatusIndicator.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1189,6 +1225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B68E24902392712B0014A53E /* TextMessage.swift in Sources */,
+				B6972B342393D04E002EE07B /* ImageMessageCell.swift in Sources */,
 				7F5D1C5E236FC429005A4961 /* TaskViewModel.swift in Sources */,
 				B68E24922392712B0014A53E /* MessageTableView.swift in Sources */,
 				7F5D1C4B236FC39C005A4961 /* MainTabBarViewController.swift in Sources */,
@@ -1216,6 +1253,7 @@
 				7FF7E797236FD7EE006AC2BF /* AppService.swift in Sources */,
 				B68E24992392712B0014A53E /* MessageNavigator.swift in Sources */,
 				B68E24972392712B0014A53E /* MessageView.swift in Sources */,
+				B6B9D121239559F0003527B4 /* MessageStatusIndicator.swift in Sources */,
 				7F5D1C5F236FC429005A4961 /* TaskViewController.swift in Sources */,
 				B6E2E2ED2362F561001046E5 /* Avatar.swift in Sources */,
 				7F5D1C2F236FBD5B005A4961 /* UserRepository.swift in Sources */,
@@ -1231,7 +1269,9 @@
 				7F5D1C4C236FC39C005A4961 /* MainTabBarNavigator.swift in Sources */,
 				B68E24912392712B0014A53E /* GalleryInput.swift in Sources */,
 				7F5D1C85236FC452005A4961 /* ProfileViewController.swift in Sources */,
+				B67252272397FC1E00E13339 /* RemoteMessage.swift in Sources */,
 				B68E24932392712B0014A53E /* TextMessageCell.swift in Sources */,
+				B6972B362393D0AD002EE07B /* ImageMessage.swift in Sources */,
 				B68E245D239230420014A53E /* MessageApi.swift in Sources */,
 				B68E248A2392712B0014A53E /* MessageViewModel.swift in Sources */,
 				B6E2E2E72362AB73001046E5 /* UIColorExts.swift in Sources */,
@@ -1359,6 +1399,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Supporting Files/BeenTogether-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1389,6 +1430,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "Dev]Cupit Provisionning Profile";
 				SWIFT_OBJC_BRIDGING_HEADER = "Supporting Files/BeenTogether-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -1549,7 +1591,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1595,7 +1637,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

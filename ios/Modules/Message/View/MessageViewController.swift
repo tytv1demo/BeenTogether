@@ -90,7 +90,12 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
 }
 
 extension MessageViewController: SmartChatDelegate {
+    
     func smartChat(onSendMessage type: MessageType, content: String) {
         viewModel.sendMessage(type: type, content: content)
+    }
+    
+    func smartChat(onSendImage data: Data) {
+        viewModel.sendImage(data: data)
     }
 }

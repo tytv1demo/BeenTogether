@@ -12,6 +12,8 @@ protocol InputToolBarDelegate: AnyObject {
     func inputToolBar(didChangeHeight toolBar: InputToolBar)
     
     func inputToolBar(onSendMessage type: MessageType, content: String)
+    
+    func inputToolBar(onSendImage data: Data)
 }
 
 enum InputToolBarState {
@@ -27,8 +29,7 @@ class InputToolBar: UIView {
     
     var state: InputToolBarState = .noAction {
         didSet {
-            updateHeightConstraint()
-            galleryInput.layer.opacity = self.state == .image ? 1 : 0
+            self.updateStateBehavior()
         }
     }
     
@@ -45,8 +46,6 @@ class InputToolBar: UIView {
     var galleryInput: GalleryInput!
     
     var keyboarHeight: CGFloat = 0
-    
-    var isAnimating: Bool = false
     
     var height: CGFloat {
         switch state {
@@ -81,41 +80,35 @@ class InputToolBar: UIView {
         input.delegate = self
         
         sendButton = UIButton()
-        sendButton.tintColor = UIColor(rgb: 0xEE4E9B)
+        sendButton.tintColor = .red
         sendButton.setImage(UIImage(named: "send"), for: [])
         
         inputRow = UIStackView(arrangedSubviews: [actionsView, input, sendButton])
+        inputRow.isLayoutMarginsRelativeArrangement = true
+        inputRow.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         inputRow.alignment = .center
         inputRow.distribution = .equalSpacing
         inputRow.spacing = 8
         addSubview(inputRow)
         
         galleryInput = GalleryInput()
+        galleryInput.delegate = self
         galleryInput.layer.opacity = 0
         
         contentView = UIStackView(arrangedSubviews: [inputRow, galleryInput])
         contentView.axis = .vertical
-        contentView.alignment = .center
+        contentView.alignment = .fill
         contentView.spacing = 8
         addSubview(contentView)
     }
     
     func makeConstraints() {
-        inputRow.snp.makeConstraints { (make) in
-            make.top.equalTo(contentView)
-            make.trailing.equalTo(contentView).inset(16)
-            make.leading.equalTo(contentView).inset(16)
-        }
         input.snp.makeConstraints { (make) in
             make.width.greaterThanOrEqualTo(inputRow).multipliedBy(0.3)
         }
         
-        galleryInput.snp.makeConstraints { (make) in
-            make.width.equalTo(contentView)
-        }
-        
         contentView.snp.makeConstraints { (make) in
-            make.edges.equalTo(self)
+            make.edges.equalToSuperview()
         }
     }
     
@@ -132,6 +125,7 @@ class InputToolBar: UIView {
     @objc func onSendButtonPress() {
         delegate?.inputToolBar(onSendMessage: .text, content: input.value)
         input.clearValue()
+        self.updateStateBehavior()
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -142,24 +136,27 @@ class InputToolBar: UIView {
         }
         
         self.keyboarHeight = keyboardSize.cgRectValue.height - 85
-        
-//        self.updateHeightConstraint(withDuration: animationTimeInterval)
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
         self.keyboarHeight = 0
     }
     
-    func updateHeightConstraint(withDuration: TimeInterval = 0.25) {
-        if isAnimating { return }
-        self.isAnimating = true
-        UIView.animate(withDuration: 0.25, animations: {
+    func updateStateBehavior(withDuration: TimeInterval = 0.25) {
+        let isImageState = self.state == .image
+        if isImageState {
+            galleryInput.layer.opacity = 1
+        }
+        UIView.animate(withDuration: withDuration, animations: { [unowned self] in
             self.snp.updateConstraints { (make) in
                 make.height.equalTo(self.height)
             }
-        }, completion: { (_) in
+            self.layoutIfNeeded()
+        }, completion: { [unowned self] (_) in
+            if !isImageState {
+                self.galleryInput.layer.opacity = 0
+            }
             self.delegate?.inputToolBar(didChangeHeight: self)
-            self.isAnimating = false
         })
     }
     
@@ -180,9 +177,8 @@ extension InputToolBar: InputViewDelegate {
     func inputViewDidBeginEditing(_ inputView: InputView) {
         self.state = .text
         self.actionsView.state = .collapse
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: 0.2) { [unowned self] in
             self.inputRow.distribution = .fill
-            self.galleryInput.layer.opacity = 0
         }
     }
     
@@ -190,19 +186,20 @@ extension InputToolBar: InputViewDelegate {
         if actionsView.state == .expand {
             actionsView.state = .collapse
         }
-        self.snp.updateConstraints { (make) in
-            make.height.equalTo(self.height)
-        }
+        self.updateStateBehavior()
     }
     
     func inputViewDidEndEditing(_ inputView: InputView) {
         self.actionsView.state = .expand
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: 0.2) { [unowned self] in
             self.inputRow.distribution = .equalSpacing
-            self.snp.updateConstraints { (make) in
-                make.height.equalTo(self.height)
-            }
         }
+    }
+}
+
+extension InputToolBar: GalleryInputDelegate {
+    func galleryInput(onSendImage data: Data) {
+        delegate?.inputToolBar(onSendImage: data)
     }
 }
 
@@ -214,9 +211,10 @@ extension InputToolBar: ActionViewDelegate {
     }
     
     func actionView(onOpenGallery actionView: ActionsView) {
-//        self.galleryInput.layer.opacity = 1
-        self.state = .image
-        self.endEditing(true)
+        DispatchQueue.main.async { [unowned self] in
+            self.state = .image
+            self.endEditing(true)
+        }
     }
     
     func actionView(onStateChanged actionView: ActionsView) {

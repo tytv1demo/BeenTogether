@@ -43,7 +43,6 @@ class Avatar: UIView {
         }
         
         imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = self.frame.height * 0.5
         imageView.contentMode = .scaleAspectFill
     }
     
@@ -55,5 +54,10 @@ class Avatar: UIView {
     
     func setLocalImage(named: String) {
         imageView.image = UIImage(named: named)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        imageView.layer.cornerRadius = self.frame.height * 0.5
     }
 }

@@ -9,14 +9,16 @@
 import Foundation
 import PromiseKit
 
-enum MessageType : String {
+enum MessageType: String {
     case image = "IMAGE", video = "VIDEO", audio = "AUDIO", text = "TEXT"
 }
 
 protocol MessageRepository: AnyObject {
     func view(threadID: String) -> Promise<Bool>
     
-    func sendMessage(type: MessageType, content: String) -> Promise<Bool>
+    func sendText(content: String) -> Promise<RemoteMessage>
+    
+    func sendImage(data: Data) -> Promise<RemoteMessage>
 }
 
 class BaseMessageRepository: MessageRepository {
@@ -29,12 +31,22 @@ class BaseMessageRepository: MessageRepository {
         }
     }
     
-    func sendMessage(type: MessageType, content: String) -> Promise<Bool> {
-        return Promise<Bool> { seal in
+    func sendText(content: String) -> Promise<RemoteMessage> {
+        return Promise<RemoteMessage> { seal in
             messageRemoteDataSource
-                .chat(type: type, content: content)
-                .done { (_) in
-                    seal.fulfill(true)
+                .sendText(content: content)
+                .done { (message) in
+                    seal.fulfill(message)
+            }.catch(seal.reject)
+        }
+    }
+    
+    func sendImage(data: Data) -> Promise<RemoteMessage> {
+        return Promise<RemoteMessage> { seal in
+            messageRemoteDataSource
+                .sendImage(data: data)
+                .done { (message) in
+                    seal.fulfill(message)
             }.catch(seal.reject)
         }
     }

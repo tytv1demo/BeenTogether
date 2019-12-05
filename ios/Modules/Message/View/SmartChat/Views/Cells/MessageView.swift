@@ -10,12 +10,18 @@ import Foundation
 
 protocol MessageViewDelegate: AnyObject {
     func messageView(didTap messageView: MessageView, onView: UIView?)
+    
+    func messageView(contentDidChange messageView: MessageView)
 }
 
 
 protocol MessageView: UIView {
     
     var delegate: MessageViewDelegate? { get set }
+    
+    var avatar: Avatar! { get set }
+    
+    var statusIndicator: MessageStatusIndicator! { get set }
     
     var messages: [SCMessage]! { get set }
     
@@ -36,6 +42,10 @@ protocol MessageView: UIView {
     func configUI()
     
     func configActions()
+    
+    func performUpdate()
+    
+    func prepareForReuse()
 }
 
 extension MessageView {
@@ -58,4 +68,20 @@ extension MessageView {
         return message.author.id == user.id
     }
     
+    func performUpdate() {
+        
+    }
+    
+}
+
+
+class MessageViewFactory {
+    static func createView(for message: SCMessage) -> MessageView {
+        switch message.type {
+        case .text:
+            return TextMessageView()
+        default:
+            return TextMessageView()
+        }
+    }
 }

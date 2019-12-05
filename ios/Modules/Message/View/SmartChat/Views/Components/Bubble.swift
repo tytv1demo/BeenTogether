@@ -9,19 +9,19 @@
 import Foundation
 
 class Bubble: UIView {
-  
-  var messageLabel: UILabel!
-  var message: SCTextMessage!
-  
+    
+    var messageLabel: UILabel!
+    
+    var message: SCMessage!
+    
+    var roundCorners: UIRectCorner = []
+    
     required init?(coder: NSCoder) {
         fatalError()
     }
-  
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        layer.masksToBounds = true
-        layer.cornerRadius = 8
         
         messageLabel = UILabel()
         addSubview(messageLabel)
@@ -31,11 +31,17 @@ class Bubble: UIView {
             make.edges.equalTo(self).inset(8)
         }
     }
-  
-    func setupWithMessage(_ message: SCTextMessage, isUserMessage: Bool) {
+    
+    func setupWithMessage(_ message: SCMessage, isUserMessage: Bool, roundCorners: UIRectCorner = []) {
         self.message = message
+        self.roundCorners = roundCorners
         backgroundColor = isUserMessage ? UIColor(rgb: 0xEE4E9B) : UIColor.groupTableViewBackground
-        messageLabel.text = message.body
+        messageLabel.text = message.content
         messageLabel.textColor = isUserMessage ? .white : .black
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        makeRoundedCorner(corners: roundCorners, radius: 16)
     }
 }

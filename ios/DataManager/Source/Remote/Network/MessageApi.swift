@@ -8,10 +8,12 @@
 
 import Foundation
 import Moya
+import UIKit
 
 enum MessageApi {
     case view
     case chat(type: String, content: String)
+    case sendImage(data: Data)
 }
 
 extension MessageApi: AuthorizedTargetType {
@@ -28,6 +30,8 @@ extension MessageApi: AuthorizedTargetType {
         switch self {
         case .chat:
             return "chat"
+        case .sendImage:
+            return "send-image"
         case .view:
             return ""
         }
@@ -36,6 +40,8 @@ extension MessageApi: AuthorizedTargetType {
     var method: Moya.Method {
         switch self {
         case .chat:
+            return .post
+        case .sendImage:
             return .post
         case .view:
             return .post
@@ -53,12 +59,17 @@ extension MessageApi: AuthorizedTargetType {
             body["type"] = type
             body["content"] = content
             return .requestParameters(parameters: body, encoding: JSONEncoding.default)
+        case .sendImage(let data):
+            let imageData = MultipartFormData(provider: .data(data), name: "image", fileName: "m.jpg", mimeType: "image/jpeg")
+            let multipartData = [imageData]
+
+            return .uploadMultipart(multipartData)
         case .view:
             return .requestParameters(parameters: [:], encoding: JSONEncoding.default)
         }
     }
     
-    var headers: [String : String]? {
+    var headers: [String: String]? {
         return [:]
     }
     

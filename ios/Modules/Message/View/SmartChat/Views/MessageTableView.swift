@@ -9,7 +9,7 @@
 import Foundation
 
 protocol MessageTableViewDelegate: AnyObject {
-    func messageTableView(didTap: MessageTableView, atIndexPath: IndexPath)
+    func messageTableView(didTap messageView: MessageView, onView: UIView?)
 }
 
 class MessageTableView: UIView {
@@ -49,9 +49,10 @@ class MessageTableView: UIView {
         }
         
         tableView.register(TextMessageCell.self, forCellReuseIdentifier: TextMessageCell.kCellIdentify)
+        tableView.register(ImageMessageCell.self, forCellReuseIdentifier: ImageMessageCell.kCellIdentify)
+        
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.estimatedRowHeight = 50
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
     }
@@ -60,6 +61,16 @@ class MessageTableView: UIView {
 
 extension MessageTableView {
     func scrollToBottomIfNeeded() {
+        guard let lastIndexPath = tableView.indexPathsForVisibleRows?.last else {
+            return
+        }
+    
+        if lastIndexPath.item == messages.count - 1 {
+            tableView.scrollToRow(at: lastIndexPath, at: .bottom, animated: true)
+        }
+    }
+    
+    func forceScrollToBottom() {
         if messages.count == 0 {
             return
         }
@@ -73,21 +84,27 @@ extension MessageTableView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: MessageCell.kCellIdentify) as? MessageCell else { return UITableViewCell() }
-        let cell: TextMessageCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-        cell.configWith(messages: messages, at: indexPath, andUser: user)
+        let message = messages[indexPath.item]
+        let identifer = message.type == .text ? TextMessageCell.kCellIdentify: ImageMessageCell.kCellIdentify
+        let cell: MessageCell = tableView.dequeueReusableCell(withIdentifier: identifer, for: indexPath) as! MessageCell
+        cell.configCell(messages, at: indexPath, andUser: user)
         cell.messageView.delegate = self
         
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.messageTableView(didTap: self, atIndexPath: indexPath)
     }
 }
 
 extension MessageTableView: MessageViewDelegate {
     func messageView(didTap messageView: MessageView, onView: UIView?) {
-      
+        delegate?.messageTableView(didTap: messageView, onView: onView)
+    }
+    
+    func messageView(contentDidChange messageView: MessageView) {
+        UIView.animate(withDuration: 0.25) {
+            self.tableView.beginUpdates()
+            messageView.performUpdate()
+            self.tableView.endUpdates()
+            print("z========")
+        }
     }
 }

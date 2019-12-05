@@ -7,41 +7,59 @@
 //
 
 import Foundation
+import RxSwift
 
-protocol SCMessageType {
+protocol SCMessageType: AnyObject {
   
 }
 
-class SCMessage {
+enum SCMessageStatus: Int {
+    case timer = 0, sending = 1, sent = 2, seen = 3
+}
+
+enum SCMessageDataLoadingStaus {
+    case initial, loading, done, failed
+}
+
+class SCMessage: SCMessageType {
     var id: Int
     var author: SCUser
     var createdAt: String
-    var isDeleted: Bool
+    var isDeleted: Bool = false
+    var content: String
+    var type: MessageType
+    var status: BehaviorSubject<SCMessageStatus>
+    var dataLoadingStatus: BehaviorSubject<SCMessageDataLoadingStaus>
     
-    init(id: Int, createdAt: String, author: SCUser, isDeleted: Bool = false) {
+    init(
+        id: Int,
+        createdAt: String,
+        author: SCUser,
+        content: String,
+        type: MessageType,
+        isDeleted: Bool = false,
+        status: SCMessageStatus
+    ) {
         self.id = id
         self.createdAt = createdAt
         self.isDeleted = isDeleted
         self.author = author
+        self.content = content
+        self.type = type
+        self.status = BehaviorSubject(value: status)
+        self.dataLoadingStatus = BehaviorSubject<SCMessageDataLoadingStaus>(value: .initial)
     }
-}
-
-class SCTextMessage: SCMessage {
     
-    var body: String
-    
-    init(id: Int, createdAt: String, author: SCUser, isDeleted: Bool = false, body: String) {
-        self.body = body
-        super.init(id: id, createdAt: createdAt, author: author, isDeleted: isDeleted)
-    }
-}
-
-class SCImageMessage: SCMessage {
-    
-    var image: URL
-    
-    init(id: Int, createdAt: String, author: SCUser, isDeleted: Bool = false, image: String) {
-        self.image = URL(string: image)!
-        super.init(id: id, createdAt: createdAt, author: author, isDeleted: isDeleted)
+    func loadDataIfNeeded() {
+        if type == .image {
+            self.dataLoadingStatus.onNext(.loading)
+            loadImageUrlFromFirebase(path: content)
+                .done { (url) in
+                    self.content = url
+                    self.dataLoadingStatus.onNext(.done)
+            }.catch { (_) in
+                self.dataLoadingStatus.onNext(.failed)
+            }
+        }
     }
 }

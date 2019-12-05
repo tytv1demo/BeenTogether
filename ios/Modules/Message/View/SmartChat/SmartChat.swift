@@ -11,6 +11,8 @@ import YogaKit
 
 protocol SmartChatDelegate: AnyObject {
     func smartChat(onSendMessage type: MessageType, content: String)
+    
+    func smartChat(onSendImage data: Data)
 }
 
 class SmartChat: UIView {
@@ -45,6 +47,7 @@ class SmartChat: UIView {
     func setupUI() {
         
         messageTableView = MessageTableView(user: user)
+        messageTableView.delegate = self
         addSubview(messageTableView)
         
         inputToolBar = InputToolBar()
@@ -75,11 +78,14 @@ extension SmartChat: InputToolBarDelegate {
     func inputToolBar(onSendMessage type: MessageType, content: String) {
         delegate?.smartChat(onSendMessage: type, content: content)
     }
+    
+    func inputToolBar(onSendImage data: Data) {
+        delegate?.smartChat(onSendImage: data)
+    }
 }
 
 extension SmartChat: MessageTableViewDelegate {
-    func messageTableView(didTap: MessageTableView, atIndexPath: IndexPath) {
+    func messageTableView(didTap messageView: MessageView, onView: UIView?) {
         inputToolBar.requestEndEditing()
     }
-    
 }

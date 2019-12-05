@@ -11,19 +11,24 @@ import Moya
 import PromiseKit
 
 protocol MessageRemoteDataSource: AnyObject {
-    func chat(type: MessageType, content: String) -> Promise<Any>
+    func sendText(content: String) -> Promise<RemoteMessage>
+    
+    func sendImage(data: Data) -> Promise<RemoteMessage>
 }
 
 class BaseMessageRemoteDataSource: MessageRemoteDataSource {
-    func chat(type: MessageType, content: String) -> Promise<Any> {
-        return Promise<Any> { seal in
-            todoProvider.request(MultiTarget(MessageApi.chat(type: type.rawValue, content: content))) { (result) in
+    func sendText(content: String) -> Promise<RemoteMessage> {
+        return Promise<RemoteMessage> { seal in
+            todoProvider.request(MultiTarget(MessageApi.chat(type: "TEXT", content: content))) { (result) in
                 switch result {
                 case let .success(response):
                     do {
                         let filteredResponse = try response.filterSuccessfulStatusCodes()
-//                        let tasks = try filteredResponse.map([Task].self, failsOnEmptyData: false)
-                        seal.fulfill(filteredResponse)
+                        guard let result = try? JSONDecoder().decode(BaseResult<RemoteMessage>.self, from: filteredResponse.data) else {
+                            seal.reject(NSError(domain:"", code: 0, userInfo:nil))
+                            return
+                        }
+                        seal.fulfill(result.data)
                     } catch let error {
                         seal.reject(error)
                     }
@@ -32,6 +37,28 @@ class BaseMessageRemoteDataSource: MessageRemoteDataSource {
                 }
             }
         }
-        
+    }
+    
+    func sendImage(data: Data) -> Promise<RemoteMessage> {
+        return Promise<RemoteMessage> { seal in
+            todoProvider.request(MultiTarget(MessageApi.sendImage(data: data))) { (result) in
+                switch result {
+                case let .success(response):
+                    do {
+                        let filteredResponse = try response.filterSuccessfulStatusCodes()
+                        print(String(decoding: filteredResponse.data, as: UTF8.self))
+                        guard let result = try? JSONDecoder().decode(BaseResult<RemoteMessage>.self, from: filteredResponse.data) else {
+                            seal.reject(NSError(domain:"", code: 0, userInfo:nil))
+                            return
+                        }
+                        seal.fulfill(result.data)
+                    } catch let error {
+                        seal.reject(error)
+                    }
+                case let .failure(error):
+                    seal.reject(error)
+                }
+            }
+        }
     }
 }

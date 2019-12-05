@@ -21,8 +21,12 @@ class TextMessageView: UIView, MessageView {
     var indexPath: IndexPath!
     
     var rowContentStack: UIStackView!
+    
     var bubble: Bubble!
+    
     var avatar: Avatar!
+    
+    var statusIndicator: MessageStatusIndicator!
     
     var tapGestureOnBubble: UITapGestureRecognizer?
     
@@ -37,14 +41,21 @@ class TextMessageView: UIView, MessageView {
     }
     
     func configUI() {
+        statusIndicator = MessageStatusIndicator()
+        
         bubble = Bubble()
         avatar = Avatar(size: CGSize(width: 25, height: 25), url: "https://media.ex-cdn.com/EXP/media.giadinhvietnam.com/files/dothanhhien85/2018/10/01/42975856_2321943271154026_70249855187943424_n-1720.jpg")
         
-        let arrangedSubviews: [UIView] = [UIView(), bubble, avatar]
+        let arrangedSubviews: [UIView] = [UIView(), bubble, avatar, statusIndicator]
         
         rowContentStack = UIStackView(arrangedSubviews: arrangedSubviews)
+        rowContentStack.spacing = 8
         rowContentStack.alignment = .bottom
         addSubview(rowContentStack)
+        
+        statusIndicator.snp.makeConstraints { (make) in
+            make.size.equalTo(12)
+        }
         
         rowContentStack.snp.makeConstraints { (make) in
             make.leading.equalTo(self).inset(8)
@@ -60,12 +71,42 @@ class TextMessageView: UIView, MessageView {
         }
     }
     
+    var bubbleRoundedCorners: UIRectCorner {
+        var conners: UIRectCorner = [.topRight, .bottomRight]
+        if isFirstMessageInGroup {
+            conners = [.topLeft, .topRight, .bottomRight]
+        }
+        
+        if isLastMessageInGroup {
+            conners = [.bottomLeft, .topRight, .bottomRight]
+        }
+        
+        if isUserMessage {
+            conners = [.topLeft, .bottomLeft]
+            if isFirstMessageInGroup {
+                conners = [.topRight, .topLeft, .bottomLeft]
+            }
+            
+            if isLastMessageInGroup {
+                conners = [.bottomRight, .topLeft, .bottomLeft]
+            }
+        }
+        
+        if isLastMessageInGroup && isFirstMessageInGroup {
+            conners =  [.allCorners]
+        }
+        
+        return conners
+    }
+    
     func startConfigForUse() {
         avatar.isHidden = isUserMessage
         avatar.imageView.isHidden = !isLastMessageInGroup
+        statusIndicator.isHidden = !isUserMessage
         
-        guard let message = message as? SCTextMessage else { return }
-        bubble.setupWithMessage(message, isUserMessage: isUserMessage)
+        statusIndicator.configWithMessage(message)
+        
+        bubble.setupWithMessage(message, isUserMessage: isUserMessage, roundCorners: bubbleRoundedCorners)
         rowContentStack.semanticContentAttribute = isUserMessage ? .forceLeftToRight : .forceRightToLeft
     }
     
@@ -76,5 +117,9 @@ class TextMessageView: UIView, MessageView {
     
     @objc func didTap(_ sender: UIView?) {
         delegate?.messageView(didTap: self, onView: sender)
+    }
+    
+    func prepareForReuse() {
+        statusIndicator.prepareForReuse()
     }
 }
