@@ -28,3 +28,7 @@ enum TimeConstants: Double {
     case MONTH = 2629800
     case YEAR = 31557600
 }
+
+struct Colors {
+    static let kPink: UIColor =  UIColor(rgb: 0xEE4E9B)
+}

@@ -51,6 +51,7 @@ def ui
   pod 'SwiftMessages'
   pod 'SkeletonView', :git => 'https://github.com/dangthaison91/SkeletonView.git', :branch => 'develop'
   pod 'IBAnimatable'
+  pod 'FontAwesome.swift'
 end 
 
 def database

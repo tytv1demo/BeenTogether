@@ -68,15 +68,15 @@ class HomeViewController: UIViewController {
     }
     
     func setupLabelColor() {
-        titleLabel.textColor = UIColor(rgb: 0xEE4E9B)
-        dateCoutingLabel.textColor = UIColor(rgb: 0xEE4E9B)
-        leftDaysLabel.textColor = UIColor(rgb: 0xEE4E9B)
-        rightDayLabel.textColor = UIColor(rgb: 0xEE4E9B)
+        titleLabel.textColor = Colors.kPink
+        dateCoutingLabel.textColor = Colors.kPink
+        leftDaysLabel.textColor = Colors.kPink
+        rightDayLabel.textColor = Colors.kPink
     }
     
     func setupProgressView() {
-        progressView.progressTintColor = UIColor(rgb: 0xEE4E9B)
-        progressView.trackTintColor = UIColor(rgb: 0xEE4E9B)
+        progressView.progressTintColor = Colors.kPink
+        progressView.trackTintColor = Colors.kPink
         progressView.progress = getProgress(number: dateCouted)
         heartIconLeftContraint.constant = CGFloat(progressView.progress) * progressView.frame.width
     }

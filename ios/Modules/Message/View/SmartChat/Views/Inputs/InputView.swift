@@ -47,16 +47,19 @@ class InputView: UIView {
     
     func initUI() {
         backgroundColor = .groupTableViewBackground
-        layer.cornerRadius = 16
+        layer.cornerRadius = InputView.kDefaultHeight * 0.5
         
         inputField = UITextView()
         inputField.backgroundColor = .clear
         inputField.delegate = self
         
         emojiButton = UIButton()
-        emojiButton.setImage(UIImage(named: "camera"), for: [])
+        let emojiImage = UIImage.awesomeIcon(name: .laugh, textColor: Colors.kPink)
+        emojiButton.setImage(emojiImage, for: [])
         
         contentView = UIStackView(arrangedSubviews: [inputField, emojiButton])
+        contentView.isLayoutMarginsRelativeArrangement = true
+        contentView.layoutMargins = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
         contentView.alignment = .center
         
         addSubview(contentView)
@@ -118,6 +121,9 @@ extension InputView: UITextViewDelegate {
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
+        snp.updateConstraints { (make) in
+            make.height.equalTo(InputView.kDefaultHeight)
+        }
         delegate?.inputViewDidEndEditing(self)
     }
 }

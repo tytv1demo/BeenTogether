@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FontAwesome_swift
 
 protocol ActionViewDelegate: AnyObject {
     func actionView(onOpenCamera actionView: ActionsView)
@@ -53,13 +54,16 @@ class ActionsView: UIView {
     func initUI() {
         
         cameraButton = UIButton()
-        cameraButton.setImage(UIImage(named: "camera"), for: [])
+        let cameraImage = UIImage.awesomeIcon(name: .camera)
+        cameraButton.setImage(cameraImage, for: [])
         
         galleryButton = UIButton()
-        galleryButton.setImage(UIImage(named: "camera"), for: [])
+        let galleryImage = UIImage.awesomeIcon(name: .image)
+        galleryButton.setImage(galleryImage, for: [])
         
         microButton = UIButton()
-        microButton.setImage(UIImage(named: "camera"), for: [])
+        let microImage = UIImage.awesomeIcon(name: .microphone)
+        microButton.setImage(microImage, for: [])
         
         expandButton = UIButton()
         expandButton.setImage(UIImage(named: "Plus"), for: [])

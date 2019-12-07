@@ -67,6 +67,7 @@
 		B68CD036239B8A75000BA1D8 /* LoverLocationViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68CD035239B8A75000BA1D8 /* LoverLocationViewer.swift */; };
 		B68CD039239B95D2000BA1D8 /* EmojiCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68CD038239B95D2000BA1D8 /* EmojiCollection.swift */; };
 		B68CD03B239B95E2000BA1D8 /* EmojiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68CD03A239B95E2000BA1D8 /* EmojiCell.swift */; };
+		B68CD03D239BF488000BA1D8 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68CD03C239BF488000BA1D8 /* UIImage.swift */; };
 		B68E245823922C860014A53E /* MessageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E245723922C860014A53E /* MessageRepository.swift */; };
 		B68E245A23922EE60014A53E /* MessageRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E245923922EE60014A53E /* MessageRemoteDataSource.swift */; };
 		B68E245D239230420014A53E /* MessageApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E245C239230420014A53E /* MessageApi.swift */; };
@@ -194,6 +195,7 @@
 		B68CD035239B8A75000BA1D8 /* LoverLocationViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoverLocationViewer.swift; sourceTree = "<group>"; };
 		B68CD038239B95D2000BA1D8 /* EmojiCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCollection.swift; sourceTree = "<group>"; };
 		B68CD03A239B95E2000BA1D8 /* EmojiCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCell.swift; sourceTree = "<group>"; };
+		B68CD03C239BF488000BA1D8 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		B68E245723922C860014A53E /* MessageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRepository.swift; sourceTree = "<group>"; };
 		B68E245923922EE60014A53E /* MessageRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRemoteDataSource.swift; sourceTree = "<group>"; };
 		B68E245C239230420014A53E /* MessageApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageApi.swift; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 				7FF7E78C236FD722006AC2BF /* ScrollViewExt.swift */,
 				7FF7E790236FD7AC006AC2BF /* TableViewExt.swift */,
 				46B83CA623867E990040D1F1 /* DateExts.swift */,
+				B68CD03C239BF488000BA1D8 /* UIImage.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1208,11 +1211,13 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Cupid/Pods-Cupid-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FontAwesome.swift/FontAwesome.swift.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/SwiftMessages/SwiftMessages.bundle",
 				"${PODS_ROOT}/SwiftMoment/SwiftMoment/SwiftMoment/MomentFromNow.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.swift.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SwiftMessages.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MomentFromNow.bundle",
 			);
@@ -1353,6 +1358,7 @@
 				B67252272397FC1E00E13339 /* RemoteMessage.swift in Sources */,
 				B68E24932392712B0014A53E /* TextMessageCell.swift in Sources */,
 				B6972B362393D0AD002EE07B /* ImageMessage.swift in Sources */,
+				B68CD03D239BF488000BA1D8 /* UIImage.swift in Sources */,
 				B68E245D239230420014A53E /* MessageApi.swift in Sources */,
 				B68E248A2392712B0014A53E /* MessageViewModel.swift in Sources */,
 				B6E2E2E72362AB73001046E5 /* UIColorExts.swift in Sources */,

@@ -59,7 +59,7 @@ class MainTabBarViewController: UITabBarController {
         homeTabButton.layer.masksToBounds = true
         homeTabButton.setGradientBackground()
         homeTabButton.dropShadow()
-        homeTabButton.center = CGPoint(x: tabBar.center.x, y: tabBar.center.y - 40)
+        homeTabButton.center = CGPoint(x: tabBar.center.x, y: tabBar.center.y - (isIphoneX() ? 40 : 20))
         homeTabButton.addSubview(img)
         img.center = homeTabButton.center
         view.addSubview(homeTabButton)
@@ -73,4 +73,18 @@ class MainTabBarViewController: UITabBarController {
     @objc func onHomTabButtonTapped() {
         selectedIndex = 2
     }
+}
+
+
+func isIphoneX() -> Bool {
+    let device = UIDevice()
+    if device.userInterfaceIdiom == .phone {
+        switch UIScreen.main.nativeBounds.height {
+        case 2436, 2688, 1792:
+            return true
+        default:
+            return false
+        }
+    }
+    return false
 }

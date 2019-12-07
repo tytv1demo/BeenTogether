@@ -72,7 +72,7 @@ class LocationViewController: UIViewController, LocationViewControllerType {
         navigationItem.rightBarButtonItems = [phoneTabBarButton]
         
         backButton = UIButton(type: .detailDisclosure)
-        backButton.tintColor = UIColor(rgb: 0xEE4E9B)
+        backButton.tintColor = Colors.kPink
         let backTabBarButton = UIBarButtonItem(customView: backButton)
         
         loverAvatar = Avatar(url: "https://vcdn-ngoisao.vnecdn.net/2019/07/11/tran-kieu-an-5-6648-1562814204.jpg")
@@ -240,7 +240,7 @@ extension LocationViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer: MKPolylineRenderer = MKPolylineRenderer(overlay: overlay)
         
-        renderer.strokeColor = UIColor(rgb: 0xEE4E9B)
+        renderer.strokeColor = Colors.kPink
         renderer.lineWidth = 4
         
         return renderer

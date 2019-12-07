@@ -107,6 +107,7 @@ class InputToolBar: UIView {
         emojiCollection.isHidden = true
 
         spaceOfContentView = UIView()
+        spaceOfContentView.setContentHuggingPriority(.defaultLow, for: .vertical)
         
         contentView = UIStackView(arrangedSubviews: [inputRow, galleryInput, emojiCollection, spaceOfContentView])
         contentView.axis = .vertical
@@ -117,7 +118,7 @@ class InputToolBar: UIView {
     
     func makeConstraints() {
         input.snp.makeConstraints { (make) in
-            make.width.greaterThanOrEqualTo(inputRow).multipliedBy(0.3)
+            make.width.greaterThanOrEqualTo(inputRow).multipliedBy(0.35)
         }
         
         contentView.snp.makeConstraints { (make) in
@@ -156,14 +157,19 @@ class InputToolBar: UIView {
     }
     
     func updateStateBehavior(withDuration: TimeInterval = 0.25) {
-        updateAccessories()
+        if state != .noAction {
+           updateAccessories()
+        }
+        
         UIView.animate(withDuration: withDuration, animations: { [unowned self] in
             self.snp.updateConstraints { (make) in
                 make.height.equalTo(self.height)
             }
             self.layoutIfNeeded()
         }, completion: { [unowned self] (_) in
-            
+            if self.state == .noAction {
+                self.updateAccessories()
+            }
             self.delegate?.inputToolBar(didChangeHeight: self)
         })
     }
@@ -171,7 +177,7 @@ class InputToolBar: UIView {
     func updateAccessories() {
         galleryInput.isHidden = state != .image
         emojiCollection.isHidden = state != .emoji
-        self.spaceOfContentView.isHidden = state != .text
+        self.spaceOfContentView.isHidden = state == .emoji || state == .image
     }
     
     deinit {
@@ -189,8 +195,10 @@ extension InputToolBar {
 
 extension InputToolBar: InputViewDelegate {
     func inputView(requestShowHideEmojiInput inputView: InputView) {
-        state = state != .emoji ? .emoji : .noAction
-        endEditing(true)
+        if state != .emoji {
+            state = .emoji
+            endEditing(true)
+        }
     }
     
     func inputViewDidBeginEditing(_ inputView: InputView) {
