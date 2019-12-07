@@ -8,6 +8,22 @@
 
 import UIKit
 
-class User: NSObject {
+class User {
+    var id: Int?
+    var coupleId: String?
+    var name: String?
+    var age: Int?
+    var gender: Bool?
+    var location: UserLocation?
+    var phoneNumber: String?
+}
 
+class UserLocation: Decodable {
+    var coordinate: UserCoordinate?
+    var startTime: Date?
+}
+
+class UserCoordinate: Decodable {
+    var lat: Float?
+    var lng: Float?
 }

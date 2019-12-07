@@ -7,11 +7,35 @@
 //
 
 import UIKit
+import PromiseKit
 
-protocol UserRepository: AnyObject {
-    
+protocol UserRepositoryProtocol: AnyObject {
+    func getUserProfile(phoneNumber: String) -> Promise<RemoteUser>
+    func signIn(params: UserParams) -> Promise<Bool>
 }
 
-class BaseUserRepository: UserRepository {
+class UserRepository: UserRepositoryProtocol {
+    
+    var userRemoteDataSource = UserRemoteDataSource()
+    
+    func signIn(params: UserParams) -> Promise<Bool> {
+        return Promise<Bool> { seal in
+            userRemoteDataSource
+                .signIn(params: params)
+                .done { (_) in
+                    seal.fulfill(true)
+            }.catch(seal.reject(_:))
+        }
+    }
+    
+    func getUserProfile(phoneNumber: String) -> Promise<RemoteUser> {
+        return Promise<RemoteUser> { seal in
+            userRemoteDataSource
+                .getUserProfile(phoneNumber: phoneNumber)
+                .done { (user) in
+                    seal.fulfill(user)
+            }.catch(seal.reject(_:))
+        }
+    }
     
 }

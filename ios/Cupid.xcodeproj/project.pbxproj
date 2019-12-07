@@ -15,9 +15,12 @@
 		22A78B505A88A37A640D5123 /* libPods-CupidTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B48CF14D50A412DE50CDE077 /* libPods-CupidTests.a */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2DCD954D1E0B4F2C00145EB5 /* BeenTogetherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BeenTogetherTests.m */; };
+		4693BF46239B4BBF00EA2EA5 /* RemoteUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4693BF45239B4BBF00EA2EA5 /* RemoteUser.swift */; };
 		46B83CA723867E990040D1F1 /* DateExts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B83CA623867E990040D1F1 /* DateExts.swift */; };
 		6F17F979239AAE54007ECF45 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F17F978239AAE54007ECF45 /* EventTableViewCell.swift */; };
 		6F17F97A239AAE87007ECF45 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F17F976239AADFC007ECF45 /* EventTableViewCell.xib */; };
+		46BC4BD22392B3250040E510 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BC4BD12392B3250040E510 /* HomeViewModel.swift */; };
+		46BC4BD42392B61E0040E510 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BC4BD32392B61E0040E510 /* UserAPI.swift */; };
 		6F4C6A70239818BC00F4FB4D /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4C6A6F239818BC00F4FB4D /* EventViewController.swift */; };
 		6F846FD3239570C1008C03D3 /* Event.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F846FD2239570C1008C03D3 /* Event.storyboard */; };
 		7F5D1C2F236FBD5B005A4961 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D1C21236FBD5A005A4961 /* UserRepository.swift */; };
@@ -138,7 +141,10 @@
 		2D02E47B1E0B4A5D006451C7 /* Cupid-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cupid-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Cupid-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cupid-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37FFA031CA3C4A6B260DB914 /* Pods-BeenTogether-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogether-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-BeenTogether-tvOSTests/Pods-BeenTogether-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		4693BF45239B4BBF00EA2EA5 /* RemoteUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteUser.swift; sourceTree = "<group>"; };
 		46B83CA623867E990040D1F1 /* DateExts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExts.swift; sourceTree = "<group>"; };
+		46BC4BD12392B3250040E510 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		46BC4BD32392B61E0040E510 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
 		4C782350347DE81685E9C150 /* Pods-BeenTogether.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogether.debug.xcconfig"; path = "Target Support Files/Pods-BeenTogether/Pods-BeenTogether.debug.xcconfig"; sourceTree = "<group>"; };
 		50F40441CB0C3AB88992F5E4 /* Pods-CupidTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CupidTests.release.xcconfig"; path = "Target Support Files/Pods-CupidTests/Pods-CupidTests.release.xcconfig"; sourceTree = "<group>"; };
 		5CC0C1EB72A73FDCB598FAC9 /* Pods-Cupid-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cupid-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-Cupid-tvOSTests/Pods-Cupid-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -334,6 +340,30 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		46BC4BCE2392B2DB0040E510 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B68E249D2392720A0014A53E /* Home.storyboard */,
+				B68E249E2392720A0014A53E /* HomeViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		46BC4BCF2392B2EB0040E510 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				46BC4BD12392B3250040E510 /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		46BC4BD02392B2FC0040E510 /* Route */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Route;
+			sourceTree = "<group>";
+		};
 		57B76C72311FABAF00378A6B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -428,6 +458,7 @@
 			children = (
 				7F5D1C20236FBD5A005A4961 /* Source */,
 				7F5D1C26236FBD5A005A4961 /* User.swift */,
+				4693BF45239B4BBF00EA2EA5 /* RemoteUser.swift */,
 				B67252262397FC1E00E13339 /* RemoteMessage.swift */,
 			);
 			path = DataManager;
@@ -746,6 +777,7 @@
 			children = (
 				B68E245C239230420014A53E /* MessageApi.swift */,
 				B68E245E239235620014A53E /* APIConfig.swift */,
+				46BC4BD32392B61E0040E510 /* UserAPI.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -819,8 +851,9 @@
 		B68E249C2392720A0014A53E /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				B68E249D2392720A0014A53E /* Home.storyboard */,
-				B68E249E2392720A0014A53E /* HomeViewController.swift */,
+				46BC4BD02392B2FC0040E510 /* Route */,
+				46BC4BCF2392B2EB0040E510 /* ViewModel */,
+				46BC4BCE2392B2DB0040E510 /* View */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1340,6 +1373,7 @@
 				B607DB3123994CC900C7509F /* LocationViewModel.swift in Sources */,
 				B68CD03B239B95E2000BA1D8 /* EmojiCell.swift in Sources */,
 				B607DB2E239949BB00C7509F /* LocationViewController.swift in Sources */,
+				46BC4BD42392B61E0040E510 /* UserAPI.swift in Sources */,
 				B68E24982392712B0014A53E /* MessageViewController.swift in Sources */,
 				7FF7E78B236FD718006AC2BF /* StoryboardExt.swift in Sources */,
 				7F5D1C6F236FC441005A4961 /* DatingViewController.swift in Sources */,
@@ -1353,6 +1387,7 @@
 				7FF7E793236FD7E1006AC2BF /* Logger.swift in Sources */,
 				7F5D1C82236FC452005A4961 /* ProfileNavigator.swift in Sources */,
 				B68E249B239271630014A53E /* Bubble.swift in Sources */,
+				4693BF46239B4BBF00EA2EA5 /* RemoteUser.swift in Sources */,
 				7F5D1C5C236FC429005A4961 /* TaskNavigator.swift in Sources */,
 				7FF7E797236FD7EE006AC2BF /* AppService.swift in Sources */,
 				B690E676239CA23C00C418A7 /* BaseButton.swift in Sources */,
@@ -1371,6 +1406,7 @@
 				B690E66F239C9DB500C418A7 /* CollectionEmptyView.swift in Sources */,
 				7FF7E795236FD7E7006AC2BF /* Constants.swift in Sources */,
 				B68E245A23922EE60014A53E /* MessageRemoteDataSource.swift in Sources */,
+				46BC4BD22392B3250040E510 /* HomeViewModel.swift in Sources */,
 				B68E24952392712B0014A53E /* GalleryImage.swift in Sources */,
 				B68E248C2392712B0014A53E /* SmartChat.swift in Sources */,
 				B690E679239CE28D00C418A7 /* GalleryAsset.swift in Sources */,

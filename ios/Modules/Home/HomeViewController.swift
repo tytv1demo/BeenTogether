@@ -25,40 +25,30 @@ class HomeViewController: UIViewController {
    
     // MARK: Properties
     
-    let startDateString = "01-03-2016"
-    var startDate = Date()
-    let currentDate = Date()
-    let dateFormater = DateFormatter()
-    var dateCouted = 0
     var selectedImageView: UIImageView?
+    var userRepository = UserRepository()
+    var homeViewModel: HomeViewModel!
     
     // MARK: Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupBackgroundImage()
-        setupLabelColor()
-       
-        avatarView.setImage(url: "https://thuthuatnhanh.com/wp-content/uploads/2019/10/avatar-me-than-tuong.jpg")
-        leftAvatar.setImage(url: "https://thuvientoc.com/wp-content/uploads/2018/08/kieu-toc-dep-cua-ngoc-trinh-2.jpg")
-        rightAvatar.setImage(url: "https://thuvientoc.com/wp-content/uploads/2018/08/kieu-toc-dep-cua-ngoc-trinh-2.jpg")
-        
-        // Avatar
-        setupLeftAvatar()
-        setupRightAvatar()
-        
-        // Progress View
-        setupData()
-        setupDateCountingLabel()
-        setupLeftRightDayLabels(numOfDay: dateCouted)
-        setupProgressView()
-        
+        homeViewModel = HomeViewModel()
+        setupMainView()
     }
     
-    // MARK: Actions
-    
     // MARK: Functions
+    
+    func setupMainView() {
+        setupBackgroundImage()
+        setupLabelColor()
+        setupAvatar()
+        setupLeftAvatar()
+        setupRightAvatar()
+        setupProgressView()
+        setupDataForLabels()
+    }
     
     func setupBackgroundImage() {
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
@@ -81,52 +71,15 @@ class HomeViewController: UIViewController {
         heartIconLeftContraint.constant = CGFloat(progressView.progress) * progressView.frame.width
     }
     
-    func setupData() {
-        dateFormater.dateFormat = "dd-MM-yyyy"
-        startDate = dateFormater.date(from: startDateString)!
-        dateCouted = countDays(from: startDate)
+    func setupDataForLabels() {
+        dateCoutingLabel.text = homeViewModel.dateCountedString
+        leftDaysLabel.text = String(homeViewModel.getLeftRightNumbers().leftNumber)
+        rightDayLabel.text = String(homeViewModel.getLeftRightNumbers().rightNumber)
     }
     
-    func countDays(from startDate: Date?) -> Int {
-        if let startDate = startDate, startDate < currentDate {
-            return currentDate.days(sinceDate: startDate) ?? 0
-        }
-        
-        return 0
-    }
-    
-    func setupLeftRightDayLabels(numOfDay: Int) {
-        leftDaysLabel.text = String(getLeftRightNumbers(numOfDay).leftNumber)
-        rightDayLabel.text = String(getLeftRightNumbers(numOfDay).rightNumber)
-    }
-    
-    func setupDateCountingLabel() {
-        let unitString = dateCouted > 1 ? " days" : " day"
-        dateCoutingLabel.text = String(dateCouted) + unitString
-    }
-
-    func getLeftRightNumbers(_ number: Int) -> (leftNumber: Int, rightNumber: Int) {
-        if number == 0 || number % 100 == number {
-            return (0, 100)
-        } else if number % 100 == 0 {
-            return (number - 100, number)
-        } else {
-            let naturalPart = number / 100
-            if naturalPart == 1 {
-                return (100, 200)
-            } else {
-                return (naturalPart * 100, (naturalPart + 1) * 100)
-            }
-        }
-    }
-    
-    func getProgress(number: Int) -> Float {
-        if number <= 100 {
-            return Float(number) / 100
-        } else {
-            let remainingPart = number % 100
-            return Float(remainingPart) / 100
-        }
+    func setupAvatar() {
+        let url = "https://thuthuatnhanh.com/wp-content/uploads/2019/10/avatar-me-than-tuong.jpg"
+        avatarView.setImage(url: url)
     }
 }
 
@@ -135,16 +88,22 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func setupLeftAvatar() {
-        let tapGueture = UITapGestureRecognizer()
-        tapGueture.addTarget(self, action: #selector(chooseImage(_:)))
-        leftAvatar.imageView.addGestureRecognizer(tapGueture)
+        let url = "https://thuthuatnhanh.com/wp-content/uploads/2019/10/avatar-me-than-tuong.jpg"
+        leftAvatar.setImage(url: url)
+        
+        let tapGesture = UITapGestureRecognizer()
+        tapGesture.addTarget(self, action: #selector(chooseImage(_:)))
+        leftAvatar.imageView.addGestureRecognizer(tapGesture)
         leftAvatar.imageView.isUserInteractionEnabled = true
     }
     
     func setupRightAvatar() {
-        let tapGueture = UITapGestureRecognizer()
-        tapGueture.addTarget(self, action: #selector(chooseImage(_:)))
-        rightAvatar.imageView.addGestureRecognizer(tapGueture)
+        let url = "https://thuthuatnhanh.com/wp-content/uploads/2019/10/avatar-me-than-tuong.jpg"
+        rightAvatar.setImage(url: url)
+        
+        let tapGesture = UITapGestureRecognizer()
+        tapGesture.addTarget(self, action: #selector(chooseImage(_:)))
+        rightAvatar.imageView.addGestureRecognizer(tapGesture)
         rightAvatar.imageView.isUserInteractionEnabled = true
     }
     
@@ -156,9 +115,13 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
         let imagePickerVC = UIImagePickerController()
         imagePickerVC.delegate = self
         
-        let actionSheet = UIAlertController(title: "Photo source", message: "Choose a source", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "Photo source",
+                                            message: "Choose a source",
+                                            preferredStyle: .actionSheet)
         
-        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
+        actionSheet.addAction(UIAlertAction(title: "Camera",
+                                            style: .default,
+                                            handler: { _ in
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
                 imagePickerVC.sourceType = .camera
                 self.present(imagePickerVC, animated: true, completion: nil)
@@ -167,12 +130,16 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
             }
         }))
         
-        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { _ in
+        actionSheet.addAction(UIAlertAction(title: "Photo Library",
+                                            style: .default,
+                                            handler: { _ in
             imagePickerVC.sourceType = .photoLibrary
             self.present(imagePickerVC, animated: true, completion: nil)
         }))
         
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "Cancel",
+                                            style: .default,
+                                            handler: nil))
         
         selectedImageView = imageView
         
