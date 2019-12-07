@@ -13,5 +13,8 @@ protocol MessageNavigator: AnyObject {
 }
 
 extension MessageViewController: MessageNavigator {
-
+    func goToLocationScreen() {
+        let locationViewController = LocationViewController()
+        self.navigationController?.pushViewController(locationViewController, animated: true)
+    }
 }

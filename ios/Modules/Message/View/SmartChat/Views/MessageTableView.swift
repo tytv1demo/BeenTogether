@@ -18,11 +18,7 @@ class MessageTableView: UIView {
     
     var tableView: UITableView!
     
-    var messages: [SCMessage] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    var messages: [SCMessage] = []
     
     var user: SCUser!
     
@@ -55,6 +51,17 @@ class MessageTableView: UIView {
         tableView.dataSource = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
+    }
+    
+    func addMessage(_ message: SCMessage) {
+        messages.append(message)
+        tableView.beginUpdates()
+        let indexPath = IndexPath(item: messages.count - 1, section: 0)
+        let prevIndexPath = IndexPath(item: messages.count - 2, section: 0)
+        tableView.insertRows(at: [indexPath], with: .automatic)
+        tableView.reloadRows(at: [prevIndexPath], with: .automatic)
+        tableView.endUpdates()
+        forceScrollToBottom()
     }
     
 }
@@ -104,7 +111,6 @@ extension MessageTableView: MessageViewDelegate {
             self.tableView.beginUpdates()
             messageView.performUpdate()
             self.tableView.endUpdates()
-            print("z========")
         }
     }
 }

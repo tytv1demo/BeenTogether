@@ -14,11 +14,13 @@ protocol InputViewDelegate: AnyObject {
     func inputViewDidEndEditing(_ inputView: InputView)
     
     func inputViewDidChange(_ inputView: InputView)
+    
+    func inputView(requestShowHideEmojiInput inputView: InputView)
 }
 
 class InputView: UIView {
     
-    static let kDefaultHeight: CGFloat = 24
+    static let kDefaultHeight: CGFloat = 28
     
     weak var delegate: InputViewDelegate?
     
@@ -40,6 +42,7 @@ class InputView: UIView {
         super.init(frame: frame)
         initUI()
         setConstraints()
+        addActions()
     }
     
     func initUI() {
@@ -54,6 +57,7 @@ class InputView: UIView {
         emojiButton.setImage(UIImage(named: "camera"), for: [])
         
         contentView = UIStackView(arrangedSubviews: [inputField, emojiButton])
+        contentView.alignment = .center
         
         addSubview(contentView)
     }
@@ -67,9 +71,33 @@ class InputView: UIView {
             make.size.equalTo(24)
         }
         
+        inputField.snp.makeConstraints { (make) in
+            make.height.greaterThanOrEqualTo(contentView)
+        }
+        
         snp.makeConstraints { (make) in
             make.height.equalTo(InputView.kDefaultHeight)
         }
+    }
+    
+    func addActions() {
+        emojiButton.addTarget(self, action: #selector(onEmojiButtonPress), for: [.touchUpInside])
+    }
+    
+    @objc func onEmojiButtonPress() {
+        delegate?.inputView(requestShowHideEmojiInput: self)
+    }
+    
+    func concatEmoji(_ emoji: String) {
+        inputField.text += emoji
+        autoResizeAdapForContent()
+    }
+    
+    func autoResizeAdapForContent() {
+        snp.updateConstraints {[unowned self] (make) in
+            make.height.equalTo(self.inputField.contentSize.height)
+        }
+        delegate?.inputViewDidChange(self)
     }
     
     func clearValue() {
@@ -86,10 +114,7 @@ extension InputView: UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        snp.updateConstraints { (make) in
-            make.height.equalTo(textView.contentSize.height)
-        }
-        delegate?.inputViewDidChange(self)
+        autoResizeAdapForContent()
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {

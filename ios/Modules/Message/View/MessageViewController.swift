@@ -20,9 +20,11 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
     var viewModel: MessageViewModelProtocol! = MessageViewModel()
     
     var gpsButton: UIButton!
+    
     var phoneButton: UIButton!
     
     var loverNameLabel: UILabel!
+    
     var loverAvatar: Avatar!
     
     var smartChat: SmartChat!
@@ -33,6 +35,14 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
         super.viewDidLoad()
         settupNavigation()
         setupChatUI()
+        setupActions()
+        
+        viewModel.delegate = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     func settupNavigation() {
@@ -61,12 +71,11 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
     
     func setupChatUI() {
         smartChat = SmartChat(user: viewModel.user)
-        smartChat.data = try! viewModel.messages.value()
         smartChat.delegate = self
         
-        viewModel.messages
-            .subscribe(onNext: { self.smartChat.data = $0 })
-            .disposed(by: disposeBag)
+        if let messages = try? viewModel.messages.value() {
+            smartChat.reloadWithMessages(messages)
+        }
         
         view.addSubview(smartChat)
         smartChat.snp.makeConstraints { (make) in
@@ -79,12 +88,20 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
         }
     }
     
+    func setupActions() {
+        gpsButton.addTarget(self, action: #selector(onGpsButtonPress), for: [.touchUpInside])
+    }
+    
     @objc func onGpsButtonPress() {
-        
+        self.goToLocationScreen()
     }
     
     @objc func onPhoneButtonPress() {
         
+    }
+    
+    deinit {
+        gpsButton.removeTarget(self, action: #selector(onGpsButtonPress), for: [.touchUpInside])
     }
     
 }
@@ -97,5 +114,15 @@ extension MessageViewController: SmartChatDelegate {
     
     func smartChat(onSendImage data: Data) {
         viewModel.sendImage(data: data)
+    }
+}
+
+extension MessageViewController: MessageViewModelDelegate {
+    func messageViewModel(didLoadMessages viewModel: MessageViewModelProtocol, messages: [SCMessage]) {
+        smartChat.reloadWithMessages(messages)
+    }
+    
+    func messageViewModel(didAddMessage viewModel: MessageViewModelProtocol, message: SCMessage) {
+        smartChat.addMessage(message)
     }
 }

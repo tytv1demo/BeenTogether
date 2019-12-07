@@ -11,7 +11,16 @@ import Firebase
 import RxSwift
 import PromiseKit
 
+protocol MessageViewModelDelegate: AnyObject {
+    func messageViewModel(didLoadMessages viewModel: MessageViewModelProtocol, messages: [SCMessage])
+    
+    func messageViewModel(didAddMessage viewModel: MessageViewModelProtocol, message: SCMessage)
+}
+
 protocol MessageViewModelProtocol: NSObject {
+    
+    var delegate: MessageViewModelDelegate? { get set }
+    
     var messages: BehaviorSubject<[SCMessage]> { get set }
     
     var user: SCUser { get set }
@@ -24,6 +33,8 @@ protocol MessageViewModelProtocol: NSObject {
 }
 
 class MessageViewModel: NSObject, MessageViewModelProtocol {
+    
+    weak var delegate: MessageViewModelDelegate?
     
     var messageRepository: MessageRepository
     
@@ -53,6 +64,7 @@ class MessageViewModel: NSObject, MessageViewModelProtocol {
                     .map({ firbaseEntityToSCTextMessage(raw: ($0 as! DataSnapshot).value!)})
                 messages.forEach { $0.loadDataIfNeeded() }
                 self.messages.onNext(messages)
+                self.delegate?.messageViewModel(didLoadMessages: self, messages: messages)
             })
     }
     
@@ -77,6 +89,7 @@ class MessageViewModel: NSObject, MessageViewModelProtocol {
             return
         }
         messages.append(message)
+        delegate?.messageViewModel(didAddMessage: self, message: message)
         self.messages.onNext(messages)
     }
     

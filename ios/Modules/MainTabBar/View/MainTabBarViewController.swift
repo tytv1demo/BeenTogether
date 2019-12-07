@@ -19,6 +19,7 @@ class MainTabBarViewController: UITabBarController {
     var uiConfiguration: MainTabBarUIConfiguration = MainTabBarUIConfiguration()
     
     var homeVC: HomeViewController!
+    
     var messageVC: MessageViewController!
     
     override func viewDidLoad() {
@@ -41,9 +42,8 @@ class MainTabBarViewController: UITabBarController {
         homeVC = storyboard.instantiateViewController()
         
         messageVC = MessageViewController()
-        let messageNav = UINavigationController(rootViewController: homeVC)
-        messageNav.viewControllers = [messageVC]
-        
+        let messageNav = UINavigationController(rootViewController: messageVC)
+
         let fifthVc = UIViewController()
         fifthVc.view.backgroundColor = .red
         fifthVc.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 0)
@@ -67,6 +67,7 @@ class MainTabBarViewController: UITabBarController {
         homeTabButton.addTarget(self, action: #selector(onHomTabButtonTapped), for: [.touchUpInside])
         
         messageVC.tabBarItem =  UITabBarItem(title: "", image: UIImage(named: "message"), selectedImage: UIImage(named: "message"))
+        
     }
     
     @objc func onHomTabButtonTapped() {

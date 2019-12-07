@@ -54,6 +54,9 @@ extension MessageView {
         let prevMessageIndex = indexPath.item - 1
         if prevMessageIndex == -1 { return true }
         let prevMessages: SCMessage = messages[prevMessageIndex]
+        if prevMessages.type != message.type {
+            return true
+        }
         return prevMessages.author.id != message.author.id
     }
     
@@ -61,6 +64,9 @@ extension MessageView {
         let nextMessageIndex = indexPath.item + 1
         if nextMessageIndex == messages.count { return true }
         let nextMessages: SCMessage = messages[nextMessageIndex]
+        if nextMessages.type != message.type {
+            return true
+        }
         return nextMessages.author.id != message.author.id
     }
     

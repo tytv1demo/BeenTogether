@@ -74,7 +74,9 @@ class ImageMessageView: UIView, MessageView {
         
         image.snp.makeConstraints { (make) in
             make.top.equalTo(rowContentStack)
+            make.size.equalTo(CGSize(width: 150, height: 267))
         }
+        image.backgroundColor = .groupTableViewBackground
     
     }
     
@@ -109,10 +111,6 @@ class ImageMessageView: UIView, MessageView {
     }
     
     func performUpdate() {
-        image.snp.makeConstraints { (make) in
-            make.size.equalTo(CGSize(width: 150, height: 267))
-        }
-        self.layoutIfNeeded()
     }
     
     func configImage() {
@@ -132,5 +130,6 @@ class ImageMessageView: UIView, MessageView {
     func prepareForReuse() {
         dataLoadingStatusObservation?.dispose()
         statusIndicator.prepareForReuse()
+        image.image = nil
     }
 }

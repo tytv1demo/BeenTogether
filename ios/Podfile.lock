@@ -321,6 +321,7 @@ PODS:
   - SwiftMessages (7.0.0):
     - SwiftMessages/App (= 7.0.0)
   - SwiftMessages/App (7.0.0)
+  - SwiftMoment (0.7)
   - SwiftyGif (5.2.0)
   - Yoga (1.14.0)
   - YogaKit (1.14.0):
@@ -366,6 +367,7 @@ DEPENDENCIES:
   - SkeletonView (from `https://github.com/dangthaison91/SkeletonView.git`, branch `develop`)
   - SnapKit (~> 4.0)
   - SwiftMessages
+  - SwiftMoment
   - SwiftyGif
   - YogaKit (~> 1.7)
 
@@ -398,6 +400,7 @@ SPEC REPOS:
     - RxSwift
     - SnapKit
     - SwiftMessages
+    - SwiftMoment
     - SwiftyGif
     - Yoga
     - YogaKit
@@ -513,10 +516,11 @@ SPEC CHECKSUMS:
   SkeletonView: 60d6ce7edb0cb4c7758db33c74add50392b3c475
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftMessages: a952f7a9103d9aeab93730a2861d2d8fcdd8758f
+  SwiftMoment: dc6dd27012e267819104cbb03f74ff9192dd0b42
   SwiftyGif: b85c6b33a9411859d9e1db998b6a8214aea942df
   Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
   YogaKit: 5d1dc899cecd5946e5a758a0c3997704a4b48d01
 
-PODFILE CHECKSUM: 247b8d950016187abc4d39ca422656586722eb1c
+PODFILE CHECKSUM: a78017fb8cea1a3ae8cc0f56216e07e97eb9dadc
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.8.3

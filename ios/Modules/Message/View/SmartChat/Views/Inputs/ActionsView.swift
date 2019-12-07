@@ -51,6 +51,7 @@ class ActionsView: UIView {
     }
     
     func initUI() {
+        
         cameraButton = UIButton()
         cameraButton.setImage(UIImage(named: "camera"), for: [])
         
@@ -61,7 +62,7 @@ class ActionsView: UIView {
         microButton.setImage(UIImage(named: "camera"), for: [])
         
         expandButton = UIButton()
-        expandButton.setImage(UIImage(named: "camera"), for: [])
+        expandButton.setImage(UIImage(named: "Plus"), for: [])
         
         stack = UIStackView(arrangedSubviews: [cameraButton, galleryButton, microButton, expandButton])
         

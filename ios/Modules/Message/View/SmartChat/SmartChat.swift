@@ -20,13 +20,8 @@ class SmartChat: UIView {
     weak var delegate: SmartChatDelegate?
     
     var messageTableView: MessageTableView!
-    var inputToolBar: InputToolBar!
     
-    var data: [SCMessage] = [] {
-        didSet {
-            messageTableView.messages = self.data
-        }
-    }
+    var inputToolBar: InputToolBar!
     
     var user: SCUser!
     
@@ -67,6 +62,15 @@ class SmartChat: UIView {
             make.leading.equalTo(self)
             make.height.equalTo(self.inputToolBar.height)
         }
+    }
+    
+    func reloadWithMessages(_ messages: [SCMessage]) {
+        messageTableView.messages = messages
+        messageTableView.tableView.reloadData()
+    }
+    
+    func addMessage(_ message: SCMessage) {
+        messageTableView.addMessage(message)
     }
 }
 

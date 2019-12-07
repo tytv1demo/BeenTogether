@@ -18,7 +18,7 @@ protocol InputToolBarDelegate: AnyObject {
 
 enum InputToolBarState {
     case image
-    case icon
+    case emoji
     case text
     case noAction
 }
@@ -35,6 +35,8 @@ class InputToolBar: UIView {
     
     var contentView: UIStackView!
     
+    var spaceOfContentView: UIView!
+    
     var inputRow: UIStackView!
     
     var actionsView: ActionsView!
@@ -45,11 +47,13 @@ class InputToolBar: UIView {
     
     var galleryInput: GalleryInput!
     
+    var emojiCollection: EmojiCollectionView!
+    
     var keyboarHeight: CGFloat = 0
     
     var height: CGFloat {
         switch state {
-        case .image, .icon:
+        case .image, .emoji:
             return 308
         case .text:
             return keyboarHeight + inputRow.frame.height + 32
@@ -73,6 +77,9 @@ class InputToolBar: UIView {
     }
     
     func initUI() {
+        
+        setGradientBackground(colors: [.groupTableViewBackground, .white])
+        
         actionsView = ActionsView()
         actionsView.delegate = self
         
@@ -93,9 +100,15 @@ class InputToolBar: UIView {
         
         galleryInput = GalleryInput()
         galleryInput.delegate = self
-        galleryInput.layer.opacity = 0
+        galleryInput.isHidden = true
         
-        contentView = UIStackView(arrangedSubviews: [inputRow, galleryInput])
+        emojiCollection = EmojiCollectionView()
+        emojiCollection.delegate = self
+        emojiCollection.isHidden = true
+
+        spaceOfContentView = UIView()
+        
+        contentView = UIStackView(arrangedSubviews: [inputRow, galleryInput, emojiCollection, spaceOfContentView])
         contentView.axis = .vertical
         contentView.alignment = .fill
         contentView.spacing = 8
@@ -143,21 +156,22 @@ class InputToolBar: UIView {
     }
     
     func updateStateBehavior(withDuration: TimeInterval = 0.25) {
-        let isImageState = self.state == .image
-        if isImageState {
-            galleryInput.layer.opacity = 1
-        }
+        updateAccessories()
         UIView.animate(withDuration: withDuration, animations: { [unowned self] in
             self.snp.updateConstraints { (make) in
                 make.height.equalTo(self.height)
             }
             self.layoutIfNeeded()
         }, completion: { [unowned self] (_) in
-            if !isImageState {
-                self.galleryInput.layer.opacity = 0
-            }
+            
             self.delegate?.inputToolBar(didChangeHeight: self)
         })
+    }
+    
+    func updateAccessories() {
+        galleryInput.isHidden = state != .image
+        emojiCollection.isHidden = state != .emoji
+        self.spaceOfContentView.isHidden = state != .text
     }
     
     deinit {
@@ -174,6 +188,11 @@ extension InputToolBar {
 }
 
 extension InputToolBar: InputViewDelegate {
+    func inputView(requestShowHideEmojiInput inputView: InputView) {
+        state = state != .emoji ? .emoji : .noAction
+        endEditing(true)
+    }
+    
     func inputViewDidBeginEditing(_ inputView: InputView) {
         self.state = .text
         self.actionsView.state = .collapse
@@ -190,11 +209,14 @@ extension InputToolBar: InputViewDelegate {
     }
     
     func inputViewDidEndEditing(_ inputView: InputView) {
-        self.actionsView.state = .expand
-        UIView.animate(withDuration: 0.2) { [unowned self] in
-            self.inputRow.distribution = .equalSpacing
+        if state != .emoji {
+            self.actionsView.state = .expand
+            UIView.animate(withDuration: 0.2) { [unowned self] in
+                self.inputRow.distribution = .equalSpacing
+            }
         }
     }
+    
 }
 
 extension InputToolBar: GalleryInputDelegate {
@@ -220,5 +242,11 @@ extension InputToolBar: ActionViewDelegate {
     func actionView(onStateChanged actionView: ActionsView) {
         let isExpanded: Bool = actionView.state == .expand
         self.inputRow.distribution = isExpanded ? .equalSpacing : .fill
+    }
+}
+
+extension InputToolBar: EmojiCollectionViewDelegate {
+    func emojiCollectionView(didSelectEmoji emojiCollectionView: EmojiCollectionView, emoji: String) {
+        input.concatEmoji(emoji)
     }
 }
