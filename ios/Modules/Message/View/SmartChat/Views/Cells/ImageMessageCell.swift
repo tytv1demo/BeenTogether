@@ -35,7 +35,10 @@ class ImageMessageCell: UITableViewCell, MessageCell {
         messageView = ImageMessageView()
         contentView.addSubview(messageView)
         messageView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview().inset(2)
+            make.edges.top.equalToSuperview().inset(2)
+            make.edges.bottom.equalToSuperview().inset(2).priority(999)
+            make.edges.trailing.equalToSuperview().inset(2)
+            make.edges.leading.equalToSuperview().inset(2)
         }
         messageView.isUserInteractionEnabled = true
     }

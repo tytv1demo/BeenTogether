@@ -20,13 +20,17 @@ class UserCoordinate: Decodable {
 
 class User: Decodable {
     var id: Int = 0
-    var coupleId: String?
+    var coupleId: String = ""
     var name: String = ""
     var age: Int = 0
     var gender: String = ""
     var location: UserLocation?
     var phoneNumber: String = ""
 
+    var isPaired: Bool {
+        return coupleId != "\(id)_local"
+    }
+    
     enum RemoteUserKeys: String, CodingKey {
         case id, coupleId, name, age, gender, location, phoneNumber
     }

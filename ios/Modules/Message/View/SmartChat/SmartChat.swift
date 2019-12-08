@@ -67,6 +67,7 @@ class SmartChat: UIView {
     func reloadWithMessages(_ messages: [SCMessage]) {
         messageTableView.messages = messages
         messageTableView.tableView.reloadData()
+        messageTableView.forceScrollToBottom()
     }
     
     func addMessage(_ message: SCMessage) {

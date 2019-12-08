@@ -11,9 +11,17 @@ import PromiseKit
 
 class AppUserData {
     
+    static let kUserInfoChangedEventName = "kUserInfoChangedEventName"
+    
     static let shared = AppUserData()
+    
     var userRepository = UserRepository()
-    var userInfo: User?
+    
+    var userInfo: User! {
+        didSet {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppUserData.kUserInfoChangedEventName), object: nil, userInfo: nil)
+        }
+    }
     
     var userToken: String {
         didSet {
@@ -33,7 +41,7 @@ class AppUserData {
                     .done { (user) in
                         self.userInfo = user
                         seal.fulfill(true)
-                }.catch { (err) in
+                }.catch { (_) in
                     seal.fulfill(false)
                 }
             } else {

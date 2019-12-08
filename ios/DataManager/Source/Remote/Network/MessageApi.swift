@@ -55,9 +55,7 @@ extension MessageApi: AuthorizedTargetType {
     var task: Moya.Task {
         switch self {
         case .chat(let type, let content):
-            var body: [String: String] = [:]
-            body["type"] = type
-            body["content"] = content
+            let body: [String: String] = ["type": type, "content": content]
             return .requestParameters(parameters: body, encoding: JSONEncoding.default)
         case .sendImage(let data):
             let imageData = MultipartFormData(provider: .data(data), name: "image", fileName: "m.jpg", mimeType: "image/jpeg")

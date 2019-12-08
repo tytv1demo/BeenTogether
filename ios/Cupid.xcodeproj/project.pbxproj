@@ -10,9 +10,8 @@
 		00E356F31AD99517003FC87E /* BeenTogetherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BeenTogetherTests.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		172262E967C2843B2C451109 /* libPods-Cupid-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E07C6758DAF172F61641B653 /* libPods-Cupid-tvOSTests.a */; };
-		17E0995B92EB27DC2C428F53 /* libPods-Cupid.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6ED815D63F4AA78F36968BE /* libPods-Cupid.a */; };
 		1BA3F880F1E0519F8B3CEA81 /* libPods-Cupid-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FA4788D947D3431727CA4AA /* libPods-Cupid-tvOS.a */; };
-		22A78B505A88A37A640D5123 /* libPods-CupidTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B48CF14D50A412DE50CDE077 /* libPods-CupidTests.a */; };
+		2C6D8304213769DF82F0C1BC /* libPods-Cupid.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 774787D688176C114E8E9838 /* libPods-Cupid.a */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2DCD954D1E0B4F2C00145EB5 /* BeenTogetherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BeenTogetherTests.m */; };
 		460F74B0239DF8CB0043A7DD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F74AE239DF8CB0043A7DD /* HomeViewController.swift */; };
@@ -27,6 +26,7 @@
 		46C46DCF23A2496300966D44 /* AppUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C46DCE23A2496300966D44 /* AppUserData.swift */; };
 		46C46DD223A259F100966D44 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C46DD123A259F100966D44 /* SplashViewController.swift */; };
 		46C46DD423A25F2100966D44 /* SplashNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C46DD323A25F2100966D44 /* SplashNavigator.swift */; };
+		5EE97E81A77DC1E07841BFF2 /* libPods-CupidTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE1A2B31046312B7E5CE0C22 /* libPods-CupidTests.a */; };
 		6F17F979239AAE54007ECF45 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F17F978239AAE54007ECF45 /* EventTableViewCell.swift */; };
 		6F17F97A239AAE87007ECF45 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F17F976239AADFC007ECF45 /* EventTableViewCell.xib */; };
 		6F4C6A70239818BC00F4FB4D /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4C6A6F239818BC00F4FB4D /* EventViewController.swift */; };
@@ -73,6 +73,9 @@
 		B607DB332399523E00C7509F /* MapAnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B607DB322399523E00C7509F /* MapAnotation.swift */; };
 		B6559E75239A978B00FD6893 /* LocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6559E74239A978B00FD6893 /* LocationServices.swift */; };
 		B67252272397FC1E00E13339 /* RemoteMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67252262397FC1E00E13339 /* RemoteMessage.swift */; };
+		B682021823A5D44F00E32F5F /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B682021723A5D44F00E32F5F /* CircleButton.swift */; };
+		B688687A23A5104300FB155D /* RNUserExts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B688687923A5104300FB155D /* RNUserExts.swift */; };
+		B688687C23A5159E00FB155D /* RNUserDataBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B688687B23A5159E00FB155D /* RNUserDataBridge.m */; };
 		B68CD034239B3FDC000BA1D8 /* LocationNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68CD033239B3FDC000BA1D8 /* LocationNavigator.swift */; };
 		B68CD036239B8A75000BA1D8 /* LoverLocationViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68CD035239B8A75000BA1D8 /* LoverLocationViewer.swift */; };
 		B68CD039239B95D2000BA1D8 /* EmojiCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68CD038239B95D2000BA1D8 /* EmojiCollection.swift */; };
@@ -104,9 +107,15 @@
 		B690E674239CA07700C418A7 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690E673239CA07700C418A7 /* UIButton.swift */; };
 		B690E676239CA23C00C418A7 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690E675239CA23C00C418A7 /* BaseButton.swift */; };
 		B690E679239CE28D00C418A7 /* GalleryAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690E678239CE28D00C418A7 /* GalleryAsset.swift */; };
+		B690E67C239CEC0A00C418A7 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690E67B239CEC0A00C418A7 /* SettingViewController.swift */; };
+		B690E67E239CF04000C418A7 /* RCTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690E67D239CF04000C418A7 /* RCTViewController.swift */; };
+		B690E680239CF53C00C418A7 /* RCTBridgeServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690E67F239CF53C00C418A7 /* RCTBridgeServices.swift */; };
 		B6972B342393D04E002EE07B /* ImageMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6972B332393D04E002EE07B /* ImageMessageCell.swift */; };
 		B6972B362393D0AD002EE07B /* ImageMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6972B352393D0AD002EE07B /* ImageMessage.swift */; };
+		B697FC6223A3A8D6000981B5 /* RNUserDataBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B697FC6123A3A8D6000981B5 /* RNUserDataBridge.swift */; };
 		B6B9D121239559F0003527B4 /* MessageStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B9D120239559F0003527B4 /* MessageStatusIndicator.swift */; };
+		B6D5B85423A12C2E00942C44 /* LocationServices.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D5B85323A12C2E00942C44 /* LocationServices.m */; };
+		B6D5B85823A12E3200942C44 /* RNLocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D5B85723A12E3200942C44 /* RNLocationServices.swift */; };
 		B6E2E2E32362A7F7001046E5 /* UIViewExts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2E22362A7F7001046E5 /* UIViewExts.swift */; };
 		B6E2E2E72362AB73001046E5 /* UIColorExts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2E62362AB73001046E5 /* UIColorExts.swift */; };
 		B6E2E2ED2362F561001046E5 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2EC2362F561001046E5 /* Avatar.swift */; };
@@ -166,6 +175,7 @@
 		6F4C6A6F239818BC00F4FB4D /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		6F846FD2239570C1008C03D3 /* Event.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Event.storyboard; sourceTree = "<group>"; };
 		77075A41F0C5A168FB7717DD /* Pods-BeenTogether.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogether.release.xcconfig"; path = "Target Support Files/Pods-BeenTogether/Pods-BeenTogether.release.xcconfig"; sourceTree = "<group>"; };
+		774787D688176C114E8E9838 /* libPods-Cupid.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cupid.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F5D1C21236FBD5A005A4961 /* UserRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		7F5D1C23236FBD5A005A4961 /* UserLocalDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocalDataSource.swift; sourceTree = "<group>"; };
 		7F5D1C25236FBD5A005A4961 /* UserRemoteDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRemoteDataSource.swift; sourceTree = "<group>"; };
@@ -207,12 +217,14 @@
 		93727D99D2538C3C8FDC2435 /* Pods-BeenTogether-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogether-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-BeenTogether-tvOS/Pods-BeenTogether-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		9939EFA61F59F675BBCE3ECC /* Pods-Cupid-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cupid-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Cupid-tvOSTests/Pods-Cupid-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AE5225EDAAE57D4D67321A6B /* Pods-BeenTogetherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogetherTests.release.xcconfig"; path = "Target Support Files/Pods-BeenTogetherTests/Pods-BeenTogetherTests.release.xcconfig"; sourceTree = "<group>"; };
-		B48CF14D50A412DE50CDE077 /* libPods-CupidTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CupidTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B607DB2D239949BB00C7509F /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		B607DB3023994CC900C7509F /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		B607DB322399523E00C7509F /* MapAnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnotation.swift; sourceTree = "<group>"; };
 		B6559E74239A978B00FD6893 /* LocationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServices.swift; sourceTree = "<group>"; };
 		B67252262397FC1E00E13339 /* RemoteMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMessage.swift; sourceTree = "<group>"; };
+		B682021723A5D44F00E32F5F /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
+		B688687923A5104300FB155D /* RNUserExts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNUserExts.swift; sourceTree = "<group>"; };
+		B688687B23A5159E00FB155D /* RNUserDataBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNUserDataBridge.m; sourceTree = "<group>"; };
 		B68CD033239B3FDC000BA1D8 /* LocationNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationNavigator.swift; sourceTree = "<group>"; };
 		B68CD035239B8A75000BA1D8 /* LoverLocationViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoverLocationViewer.swift; sourceTree = "<group>"; };
 		B68CD038239B95D2000BA1D8 /* EmojiCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCollection.swift; sourceTree = "<group>"; };
@@ -244,9 +256,15 @@
 		B690E673239CA07700C418A7 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		B690E675239CA23C00C418A7 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		B690E678239CE28D00C418A7 /* GalleryAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryAsset.swift; sourceTree = "<group>"; };
+		B690E67B239CEC0A00C418A7 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		B690E67D239CF04000C418A7 /* RCTViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCTViewController.swift; sourceTree = "<group>"; };
+		B690E67F239CF53C00C418A7 /* RCTBridgeServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCTBridgeServices.swift; sourceTree = "<group>"; };
 		B6972B332393D04E002EE07B /* ImageMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMessageCell.swift; sourceTree = "<group>"; };
 		B6972B352393D0AD002EE07B /* ImageMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMessage.swift; sourceTree = "<group>"; };
+		B697FC6123A3A8D6000981B5 /* RNUserDataBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNUserDataBridge.swift; sourceTree = "<group>"; };
 		B6B9D120239559F0003527B4 /* MessageStatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStatusIndicator.swift; sourceTree = "<group>"; };
+		B6D5B85323A12C2E00942C44 /* LocationServices.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationServices.m; sourceTree = "<group>"; };
+		B6D5B85723A12E3200942C44 /* RNLocationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNLocationServices.swift; sourceTree = "<group>"; };
 		B6E2E2E22362A7F7001046E5 /* UIViewExts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExts.swift; sourceTree = "<group>"; };
 		B6E2E2E62362AB73001046E5 /* UIColorExts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExts.swift; sourceTree = "<group>"; };
 		B6E2E2EC2362F561001046E5 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
@@ -254,10 +272,10 @@
 		B6F4F918234737E8002B7B36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C403D03DD73EEE6412F64DB0 /* Pods-Cupid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cupid.release.xcconfig"; path = "Target Support Files/Pods-Cupid/Pods-Cupid.release.xcconfig"; sourceTree = "<group>"; };
 		D5763673876EA0C5CE568C13 /* Pods-Cupid-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cupid-tvOS.release.xcconfig"; path = "Target Support Files/Pods-Cupid-tvOS/Pods-Cupid-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		DE1A2B31046312B7E5CE0C22 /* libPods-CupidTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CupidTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E07C6758DAF172F61641B653 /* libPods-Cupid-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cupid-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		F6ED815D63F4AA78F36968BE /* libPods-Cupid.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cupid.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE916A3DC3A89F7F89CA3D68 /* Pods-BeenTogether-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogether-tvOS.release.xcconfig"; path = "Target Support Files/Pods-BeenTogether-tvOS/Pods-BeenTogether-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -266,7 +284,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22A78B505A88A37A640D5123 /* libPods-CupidTests.a in Frameworks */,
+				5EE97E81A77DC1E07841BFF2 /* libPods-CupidTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,7 +296,7 @@
 				7FF7E785236FD3AA006AC2BF /* XCGLogger.framework in Frameworks */,
 				7FF7E786236FD3AA006AC2BF /* ObjcExceptionBridging.framework in Frameworks */,
 				7FF7E787236FD3AA006AC2BF /* DeviceKit.framework in Frameworks */,
-				17E0995B92EB27DC2C428F53 /* libPods-Cupid.a in Frameworks */,
+				2C6D8304213769DF82F0C1BC /* libPods-Cupid.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,10 +360,10 @@
 				7FF7E781236FD3AA006AC2BF /* XCGLogger.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				F6ED815D63F4AA78F36968BE /* libPods-Cupid.a */,
 				1FA4788D947D3431727CA4AA /* libPods-Cupid-tvOS.a */,
 				E07C6758DAF172F61641B653 /* libPods-Cupid-tvOSTests.a */,
-				B48CF14D50A412DE50CDE077 /* libPods-CupidTests.a */,
+				774787D688176C114E8E9838 /* libPods-Cupid.a */,
+				DE1A2B31046312B7E5CE0C22 /* libPods-CupidTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -512,10 +530,12 @@
 		7F5D1C1D236FBD5A005A4961 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				B697FC6023A3A8B3000981B5 /* AppData */,
+				B6D5B85223A12C0200942C44 /* LocationService */,
 				7FF7E796236FD7EE006AC2BF /* AppService.swift */,
 				7FF7E794236FD7E7006AC2BF /* Constants.swift */,
 				7FF7E792236FD7E1006AC2BF /* Logger.swift */,
-				B6559E74239A978B00FD6893 /* LocationServices.swift */,
+				B690E67F239CF53C00C418A7 /* RCTBridgeServices.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -526,6 +546,8 @@
 				B6E2E2EC2362F561001046E5 /* Avatar.swift */,
 				B690E66E239C9DB500C418A7 /* CollectionEmptyView.swift */,
 				B690E675239CA23C00C418A7 /* BaseButton.swift */,
+				B690E67D239CF04000C418A7 /* RCTViewController.swift */,
+				B682021723A5D44F00E32F5F /* CircleButton.swift */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -601,6 +623,7 @@
 			children = (
 				46C46DD023A259CF00966D44 /* Splash */,
 				46C46DC123A1EFF300966D44 /* Anthentication */,
+				B690E67A239CEBF800C418A7 /* Settings */,
 				B607DB2C2399496300C7509F /* Location */,
 				6F846FD123956430008C03D3 /* Event */,
 				B68E249C2392720A0014A53E /* Home */,
@@ -998,6 +1021,34 @@
 			path = GalleryInput;
 			sourceTree = "<group>";
 		};
+		B690E67A239CEBF800C418A7 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B690E67B239CEC0A00C418A7 /* SettingViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		B697FC6023A3A8B3000981B5 /* AppData */ = {
+			isa = PBXGroup;
+			children = (
+				B697FC6123A3A8D6000981B5 /* RNUserDataBridge.swift */,
+				B688687923A5104300FB155D /* RNUserExts.swift */,
+				B688687B23A5159E00FB155D /* RNUserDataBridge.m */,
+			);
+			path = AppData;
+			sourceTree = "<group>";
+		};
+		B6D5B85223A12C0200942C44 /* LocationService */ = {
+			isa = PBXGroup;
+			children = (
+				B6559E74239A978B00FD6893 /* LocationServices.swift */,
+				B6D5B85323A12C2E00942C44 /* LocationServices.m */,
+				B6D5B85723A12E3200942C44 /* RNLocationServices.swift */,
+			);
+			path = LocationService;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1030,10 +1081,10 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				9A61F91828B49A63B565851F /* [CP] Copy Pods Resources */,
 				7FB507DF236FCC6000A00CF6 /* Carthage */,
 				7FB507E0236FCC7C00A00CF6 /* SwiftLint */,
 				7FB507E1236FCC8C00A00CF6 /* SwiftGen */,
+				DBF3E1BB4252B32FC6611F93 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1337,28 +1388,6 @@
 			shellPath = /bin/sh;
 			shellScript = "swiftgen config run\n";
 		};
-		9A61F91828B49A63B565851F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Cupid/Pods-Cupid-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FontAwesome.swift/FontAwesome.swift.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/SwiftMessages/SwiftMessages.bundle",
-				"${PODS_ROOT}/SwiftMoment/SwiftMoment/SwiftMoment/MomentFromNow.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.swift.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SwiftMessages.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MomentFromNow.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Cupid/Pods-Cupid-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		D1478092B52E59F0B674A9C5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1379,6 +1408,60 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DBF3E1BB4252B32FC6611F93 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Cupid/Pods-Cupid-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FontAwesome.swift/FontAwesome.swift.bundle",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
+				"${PODS_CONFIGURATION_BUILD_DIR}/SwiftMessages/SwiftMessages.bundle",
+				"${PODS_ROOT}/SwiftMoment/SwiftMoment/SwiftMoment/MomentFromNow.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.swift.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SwiftMessages.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MomentFromNow.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Cupid/Pods-Cupid-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -1436,6 +1519,7 @@
 			files = (
 				B68E24902392712B0014A53E /* TextMessage.swift in Sources */,
 				B6972B342393D04E002EE07B /* ImageMessageCell.swift in Sources */,
+				B690E67C239CEC0A00C418A7 /* SettingViewController.swift in Sources */,
 				7F5D1C5E236FC429005A4961 /* TaskViewModel.swift in Sources */,
 				B68E24922392712B0014A53E /* MessageTableView.swift in Sources */,
 				46C46DC823A1EFF300966D44 /* LoginViewController.swift in Sources */,
@@ -1459,9 +1543,12 @@
 				B68E24982392712B0014A53E /* MessageViewController.swift in Sources */,
 				46C46DD423A25F2100966D44 /* SplashNavigator.swift in Sources */,
 				7FF7E78B236FD718006AC2BF /* StoryboardExt.swift in Sources */,
+				B6D5B85823A12E3200942C44 /* RNLocationServices.swift in Sources */,
+				B697FC6223A3A8D6000981B5 /* RNUserDataBridge.swift in Sources */,
 				7F5D1C6F236FC441005A4961 /* DatingViewController.swift in Sources */,
 				B68CD034239B3FDC000BA1D8 /* LocationNavigator.swift in Sources */,
 				7F5D1C72236FC441005A4961 /* DatingNavigator.swift in Sources */,
+				B6D5B85423A12C2E00942C44 /* LocationServices.m in Sources */,
 				B690E674239CA07700C418A7 /* UIButton.swift in Sources */,
 				7F5D1C30236FBD5B005A4961 /* UserLocalDataSource.swift in Sources */,
 				B6F4F919234737E8002B7B36 /* AppDelegate.swift in Sources */,
@@ -1478,6 +1565,7 @@
 				B6B9D121239559F0003527B4 /* MessageStatusIndicator.swift in Sources */,
 				7F5D1C5F236FC429005A4961 /* TaskViewController.swift in Sources */,
 				B6E2E2ED2362F561001046E5 /* Avatar.swift in Sources */,
+				B688687A23A5104300FB155D /* RNUserExts.swift in Sources */,
 				B6559E75239A978B00FD6893 /* LocationServices.swift in Sources */,
 				7F5D1C2F236FBD5B005A4961 /* UserRepository.swift in Sources */,
 				46C46DD223A259F100966D44 /* SplashViewController.swift in Sources */,
@@ -1485,6 +1573,7 @@
 				B68E245F239235620014A53E /* APIConfig.swift in Sources */,
 				7FF7E791236FD7AC006AC2BF /* TableViewExt.swift in Sources */,
 				B68E24962392712B0014A53E /* InputView.swift in Sources */,
+				B690E67E239CF04000C418A7 /* RCTViewController.swift in Sources */,
 				B690E66F239C9DB500C418A7 /* CollectionEmptyView.swift in Sources */,
 				460F74B0239DF8CB0043A7DD /* HomeViewController.swift in Sources */,
 				7FF7E795236FD7E7006AC2BF /* Constants.swift in Sources */,
@@ -1505,10 +1594,13 @@
 				B68CD03D239BF488000BA1D8 /* UIImage.swift in Sources */,
 				B68E245D239230420014A53E /* MessageApi.swift in Sources */,
 				B68E248A2392712B0014A53E /* MessageViewModel.swift in Sources */,
+				B688687C23A5159E00FB155D /* RNUserDataBridge.m in Sources */,
 				B6E2E2E72362AB73001046E5 /* UIColorExts.swift in Sources */,
 				7FF7E78F236FD722006AC2BF /* CollectionViewExt.swift in Sources */,
 				7F5D1C71236FC441005A4961 /* DatingViewModel.swift in Sources */,
 				B68E248E2392712B0014A53E /* SCUser.swift in Sources */,
+				B690E680239CF53C00C418A7 /* RCTBridgeServices.swift in Sources */,
+				B682021823A5D44F00E32F5F /* CircleButton.swift in Sources */,
 				B68E248D2392712B0014A53E /* Message.swift in Sources */,
 				7FB507DA236FCB3400A00CF6 /* LoadingNavigator.swift in Sources */,
 				B68CD039239B95D2000BA1D8 /* EmojiCollection.swift in Sources */,
