@@ -17,20 +17,42 @@ class LocationServices: NSObject {
     var currentLocation: BehaviorSubject<CLLocation?>
     
     var locationManager: CLLocationManager
+    
+    @objc dynamic var isAutomaticUpdateOfLocation: Bool {
+        didSet {
+            UserDefaults.standard.set(self.isAutomaticUpdateOfLocation, forKey: "isAutomaticUpdateOfLocation")
+        }
+    }
 
     override init() {
         currentLocation = BehaviorSubject<CLLocation?>(value: nil)
         locationManager = CLLocationManager()
+        isAutomaticUpdateOfLocation = UserDefaults.standard.bool(forKey: "isAutomaticUpdateOfLocation")
         super.init()
         
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled() {
+    }
+    
+    func enableLocationAutoUpdate() -> Bool {
+        let isLocationServiceEnable = CLLocationManager.locationServicesEnabled()
+        if isLocationServiceEnable {
             locationManager.delegate = self
             locationManager.desiredAccuracy = .zero
             locationManager.startUpdatingLocation()
+            isAutomaticUpdateOfLocation = true
+            return true
         }
+        return false
+    }
+    
+    func disableLocationAutoUpdate() -> Bool {
+        if isAutomaticUpdateOfLocation {
+            locationManager.stopUpdatingLocation()
+            isAutomaticUpdateOfLocation = false
+            return true
+        }
+        return false
     }
 }
 

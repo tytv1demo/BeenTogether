@@ -22,6 +22,8 @@ class MainTabBarViewController: UITabBarController {
     var loginVC: LoginViewController!
     var messageVC: MessageViewController!
     
+    var settingVC: SettingViewController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -44,11 +46,14 @@ class MainTabBarViewController: UITabBarController {
         messageVC = MessageViewController()
         let messageNav = UINavigationController(rootViewController: messageVC)
 
-        let fifthVc = UIViewController()
-        fifthVc.view.backgroundColor = .red
-        fifthVc.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 0)
+        settingVC = SettingViewController()
+        settingVC.moduleName = "SettingScreen"
+        settingVC.initRCTView()
+        let settingImage = UIImage.awesomeIcon(name: .tools, style: .solid)
+        let activeSettingImage = UIImage.awesomeIcon(name: .tools, style: .solid, textColor: Colors.kPink)
+        settingVC.tabBarItem = UITabBarItem(title: "Cài đặt", image: settingImage, selectedImage: activeSettingImage)
         
-        viewControllers = [firstVc, loginVC, homeVC, messageNav, fifthVc]
+        viewControllers = [firstVc, loginVC, homeVC, messageNav, settingVC]
     }
     
     func settupTabBarUI() {

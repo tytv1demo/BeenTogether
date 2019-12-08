@@ -73,7 +73,7 @@ extension String {
 
 enum APIEndpoint: String {
     case baseURL = "https://cupid-api.tranty9597.now.sh"
-//     case baseURL = "http://210.245.53.9:3000"
+//     case baseURL = "http://localhost:3000"
 }
 
 enum JSONKey: String {

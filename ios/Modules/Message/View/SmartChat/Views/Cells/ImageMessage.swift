@@ -52,6 +52,8 @@ class ImageMessageView: UIView, MessageView {
         image = UIImageView()
         image.layer.masksToBounds = true
         image.layer.cornerRadius = 16
+        image.contentMode = .scaleAspectFill
+        
         avatar = Avatar(size: CGSize(width: 25, height: 25), url: "https://media.ex-cdn.com/EXP/media.giadinhvietnam.com/files/dothanhhien85/2018/10/01/42975856_2321943271154026_70249855187943424_n-1720.jpg")
         
         let arrangedSubviews: [UIView] = [UIView(), image, avatar, statusIndicator]
