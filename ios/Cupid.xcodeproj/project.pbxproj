@@ -29,6 +29,7 @@
 		5EE97E81A77DC1E07841BFF2 /* libPods-CupidTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE1A2B31046312B7E5CE0C22 /* libPods-CupidTests.a */; };
 		6F17F979239AAE54007ECF45 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F17F978239AAE54007ECF45 /* EventTableViewCell.swift */; };
 		6F17F97A239AAE87007ECF45 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F17F976239AADFC007ECF45 /* EventTableViewCell.xib */; };
+		5EE97E81A77DC1E07841BFF2 /* libPods-CupidTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE1A2B31046312B7E5CE0C22 /* libPods-CupidTests.a */; };
 		6F4C6A70239818BC00F4FB4D /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4C6A6F239818BC00F4FB4D /* EventViewController.swift */; };
 		6F846FD3239570C1008C03D3 /* Event.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F846FD2239570C1008C03D3 /* Event.storyboard */; };
 		7F5D1C2F236FBD5B005A4961 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D1C21236FBD5A005A4961 /* UserRepository.swift */; };
@@ -1545,6 +1546,7 @@
 				7FF7E78B236FD718006AC2BF /* StoryboardExt.swift in Sources */,
 				B6D5B85823A12E3200942C44 /* RNLocationServices.swift in Sources */,
 				B697FC6223A3A8D6000981B5 /* RNUserDataBridge.swift in Sources */,
+				6F4C6A7423981CEC00F4FB4D /* EventCollectionViewCell.swift in Sources */,
 				7F5D1C6F236FC441005A4961 /* DatingViewController.swift in Sources */,
 				B68CD034239B3FDC000BA1D8 /* LocationNavigator.swift in Sources */,
 				7F5D1C72236FC441005A4961 /* DatingNavigator.swift in Sources */,
@@ -1574,6 +1576,7 @@
 				7FF7E791236FD7AC006AC2BF /* TableViewExt.swift in Sources */,
 				B68E24962392712B0014A53E /* InputView.swift in Sources */,
 				B690E67E239CF04000C418A7 /* RCTViewController.swift in Sources */,
+				7F5D1C32236FBD5B005A4961 /* User.swift in Sources */,
 				B690E66F239C9DB500C418A7 /* CollectionEmptyView.swift in Sources */,
 				460F74B0239DF8CB0043A7DD /* HomeViewController.swift in Sources */,
 				7FF7E795236FD7E7006AC2BF /* Constants.swift in Sources */,
