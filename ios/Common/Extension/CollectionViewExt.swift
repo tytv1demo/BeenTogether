@@ -27,4 +27,13 @@ extension UICollectionView {
         return cell
     }
     
+    func setEmptyMessage(_ message: String, buttonTitle: String = "Đồng ý", onButtonPress: (() -> Void)? = nil) {
+        let messageLabel = CollectionEmptyView(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width - 32, height: self.bounds.size.height), message: message, buttonTitle: buttonTitle, onButtonPress: onButtonPress)
+        self.backgroundView = messageLabel
+    }
+
+    func removeEmptyView() {
+        self.backgroundView = nil
+    }
+    
 }

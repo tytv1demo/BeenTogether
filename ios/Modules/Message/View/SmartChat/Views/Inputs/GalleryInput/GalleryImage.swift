@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import Photos
+import RxSwift
 
 class GalleryImageCell: UICollectionViewCell {
     
@@ -17,6 +19,8 @@ class GalleryImageCell: UICollectionViewCell {
     var imageView: UIImageView!
     
     var isChoosingAction: Bool = false
+    
+    var imageSubscription: Disposable?
     
     required init?(coder: NSCoder) {
         fatalError()
@@ -49,7 +53,7 @@ class GalleryImageCell: UICollectionViewCell {
         }
         
         imageView.snp.makeConstraints { make in
-            make.size.equalToSuperview()
+            make.edges.equalToSuperview()
         }
     }
     
@@ -68,8 +72,15 @@ class GalleryImageCell: UICollectionViewCell {
         isChoosingAction = !isChoosingAction
     }
     
-    func configCellWith(image: UIImage) {
-        imageView.image = image
+    func configCellWithAsset(_ asset: GalleryAsset) {
+        imageSubscription = asset.image.subscribe(onNext: { [unowned self] (image) in
+            self.imageView.image = image
+        })
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageSubscription?.dispose()
     }
 }
 

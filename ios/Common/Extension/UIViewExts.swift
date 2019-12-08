@@ -9,9 +9,9 @@
 import Foundation
 
 extension UIView {
-    func setGradientBackground(colors: Array<UIColor> = [UIColor(rgb: 0xEE4E9B), UIColor(rgb: 0xD06767)]) {
+    func setGradientBackground(colors: [UIColor] = [UIColor(rgb: 0xEE4E9B), UIColor(rgb: 0xD06767)]) {
         let layer = CAGradientLayer()
-        layer.frame = self.frame
+        layer.frame = self.bounds
         layer.colors = colors.map({$0.cgColor})
         self.layer.addSublayer(layer)
     }

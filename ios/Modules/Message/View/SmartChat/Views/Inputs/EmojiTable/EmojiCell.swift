@@ -32,7 +32,7 @@ class EmojiCell: UICollectionViewCell {
     
     func makeConstraints() {
         emojiLabel.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview().inset(4)
+            make.edges.equalToSuperview().inset(3)
         }
     }
     

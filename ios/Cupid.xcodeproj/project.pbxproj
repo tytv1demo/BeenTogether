@@ -92,6 +92,10 @@
 		B68E249B239271630014A53E /* Bubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E249A239271630014A53E /* Bubble.swift */; };
 		B68E249F2392720A0014A53E /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B68E249D2392720A0014A53E /* Home.storyboard */; };
 		B68E24A02392720A0014A53E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E249E2392720A0014A53E /* HomeViewController.swift */; };
+		B690E66F239C9DB500C418A7 /* CollectionEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690E66E239C9DB500C418A7 /* CollectionEmptyView.swift */; };
+		B690E674239CA07700C418A7 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690E673239CA07700C418A7 /* UIButton.swift */; };
+		B690E676239CA23C00C418A7 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690E675239CA23C00C418A7 /* BaseButton.swift */; };
+		B690E679239CE28D00C418A7 /* GalleryAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690E678239CE28D00C418A7 /* GalleryAsset.swift */; };
 		B6972B342393D04E002EE07B /* ImageMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6972B332393D04E002EE07B /* ImageMessageCell.swift */; };
 		B6972B362393D0AD002EE07B /* ImageMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6972B352393D0AD002EE07B /* ImageMessage.swift */; };
 		B6B9D121239559F0003527B4 /* MessageStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B9D120239559F0003527B4 /* MessageStatusIndicator.swift */; };
@@ -220,6 +224,10 @@
 		B68E249A239271630014A53E /* Bubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bubble.swift; sourceTree = "<group>"; };
 		B68E249D2392720A0014A53E /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		B68E249E2392720A0014A53E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		B690E66E239C9DB500C418A7 /* CollectionEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionEmptyView.swift; sourceTree = "<group>"; };
+		B690E673239CA07700C418A7 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
+		B690E675239CA23C00C418A7 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
+		B690E678239CE28D00C418A7 /* GalleryAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryAsset.swift; sourceTree = "<group>"; };
 		B6972B332393D04E002EE07B /* ImageMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMessageCell.swift; sourceTree = "<group>"; };
 		B6972B352393D0AD002EE07B /* ImageMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMessage.swift; sourceTree = "<group>"; };
 		B6B9D120239559F0003527B4 /* MessageStatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStatusIndicator.swift; sourceTree = "<group>"; };
@@ -389,6 +397,7 @@
 				7FF7E790236FD7AC006AC2BF /* TableViewExt.swift */,
 				46B83CA623867E990040D1F1 /* DateExts.swift */,
 				B68CD03C239BF488000BA1D8 /* UIImage.swift */,
+				B690E673239CA07700C418A7 /* UIButton.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -408,6 +417,8 @@
 			isa = PBXGroup;
 			children = (
 				B6E2E2EC2362F561001046E5 /* Avatar.swift */,
+				B690E66E239C9DB500C418A7 /* CollectionEmptyView.swift */,
+				B690E675239CA23C00C418A7 /* BaseButton.swift */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -847,12 +858,11 @@
 		B68E24A42392C5810014A53E /* Inputs */ = {
 			isa = PBXGroup;
 			children = (
+				B690E677239CE26E00C418A7 /* GalleryInput */,
 				B68CD037239B95B6000BA1D8 /* EmojiTable */,
 				B68E24852392712B0014A53E /* InputView.swift */,
 				B68E247E2392712B0014A53E /* ActionsView.swift */,
-				B68E24842392712B0014A53E /* GalleryImage.swift */,
 				B68E24832392712B0014A53E /* InputToolBar.swift */,
-				B68E24802392712B0014A53E /* GalleryInput.swift */,
 			);
 			path = Inputs;
 			sourceTree = "<group>";
@@ -864,6 +874,16 @@
 				B6B9D120239559F0003527B4 /* MessageStatusIndicator.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		B690E677239CE26E00C418A7 /* GalleryInput */ = {
+			isa = PBXGroup;
+			children = (
+				B68E24842392712B0014A53E /* GalleryImage.swift */,
+				B68E24802392712B0014A53E /* GalleryInput.swift */,
+				B690E678239CE28D00C418A7 /* GalleryAsset.swift */,
+			);
+			path = GalleryInput;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1326,6 +1346,7 @@
 				7F5D1C6F236FC441005A4961 /* DatingViewController.swift in Sources */,
 				B68CD034239B3FDC000BA1D8 /* LocationNavigator.swift in Sources */,
 				7F5D1C72236FC441005A4961 /* DatingNavigator.swift in Sources */,
+				B690E674239CA07700C418A7 /* UIButton.swift in Sources */,
 				7F5D1C30236FBD5B005A4961 /* UserLocalDataSource.swift in Sources */,
 				B6F4F919234737E8002B7B36 /* AppDelegate.swift in Sources */,
 				B68E24942392712B0014A53E /* InputToolBar.swift in Sources */,
@@ -1335,6 +1356,7 @@
 				B68E249B239271630014A53E /* Bubble.swift in Sources */,
 				7F5D1C5C236FC429005A4961 /* TaskNavigator.swift in Sources */,
 				7FF7E797236FD7EE006AC2BF /* AppService.swift in Sources */,
+				B690E676239CA23C00C418A7 /* BaseButton.swift in Sources */,
 				B68E24992392712B0014A53E /* MessageNavigator.swift in Sources */,
 				B68E24972392712B0014A53E /* MessageView.swift in Sources */,
 				B6B9D121239559F0003527B4 /* MessageStatusIndicator.swift in Sources */,
@@ -1347,10 +1369,12 @@
 				7FF7E791236FD7AC006AC2BF /* TableViewExt.swift in Sources */,
 				B68E24962392712B0014A53E /* InputView.swift in Sources */,
 				7F5D1C32236FBD5B005A4961 /* User.swift in Sources */,
+				B690E66F239C9DB500C418A7 /* CollectionEmptyView.swift in Sources */,
 				7FF7E795236FD7E7006AC2BF /* Constants.swift in Sources */,
 				B68E245A23922EE60014A53E /* MessageRemoteDataSource.swift in Sources */,
 				B68E24952392712B0014A53E /* GalleryImage.swift in Sources */,
 				B68E248C2392712B0014A53E /* SmartChat.swift in Sources */,
+				B690E679239CE28D00C418A7 /* GalleryAsset.swift in Sources */,
 				7F5D1C83236FC452005A4961 /* ProfileViewModel.swift in Sources */,
 				7F5D1C4C236FC39C005A4961 /* MainTabBarNavigator.swift in Sources */,
 				B68E24912392712B0014A53E /* GalleryInput.swift in Sources */,
