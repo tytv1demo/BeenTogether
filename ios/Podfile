@@ -52,6 +52,7 @@ def ui
   pod 'SkeletonView', :git => 'https://github.com/dangthaison91/SkeletonView.git', :branch => 'develop'
   pod 'IBAnimatable'
   pod 'FontAwesome.swift'
+  pod 'FSPagerView'
 end 
 
 def database

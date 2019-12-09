@@ -56,44 +56,37 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="How is your love today?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gwt-ae-qML">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="How is your love today?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gwt-ae-qML">
                                 <rect key="frame" x="66" y="127" width="324" height="22"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qPp-0r-Mo2">
-                                <rect key="frame" x="20" y="190" width="240" height="128"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="R3s-V5-nqr">
+                                <rect key="frame" x="0.0" y="165" width="414" height="571"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="21" minimumInteritemSpacing="21" id="k21-jN-GcR">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="R3s-V5-nqr" secondAttribute="bottom" id="4R5-fN-t6B"/>
                             <constraint firstItem="QlL-Q0-W3y" firstAttribute="leading" secondItem="cFa-ai-1Gc" secondAttribute="leading" constant="24" id="4bW-Pp-DAF"/>
-                            <constraint firstItem="qPp-0r-Mo2" firstAttribute="leading" secondItem="cFa-ai-1Gc" secondAttribute="leading" constant="24" id="5XV-nP-hTp"/>
                             <constraint firstItem="Gwt-ae-qML" firstAttribute="leading" secondItem="QlL-Q0-W3y" secondAttribute="trailing" constant="12" id="Bhl-Kz-qLx"/>
                             <constraint firstItem="QlL-Q0-W3y" firstAttribute="top" secondItem="fnb-ZR-MTE" secondAttribute="bottom" constant="24" id="G78-28-iJk"/>
                             <constraint firstItem="fnb-ZR-MTE" firstAttribute="top" secondItem="C3Q-M9-EbG" secondAttribute="top" constant="68" id="OHV-hi-QQJ"/>
+                            <constraint firstItem="R3s-V5-nqr" firstAttribute="top" secondItem="Gwt-ae-qML" secondAttribute="bottom" constant="16" id="XZo-vk-Rh8"/>
                             <constraint firstItem="yuF-qZ-yGx" firstAttribute="centerY" secondItem="fnb-ZR-MTE" secondAttribute="centerY" id="cda-U2-Ud2"/>
                             <constraint firstItem="Gwt-ae-qML" firstAttribute="top" secondItem="346-dE-zSP" secondAttribute="top" id="fNf-Xi-js0"/>
-                            <constraint firstItem="cFa-ai-1Gc" firstAttribute="trailing" secondItem="qPp-0r-Mo2" secondAttribute="trailing" constant="24" id="iP1-xK-vJQ"/>
                             <constraint firstItem="cFa-ai-1Gc" firstAttribute="trailing" secondItem="Gwt-ae-qML" secondAttribute="trailing" constant="24" id="kcH-wF-r0c"/>
-                            <constraint firstItem="cFa-ai-1Gc" firstAttribute="bottom" secondItem="qPp-0r-Mo2" secondAttribute="bottom" id="nLt-Ve-7Ey"/>
+                            <constraint firstItem="R3s-V5-nqr" firstAttribute="leading" secondItem="C3Q-M9-EbG" secondAttribute="leading" id="l1S-Tj-j5T"/>
                             <constraint firstItem="fnb-ZR-MTE" firstAttribute="leading" secondItem="cFa-ai-1Gc" secondAttribute="leading" constant="24" id="oc7-RW-k70"/>
                             <constraint firstItem="cFa-ai-1Gc" firstAttribute="trailing" secondItem="yuF-qZ-yGx" secondAttribute="trailing" constant="24" id="r2S-GG-Qph"/>
-                            <constraint firstItem="qPp-0r-Mo2" firstAttribute="top" secondItem="QlL-Q0-W3y" secondAttribute="bottom" constant="24" id="xuD-9O-FxZ"/>
+                            <constraint firstAttribute="trailing" secondItem="R3s-V5-nqr" secondAttribute="trailing" id="xr5-kS-620"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cFa-ai-1Gc"/>
                     </view>
                     <navigationItem key="navigationItem" id="eC9-0d-yGv"/>
                     <connections>
-                        <outlet property="eventCollection" destination="qPp-0r-Mo2" id="TZX-uc-qYi"/>
+                        <outlet property="eventTable" destination="R3s-V5-nqr" id="m2a-Lp-T5S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GnZ-At-1zD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -103,7 +96,6 @@
         <!--Navigation Controller-->
         <scene sceneID="0pw-gm-c5F">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KaM-3d-IGK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="EventViewControllerNav" navigationBarHidden="YES" id="plr-ir-sA3" sceneMemberID="viewController">
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rz3-oL-Ozb">
@@ -113,6 +105,7 @@
                         <segue destination="klr-Uz-WVI" kind="relationship" relationship="rootViewController" id="2Jy-w9-meU"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KaM-3d-IGK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-712" y="90"/>
         </scene>

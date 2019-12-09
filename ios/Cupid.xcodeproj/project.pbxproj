@@ -16,9 +16,9 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2DCD954D1E0B4F2C00145EB5 /* BeenTogetherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BeenTogetherTests.m */; };
 		46B83CA723867E990040D1F1 /* DateExts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B83CA623867E990040D1F1 /* DateExts.swift */; };
+		6F17F979239AAE54007ECF45 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F17F978239AAE54007ECF45 /* EventTableViewCell.swift */; };
+		6F17F97A239AAE87007ECF45 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F17F976239AADFC007ECF45 /* EventTableViewCell.xib */; };
 		6F4C6A70239818BC00F4FB4D /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4C6A6F239818BC00F4FB4D /* EventViewController.swift */; };
-		6F4C6A7423981CEC00F4FB4D /* EventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4C6A7223981CEC00F4FB4D /* EventCollectionViewCell.swift */; };
-		6F4C6A7523981CEC00F4FB4D /* EventCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F4C6A7323981CEC00F4FB4D /* EventCollectionViewCell.xib */; };
 		6F846FD3239570C1008C03D3 /* Event.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F846FD2239570C1008C03D3 /* Event.storyboard */; };
 		7F5D1C2F236FBD5B005A4961 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D1C21236FBD5A005A4961 /* UserRepository.swift */; };
 		7F5D1C30236FBD5B005A4961 /* UserLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D1C23236FBD5A005A4961 /* UserLocalDataSource.swift */; };
@@ -142,9 +142,9 @@
 		4C782350347DE81685E9C150 /* Pods-BeenTogether.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogether.debug.xcconfig"; path = "Target Support Files/Pods-BeenTogether/Pods-BeenTogether.debug.xcconfig"; sourceTree = "<group>"; };
 		50F40441CB0C3AB88992F5E4 /* Pods-CupidTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CupidTests.release.xcconfig"; path = "Target Support Files/Pods-CupidTests/Pods-CupidTests.release.xcconfig"; sourceTree = "<group>"; };
 		5CC0C1EB72A73FDCB598FAC9 /* Pods-Cupid-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cupid-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-Cupid-tvOSTests/Pods-Cupid-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		6F17F976239AADFC007ECF45 /* EventTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventTableViewCell.xib; sourceTree = "<group>"; };
+		6F17F978239AAE54007ECF45 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		6F4C6A6F239818BC00F4FB4D /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
-		6F4C6A7223981CEC00F4FB4D /* EventCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionViewCell.swift; sourceTree = "<group>"; };
-		6F4C6A7323981CEC00F4FB4D /* EventCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCollectionViewCell.xib; sourceTree = "<group>"; };
 		6F846FD2239570C1008C03D3 /* Event.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Event.storyboard; sourceTree = "<group>"; };
 		77075A41F0C5A168FB7717DD /* Pods-BeenTogether.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogether.release.xcconfig"; path = "Target Support Files/Pods-BeenTogether/Pods-BeenTogether.release.xcconfig"; sourceTree = "<group>"; };
 		7F5D1C21236FBD5A005A4961 /* UserRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
@@ -360,8 +360,8 @@
 		6F4C6A7123981CDA00F4FB4D /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				6F4C6A7223981CEC00F4FB4D /* EventCollectionViewCell.swift */,
-				6F4C6A7323981CEC00F4FB4D /* EventCollectionViewCell.xib */,
+				6F17F976239AADFC007ECF45 /* EventTableViewCell.xib */,
+				6F17F978239AAE54007ECF45 /* EventTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1036,10 +1036,10 @@
 			files = (
 				7F5D1C84236FC452005A4961 /* Profile.storyboard in Resources */,
 				B68E249F2392720A0014A53E /* Home.storyboard in Resources */,
-				6F4C6A7523981CEC00F4FB4D /* EventCollectionViewCell.xib in Resources */,
 				7F5D1C4A236FC39C005A4961 /* MainTabBar.storyboard in Resources */,
 				7F5D1C5D236FC429005A4961 /* Task.storyboard in Resources */,
 				7F5D1C34236FBE7C005A4961 /* LaunchScreen.xib in Resources */,
+				6F17F97A239AAE87007ECF45 /* EventTableViewCell.xib in Resources */,
 				6F846FD3239570C1008C03D3 /* Event.storyboard in Resources */,
 				7FF7E7A2236FDA09006AC2BF /* Localizable.strings in Resources */,
 				B68E248B2392712B0014A53E /* Message.storyboard in Resources */,
@@ -1342,7 +1342,6 @@
 				B607DB2E239949BB00C7509F /* LocationViewController.swift in Sources */,
 				B68E24982392712B0014A53E /* MessageViewController.swift in Sources */,
 				7FF7E78B236FD718006AC2BF /* StoryboardExt.swift in Sources */,
-				6F4C6A7423981CEC00F4FB4D /* EventCollectionViewCell.swift in Sources */,
 				7F5D1C6F236FC441005A4961 /* DatingViewController.swift in Sources */,
 				B68CD034239B3FDC000BA1D8 /* LocationNavigator.swift in Sources */,
 				7F5D1C72236FC441005A4961 /* DatingNavigator.swift in Sources */,
@@ -1380,6 +1379,7 @@
 				B68E24912392712B0014A53E /* GalleryInput.swift in Sources */,
 				7F5D1C85236FC452005A4961 /* ProfileViewController.swift in Sources */,
 				B67252272397FC1E00E13339 /* RemoteMessage.swift in Sources */,
+				6F17F979239AAE54007ECF45 /* EventTableViewCell.swift in Sources */,
 				B68E24932392712B0014A53E /* TextMessageCell.swift in Sources */,
 				B6972B362393D0AD002EE07B /* ImageMessage.swift in Sources */,
 				B68CD03D239BF488000BA1D8 /* UIImage.swift in Sources */,

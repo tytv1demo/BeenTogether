@@ -8,22 +8,22 @@
 
 import UIKit
 
-class EventViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
-
-    @IBOutlet weak var eventCollection: UICollectionView!
+class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var eventTable: UITableView!
     
     // TO-DO: delete test
-    let testImgs: [UIImage?] = [
-        UIImage(named: "test_img1"),
-        UIImage(named: "test_img2"),
-        UIImage(named: "test_img3"),
-        UIImage(named: "test_img4"),
-        UIImage(named: "test_img5"),
-        UIImage(named: "test_img6"),
-        UIImage(named: "test_img7"),
-        UIImage(named: "test_img8"),
-        UIImage(named: "test_img9"),
-        UIImage(named: "test_img10")
+    let testImgs: [UIImage] = [
+        UIImage(named: "test_img1")!,
+        UIImage(named: "test_img2")!,
+        UIImage(named: "test_img3")!,
+        UIImage(named: "test_img4")!,
+        UIImage(named: "test_img5")!,
+        UIImage(named: "test_img6")!,
+        UIImage(named: "test_img7")!,
+        UIImage(named: "test_img8")!,
+        UIImage(named: "test_img9")!,
+        UIImage(named: "test_img10")!
     ]
     
     // MARK: - Life cycle
@@ -31,33 +31,28 @@ class EventViewController: UIViewController, UICollectionViewDelegate, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpCollection()
+        setUpTable()
     }
     
-    private func setUpCollection() {
-        eventCollection.delegate = self
-        eventCollection.dataSource = self
-        eventCollection.register(UINib(nibName: "EventCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "EventCollectionViewCell")
+    private func setUpTable() {
+        eventTable.delegate = self
+        eventTable.dataSource = self
+        eventTable.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: "EventTableViewCell")
     }
     
-    // MARK: - Collection data source and delegate
+    // MARK: - Table data source and delegate
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return testImgs.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let size = CGSize(width: 158, height: 189)
-        return size
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell else {
-            return UICollectionViewCell()
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "EventTableViewCell", for: indexPath) as? EventTableViewCell else {
+            return UITableViewCell()
         }
         
-        cell.imgView.image = testImgs[indexPath.row]
+        cell.dataSource = testImgs
+        cell.pageControl.numberOfPages = testImgs.count
         
         return cell
     }

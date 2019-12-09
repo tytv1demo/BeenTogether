@@ -60,6 +60,7 @@ PODS:
     - DoubleConversion
     - glog
   - FontAwesome.swift (1.8.2)
+  - FSPagerView (0.8.3)
   - glog (0.3.5)
   - GoogleAppMeasurement (6.1.5):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
@@ -336,6 +337,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - FontAwesome.swift
+  - FSPagerView
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - IBAnimatable
   - KeychainAccess
@@ -386,6 +388,7 @@ SPEC REPOS:
     - FirebaseDatabase
     - FirebaseInstanceID
     - FontAwesome.swift
+    - FSPagerView
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
@@ -482,6 +485,7 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: ebd2ea79ee38db0cb5f5167b17a0d387e1cc7b6e
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   FontAwesome.swift: 7938d6a03113ff3f39001bde7f50be8a0903d605
+  FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
   GoogleAppMeasurement: 037f46d1d8ae8b312720f1042585ab961a1289e3
   GoogleDataTransport: 166f9b9f82cbf60a204e8fe2daa9db3e3ec1fb15
@@ -525,6 +529,6 @@ SPEC CHECKSUMS:
   Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
   YogaKit: 5d1dc899cecd5946e5a758a0c3997704a4b48d01
 
-PODFILE CHECKSUM: e40e5f6070d4744bf2839b9a4565960502dfb4f3
+PODFILE CHECKSUM: eab9f059a133a2d6e431f21deef08e3edc7c9abf
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4
