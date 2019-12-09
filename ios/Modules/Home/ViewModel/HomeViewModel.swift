@@ -16,11 +16,10 @@ protocol HomeViewModelProtocol: AnyObject {
 }
 
 class HomeViewModel: NSObject, HomeViewModelProtocol {
-    
     var userInfo = User()
     var userRepository: UserRepositoryProtocol
     
-    var dateCouted = 1250
+    var dateCouted = 0
     
     var threadRef: DatabaseReference
     
@@ -42,7 +41,9 @@ class HomeViewModel: NSObject, HomeViewModelProtocol {
         userRepository
             .getUserProfile(phoneNumber: "0365021305")
             .done { (remoteUser) in
-                self.userInfo.age = remoteUser.age
+                self.dateCouted = remoteUser.age! * 10
+                
+                NotificationCenter.default.post(name: NSNotification.Name("FetchUserInfoSuccessfully"), object: nil)
         }.catch { (err) in
             print(err)
         }
@@ -53,6 +54,10 @@ class HomeViewModel: NSObject, HomeViewModelProtocol {
 extension HomeViewModel {
     
     var dateCountedString: String {
+        if dateCouted == 0 {
+            return "0 day"
+        }
+        
         let unitString = dateCouted > 1 ? " days" : " day"
         return String(dateCouted) + unitString
     }
@@ -92,7 +97,9 @@ extension HomeViewModel {
     }
     
     func getProgress() -> Float {
-        if dateCouted < 100 {
+        if dateCouted == 0 {
+            return 0
+        } else if dateCouted < 100 {
             return Float(dateCouted) / 100
         } else if dateCouted % 100 == 0 {
             return 1

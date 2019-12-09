@@ -56,11 +56,12 @@ class UserRemoteDataSource: UserRemoteDataSourceProtocol {
                 case let .success(response):
                     do {
                         let filteredResponse = try response.filterSuccessfulStatusCodes()
-                        guard let result = try? JSONDecoder().decode(BaseResult<RemoteUser>.self, from: filteredResponse.data) else {
+                        guard let result = try? JSONDecoder().decode(BaseResult<UserInfoResult>.self, from: filteredResponse.data) else {
                             seal.reject(NSError(domain: "", code: 0, userInfo: nil))
                             return
                         }
-                        seal.fulfill(result.data)
+                        guard let userInfo = result.data.userInfo else { return }
+                        seal.fulfill(userInfo)
                     } catch let error {
                         seal.reject(error)
                     }

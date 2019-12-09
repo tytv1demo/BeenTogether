@@ -13,7 +13,7 @@ class User {
     var coupleId: String?
     var name: String?
     var age: Int?
-    var gender: Bool?
+    var gender: String?
     var location: UserLocation?
     var phoneNumber: String?
 }

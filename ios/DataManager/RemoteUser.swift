@@ -13,9 +13,23 @@ struct RemoteUser {
     var coupleId: String?
     var name: String?
     var age: Int?
-    var gender: Bool?
+    var gender: String?
     var location: UserLocation?
     var phoneNumber: String?
+}
+
+struct UserInfoResult: Decodable {
+    var userInfo: RemoteUser?
+    
+    enum UserInfoResultKeys: String, CodingKey {
+        case userInfo
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: UserInfoResultKeys.self)
+
+        userInfo = try container.decode(RemoteUser.self, forKey: .userInfo)
+    }
 }
 
 extension RemoteUser: Decodable {
@@ -30,7 +44,7 @@ extension RemoteUser: Decodable {
         coupleId = try container.decode(String.self, forKey: .coupleId)
         name = try container.decode(String.self, forKey: .name)
         age = try container.decode(Int.self, forKey: .age)
-        gender = try container.decode(Bool.self, forKey: .gender)
+        gender = try container.decode(String.self, forKey: .gender)
         location = try container.decode(UserLocation.self, forKey: .location)
         phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
     }

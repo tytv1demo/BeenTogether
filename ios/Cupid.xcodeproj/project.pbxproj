@@ -15,6 +15,8 @@
 		22A78B505A88A37A640D5123 /* libPods-CupidTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B48CF14D50A412DE50CDE077 /* libPods-CupidTests.a */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2DCD954D1E0B4F2C00145EB5 /* BeenTogetherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BeenTogetherTests.m */; };
+		460F74B0239DF8CB0043A7DD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F74AE239DF8CB0043A7DD /* HomeViewController.swift */; };
+		460F74B1239DF8CB0043A7DD /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 460F74AF239DF8CB0043A7DD /* Home.storyboard */; };
 		4693BF46239B4BBF00EA2EA5 /* RemoteUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4693BF45239B4BBF00EA2EA5 /* RemoteUser.swift */; };
 		46B83CA723867E990040D1F1 /* DateExts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B83CA623867E990040D1F1 /* DateExts.swift */; };
 		6F17F979239AAE54007ECF45 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F17F978239AAE54007ECF45 /* EventTableViewCell.swift */; };
@@ -93,8 +95,6 @@
 		B68E24982392712B0014A53E /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E24872392712B0014A53E /* MessageViewController.swift */; };
 		B68E24992392712B0014A53E /* MessageNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E24892392712B0014A53E /* MessageNavigator.swift */; };
 		B68E249B239271630014A53E /* Bubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E249A239271630014A53E /* Bubble.swift */; };
-		B68E249F2392720A0014A53E /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B68E249D2392720A0014A53E /* Home.storyboard */; };
-		B68E24A02392720A0014A53E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E249E2392720A0014A53E /* HomeViewController.swift */; };
 		B690E66F239C9DB500C418A7 /* CollectionEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690E66E239C9DB500C418A7 /* CollectionEmptyView.swift */; };
 		B690E674239CA07700C418A7 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690E673239CA07700C418A7 /* UIButton.swift */; };
 		B690E676239CA23C00C418A7 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690E675239CA23C00C418A7 /* BaseButton.swift */; };
@@ -141,6 +141,8 @@
 		2D02E47B1E0B4A5D006451C7 /* Cupid-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cupid-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Cupid-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cupid-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37FFA031CA3C4A6B260DB914 /* Pods-BeenTogether-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogether-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-BeenTogether-tvOSTests/Pods-BeenTogether-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		460F74AE239DF8CB0043A7DD /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Modules/Home/HomeViewController.swift; sourceTree = SOURCE_ROOT; };
+		460F74AF239DF8CB0043A7DD /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Home.storyboard; path = Modules/Home/Home.storyboard; sourceTree = SOURCE_ROOT; };
 		4693BF45239B4BBF00EA2EA5 /* RemoteUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteUser.swift; sourceTree = "<group>"; };
 		46B83CA623867E990040D1F1 /* DateExts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExts.swift; sourceTree = "<group>"; };
 		46BC4BD12392B3250040E510 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -228,8 +230,6 @@
 		B68E24872392712B0014A53E /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		B68E24892392712B0014A53E /* MessageNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageNavigator.swift; sourceTree = "<group>"; };
 		B68E249A239271630014A53E /* Bubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bubble.swift; sourceTree = "<group>"; };
-		B68E249D2392720A0014A53E /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
-		B68E249E2392720A0014A53E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B690E66E239C9DB500C418A7 /* CollectionEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionEmptyView.swift; sourceTree = "<group>"; };
 		B690E673239CA07700C418A7 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		B690E675239CA23C00C418A7 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
@@ -343,8 +343,8 @@
 		46BC4BCE2392B2DB0040E510 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B68E249D2392720A0014A53E /* Home.storyboard */,
-				B68E249E2392720A0014A53E /* HomeViewController.swift */,
+				460F74AF239DF8CB0043A7DD /* Home.storyboard */,
+				460F74AE239DF8CB0043A7DD /* HomeViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1068,7 +1068,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F5D1C84236FC452005A4961 /* Profile.storyboard in Resources */,
-				B68E249F2392720A0014A53E /* Home.storyboard in Resources */,
+				6F4C6A7523981CEC00F4FB4D /* EventCollectionViewCell.xib in Resources */,
+				460F74B1239DF8CB0043A7DD /* Home.storyboard in Resources */,
 				7F5D1C4A236FC39C005A4961 /* MainTabBar.storyboard in Resources */,
 				7F5D1C5D236FC429005A4961 /* Task.storyboard in Resources */,
 				7F5D1C34236FBE7C005A4961 /* LaunchScreen.xib in Resources */,
@@ -1383,7 +1384,6 @@
 				7F5D1C30236FBD5B005A4961 /* UserLocalDataSource.swift in Sources */,
 				B6F4F919234737E8002B7B36 /* AppDelegate.swift in Sources */,
 				B68E24942392712B0014A53E /* InputToolBar.swift in Sources */,
-				B68E24A02392720A0014A53E /* HomeViewController.swift in Sources */,
 				7FF7E793236FD7E1006AC2BF /* Logger.swift in Sources */,
 				7F5D1C82236FC452005A4961 /* ProfileNavigator.swift in Sources */,
 				B68E249B239271630014A53E /* Bubble.swift in Sources */,
@@ -1404,6 +1404,7 @@
 				B68E24962392712B0014A53E /* InputView.swift in Sources */,
 				7F5D1C32236FBD5B005A4961 /* User.swift in Sources */,
 				B690E66F239C9DB500C418A7 /* CollectionEmptyView.swift in Sources */,
+				460F74B0239DF8CB0043A7DD /* HomeViewController.swift in Sources */,
 				7FF7E795236FD7E7006AC2BF /* Constants.swift in Sources */,
 				B68E245A23922EE60014A53E /* MessageRemoteDataSource.swift in Sources */,
 				46BC4BD22392B3250040E510 /* HomeViewModel.swift in Sources */,
