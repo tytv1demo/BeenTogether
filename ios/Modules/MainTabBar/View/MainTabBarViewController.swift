@@ -19,7 +19,7 @@ class MainTabBarViewController: UITabBarController {
     var uiConfiguration: MainTabBarUIConfiguration = MainTabBarUIConfiguration()
     
     var homeVC: HomeViewController!
-    
+    var loginVC: LoginViewController!
     var messageVC: MessageViewController!
     
     override func viewDidLoad() {
@@ -34,9 +34,9 @@ class MainTabBarViewController: UITabBarController {
         let firstVc = UIStoryboard(name: "Event", bundle: nil).instantiateViewController(withIdentifier: "EventViewControllerNav") as! UINavigationController
         firstVc.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
         
-        let secVc = UIViewController()
-        secVc.view.backgroundColor = .white
-        secVc.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0)
+        let storyboard1 = UIStoryboard(name: "Login", bundle: nil)
+        loginVC = storyboard1.instantiateViewController()
+        loginVC.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0)
         
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
         homeVC = storyboard.instantiateViewController()
@@ -48,7 +48,7 @@ class MainTabBarViewController: UITabBarController {
         fifthVc.view.backgroundColor = .red
         fifthVc.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 0)
         
-        viewControllers = [firstVc, secVc, homeVC, messageNav, fifthVc]
+        viewControllers = [firstVc, loginVC, homeVC, messageNav, fifthVc]
     }
     
     func settupTabBarUI() {
