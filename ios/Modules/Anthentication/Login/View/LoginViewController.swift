@@ -21,12 +21,17 @@ class LoginViewController: UIViewController {
     // MARK: - Properties
     
     var isOTPViewHidden = true
+    var userRepository = UserRepository()
+    var loginViewModel: LoginViewModel!
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        phoneNumberTextField.text = "0365021305"
+        
+        loginViewModel = LoginViewModel()
         setupMainView()
     }
     
@@ -87,6 +92,12 @@ class LoginViewController: UIViewController {
     
     @IBAction func signInButtonDidTap(_ sender: Any) {
         showOTPView()
+        
+        guard let phoneNumber = phoneNumberTextField.text else {
+            return
+        }
+        
+        loginViewModel.signIn(with: phoneNumber)
     }
     
     @IBAction func createAccountButtonDidTap(_ sender: Any) {

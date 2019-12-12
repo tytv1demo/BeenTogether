@@ -11,19 +11,19 @@ import PromiseKit
 
 protocol UserRepositoryProtocol: AnyObject {
     func getUserProfile(phoneNumber: String) -> Promise<RemoteUser>
-    func signIn(params: UserParams) -> Promise<Bool>
+    func signIn(params: UserParams) -> Promise<RemoteUser>
 }
 
 class UserRepository: UserRepositoryProtocol {
     
     var userRemoteDataSource = UserRemoteDataSource()
     
-    func signIn(params: UserParams) -> Promise<Bool> {
-        return Promise<Bool> { seal in
+    func signIn(params: UserParams) -> Promise<RemoteUser> {
+        return Promise<RemoteUser> { seal in
             userRemoteDataSource
                 .signIn(params: params)
-                .done { (_) in
-                    seal.fulfill(true)
+                .done { (user) in
+                    seal.fulfill(user)
             }.catch(seal.reject(_:))
         }
     }

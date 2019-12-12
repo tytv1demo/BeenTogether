@@ -11,7 +11,8 @@ import Moya
 
 public struct UserParams {
     var phoneNumber: String?
-    var accessToken: String?
+//    var accessToken: String?
+    var firebaseToken: [String: String]
 }
 
 public enum UserAPI {
@@ -66,8 +67,8 @@ extension UserAPI: AuthorizedTargetType {
         case let .signIn(userParams):
             var params = [String: Any]()
             params["phoneNumber"] = userParams.phoneNumber
-            params["accessToken"] = userParams.accessToken
-            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            params["firebaseToken"] = userParams.firebaseToken
+            return .requestParameters(parameters: params, encoding: URLEncoding.default)
         case .signUp:
             return .requestPlain
         case .logout:

@@ -12,7 +12,7 @@ import PromiseKit
 
 protocol MessageRemoteDataSource: AnyObject {
     func sendText(content: String) -> Promise<RemoteMessage>
-    
+
     func sendImage(data: Data) -> Promise<RemoteMessage>
 }
 

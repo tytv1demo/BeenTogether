@@ -11,7 +11,7 @@ import Moya
 import PromiseKit
 
 protocol UserRemoteDataSourceProtocol: AnyObject {
-    func signIn(params: UserParams) -> Promise<Any>
+    func signIn(params: UserParams) -> Promise<RemoteUser>
     func signUp(body: Any) -> Promise<Any>
     func logout() -> Promise<Any>
     func getUserProfile(phoneNumber: String) -> Promise<RemoteUser>
@@ -19,14 +19,19 @@ protocol UserRemoteDataSourceProtocol: AnyObject {
 
 class UserRemoteDataSource: UserRemoteDataSourceProtocol {
     
-    func signIn(params: UserParams) -> Promise<Any> {
-        return Promise<Any> { seal in
+    func signIn(params: UserParams) -> Promise<RemoteUser> {
+        return Promise<RemoteUser> { seal in
             todoProvider.request(MultiTarget(UserAPI.signIn(userParams: params))) { (result) in
                 switch result {
                 case let .success(response):
                     do {
                         let filteredResponse = try response.filterSuccessfulStatusCodes()
-                        seal.fulfill(filteredResponse)
+                        guard let result = try? JSONDecoder().decode(BaseResult<UserInfoResult>.self, from: filteredResponse.data) else {
+                            seal.reject(NSError(domain: "", code: 0, userInfo: nil))
+                            return
+                        }
+                        guard let userInfo = result.data.userInfo else { return }
+                        seal.fulfill(userInfo)
                     } catch let error {
                         seal.reject(error)
                     }
