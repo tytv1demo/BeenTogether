@@ -16,13 +16,13 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var otpTextField: UITextField!
     @IBOutlet weak var otpView: UIView!
     @IBOutlet weak var signInButton: UIButton!
-    @IBOutlet weak var topForgotToBotSignInViewConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
     
     var isOTPViewHidden = true
     var userRepository = UserRepository()
     var loginViewModel: LoginViewModel!
+    var createVC: CreateViewController!
     
     // MARK: - Life Cycle
     
@@ -33,6 +33,10 @@ class LoginViewController: UIViewController {
         
         loginViewModel = LoginViewModel()
         setupMainView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     // MARK: - Functions
@@ -47,7 +51,6 @@ class LoginViewController: UIViewController {
     
     func setupOTPView() {
         otpView.isHidden = isOTPViewHidden
-        topForgotToBotSignInViewConstraint.constant = -45
     }
     
     func setupTextField() {
@@ -82,10 +85,6 @@ class LoginViewController: UIViewController {
     func showOTPView() {
         isOTPViewHidden = !isOTPViewHidden
         otpView.isHidden = isOTPViewHidden
-        
-        UIView.animate(withDuration: 1) {
-            self.topForgotToBotSignInViewConstraint.constant = self.isOTPViewHidden ? -45 : 17
-        }
     }
     
     // MARK: - Actions
@@ -97,15 +96,16 @@ class LoginViewController: UIViewController {
             return
         }
         
-        loginViewModel.signIn(with: phoneNumber)
+        _ = loginViewModel.signIn(with: phoneNumber).done { (result) in
+            if result {
+                self.goToHomeScreen()
+            } else {
+                
+            }
+        }
     }
     
     @IBAction func createAccountButtonDidTap(_ sender: Any) {
-        print("create")
+        self.goToCreateScreen()
     }
-    
-    @IBAction func forgotButtonDidTap(_ sender: Any) {
-        print("forgot")
-    }
-    
 }

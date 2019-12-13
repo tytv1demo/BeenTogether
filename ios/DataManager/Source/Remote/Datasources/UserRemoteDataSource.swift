@@ -12,7 +12,7 @@ import PromiseKit
 
 protocol UserRemoteDataSourceProtocol: AnyObject {
     func signIn(params: UserParams) -> Promise<SignInResult>
-    func signUp(body: Any) -> Promise<Any>
+    func signUp(phoneNumber: String, name: String) -> Promise<Bool>
     func logout() -> Promise<Any>
     func getUserProfile() -> Promise<User>
 }
@@ -41,9 +41,25 @@ class UserRemoteDataSource: UserRemoteDataSourceProtocol {
         }
     }
     
-    func signUp(body: Any) -> Promise<Any> {
-        return Promise<Any> {_ in
-            
+    func signUp(phoneNumber: String, name: String) -> Promise<Bool> {
+        return Promise<Bool> { seal in
+            todoProvider.request(MultiTarget(UserAPI.signUp(phoneNumber: phoneNumber, name: name))) { (result) in
+                switch result {
+                case let .success(response):
+                    do {
+                        let filteredResponse = try response.filterSuccessfulStatusCodes()
+                        guard let _ = try? JSONDecoder().decode(BaseResult<SignInResult>.self, from: filteredResponse.data) else {
+                            seal.reject(NSError(domain: "", code: 0, userInfo: nil))
+                            return
+                        }
+                        seal.fulfill(true)
+                    } catch let error {
+                        seal.reject(error)
+                    }
+                case let .failure(error):
+                    seal.reject(error)
+                }
+            }
         }
     }
     

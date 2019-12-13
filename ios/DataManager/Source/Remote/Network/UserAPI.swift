@@ -16,7 +16,7 @@ public struct UserParams {
 
 public enum UserAPI {
     case signIn(userParams: UserParams)
-    case signUp
+    case signUp(phoneNumber: String, name: String)
     case logout
     case getUserProfile
 }
@@ -68,8 +68,11 @@ extension UserAPI: AuthorizedTargetType {
             params["phoneNumber"] = userParams.phoneNumber
             params["firebaseToken"] = userParams.firebaseToken
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
-        case .signUp:
-            return .requestPlain
+        case .signUp(let phoneNumber, let name):
+            var body: [String: String] = [:]
+            body["phoneNumber"] = phoneNumber
+            body["name"] = name
+            return .requestParameters(parameters: body, encoding: JSONEncoding.default)
         case .logout:
             return .requestPlain
         case .getUserProfile:
