@@ -10,28 +10,28 @@ import UIKit
 import PromiseKit
 
 protocol UserRepositoryProtocol: AnyObject {
-    func getUserProfile(phoneNumber: String) -> Promise<RemoteUser>
-    func signIn(params: UserParams) -> Promise<Bool>
+    func getUserProfile() -> Promise<User>
+    func signIn(params: UserParams) -> Promise<SignInResult>
 }
 
 class UserRepository: UserRepositoryProtocol {
     
     var userRemoteDataSource = UserRemoteDataSource()
     
-    func signIn(params: UserParams) -> Promise<Bool> {
-        return Promise<Bool> { seal in
+    func signIn(params: UserParams) -> Promise<SignInResult> {
+        return Promise<SignInResult> { seal in
             userRemoteDataSource
                 .signIn(params: params)
-                .done { (_) in
-                    seal.fulfill(true)
+                .done { (user) in
+                    seal.fulfill(user)
             }.catch(seal.reject(_:))
         }
     }
     
-    func getUserProfile(phoneNumber: String) -> Promise<RemoteUser> {
-        return Promise<RemoteUser> { seal in
+    func getUserProfile() -> Promise<User> {
+        return Promise<User> { seal in
             userRemoteDataSource
-                .getUserProfile(phoneNumber: phoneNumber)
+                .getUserProfile()
                 .done { (user) in
                     seal.fulfill(user)
             }.catch(seal.reject(_:))

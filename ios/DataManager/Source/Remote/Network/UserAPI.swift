@@ -11,14 +11,14 @@ import Moya
 
 public struct UserParams {
     var phoneNumber: String?
-    var accessToken: String?
+    var firebaseToken: [String: String]
 }
 
 public enum UserAPI {
     case signIn(userParams: UserParams)
     case signUp
     case logout
-    case getUserProfile(phoneNumber: String)
+    case getUserProfile
 }
 
 extension UserAPI: AuthorizedTargetType {
@@ -66,15 +66,14 @@ extension UserAPI: AuthorizedTargetType {
         case let .signIn(userParams):
             var params = [String: Any]()
             params["phoneNumber"] = userParams.phoneNumber
-            params["accessToken"] = userParams.accessToken
+            params["firebaseToken"] = userParams.firebaseToken
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
         case .signUp:
             return .requestPlain
         case .logout:
             return .requestPlain
-        case .getUserProfile(let phoneNumber):
-            let query = ["phoneNumber": phoneNumber]
-            return .requestParameters(parameters: query, encoding: URLEncoding.default)
+        case .getUserProfile:
+            return .requestPlain
         }
     }
     

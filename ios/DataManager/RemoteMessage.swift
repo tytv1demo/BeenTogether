@@ -42,6 +42,6 @@ struct BaseResult<T: Decodable>: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: BaseResultKeys.self)
         data = try container.decode(T.self, forKey: .data)
-        message = try container.decode(String.self, forKey: .message)
+        message = try? container.decode(String.self, forKey: .message)
     }
 }

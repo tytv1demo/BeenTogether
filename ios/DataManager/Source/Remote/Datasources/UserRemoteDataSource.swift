@@ -11,22 +11,26 @@ import Moya
 import PromiseKit
 
 protocol UserRemoteDataSourceProtocol: AnyObject {
-    func signIn(params: UserParams) -> Promise<Any>
+    func signIn(params: UserParams) -> Promise<SignInResult>
     func signUp(body: Any) -> Promise<Any>
     func logout() -> Promise<Any>
-    func getUserProfile(phoneNumber: String) -> Promise<RemoteUser>
+    func getUserProfile() -> Promise<User>
 }
 
 class UserRemoteDataSource: UserRemoteDataSourceProtocol {
     
-    func signIn(params: UserParams) -> Promise<Any> {
-        return Promise<Any> { seal in
+    func signIn(params: UserParams) -> Promise<SignInResult> {
+        return Promise<SignInResult> { seal in
             todoProvider.request(MultiTarget(UserAPI.signIn(userParams: params))) { (result) in
                 switch result {
                 case let .success(response):
                     do {
                         let filteredResponse = try response.filterSuccessfulStatusCodes()
-                        seal.fulfill(filteredResponse)
+                        guard let result = try? JSONDecoder().decode(BaseResult<SignInResult>.self, from: filteredResponse.data) else {
+                            seal.reject(NSError(domain: "", code: 0, userInfo: nil))
+                            return
+                        }
+                        seal.fulfill(result.data)
                     } catch let error {
                         seal.reject(error)
                     }
@@ -49,9 +53,9 @@ class UserRemoteDataSource: UserRemoteDataSourceProtocol {
         }
     }
     
-    func getUserProfile(phoneNumber: String) -> Promise<RemoteUser> {
-        return Promise<RemoteUser> { seal in
-            todoProvider.request(MultiTarget(UserAPI.getUserProfile(phoneNumber: phoneNumber))) { (result) in
+    func getUserProfile() -> Promise<User> {
+        return Promise<User> { seal in
+            todoProvider.request(MultiTarget(UserAPI.getUserProfile)) { (result) in
                 switch result {
                 case let .success(response):
                     do {

@@ -19,7 +19,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         FirebaseApp.configure()
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = MainTabBarViewController()
+        self.window?.rootViewController = SplashViewController()
         self.window?.makeKeyAndVisible()
         return true
     }

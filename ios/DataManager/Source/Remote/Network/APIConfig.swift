@@ -53,7 +53,8 @@ private func outputPrint(_ separator: String, terminator: String, items: Any...)
 
 let todoProvider = MoyaProvider<MultiTarget>(plugins: [
     NetworkLoggerPlugin(verbose: false, cURL: true, output: outputPrint, responseDataFormatter: JSONResponseDataFormatter),
-    AuthPlugin(headerField: JSONKey.authorization.rawValue, tokenClosure: { return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZ2UiOjIzLCJnZW5kZXIiOiJNQUxFIiwiaWQiOjAsImxvY2F0aW9uIjp7ImNvb3JkaW5hdGUiOnsibGF0IjowLCJsbmciOjB9LCJmcm9tIjoxNTc0NTAyODE1NTkzfSwibmFtZSI6IlRy4bqnbiBWxINuIFTDvSIsInBob25lTnVtYmVyIjoiMDM2NTAyMTMwNSIsImlhdCI6MTU3NDU5MDUyMH0.LrZ7oyB4yEzyGkcMP4fxh1O7k10lp5R-ZKGyMWTOFcg"})
+    AuthPlugin(headerField: JSONKey.authorization.rawValue,
+               tokenClosure: { return AppUserData.shared.userToken })
 ])
 
 public func url(_ route: TargetType) -> String {
@@ -72,7 +73,7 @@ extension String {
 
 enum APIEndpoint: String {
     case baseURL = "https://cupid-api.tranty9597.now.sh"
-//     case baseURL = "http://localhost:3000"
+//     case baseURL = "http://210.245.53.9:3000"
 }
 
 enum JSONKey: String {

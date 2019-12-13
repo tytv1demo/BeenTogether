@@ -10,45 +10,24 @@ import Foundation
 import Firebase
 
 protocol HomeViewModelProtocol: AnyObject {
-    var userInfo: User { get set }
+    var userInfo: User! { get set }
     var userRepository: UserRepositoryProtocol { get set }
     var dateCouted: Int { get set }
 }
 
 class HomeViewModel: NSObject, HomeViewModelProtocol {
-    var userInfo = User()
+    
+    var userInfo: User!
     var userRepository: UserRepositoryProtocol
-    
     var dateCouted = 0
-    
-    var threadRef: DatabaseReference
-    
+
     override init() {
         userRepository = UserRepository()
-        
-        if let phoneNumber = userInfo.phoneNumber {
-            threadRef = Database.database().reference(withPath: "user/\(phoneNumber)")
-        } else {
-            threadRef = DatabaseReference()
-        }
-        
+        userInfo = AppUserData.shared.userInfo
         super.init()
         
-        loadData()
+        dateCouted = userInfo!.age * 10
     }
-    
-    func loadData() {
-        userRepository
-            .getUserProfile(phoneNumber: "0365021305")
-            .done { (remoteUser) in
-                self.dateCouted = remoteUser.age! * 10
-                
-                NotificationCenter.default.post(name: NSNotification.Name("FetchUserInfoSuccessfully"), object: nil)
-        }.catch { (err) in
-            print(err)
-        }
-    }
-    
 }
 
 extension HomeViewModel {

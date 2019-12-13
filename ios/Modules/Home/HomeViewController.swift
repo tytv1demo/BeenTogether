@@ -39,21 +39,10 @@ class HomeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        updateData()
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     // MARK: Functions
-    
-    func updateData() {
-        NotificationCenter.default.addObserver(self, selector: #selector(handleReloadData(_:)), name: NSNotification.Name("FetchUserInfoSuccessfully"), object: nil)
-    }
-    
-    @objc func handleReloadData(_ notification: NSNotification) {
-        DispatchQueue.main.async {
-            self.setupProgressView()
-            self.setupDataForLabels()
-        }
-    }
     
     func setupMainView() {
         setupBackgroundImage()
