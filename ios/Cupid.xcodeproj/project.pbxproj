@@ -17,6 +17,9 @@
 		460F74B0239DF8CB0043A7DD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F74AE239DF8CB0043A7DD /* HomeViewController.swift */; };
 		460F74B1239DF8CB0043A7DD /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 460F74AF239DF8CB0043A7DD /* Home.storyboard */; };
 		4693BF46239B4BBF00EA2EA5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4693BF45239B4BBF00EA2EA5 /* User.swift */; };
+		46AC2FAA23A36A3A00620088 /* LoginNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AC2FA923A36A3A00620088 /* LoginNavigator.swift */; };
+		46AC2FB223A36DD600620088 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AC2FB123A36DD600620088 /* CreateViewController.swift */; };
+		46AC2FB423A36DE600620088 /* Create.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46AC2FB323A36DE600620088 /* Create.storyboard */; };
 		46B83CA723867E990040D1F1 /* DateExts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B83CA623867E990040D1F1 /* DateExts.swift */; };
 		46BC4BD22392B3250040E510 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BC4BD12392B3250040E510 /* HomeViewModel.swift */; };
 		46BC4BD42392B61E0040E510 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BC4BD32392B61E0040E510 /* UserAPI.swift */; };
@@ -154,6 +157,9 @@
 		460F74AE239DF8CB0043A7DD /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Modules/Home/HomeViewController.swift; sourceTree = SOURCE_ROOT; };
 		460F74AF239DF8CB0043A7DD /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Home.storyboard; path = Modules/Home/Home.storyboard; sourceTree = SOURCE_ROOT; };
 		4693BF45239B4BBF00EA2EA5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		46AC2FA923A36A3A00620088 /* LoginNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNavigator.swift; sourceTree = "<group>"; };
+		46AC2FB123A36DD600620088 /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
+		46AC2FB323A36DE600620088 /* Create.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Create.storyboard; sourceTree = "<group>"; };
 		46B83CA623867E990040D1F1 /* DateExts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExts.swift; sourceTree = "<group>"; };
 		46BC4BD12392B3250040E510 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		46BC4BD32392B61E0040E510 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
@@ -360,6 +366,29 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		46AC2FAE23A36D4900620088 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				46AC2FB123A36DD600620088 /* CreateViewController.swift */,
+				46AC2FB323A36DE600620088 /* Create.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		46AC2FAF23A36D4E00620088 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		46AC2FB023A36D5D00620088 /* Route */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Route;
+			sourceTree = "<group>";
+		};
 		46BC4BCE2392B2DB0040E510 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,25 +416,20 @@
 		46C46DC123A1EFF300966D44 /* Anthentication */ = {
 			isa = PBXGroup;
 			children = (
-				46C46DC223A1EFF300966D44 /* Reset */,
-				46C46DC323A1EFF300966D44 /* Forgot */,
+				46C46DC223A1EFF300966D44 /* Create */,
 				46C46DC423A1EFF300966D44 /* Login */,
 			);
 			path = Anthentication;
 			sourceTree = "<group>";
 		};
-		46C46DC223A1EFF300966D44 /* Reset */ = {
+		46C46DC223A1EFF300966D44 /* Create */ = {
 			isa = PBXGroup;
 			children = (
+				46AC2FB023A36D5D00620088 /* Route */,
+				46AC2FAF23A36D4E00620088 /* ViewModel */,
+				46AC2FAE23A36D4900620088 /* View */,
 			);
-			path = Reset;
-			sourceTree = "<group>";
-		};
-		46C46DC323A1EFF300966D44 /* Forgot */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Forgot;
+			path = Create;
 			sourceTree = "<group>";
 		};
 		46C46DC423A1EFF300966D44 /* Login */ = {
@@ -421,6 +445,7 @@
 		46C46DC923A1F50E00966D44 /* Route */ = {
 			isa = PBXGroup;
 			children = (
+				46AC2FA923A36A3A00620088 /* LoginNavigator.swift */,
 			);
 			path = Route;
 			sourceTree = "<group>";
@@ -1187,6 +1212,7 @@
 				6F846FD3239570C1008C03D3 /* Event.storyboard in Resources */,
 				7FF7E7A2236FDA09006AC2BF /* Localizable.strings in Resources */,
 				B68E248B2392712B0014A53E /* Message.storyboard in Resources */,
+				46AC2FB423A36DE600620088 /* Create.storyboard in Resources */,
 				7F5D1C70236FC441005A4961 /* Dating.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				B68E246323924AC10014A53E /* GoogleService-Info.plist in Resources */,
@@ -1509,6 +1535,7 @@
 				B607DB332399523E00C7509F /* MapAnotation.swift in Sources */,
 				46B83CA723867E990040D1F1 /* DateExts.swift in Sources */,
 				7FB507DD236FCB3400A00CF6 /* LoadingViewController.swift in Sources */,
+				46AC2FB223A36DD600620088 /* CreateViewController.swift in Sources */,
 				B68E245823922C860014A53E /* MessageRepository.swift in Sources */,
 				7F5D1C49236FC39C005A4961 /* MainTabBarViewModel.swift in Sources */,
 				46C46DCD23A1F59F00966D44 /* LoginViewModel.swift in Sources */,
@@ -1536,6 +1563,7 @@
 				7FF7E793236FD7E1006AC2BF /* Logger.swift in Sources */,
 				7F5D1C82236FC452005A4961 /* ProfileNavigator.swift in Sources */,
 				B68E249B239271630014A53E /* Bubble.swift in Sources */,
+				46AC2FAA23A36A3A00620088 /* LoginNavigator.swift in Sources */,
 				4693BF46239B4BBF00EA2EA5 /* User.swift in Sources */,
 				7F5D1C5C236FC429005A4961 /* TaskNavigator.swift in Sources */,
 				7FF7E797236FD7EE006AC2BF /* AppService.swift in Sources */,

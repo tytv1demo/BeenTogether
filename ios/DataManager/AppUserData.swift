@@ -33,7 +33,7 @@ class AppUserData {
                     .done { (user) in
                         self.userInfo = user
                         seal.fulfill(true)
-                }.catch { (err) in
+                }.catch { (_) in
                     seal.fulfill(false)
                 }
             } else {
