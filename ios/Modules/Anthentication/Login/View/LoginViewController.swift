@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 class LoginViewController: UIViewController {
     
@@ -20,9 +21,11 @@ class LoginViewController: UIViewController {
     // MARK: - Properties
     
     var isOTPViewHidden = true
+    var verifyID = ""
     var userRepository = UserRepository()
     var loginViewModel: LoginViewModel!
     var createVC: CreateViewController!
+    var userDefault = UserDefaults.standard
     
     // MARK: - Life Cycle
     
@@ -30,6 +33,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         phoneNumberTextField.text = "0365021305"
+        phoneNumberTextField.delegate = self
         
         loginViewModel = LoginViewModel()
         setupMainView()
@@ -87,25 +91,57 @@ class LoginViewController: UIViewController {
         otpView.isHidden = isOTPViewHidden
     }
     
-    // MARK: - Actions
-    
-    @IBAction func signInButtonDidTap(_ sender: Any) {
-        showOTPView()
+    func getOTPCode() {
+        guard let phoneNumber = phoneNumberTextField.text else { return }
         
-        guard let phoneNumber = phoneNumberTextField.text else {
-            return
-        }
-        
-        _ = loginViewModel.signIn(with: phoneNumber).done { (result) in
-            if result {
-                self.goToHomeScreen()
+        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verifyID, err) in
+            if err == nil {
+                guard let verifyID = verifyID else { return }
+                self.verifyID = verifyID
+                self.showOTPView()
             } else {
-                
+                print("Unable to get verify code from Firebase!")
             }
         }
     }
     
+    func signIn() {
+        guard let phoneNumber = phoneNumberTextField.text else { return }
+        guard let otpCode = otpTextField.text else { return }
+        
+        let firebaseToken = ["key": "self.verifyID", "code": "otpCode"]
+        let userParam = UserParams(phoneNumber: phoneNumber, firebaseToken: firebaseToken)
+        
+        loginViewModel.signIn(with: userParam).done { (canLogin) in
+            if canLogin {
+                self.goToHomeScreen()
+            }
+        }.catch({ (err) in
+            print(err)
+        })
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func signInButtonDidTap(_ sender: Any) {
+        getOTPCode()
+//        self.goToHomeScreen()
+    }
+    
     @IBAction func createAccountButtonDidTap(_ sender: Any) {
         self.goToCreateScreen()
+//        signIn()
+    }
+}
+
+// MARK: - UITextViewDelegate
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == phoneNumberTextField {
+            otpTextField.text = nil
+            isOTPViewHidden = true
+            otpView.isHidden = true
+        }
     }
 }
