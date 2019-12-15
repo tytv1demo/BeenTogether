@@ -164,3 +164,5 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
         )
     }
 }
+        // Sync mode
+        // Location update

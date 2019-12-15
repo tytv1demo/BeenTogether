@@ -26,17 +26,13 @@ class HomeViewModel: NSObject, HomeViewModelProtocol {
         userInfo = AppUserData.shared.userInfo
         super.init()
         
-        dateCouted = userInfo!.age * 10
+        dateCouted = 1230
     }
 }
 
 extension HomeViewModel {
     
     var dateCountedString: String {
-        if dateCouted == 0 {
-            return "0 day"
-        }
-        
         let unitString = dateCouted > 1 ? " days" : " day"
         return String(dateCouted) + unitString
     }
@@ -76,9 +72,7 @@ extension HomeViewModel {
     }
     
     func getProgress() -> Float {
-        if dateCouted == 0 {
-            return 0
-        } else if dateCouted < 100 {
+        if dateCouted < 100 {
             return Float(dateCouted) / 100
         } else if dateCouted % 100 == 0 {
             return 1

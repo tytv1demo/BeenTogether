@@ -1,68 +1,53 @@
 //
-//  LoginViewController.swift
+//  CreateViewController.swift
 //  Cupid
 //
-//  Created by Dung Nguyen on 12/9/19.
+//  Created by Dung Nguyen on 12/13/19.
 //  Copyright © 2019 Facebook. All rights reserved.
 //
 
 import Foundation
 import Firebase
 
-class LoginViewController: UIViewController {
-    
-    // MARK: Outlets
+class CreateViewController: UIViewController {
     
     @IBOutlet weak var phoneNumberTextField: UITextField!
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var otpTextField: UITextField!
+    @IBOutlet weak var createButton: UIButton!
+    @IBOutlet weak var stackViewHeight: NSLayoutConstraint!
     @IBOutlet weak var otpView: UIView!
-    @IBOutlet weak var signInButton: UIButton!
-    
-    // MARK: - Properties
     
     var isOTPViewHidden = true
     var verifyID = ""
-    var userRepository = UserRepository()
-    var loginViewModel: LoginViewModel!
-    var createVC: CreateViewController!
-    
-    // MARK: - Life Cycle
+    var createViewModel: CreateViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        phoneNumberTextField.text = "0365021305"
         phoneNumberTextField.delegate = self
+        nameTextField.delegate = self
         
-        loginViewModel = LoginViewModel()
+        createViewModel = CreateViewModel()
         setupMainView()
+        
+    }
+    
+    func setupMainView() {
+        setupBackgroundImage()
+        setupOTPView()
+        setupTextField()
+        setupCreateButton()
+        addTapGestureForView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
     }
     
-    // MARK: - Functions
-    
-    func setupMainView() {
-        setupBackgroundImage()
-        setupTextField()
-        setupSignInButton()
-        setupOTPView()
-        addTapGestureForView()
-    }
-    
     func setupOTPView() {
         otpView.isHidden = isOTPViewHidden
-    }
-    
-    func setupTextField() {
-        phoneNumberTextField.attributedPlaceholder = NSAttributedString(string: "Phone number", attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(red: 1, green: 1, blue: 1, alpha: 0.5)])
-        otpTextField.attributedPlaceholder = NSAttributedString(string: "OTP", attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(red: 1, green: 1, blue: 1, alpha: 0.5)])
-    }
-    
-    func setupSignInButton() {
-        signInButton.layer.cornerRadius = 25
+        stackViewHeight.constant = 124
     }
     
     func setupBackgroundImage() {
@@ -70,6 +55,16 @@ class LoginViewController: UIViewController {
         backgroundImage.image = UIImage(named: "login_bg.png")
         backgroundImage.contentMode = .scaleAspectFill
         self.view.insertSubview(backgroundImage, at: 0)
+    }
+    
+    func setupTextField() {
+        phoneNumberTextField.attributedPlaceholder = NSAttributedString(string: "Phone number", attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(red: 1, green: 1, blue: 1, alpha: 0.5)])
+        nameTextField.attributedPlaceholder = NSAttributedString(string: "Your name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(red: 1, green: 1, blue: 1, alpha: 0.5)])
+        otpTextField.attributedPlaceholder = NSAttributedString(string: "OTP", attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(red: 1, green: 1, blue: 1, alpha: 0.5)])
+    }
+    
+    func setupCreateButton() {
+        createButton.layer.cornerRadius = 25
     }
     
     func addTapGestureForView() {
@@ -82,12 +77,14 @@ class LoginViewController: UIViewController {
     
     @objc func handleDismissKeyBoard() {
         phoneNumberTextField.resignFirstResponder()
+        nameTextField.resignFirstResponder()
         otpTextField.resignFirstResponder()
     }
     
     func showOTPView() {
         isOTPViewHidden = !isOTPViewHidden
         otpView.isHidden = isOTPViewHidden
+        stackViewHeight.constant = isOTPViewHidden ? 124 : 186
     }
     
     func getOTPCode() {
@@ -97,60 +94,59 @@ class LoginViewController: UIViewController {
             if err == nil {
                 guard let verifyID = verifyID else { return }
                 self.verifyID = verifyID
-                self.signInButton.setTitle("SIGN IN", for: .normal)
                 self.showOTPView()
+                self.createButton.setTitle("SIGN UP", for: .normal)
             } else {
                 self.showAlertWithOneOption(title: "Oops!", message: "Unable to get OTP code!", option: "OK")
             }
         }
     }
     
-    func signIn() {
+    func signUp() {
         guard let phoneNumber = phoneNumberTextField.text else { return }
         guard let otpCode = otpTextField.text else { return }
+        guard let name = nameTextField.text else { return }
         
         let firebaseToken = ["key": self.verifyID, "code": otpCode]
-        let userParam = SignInParams(phoneNumber: phoneNumber, firebaseToken: firebaseToken)
+        let userParam = SignUpParams(phoneNumber: phoneNumber, name: name, firebaseToken: firebaseToken)
         
-        loginViewModel.signIn(with: userParam).done { (canLogin) in
-            if canLogin {
+        createViewModel.signUp(with: userParam).done { (canSignUp) in
+            if canSignUp {
                 self.goToHomeScreen()
             }
         }.catch({ (_) in
-            self.showAlertWithOneOption(title: "Oops!", message: "Unable to sign in!", option: "OK")
+            self.showAlertWithOneOption(title: "Oops!", message: "Unable to sign up!", option: "OK")
         })
     }
     
-    // MARK: - Actions
-    
-    @IBAction func signInButtonDidTap(_ sender: Any) {
-//        if signInButton.titleLabel?.text == "SIGN IN" {
-//            signIn()
+    @IBAction func createButtonDidTap(_ sender: Any) {
+//        if createButton.titleLabel?.text == "SIGN UP" {
+//            signUp()
 //        } else {
 //            getOTPCode()
 //        }
-        
-        signIn()
+        signUp()
     }
     
-    @IBAction func createAccountButtonDidTap(_ sender: Any) {
-        self.goToCreateScreen()
+    @IBAction func backToLoginButtonDidTap(_ sender: Any) {
+        self.dismiss(animated: true)
     }
 }
 
 // MARK: - UITextViewDelegate
 
-extension LoginViewController: UITextFieldDelegate {
+extension CreateViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == phoneNumberTextField {
+        if textField == phoneNumberTextField || textField == nameTextField {
             otpTextField.text = nil
             isOTPViewHidden = true
             otpView.isHidden = true
+            stackViewHeight.constant = isOTPViewHidden ? 124 : 186
         }
     }
 }
 
-extension LoginViewController {
+extension CreateViewController {
     func showAlertWithOneOption(title: String, message: String, option: String) {
         let actionSheet = UIAlertController(title: title, message: message, preferredStyle: .alert)
         actionSheet.addAction(UIAlertAction(title: option, style: .default, handler: nil))

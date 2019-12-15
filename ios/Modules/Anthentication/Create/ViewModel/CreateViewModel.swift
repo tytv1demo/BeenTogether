@@ -1,19 +1,19 @@
 //
-//  LoginViewModel.swift
+//  CreateViewModel.swift
 //  Cupid
 //
-//  Created by Dung Nguyen on 12/12/19.
+//  Created by Dung Nguyen on 12/15/19.
 //  Copyright © 2019 Facebook. All rights reserved.
 //
 
 import Foundation
 import PromiseKit
 
-protocol LoginViewModelProtocol: AnyObject {
+protocol CreateViewModelProtocol: AnyObject {
     var userRepository: UserRepositoryProtocol { get set }
 }
 
-class LoginViewModel: NSObject, LoginViewModelProtocol {
+class CreateViewModel: NSObject, CreateViewModelProtocol {
     var userRepository: UserRepositoryProtocol
     
     override init() {
@@ -23,12 +23,12 @@ class LoginViewModel: NSObject, LoginViewModelProtocol {
     }
 }
 
-extension LoginViewModel {
+extension CreateViewModel {
 
-    func signIn(with userParams: SignInParams) -> Promise<Bool> {
+    func signUp(with userParams: SignUpParams) -> Promise<Bool> {
         return Promise<Bool> { seal in
             userRepository
-                .signIn(params: userParams)
+                .signUp(params: userParams)
                 .done { (result) in
                     AppUserData.shared.userToken = result.token
                     AppUserData.shared.userInfo = result.userInfo

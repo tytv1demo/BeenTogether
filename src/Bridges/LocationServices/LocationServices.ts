@@ -1,5 +1,5 @@
 import { NativeModules, EventSubscription, NativeEventEmitter } from 'react-native'
-import { BehaviorSubject } from 'rxjs'
+import { BehaviorSubject, Subscription } from 'rxjs'
 
 export const LocationSerivcesName = 'RNLocationServices'
 

@@ -11,15 +11,15 @@ import Moya
 import PromiseKit
 
 protocol UserRemoteDataSourceProtocol: AnyObject {
-    func signIn(params: UserParams) -> Promise<SignInResult>
-    func signUp(body: Any) -> Promise<Any>
+    func signIn(params: SignInParams) -> Promise<SignInResult>
+    func signUp(params: SignUpParams) -> Promise<SignInResult>
     func logout() -> Promise<Any>
     func getUserProfile() -> Promise<User>
 }
 
 class UserRemoteDataSource: UserRemoteDataSourceProtocol {
     
-    func signIn(params: UserParams) -> Promise<SignInResult> {
+    func signIn(params: SignInParams) -> Promise<SignInResult> {
         return Promise<SignInResult> { seal in
             todoProvider.request(MultiTarget(UserAPI.signIn(userParams: params))) { (result) in
                 switch result {
@@ -41,9 +41,25 @@ class UserRemoteDataSource: UserRemoteDataSourceProtocol {
         }
     }
     
-    func signUp(body: Any) -> Promise<Any> {
-        return Promise<Any> {_ in
-            
+    func signUp(params: SignUpParams) -> Promise<SignInResult> {
+        return Promise<SignInResult> { seal in
+            todoProvider.request(MultiTarget(UserAPI.signUp(signUpParams: params))) { (result) in
+                switch result {
+                case let .success(response):
+                    do {
+                        let filteredResponse = try response.filterSuccessfulStatusCodes()
+                        guard let result = try? JSONDecoder().decode(BaseResult<SignInResult>.self, from: filteredResponse.data) else {
+                            seal.reject(NSError(domain: "", code: 0, userInfo: nil))
+                            return
+                        }
+                        seal.fulfill(result.data)
+                    } catch let error {
+                        seal.reject(error)
+                    }
+                case let .failure(error):
+                    seal.reject(error)
+                }
+            }
         }
     }
     
