@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 import RxSwift
+import SkeletonView
 
 class ImageMessageView: UIView, MessageView {
     
@@ -68,18 +69,17 @@ class ImageMessageView: UIView, MessageView {
         }
         
         rowContentStack.snp.makeConstraints { (make) in
-            make.leading.equalTo(self).inset(8)
-            make.trailing.equalTo(self).inset(8)
-            make.top.equalTo(self)
-            make.bottom.equalTo(self)
+            make.leading.equalToSuperview().inset(8)
+            make.trailing.equalToSuperview().inset(8)
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
         
         image.snp.makeConstraints { (make) in
-            make.top.equalTo(rowContentStack)
             make.size.equalTo(CGSize(width: 150, height: 267))
         }
+        
         image.backgroundColor = .groupTableViewBackground
-    
     }
     
     func startConfigForUse() {
@@ -100,24 +100,37 @@ class ImageMessageView: UIView, MessageView {
         }
         if status == .done {
             self.configImage()
+            return
         }
-        dataLoadingStatusObservation = message.dataLoadingStatus.subscribe(onNext: { [unowned self] (nextStatus) in
-            if nextStatus == .done {
-                if self.isConfigedImage {
+        dataLoadingStatusObservation = message
+            .dataLoadingStatus
+            .skip(1)
+            .subscribe(onNext: { [weak self] (nextStatus) in
+                if self == nil {
                     return
                 }
-                self.configImage()
-                self.delegate?.messageView(contentDidChange: self)
-            }
-        })
+                if nextStatus == .done {
+                    self!.delegate?.messageView(contentDidChange: self!)
+                }
+            })
     }
     
     func performUpdate() {
+        
     }
     
     func configImage() {
-        self.image.kf.setImage(with: URL(string: self.message.content)!)
-        isConfigedImage = true
+        image.image = message.image
+//        guard let imageSize = message.image?.size else {
+//            return
+//        }
+//        let ratio: CGFloat = imageSize.height / imageSize.width
+//        let width: CGFloat = 150
+//        let height: CGFloat = ratio * width
+//        let size: CGSize = CGSize(width: width, height: height)
+//        image.snp.remakeConstraints { (make) in
+//            make.size.equalTo(size)
+//        }
     }
     
     func configActions() {

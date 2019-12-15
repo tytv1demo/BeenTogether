@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 class CreateViewController: UIViewController {
     
@@ -18,12 +19,17 @@ class CreateViewController: UIViewController {
     @IBOutlet weak var otpView: UIView!
     
     var isOTPViewHidden = true
+    var verifyID = ""
+    var createViewModel: CreateViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupMainView()
+        phoneNumberTextField.delegate = self
+        nameTextField.delegate = self
         
+        createViewModel = CreateViewModel()
+        setupMainView()
         
     }
     
@@ -81,11 +87,70 @@ class CreateViewController: UIViewController {
         stackViewHeight.constant = isOTPViewHidden ? 124 : 186
     }
     
+    func getOTPCode() {
+        guard let phoneNumber = phoneNumberTextField.text else { return }
+        
+        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verifyID, err) in
+            if err == nil {
+                guard let verifyID = verifyID else { return }
+                self.verifyID = verifyID
+                self.showOTPView()
+                self.createButton.setTitle("SIGN UP", for: .normal)
+            } else {
+                self.showAlertWithOneOption(title: "Oops!", message: "Unable to get OTP code!", option: "OK")
+            }
+        }
+    }
+    
+    func signUp() {
+        guard let phoneNumber = phoneNumberTextField.text else { return }
+        guard let otpCode = otpTextField.text else { return }
+        guard let name = nameTextField.text else { return }
+        
+        let firebaseToken = ["key": self.verifyID, "code": otpCode]
+        let userParam = SignUpParams(phoneNumber: phoneNumber, name: name, firebaseToken: firebaseToken)
+        
+        createViewModel.signUp(with: userParam).done { (canSignUp) in
+            if canSignUp {
+                self.goToHomeScreen()
+            }
+        }.catch({ (_) in
+            self.showAlertWithOneOption(title: "Oops!", message: "Unable to sign up!", option: "OK")
+        })
+    }
+    
     @IBAction func createButtonDidTap(_ sender: Any) {
-        showOTPView()
+//        if createButton.titleLabel?.text == "SIGN UP" {
+//            signUp()
+//        } else {
+//            getOTPCode()
+//        }
+        signUp()
     }
     
     @IBAction func backToLoginButtonDidTap(_ sender: Any) {
         self.dismiss(animated: true)
+    }
+}
+
+// MARK: - UITextViewDelegate
+
+extension CreateViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == phoneNumberTextField || textField == nameTextField {
+            otpTextField.text = nil
+            isOTPViewHidden = true
+            otpView.isHidden = true
+            stackViewHeight.constant = isOTPViewHidden ? 124 : 186
+        }
+    }
+}
+
+extension CreateViewController {
+    func showAlertWithOneOption(title: String, message: String, option: String) {
+        let actionSheet = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        actionSheet.addAction(UIAlertAction(title: option, style: .default, handler: nil))
+        
+        self.present(actionSheet, animated: true, completion: nil)
     }
 }

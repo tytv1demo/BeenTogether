@@ -10,7 +10,10 @@ import UIKit
 
 class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    // MARK: - IBOutlets and variables
+    
     @IBOutlet weak var eventTable: UITableView!
+    @IBOutlet weak var createLabel: UILabel!
     
     // TO-DO: delete test
     let testImgs: [UIImage] = [
@@ -32,12 +35,22 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         
         setUpTable()
+        paintLabel()
+        let createGesture = UITapGestureRecognizer(target: self, action: #selector(createEventAction))
+        createLabel.addGestureRecognizer(createGesture)
     }
     
     private func setUpTable() {
         eventTable.delegate = self
         eventTable.dataSource = self
         eventTable.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: "EventTableViewCell")
+    }
+    
+    private func paintLabel() {
+        let str = "How is your love today?"
+        let attrStr = NSMutableAttributedString(string: str)
+        attrStr.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hexString: "#D7636D"), range: NSMakeRange(str.count - 11, 4))
+        createLabel.attributedText = attrStr
     }
     
     // MARK: - Table data source and delegate
@@ -55,5 +68,14 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.pageControl.numberOfPages = testImgs.count
         
         return cell
+    }
+    
+    // MARK: - Actions
+    
+    @objc func createEventAction() {
+        let addingVC = UIStoryboard(name: "AddEventViewController", bundle: nil).instantiateViewController(withIdentifier: "AddEventViewController") as! AddEventViewController
+        
+        addingVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(addingVC, animated: true)
     }
 }

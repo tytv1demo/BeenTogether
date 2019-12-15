@@ -20,6 +20,8 @@ class GalleryInput: UIView {
     
     var collectionView: UICollectionView!
     
+    weak var selectedCell: GalleryImageCell?
+    
     var assets: [GalleryAsset] = [] {
         didSet {
             DispatchQueue.main.async {
@@ -135,6 +137,7 @@ extension GalleryInput: UICollectionViewDataSource, UICollectionViewDelegate, UI
             return UICollectionViewCell()
         }
         let asset = assets[indexPath.item]
+        cell.delegate = self
         cell.configCellWithAsset(asset)
         return cell
     }
@@ -148,8 +151,20 @@ extension GalleryInput: UICollectionViewDataSource, UICollectionViewDelegate, UI
         guard let cell: GalleryImageCell = collectionView.cellForItem(at: indexPath) as? GalleryImageCell else {
             return
         }
-        cell.onTapImage()
-        guard let data: Data = cell.imageView.image?.jpegData(compressionQuality: 1) else {
+        selectedCell?.hideActions()
+        if selectedCell == cell {
+            selectedCell = nil
+            return
+        }
+        cell.showActions()
+        selectedCell = cell
+    }
+    
+}
+
+extension GalleryInput: GalleryImageCellDelegate {
+    func galleryImageCell(didSelect cell: GalleryImageCell, action: GalleryImageCellAction) {
+        guard let data = try? cell.asset.image.value()?.jpegData(compressionQuality: 1) else {
             return
         }
         delegate?.galleryInput(onSendImage: data)

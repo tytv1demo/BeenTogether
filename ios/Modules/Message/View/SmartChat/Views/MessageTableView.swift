@@ -72,7 +72,7 @@ extension MessageTableView {
             return
         }
     
-        if lastIndexPath.item == messages.count - 1 {
+        if lastIndexPath.item > messages.count - 8 {
             tableView.scrollToRow(at: lastIndexPath, at: .bottom, animated: true)
         }
     }
@@ -107,10 +107,6 @@ extension MessageTableView: MessageViewDelegate {
     }
     
     func messageView(contentDidChange messageView: MessageView) {
-        UIView.animate(withDuration: 0.25) {
-            self.tableView.beginUpdates()
-            messageView.performUpdate()
-            self.tableView.endUpdates()
-        }
+        tableView.reloadRows(at: [messageView.indexPath], with: .automatic)
     }
 }

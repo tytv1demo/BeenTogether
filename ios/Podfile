@@ -44,6 +44,7 @@ def networking
   pod 'Kingfisher', '4.10.0'
   pod 'Firebase/Analytics'
   pod 'Firebase/Database'
+  pod 'Firebase/Auth'
 end
 
 def ui

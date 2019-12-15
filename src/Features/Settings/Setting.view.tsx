@@ -4,7 +4,7 @@ import {
 } from 'react-native'
 import { Avatar, Header, ListItem } from 'react-native-elements'
 import { Spacer, ADSwitch, MemoAvatar } from '@components';
-import { LocationServices } from '@bridges';
+import { LocationServices, AppUserData } from '@bridges';
 import { SettingScreenState } from './Types'
 import { Subscription } from 'rxjs';
 
@@ -58,7 +58,40 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
         )
     }
 
+    renderMatchSection() {
+        return (
+            <>
+            </>
+        )
+    }
+
     renderAccountSettingSection() {
+        const { value: userInfo } = AppUserData.shared().userInfo
+        return (
+            <>
+                <ListItem
+                    title='Họ và tên'
+                    rightTitle={userInfo.name}
+                    rightAvatar={<MemoAvatar
+                        source={{ uri: 'https://vcdn-ngoisao.vnecdn.net/2019/07/11/tran-kieu-an-5-6648-1562814204.jpg' }}
+                        rounded
+                    />}
+                    bottomDivider
+                />
+                <ListItem
+                    title='Phone number'
+                    rightTitle={userInfo.phoneNumber}
+                />
+                <Spacer />
+            </>
+        )
+    }
+
+    renderCoupleSection() {
+        const { value: userInfo } = AppUserData.shared().userInfo
+        if (!userInfo.isPaired) {
+            return this.renderMatchSection()
+        }
         return (
             <>
                 <ListItem
@@ -106,6 +139,7 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
             <>
                 {this.renderAvatarSection()}
                 {this.renderAccountSettingSection()}
+                {this.renderCoupleSection()}
                 <Spacer />
                 {this.renderAppInfoSection()}
             </>
@@ -113,19 +147,22 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
     }
 
     render() {
+        const { value: userInfo } = AppUserData.shared().userInfo
+        if (!userInfo) {
+            return null
+        }
         return (
             <>
                 <Header
                     centerComponent={{ text: 'Cài đặt', style: { fontSize: 20 } }}
                     backgroundColor='white'
                 />
-                <ScrollView style={{ backgroundColor: '#EFEFEF' }}>
+                <ScrollView contentContainerStyle={{ backgroundColor: '#EFEFEF', paddingBottom: 83 }}>
                     {this.renderContent()}
                 </ScrollView>
             </>
         )
     }
 }
-
         // Sync mode
         // Location update

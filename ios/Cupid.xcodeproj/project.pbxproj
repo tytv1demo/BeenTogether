@@ -16,6 +16,8 @@
 		2DCD954D1E0B4F2C00145EB5 /* BeenTogetherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BeenTogetherTests.m */; };
 		460F74B0239DF8CB0043A7DD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F74AE239DF8CB0043A7DD /* HomeViewController.swift */; };
 		460F74B1239DF8CB0043A7DD /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 460F74AF239DF8CB0043A7DD /* Home.storyboard */; };
+		4646BE7723A5F7C70092E8A7 /* CreateNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4646BE7623A5F7C70092E8A7 /* CreateNavigator.swift */; };
+		4646BE7923A5F7DD0092E8A7 /* CreateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4646BE7823A5F7DD0092E8A7 /* CreateViewModel.swift */; };
 		4693BF46239B4BBF00EA2EA5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4693BF45239B4BBF00EA2EA5 /* User.swift */; };
 		46AC2FAA23A36A3A00620088 /* LoginNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AC2FA923A36A3A00620088 /* LoginNavigator.swift */; };
 		46AC2FB223A36DD600620088 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AC2FB123A36DD600620088 /* CreateViewController.swift */; };
@@ -29,11 +31,18 @@
 		46C46DCF23A2496300966D44 /* AppUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C46DCE23A2496300966D44 /* AppUserData.swift */; };
 		46C46DD223A259F100966D44 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C46DD123A259F100966D44 /* SplashViewController.swift */; };
 		46C46DD423A25F2100966D44 /* SplashNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C46DD323A25F2100966D44 /* SplashNavigator.swift */; };
+		5EE97E81A77DC1E07841BFF2 /* libPods-CupidTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE1A2B31046312B7E5CE0C22 /* libPods-CupidTests.a */; };
 		6F17F979239AAE54007ECF45 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F17F978239AAE54007ECF45 /* EventTableViewCell.swift */; };
 		6F17F97A239AAE87007ECF45 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F17F976239AADFC007ECF45 /* EventTableViewCell.xib */; };
-		5EE97E81A77DC1E07841BFF2 /* libPods-CupidTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE1A2B31046312B7E5CE0C22 /* libPods-CupidTests.a */; };
 		6F4C6A70239818BC00F4FB4D /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4C6A6F239818BC00F4FB4D /* EventViewController.swift */; };
 		6F846FD3239570C1008C03D3 /* Event.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F846FD2239570C1008C03D3 /* Event.storyboard */; };
+		6FE9079523A62E9D00892C3C /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE9079423A62E9D00892C3C /* AddEventViewController.swift */; };
+		6FE9079823A62FDC00892C3C /* AddingTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE9079623A62FDC00892C3C /* AddingTextTableViewCell.swift */; };
+		6FE9079923A62FDC00892C3C /* AddingTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FE9079723A62FDC00892C3C /* AddingTextTableViewCell.xib */; };
+		6FE9079E23A6318900892C3C /* AddingLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE9079C23A6318900892C3C /* AddingLocationTableViewCell.swift */; };
+		6FE9079F23A6318900892C3C /* AddingLocationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FE9079D23A6318900892C3C /* AddingLocationTableViewCell.xib */; };
+		6FE907A223A632BB00892C3C /* AddingTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE907A023A632BB00892C3C /* AddingTimeTableViewCell.swift */; };
+		6FE907A323A632BB00892C3C /* AddingTimeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FE907A123A632BB00892C3C /* AddingTimeTableViewCell.xib */; };
 		7F5D1C2F236FBD5B005A4961 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D1C21236FBD5A005A4961 /* UserRepository.swift */; };
 		7F5D1C30236FBD5B005A4961 /* UserLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D1C23236FBD5A005A4961 /* UserLocalDataSource.swift */; };
 		7F5D1C31236FBD5B005A4961 /* UserRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D1C25236FBD5A005A4961 /* UserRemoteDataSource.swift */; };
@@ -76,6 +85,13 @@
 		B607DB332399523E00C7509F /* MapAnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B607DB322399523E00C7509F /* MapAnotation.swift */; };
 		B6559E75239A978B00FD6893 /* LocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6559E74239A978B00FD6893 /* LocationServices.swift */; };
 		B67252272397FC1E00E13339 /* RemoteMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67252262397FC1E00E13339 /* RemoteMessage.swift */; };
+		B682021823A5D44F00E32F5F /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B682021723A5D44F00E32F5F /* CircleButton.swift */; };
+		B682021A23A6171100E32F5F /* MessageAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B682021923A6171100E32F5F /* MessageAlertViewController.swift */; };
+		B682021C23A618FD00E32F5F /* UIViewControllerExts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B682021B23A618FD00E32F5F /* UIViewControllerExts.swift */; };
+		B682021E23A62AFE00E32F5F /* RNMessageAlertBridges.swift in Sources */ = {isa = PBXBuildFile; fileRef = B682021D23A62AFE00E32F5F /* RNMessageAlertBridges.swift */; };
+		B682022123A62B2A00E32F5F /* RNMessageAlertBridges.m in Sources */ = {isa = PBXBuildFile; fileRef = B682022023A62B2A00E32F5F /* RNMessageAlertBridges.m */; };
+		B688687A23A5104300FB155D /* RNUserExts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B688687923A5104300FB155D /* RNUserExts.swift */; };
+		B688687C23A5159E00FB155D /* RNUserDataBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B688687B23A5159E00FB155D /* RNUserDataBridge.m */; };
 		B68CD034239B3FDC000BA1D8 /* LocationNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68CD033239B3FDC000BA1D8 /* LocationNavigator.swift */; };
 		B68CD036239B8A75000BA1D8 /* LoverLocationViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68CD035239B8A75000BA1D8 /* LoverLocationViewer.swift */; };
 		B68CD039239B95D2000BA1D8 /* EmojiCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68CD038239B95D2000BA1D8 /* EmojiCollection.swift */; };
@@ -112,6 +128,7 @@
 		B690E680239CF53C00C418A7 /* RCTBridgeServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690E67F239CF53C00C418A7 /* RCTBridgeServices.swift */; };
 		B6972B342393D04E002EE07B /* ImageMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6972B332393D04E002EE07B /* ImageMessageCell.swift */; };
 		B6972B362393D0AD002EE07B /* ImageMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6972B352393D0AD002EE07B /* ImageMessage.swift */; };
+		B697FC6223A3A8D6000981B5 /* RNUserDataBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B697FC6123A3A8D6000981B5 /* RNUserDataBridge.swift */; };
 		B6B9D121239559F0003527B4 /* MessageStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B9D120239559F0003527B4 /* MessageStatusIndicator.swift */; };
 		B6D5B85423A12C2E00942C44 /* LocationServices.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D5B85323A12C2E00942C44 /* LocationServices.m */; };
 		B6D5B85823A12E3200942C44 /* RNLocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D5B85723A12E3200942C44 /* RNLocationServices.swift */; };
@@ -156,6 +173,8 @@
 		37FFA031CA3C4A6B260DB914 /* Pods-BeenTogether-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogether-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-BeenTogether-tvOSTests/Pods-BeenTogether-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		460F74AE239DF8CB0043A7DD /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Modules/Home/HomeViewController.swift; sourceTree = SOURCE_ROOT; };
 		460F74AF239DF8CB0043A7DD /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Home.storyboard; path = Modules/Home/Home.storyboard; sourceTree = SOURCE_ROOT; };
+		4646BE7623A5F7C70092E8A7 /* CreateNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNavigator.swift; sourceTree = "<group>"; };
+		4646BE7823A5F7DD0092E8A7 /* CreateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewModel.swift; sourceTree = "<group>"; };
 		4693BF45239B4BBF00EA2EA5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		46AC2FA923A36A3A00620088 /* LoginNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNavigator.swift; sourceTree = "<group>"; };
 		46AC2FB123A36DD600620088 /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
@@ -176,6 +195,13 @@
 		6F17F978239AAE54007ECF45 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		6F4C6A6F239818BC00F4FB4D /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		6F846FD2239570C1008C03D3 /* Event.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Event.storyboard; sourceTree = "<group>"; };
+		6FE9079423A62E9D00892C3C /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
+		6FE9079623A62FDC00892C3C /* AddingTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingTextTableViewCell.swift; sourceTree = "<group>"; };
+		6FE9079723A62FDC00892C3C /* AddingTextTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddingTextTableViewCell.xib; sourceTree = "<group>"; };
+		6FE9079C23A6318900892C3C /* AddingLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingLocationTableViewCell.swift; sourceTree = "<group>"; };
+		6FE9079D23A6318900892C3C /* AddingLocationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddingLocationTableViewCell.xib; sourceTree = "<group>"; };
+		6FE907A023A632BB00892C3C /* AddingTimeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingTimeTableViewCell.swift; sourceTree = "<group>"; };
+		6FE907A123A632BB00892C3C /* AddingTimeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddingTimeTableViewCell.xib; sourceTree = "<group>"; };
 		77075A41F0C5A168FB7717DD /* Pods-BeenTogether.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogether.release.xcconfig"; path = "Target Support Files/Pods-BeenTogether/Pods-BeenTogether.release.xcconfig"; sourceTree = "<group>"; };
 		774787D688176C114E8E9838 /* libPods-Cupid.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cupid.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F5D1C21236FBD5A005A4961 /* UserRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
@@ -224,6 +250,13 @@
 		B607DB322399523E00C7509F /* MapAnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnotation.swift; sourceTree = "<group>"; };
 		B6559E74239A978B00FD6893 /* LocationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServices.swift; sourceTree = "<group>"; };
 		B67252262397FC1E00E13339 /* RemoteMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMessage.swift; sourceTree = "<group>"; };
+		B682021723A5D44F00E32F5F /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
+		B682021923A6171100E32F5F /* MessageAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAlertViewController.swift; sourceTree = "<group>"; };
+		B682021B23A618FD00E32F5F /* UIViewControllerExts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExts.swift; sourceTree = "<group>"; };
+		B682021D23A62AFE00E32F5F /* RNMessageAlertBridges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNMessageAlertBridges.swift; sourceTree = "<group>"; };
+		B682022023A62B2A00E32F5F /* RNMessageAlertBridges.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNMessageAlertBridges.m; sourceTree = "<group>"; };
+		B688687923A5104300FB155D /* RNUserExts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNUserExts.swift; sourceTree = "<group>"; };
+		B688687B23A5159E00FB155D /* RNUserDataBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNUserDataBridge.m; sourceTree = "<group>"; };
 		B68CD033239B3FDC000BA1D8 /* LocationNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationNavigator.swift; sourceTree = "<group>"; };
 		B68CD035239B8A75000BA1D8 /* LoverLocationViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoverLocationViewer.swift; sourceTree = "<group>"; };
 		B68CD038239B95D2000BA1D8 /* EmojiCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCollection.swift; sourceTree = "<group>"; };
@@ -260,6 +293,7 @@
 		B690E67F239CF53C00C418A7 /* RCTBridgeServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCTBridgeServices.swift; sourceTree = "<group>"; };
 		B6972B332393D04E002EE07B /* ImageMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMessageCell.swift; sourceTree = "<group>"; };
 		B6972B352393D0AD002EE07B /* ImageMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMessage.swift; sourceTree = "<group>"; };
+		B697FC6123A3A8D6000981B5 /* RNUserDataBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNUserDataBridge.swift; sourceTree = "<group>"; };
 		B6B9D120239559F0003527B4 /* MessageStatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStatusIndicator.swift; sourceTree = "<group>"; };
 		B6D5B85323A12C2E00942C44 /* LocationServices.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationServices.m; sourceTree = "<group>"; };
 		B6D5B85723A12E3200942C44 /* RNLocationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNLocationServices.swift; sourceTree = "<group>"; };
@@ -378,6 +412,7 @@
 		46AC2FAF23A36D4E00620088 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4646BE7823A5F7DD0092E8A7 /* CreateViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -385,6 +420,7 @@
 		46AC2FB023A36D5D00620088 /* Route */ = {
 			isa = PBXGroup;
 			children = (
+				4646BE7623A5F7C70092E8A7 /* CreateNavigator.swift */,
 			);
 			path = Route;
 			sourceTree = "<group>";
@@ -502,8 +538,14 @@
 		6F4C6A7123981CDA00F4FB4D /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				6F17F976239AADFC007ECF45 /* EventTableViewCell.xib */,
 				6F17F978239AAE54007ECF45 /* EventTableViewCell.swift */,
+				6F17F976239AADFC007ECF45 /* EventTableViewCell.xib */,
+				6FE9079623A62FDC00892C3C /* AddingTextTableViewCell.swift */,
+				6FE9079723A62FDC00892C3C /* AddingTextTableViewCell.xib */,
+				6FE9079C23A6318900892C3C /* AddingLocationTableViewCell.swift */,
+				6FE9079D23A6318900892C3C /* AddingLocationTableViewCell.xib */,
+				6FE907A023A632BB00892C3C /* AddingTimeTableViewCell.swift */,
+				6FE907A123A632BB00892C3C /* AddingTimeTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -512,8 +554,9 @@
 			isa = PBXGroup;
 			children = (
 				6F4C6A7123981CDA00F4FB4D /* Cell */,
-				6F846FD2239570C1008C03D3 /* Event.storyboard */,
 				6F4C6A6F239818BC00F4FB4D /* EventViewController.swift */,
+				6FE9079423A62E9D00892C3C /* AddEventViewController.swift */,
+				6F846FD2239570C1008C03D3 /* Event.storyboard */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -540,6 +583,7 @@
 				46B83CA623867E990040D1F1 /* DateExts.swift */,
 				B68CD03C239BF488000BA1D8 /* UIImage.swift */,
 				B690E673239CA07700C418A7 /* UIButton.swift */,
+				B682021B23A618FD00E32F5F /* UIViewControllerExts.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -547,6 +591,7 @@
 		7F5D1C1D236FBD5A005A4961 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				B697FC6023A3A8B3000981B5 /* AppData */,
 				B6D5B85223A12C0200942C44 /* LocationService */,
 				7FF7E796236FD7EE006AC2BF /* AppService.swift */,
 				7FF7E794236FD7E7006AC2BF /* Constants.swift */,
@@ -559,10 +604,13 @@
 		7F5D1C1E236FBD5A005A4961 /* Control */ = {
 			isa = PBXGroup;
 			children = (
+				B682021F23A62B0600E32F5F /* RNMessageAlert */,
 				B6E2E2EC2362F561001046E5 /* Avatar.swift */,
 				B690E66E239C9DB500C418A7 /* CollectionEmptyView.swift */,
 				B690E675239CA23C00C418A7 /* BaseButton.swift */,
 				B690E67D239CF04000C418A7 /* RCTViewController.swift */,
+				B682021723A5D44F00E32F5F /* CircleButton.swift */,
+				B682021923A6171100E32F5F /* MessageAlertViewController.swift */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -880,6 +928,15 @@
 			path = Location;
 			sourceTree = "<group>";
 		};
+		B682021F23A62B0600E32F5F /* RNMessageAlert */ = {
+			isa = PBXGroup;
+			children = (
+				B682021D23A62AFE00E32F5F /* RNMessageAlertBridges.swift */,
+				B682022023A62B2A00E32F5F /* RNMessageAlertBridges.m */,
+			);
+			path = RNMessageAlert;
+			sourceTree = "<group>";
+		};
 		B68CD037239B95B6000BA1D8 /* EmojiTable */ = {
 			isa = PBXGroup;
 			children = (
@@ -1044,6 +1101,16 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		B697FC6023A3A8B3000981B5 /* AppData */ = {
+			isa = PBXGroup;
+			children = (
+				B697FC6123A3A8D6000981B5 /* RNUserDataBridge.swift */,
+				B688687923A5104300FB155D /* RNUserExts.swift */,
+				B688687B23A5159E00FB155D /* RNUserDataBridge.m */,
+			);
+			path = AppData;
+			sourceTree = "<group>";
+		};
 		B6D5B85223A12C0200942C44 /* LocationService */ = {
 			isa = PBXGroup;
 			children = (
@@ -1205,6 +1272,7 @@
 				7F5D1C84236FC452005A4961 /* Profile.storyboard in Resources */,
 				460F74B1239DF8CB0043A7DD /* Home.storyboard in Resources */,
 				46C46DC723A1EFF300966D44 /* Login.storyboard in Resources */,
+				6FE907A323A632BB00892C3C /* AddingTimeTableViewCell.xib in Resources */,
 				7F5D1C4A236FC39C005A4961 /* MainTabBar.storyboard in Resources */,
 				7F5D1C5D236FC429005A4961 /* Task.storyboard in Resources */,
 				7F5D1C34236FBE7C005A4961 /* LaunchScreen.xib in Resources */,
@@ -1213,7 +1281,9 @@
 				7FF7E7A2236FDA09006AC2BF /* Localizable.strings in Resources */,
 				B68E248B2392712B0014A53E /* Message.storyboard in Resources */,
 				46AC2FB423A36DE600620088 /* Create.storyboard in Resources */,
+				6FE9079923A62FDC00892C3C /* AddingTextTableViewCell.xib in Resources */,
 				7F5D1C70236FC441005A4961 /* Dating.storyboard in Resources */,
+				6FE9079F23A6318900892C3C /* AddingLocationTableViewCell.xib in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				B68E246323924AC10014A53E /* GoogleService-Info.plist in Resources */,
 				7FB507DB236FCB3400A00CF6 /* Loading.storyboard in Resources */,
@@ -1424,44 +1494,12 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Cupid/Pods-Cupid-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FontAwesome.swift/FontAwesome.swift.bundle",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
 				"${PODS_CONFIGURATION_BUILD_DIR}/SwiftMessages/SwiftMessages.bundle",
 				"${PODS_ROOT}/SwiftMoment/SwiftMoment/SwiftMoment/MomentFromNow.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.swift.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SwiftMessages.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MomentFromNow.bundle",
 			);
@@ -1535,8 +1573,10 @@
 				B607DB332399523E00C7509F /* MapAnotation.swift in Sources */,
 				46B83CA723867E990040D1F1 /* DateExts.swift in Sources */,
 				7FB507DD236FCB3400A00CF6 /* LoadingViewController.swift in Sources */,
+				B682021C23A618FD00E32F5F /* UIViewControllerExts.swift in Sources */,
 				46AC2FB223A36DD600620088 /* CreateViewController.swift in Sources */,
 				B68E245823922C860014A53E /* MessageRepository.swift in Sources */,
+				4646BE7723A5F7C70092E8A7 /* CreateNavigator.swift in Sources */,
 				7F5D1C49236FC39C005A4961 /* MainTabBarViewModel.swift in Sources */,
 				46C46DCD23A1F59F00966D44 /* LoginViewModel.swift in Sources */,
 				B6E2E2E32362A7F7001046E5 /* UIViewExts.swift in Sources */,
@@ -1546,12 +1586,14 @@
 				B607DB3123994CC900C7509F /* LocationViewModel.swift in Sources */,
 				B68CD03B239B95E2000BA1D8 /* EmojiCell.swift in Sources */,
 				B607DB2E239949BB00C7509F /* LocationViewController.swift in Sources */,
+				B682022123A62B2A00E32F5F /* RNMessageAlertBridges.m in Sources */,
 				46BC4BD42392B61E0040E510 /* UserAPI.swift in Sources */,
 				B68E24982392712B0014A53E /* MessageViewController.swift in Sources */,
 				46C46DD423A25F2100966D44 /* SplashNavigator.swift in Sources */,
 				7FF7E78B236FD718006AC2BF /* StoryboardExt.swift in Sources */,
-				6F4C6A7423981CEC00F4FB4D /* EventCollectionViewCell.swift in Sources */,
 				B6D5B85823A12E3200942C44 /* RNLocationServices.swift in Sources */,
+				B697FC6223A3A8D6000981B5 /* RNUserDataBridge.swift in Sources */,
+				6F4C6A7423981CEC00F4FB4D /* EventCollectionViewCell.swift in Sources */,
 				7F5D1C6F236FC441005A4961 /* DatingViewController.swift in Sources */,
 				B68CD034239B3FDC000BA1D8 /* LocationNavigator.swift in Sources */,
 				7F5D1C72236FC441005A4961 /* DatingNavigator.swift in Sources */,
@@ -1561,9 +1603,11 @@
 				B6F4F919234737E8002B7B36 /* AppDelegate.swift in Sources */,
 				B68E24942392712B0014A53E /* InputToolBar.swift in Sources */,
 				7FF7E793236FD7E1006AC2BF /* Logger.swift in Sources */,
+				6FE9079523A62E9D00892C3C /* AddEventViewController.swift in Sources */,
 				7F5D1C82236FC452005A4961 /* ProfileNavigator.swift in Sources */,
 				B68E249B239271630014A53E /* Bubble.swift in Sources */,
 				46AC2FAA23A36A3A00620088 /* LoginNavigator.swift in Sources */,
+				6FE907A223A632BB00892C3C /* AddingTimeTableViewCell.swift in Sources */,
 				4693BF46239B4BBF00EA2EA5 /* User.swift in Sources */,
 				7F5D1C5C236FC429005A4961 /* TaskNavigator.swift in Sources */,
 				7FF7E797236FD7EE006AC2BF /* AppService.swift in Sources */,
@@ -1573,6 +1617,7 @@
 				B6B9D121239559F0003527B4 /* MessageStatusIndicator.swift in Sources */,
 				7F5D1C5F236FC429005A4961 /* TaskViewController.swift in Sources */,
 				B6E2E2ED2362F561001046E5 /* Avatar.swift in Sources */,
+				B688687A23A5104300FB155D /* RNUserExts.swift in Sources */,
 				B6559E75239A978B00FD6893 /* LocationServices.swift in Sources */,
 				7F5D1C2F236FBD5B005A4961 /* UserRepository.swift in Sources */,
 				46C46DD223A259F100966D44 /* SplashViewController.swift in Sources */,
@@ -1581,7 +1626,6 @@
 				7FF7E791236FD7AC006AC2BF /* TableViewExt.swift in Sources */,
 				B68E24962392712B0014A53E /* InputView.swift in Sources */,
 				B690E67E239CF04000C418A7 /* RCTViewController.swift in Sources */,
-				7F5D1C32236FBD5B005A4961 /* User.swift in Sources */,
 				B690E66F239C9DB500C418A7 /* CollectionEmptyView.swift in Sources */,
 				460F74B0239DF8CB0043A7DD /* HomeViewController.swift in Sources */,
 				7FF7E795236FD7E7006AC2BF /* Constants.swift in Sources */,
@@ -1595,6 +1639,7 @@
 				7F5D1C4C236FC39C005A4961 /* MainTabBarNavigator.swift in Sources */,
 				B68E24912392712B0014A53E /* GalleryInput.swift in Sources */,
 				7F5D1C85236FC452005A4961 /* ProfileViewController.swift in Sources */,
+				6FE9079823A62FDC00892C3C /* AddingTextTableViewCell.swift in Sources */,
 				B67252272397FC1E00E13339 /* RemoteMessage.swift in Sources */,
 				6F17F979239AAE54007ECF45 /* EventTableViewCell.swift in Sources */,
 				B68E24932392712B0014A53E /* TextMessageCell.swift in Sources */,
@@ -1602,14 +1647,20 @@
 				B68CD03D239BF488000BA1D8 /* UIImage.swift in Sources */,
 				B68E245D239230420014A53E /* MessageApi.swift in Sources */,
 				B68E248A2392712B0014A53E /* MessageViewModel.swift in Sources */,
+				B688687C23A5159E00FB155D /* RNUserDataBridge.m in Sources */,
 				B6E2E2E72362AB73001046E5 /* UIColorExts.swift in Sources */,
 				7FF7E78F236FD722006AC2BF /* CollectionViewExt.swift in Sources */,
+				4646BE7923A5F7DD0092E8A7 /* CreateViewModel.swift in Sources */,
 				7F5D1C71236FC441005A4961 /* DatingViewModel.swift in Sources */,
 				B68E248E2392712B0014A53E /* SCUser.swift in Sources */,
 				B690E680239CF53C00C418A7 /* RCTBridgeServices.swift in Sources */,
+				B682021823A5D44F00E32F5F /* CircleButton.swift in Sources */,
+				B682021E23A62AFE00E32F5F /* RNMessageAlertBridges.swift in Sources */,
+				6FE9079E23A6318900892C3C /* AddingLocationTableViewCell.swift in Sources */,
 				B68E248D2392712B0014A53E /* Message.swift in Sources */,
 				7FB507DA236FCB3400A00CF6 /* LoadingNavigator.swift in Sources */,
 				B68CD039239B95D2000BA1D8 /* EmojiCollection.swift in Sources */,
+				B682021A23A6171100E32F5F /* MessageAlertViewController.swift in Sources */,
 				7FB507DC236FCB3400A00CF6 /* LoadingViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

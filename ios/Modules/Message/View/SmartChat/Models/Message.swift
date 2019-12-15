@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import Kingfisher
 
 protocol SCMessageType: AnyObject {
   
@@ -30,6 +31,8 @@ class SCMessage: SCMessageType {
     var type: MessageType
     var status: BehaviorSubject<SCMessageStatus>
     var dataLoadingStatus: BehaviorSubject<SCMessageDataLoadingStaus>
+    
+    var image: UIImage?
     
     init(
         id: Int,
@@ -54,12 +57,20 @@ class SCMessage: SCMessageType {
         if type == .image {
             self.dataLoadingStatus.onNext(.loading)
             loadImageUrlFromFirebase(path: content)
-                .done { (url) in
+                .done { [unowned self] (url) in
                     self.content = url
-                    self.dataLoadingStatus.onNext(.done)
+                    self.loadImage()
             }.catch { (_) in
                 self.dataLoadingStatus.onNext(.failed)
             }
+        }
+    }
+    
+    func loadImage() {
+        guard let url = URL(string: content) else { return  }
+        KingfisherManager.shared.retrieveImage(with: url, options: nil, progressBlock: nil) { [unowned self] (image, _, _, _) in
+            self.image = image
+            self.dataLoadingStatus.onNext(.done)
         }
     }
 }

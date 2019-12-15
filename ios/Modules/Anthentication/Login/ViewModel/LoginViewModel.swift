@@ -25,10 +25,10 @@ class LoginViewModel: NSObject, LoginViewModelProtocol {
 
 extension LoginViewModel {
 
-    func signIn(with phoneNumber: String) -> Promise<Bool> {
+    func signIn(with userParams: SignInParams) -> Promise<Bool> {
         return Promise<Bool> { seal in
             userRepository
-                .signIn(params: UserParams(phoneNumber: phoneNumber, firebaseToken: ["sdfdsf": "dsaf"]))
+                .signIn(params: userParams)
                 .done { (result) in
                     AppUserData.shared.userToken = result.token
                     AppUserData.shared.userInfo = result.userInfo

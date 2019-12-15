@@ -9,14 +9,20 @@
 import Foundation
 import Moya
 
-public struct UserParams {
-    var phoneNumber: String?
+public struct SignInParams {
+    var phoneNumber: String
+    var firebaseToken: [String: String]
+}
+
+public struct SignUpParams {
+    var phoneNumber: String
+    var name: String?
     var firebaseToken: [String: String]
 }
 
 public enum UserAPI {
-    case signIn(userParams: UserParams)
-    case signUp(phoneNumber: String, name: String)
+    case signIn(userParams: SignInParams)
+    case signUp(signUpParams: SignUpParams)
     case logout
     case getUserProfile
 }
@@ -68,11 +74,14 @@ extension UserAPI: AuthorizedTargetType {
             params["phoneNumber"] = userParams.phoneNumber
             params["firebaseToken"] = userParams.firebaseToken
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
-        case .signUp(let phoneNumber, let name):
-            var body: [String: String] = [:]
-            body["phoneNumber"] = phoneNumber
-            body["name"] = name
-            return .requestParameters(parameters: body, encoding: JSONEncoding.default)
+        case let .signUp(signUpParams):
+            var params = [String: Any]()
+            params["phoneNumber"] = signUpParams.phoneNumber
+            params["name"] = signUpParams.name
+            params["firebaseToken"] = signUpParams.firebaseToken
+            params["age"] = 0
+            params["gender"] = "MALE"
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
         case .logout:
             return .requestPlain
         case .getUserProfile:

@@ -12,3 +12,4 @@
 #import "React/RCTEventEmitter.h"
 
 @import FSPagerView;
+@import IBAnimatable;

@@ -167,7 +167,7 @@
                                                     <constraint firstAttribute="height" constant="50" id="oMV-hz-RtH"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                                <state key="normal" title="CREATE">
+                                                <state key="normal" title="VERIFY PHONE NUMBER">
                                                     <color key="titleColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                 </state>
                                                 <connections>
