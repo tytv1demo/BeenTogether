@@ -22,7 +22,9 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var dateCoutingLabel: UILabel!
     @IBOutlet weak var leftDaysLabel: UILabel!
     @IBOutlet weak var rightDayLabel: UILabel!
-   
+    @IBOutlet weak var leftNameLabel: UILabel!
+    @IBOutlet weak var rightNameLabel: UILabel!
+    
     // MARK: Properties
     
     var selectedImageView: UIImageView?
@@ -52,6 +54,8 @@ class HomeViewController: UIViewController {
         setupRightAvatar()
         setupProgressView()
         setupDataForLabels()
+        addTapGestureForLabel(leftNameLabel)
+        addTapGestureForLabel(rightNameLabel)
     }
     
     func setupBackgroundImage() {
@@ -85,47 +89,46 @@ class HomeViewController: UIViewController {
         let url = "https://thuthuatnhanh.com/wp-content/uploads/2019/10/avatar-me-than-tuong.jpg"
         avatarView.setImage(url: url)
     }
-}
-
-// MARK: - UIImagePickerControllerDelegate
-
-extension HomeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func setupLeftAvatar() {
         let url = "https://thuthuatnhanh.com/wp-content/uploads/2019/10/avatar-me-than-tuong.jpg"
         leftAvatar.setImage(url: url)
-        
-        let tapGesture = UITapGestureRecognizer()
-        tapGesture.addTarget(self, action: #selector(chooseImage(_:)))
-        leftAvatar.imageView.addGestureRecognizer(tapGesture)
-        leftAvatar.imageView.isUserInteractionEnabled = true
+        addTapGestureForView(leftAvatar.imageView)
     }
     
     func setupRightAvatar() {
         let url = "https://thuthuatnhanh.com/wp-content/uploads/2019/10/avatar-me-than-tuong.jpg"
         rightAvatar.setImage(url: url)
-        
+        addTapGestureForView(rightAvatar.imageView)
+    }
+    
+    func addTapGestureForLabel(_ label: UILabel) {
+        label.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer()
+        tapGesture.addTarget(self, action: #selector(presentChangeNamePopUp))
+        label.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func presentChangeNamePopUp() {
+        print("HIHI")
+    }
+    
+    func addTapGestureForView(_ view: UIView) {
         let tapGesture = UITapGestureRecognizer()
         tapGesture.addTarget(self, action: #selector(chooseImage(_:)))
-        rightAvatar.imageView.addGestureRecognizer(tapGesture)
-        rightAvatar.imageView.isUserInteractionEnabled = true
+        view.addGestureRecognizer(tapGesture)
+        view.isUserInteractionEnabled = true
     }
     
     @objc func chooseImage(_ sender: UITapGestureRecognizer) {
-        guard let imageView = sender.view as? UIImageView else {
-            return
-        }
+        guard let imageView = sender.view as? UIImageView else { return }
         
         let imagePickerVC = UIImagePickerController()
         imagePickerVC.delegate = self
         
-        let actionSheet = UIAlertController(title: "Photo source",
-                                            message: "Choose a source",
-                                            preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "Photo source", message: "Choose a source", preferredStyle: .actionSheet)
         
-        actionSheet.addAction(UIAlertAction(title: "Camera",
-                                            style: .default,
-                                            handler: { _ in
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
                 imagePickerVC.sourceType = .camera
                 self.present(imagePickerVC, animated: true, completion: nil)
@@ -134,21 +137,22 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
             }
         }))
         
-        actionSheet.addAction(UIAlertAction(title: "Photo Library",
-                                            style: .default,
-                                            handler: { _ in
+        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { _ in
             imagePickerVC.sourceType = .photoLibrary
             self.present(imagePickerVC, animated: true, completion: nil)
         }))
         
-        actionSheet.addAction(UIAlertAction(title: "Cancel",
-                                            style: .default,
-                                            handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
         
         selectedImageView = imageView
         
         self.present(actionSheet, animated: true, completion: nil)
     }
+}
+
+// MARK: - UIImagePickerControllerDelegate
+
+extension HomeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {

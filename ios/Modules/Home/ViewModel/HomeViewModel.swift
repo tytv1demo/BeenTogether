@@ -19,11 +19,14 @@ class HomeViewModel: NSObject, HomeViewModelProtocol {
     
     var userInfo: User!
     var userRepository: UserRepositoryProtocol
+    var threadRef: DatabaseReference
     var dateCouted = 0
+    
 
     override init() {
         userRepository = UserRepository()
         userInfo = AppUserData.shared.userInfo
+        threadRef = DatabaseReference()
         super.init()
         
         dateCouted = 1230
@@ -80,5 +83,31 @@ extension HomeViewModel {
             let remainingPart = dateCouted % 100
             return Float(remainingPart) / 100
         }
+    }
+    
+    func refFirstPersonAvatar() {
+        threadRef = Database.database().reference(withPath: "couples/\(self.userInfo.coupleId)/coupleConfig/firstPerson/avatar")
+        
+    }
+    
+    func refSecondPersonAvatar() {
+        threadRef = Database.database().reference(withPath: "couples/\(self.userInfo.coupleId)/coupleConfig/firstPerson/avatar")
+    }
+    
+    func refFirstPersonName(name: String) {
+        threadRef = Database.database().reference(withPath: "couples/\(self.userInfo.coupleId)/coupleConfig/firstPerson/name")
+        
+        threadRef.setValue(name)
+    }
+    
+    func refSecondPersonName(name: String) {
+        threadRef = Database.database().reference(withPath: "couples/\(self.userInfo.coupleId)/coupleConfig/firstPerson/name")
+        
+        threadRef.setValue(name)
+    }
+    
+    func refBackground() {
+        threadRef = Database.database().reference(withPath: "couples/\(self.userInfo.coupleId)/coupleConfig/background")
+        
     }
 }
