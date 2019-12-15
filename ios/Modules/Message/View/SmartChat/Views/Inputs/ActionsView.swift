@@ -12,6 +12,7 @@ import FontAwesome_swift
 protocol ActionViewDelegate: AnyObject {
     func actionView(onOpenCamera actionView: ActionsView)
     func actionView(onOpenGallery actionView: ActionsView)
+    func actionView(onOpenMicro actionView: ActionsView)
     func actionView(onStateChanged actionView: ActionsView)
 }
 
@@ -80,7 +81,9 @@ class ActionsView: UIView {
     }
     
     func initActions() {
+        cameraButton.addTarget(self, action: #selector(onCameraButtonTouchUpInside), for: [.touchUpInside])
         galleryButton.addTarget(self, action: #selector(onGalleryButtonTouchUpInside), for: [.touchUpInside])
+        microButton.addTarget(self, action: #selector(onMicroButtonTouchUpInside), for: [.touchUpInside])
         expandButton.addTarget(self, action: #selector(expand), for: [.touchUpInside])
     }
     
@@ -96,6 +99,14 @@ class ActionsView: UIView {
     
     @objc func expand() {
         self.state = .expand
+    }
+    
+    @objc func onCameraButtonTouchUpInside() {
+        delegate?.actionView(onOpenCamera: self)
+    }
+    
+    @objc func onMicroButtonTouchUpInside() {
+        delegate?.actionView(onOpenMicro: self)
     }
     
     @objc func onGalleryButtonTouchUpInside() {

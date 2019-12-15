@@ -13,6 +13,10 @@ protocol SmartChatDelegate: AnyObject {
     func smartChat(onSendMessage type: MessageType, content: String)
     
     func smartChat(onSendImage data: Data)
+    
+    func smartChat(onOpenMicro smartChat: SmartChat)
+    
+    func smartChat(onRequestOpenCamera smartChat: SmartChat)
 }
 
 class SmartChat: UIView {
@@ -67,7 +71,6 @@ class SmartChat: UIView {
     func reloadWithMessages(_ messages: [SCMessage]) {
         messageTableView.messages = messages
         messageTableView.tableView.reloadData()
-        messageTableView.forceScrollToBottom()
     }
     
     func addMessage(_ message: SCMessage) {
@@ -86,6 +89,14 @@ extension SmartChat: InputToolBarDelegate {
     
     func inputToolBar(onSendImage data: Data) {
         delegate?.smartChat(onSendImage: data)
+    }
+    
+    func inputToolBar(onRequestOpenCamera inputToolBar: InputToolBar) {
+        delegate?.smartChat(onRequestOpenCamera: self)
+    }
+    
+    func inputToolBar(onOpenMicro inputToolBar: InputToolBar) {
+        delegate?.smartChat(onOpenMicro: self)
     }
 }
 

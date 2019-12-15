@@ -42,7 +42,7 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.tabBarController?.tabBar.isHidden = false
+
     }
     
     func settupNavigation() {
@@ -115,6 +115,21 @@ extension MessageViewController: SmartChatDelegate {
     func smartChat(onSendImage data: Data) {
         viewModel.sendImage(data: data)
     }
+    
+    func smartChat(onRequestOpenCamera smartChat: SmartChat) {
+        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
+            presentAlert(title: "Oops!", message: "Sorry, Camera is unavailabe now!", delegate: nil)
+            return
+        }
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .camera
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    func smartChat(onOpenMicro smartChat: SmartChat) {
+        presentAlert(title: "Oops!", message: "Sorry, we are not support for this feature now!", delegate: nil)
+    }
 }
 
 extension MessageViewController: MessageViewModelDelegate {
@@ -124,5 +139,19 @@ extension MessageViewController: MessageViewModelDelegate {
     
     func messageViewModel(didAddMessage viewModel: MessageViewModelProtocol, message: SCMessage) {
         smartChat.addMessage(message)
+    }
+}
+
+extension MessageViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        guard let imageData = (info[UIImagePickerController.InfoKey.originalImage] as? UIImage)?.jpegData(compressionQuality: 0.5) else {
+            return
+        }
+        viewModel.sendImage(data: imageData)
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
 }

@@ -74,6 +74,10 @@
 		B6559E75239A978B00FD6893 /* LocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6559E74239A978B00FD6893 /* LocationServices.swift */; };
 		B67252272397FC1E00E13339 /* RemoteMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67252262397FC1E00E13339 /* RemoteMessage.swift */; };
 		B682021823A5D44F00E32F5F /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B682021723A5D44F00E32F5F /* CircleButton.swift */; };
+		B682021A23A6171100E32F5F /* MessageAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B682021923A6171100E32F5F /* MessageAlertViewController.swift */; };
+		B682021C23A618FD00E32F5F /* UIViewControllerExts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B682021B23A618FD00E32F5F /* UIViewControllerExts.swift */; };
+		B682021E23A62AFE00E32F5F /* RNMessageAlertBridges.swift in Sources */ = {isa = PBXBuildFile; fileRef = B682021D23A62AFE00E32F5F /* RNMessageAlertBridges.swift */; };
+		B682022123A62B2A00E32F5F /* RNMessageAlertBridges.m in Sources */ = {isa = PBXBuildFile; fileRef = B682022023A62B2A00E32F5F /* RNMessageAlertBridges.m */; };
 		B688687A23A5104300FB155D /* RNUserExts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B688687923A5104300FB155D /* RNUserExts.swift */; };
 		B688687C23A5159E00FB155D /* RNUserDataBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B688687B23A5159E00FB155D /* RNUserDataBridge.m */; };
 		B68CD034239B3FDC000BA1D8 /* LocationNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68CD033239B3FDC000BA1D8 /* LocationNavigator.swift */; };
@@ -223,6 +227,10 @@
 		B6559E74239A978B00FD6893 /* LocationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServices.swift; sourceTree = "<group>"; };
 		B67252262397FC1E00E13339 /* RemoteMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMessage.swift; sourceTree = "<group>"; };
 		B682021723A5D44F00E32F5F /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
+		B682021923A6171100E32F5F /* MessageAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAlertViewController.swift; sourceTree = "<group>"; };
+		B682021B23A618FD00E32F5F /* UIViewControllerExts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExts.swift; sourceTree = "<group>"; };
+		B682021D23A62AFE00E32F5F /* RNMessageAlertBridges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNMessageAlertBridges.swift; sourceTree = "<group>"; };
+		B682022023A62B2A00E32F5F /* RNMessageAlertBridges.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNMessageAlertBridges.m; sourceTree = "<group>"; };
 		B688687923A5104300FB155D /* RNUserExts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNUserExts.swift; sourceTree = "<group>"; };
 		B688687B23A5159E00FB155D /* RNUserDataBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNUserDataBridge.m; sourceTree = "<group>"; };
 		B68CD033239B3FDC000BA1D8 /* LocationNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationNavigator.swift; sourceTree = "<group>"; };
@@ -523,6 +531,7 @@
 				46B83CA623867E990040D1F1 /* DateExts.swift */,
 				B68CD03C239BF488000BA1D8 /* UIImage.swift */,
 				B690E673239CA07700C418A7 /* UIButton.swift */,
+				B682021B23A618FD00E32F5F /* UIViewControllerExts.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -543,11 +552,13 @@
 		7F5D1C1E236FBD5A005A4961 /* Control */ = {
 			isa = PBXGroup;
 			children = (
+				B682021F23A62B0600E32F5F /* RNMessageAlert */,
 				B6E2E2EC2362F561001046E5 /* Avatar.swift */,
 				B690E66E239C9DB500C418A7 /* CollectionEmptyView.swift */,
 				B690E675239CA23C00C418A7 /* BaseButton.swift */,
 				B690E67D239CF04000C418A7 /* RCTViewController.swift */,
 				B682021723A5D44F00E32F5F /* CircleButton.swift */,
+				B682021923A6171100E32F5F /* MessageAlertViewController.swift */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -863,6 +874,15 @@
 				B68CD035239B8A75000BA1D8 /* LoverLocationViewer.swift */,
 			);
 			path = Location;
+			sourceTree = "<group>";
+		};
+		B682021F23A62B0600E32F5F /* RNMessageAlert */ = {
+			isa = PBXGroup;
+			children = (
+				B682021D23A62AFE00E32F5F /* RNMessageAlertBridges.swift */,
+				B682022023A62B2A00E32F5F /* RNMessageAlertBridges.m */,
+			);
+			path = RNMessageAlert;
 			sourceTree = "<group>";
 		};
 		B68CD037239B95B6000BA1D8 /* EmojiTable */ = {
@@ -1529,6 +1549,7 @@
 				B607DB332399523E00C7509F /* MapAnotation.swift in Sources */,
 				46B83CA723867E990040D1F1 /* DateExts.swift in Sources */,
 				7FB507DD236FCB3400A00CF6 /* LoadingViewController.swift in Sources */,
+				B682021C23A618FD00E32F5F /* UIViewControllerExts.swift in Sources */,
 				B68E245823922C860014A53E /* MessageRepository.swift in Sources */,
 				7F5D1C49236FC39C005A4961 /* MainTabBarViewModel.swift in Sources */,
 				46C46DCD23A1F59F00966D44 /* LoginViewModel.swift in Sources */,
@@ -1539,6 +1560,7 @@
 				B607DB3123994CC900C7509F /* LocationViewModel.swift in Sources */,
 				B68CD03B239B95E2000BA1D8 /* EmojiCell.swift in Sources */,
 				B607DB2E239949BB00C7509F /* LocationViewController.swift in Sources */,
+				B682022123A62B2A00E32F5F /* RNMessageAlertBridges.m in Sources */,
 				46BC4BD42392B61E0040E510 /* UserAPI.swift in Sources */,
 				B68E24982392712B0014A53E /* MessageViewController.swift in Sources */,
 				46C46DD423A25F2100966D44 /* SplashNavigator.swift in Sources */,
@@ -1601,9 +1623,11 @@
 				B68E248E2392712B0014A53E /* SCUser.swift in Sources */,
 				B690E680239CF53C00C418A7 /* RCTBridgeServices.swift in Sources */,
 				B682021823A5D44F00E32F5F /* CircleButton.swift in Sources */,
+				B682021E23A62AFE00E32F5F /* RNMessageAlertBridges.swift in Sources */,
 				B68E248D2392712B0014A53E /* Message.swift in Sources */,
 				7FB507DA236FCB3400A00CF6 /* LoadingNavigator.swift in Sources */,
 				B68CD039239B95D2000BA1D8 /* EmojiCollection.swift in Sources */,
+				B682021A23A6171100E32F5F /* MessageAlertViewController.swift in Sources */,
 				7FB507DC236FCB3400A00CF6 /* LoadingViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

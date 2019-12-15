@@ -14,9 +14,9 @@ class RCTViewController: UIViewController {
     
     var bridge: RCTBridge!
     
-    func initRCTView() {
+    func initRCTView(initialProperties: [String: Any] = [:]) {
         bridge = RCTBridgeServices.shared.bridge
-        view = RCTRootView(bridge: bridge, moduleName: moduleName, initialProperties: [:])
+        view = RCTRootView(bridge: bridge, moduleName: moduleName, initialProperties: initialProperties)
     }
     
 }

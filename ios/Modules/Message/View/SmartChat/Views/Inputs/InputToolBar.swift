@@ -14,6 +14,10 @@ protocol InputToolBarDelegate: AnyObject {
     func inputToolBar(onSendMessage type: MessageType, content: String)
     
     func inputToolBar(onSendImage data: Data)
+    
+    func inputToolBar(onOpenMicro inputToolBar: InputToolBar)
+    
+    func inputToolBar(onRequestOpenCamera inputToolBar: InputToolBar)
 }
 
 enum InputToolBarState {
@@ -236,15 +240,16 @@ extension InputToolBar: GalleryInputDelegate {
 
 extension InputToolBar: ActionViewDelegate {
     func actionView(onOpenCamera actionView: ActionsView) {
-        self.state = .image
-        self.endEditing(true)
+        delegate?.inputToolBar(onRequestOpenCamera: self)
+    }
+    
+    func actionView(onOpenMicro actionView: ActionsView) {
+        delegate?.inputToolBar(onOpenMicro: self)
     }
     
     func actionView(onOpenGallery actionView: ActionsView) {
-        DispatchQueue.main.async { [unowned self] in
-            self.state = .image
-            self.endEditing(true)
-        }
+        self.state = .image
+        self.endEditing(true)
     }
     
     func actionView(onStateChanged actionView: ActionsView) {
