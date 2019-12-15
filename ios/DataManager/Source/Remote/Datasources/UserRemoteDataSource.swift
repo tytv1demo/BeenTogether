@@ -11,15 +11,15 @@ import Moya
 import PromiseKit
 
 protocol UserRemoteDataSourceProtocol: AnyObject {
-    func signIn(params: UserParams) -> Promise<SignInResult>
-    func signUp(phoneNumber: String, name: String) -> Promise<Bool>
+    func signIn(params: SignInParams) -> Promise<SignInResult>
+    func signUp(params: SignUpParams) -> Promise<SignInResult>
     func logout() -> Promise<Any>
     func getUserProfile() -> Promise<User>
 }
 
 class UserRemoteDataSource: UserRemoteDataSourceProtocol {
     
-    func signIn(params: UserParams) -> Promise<SignInResult> {
+    func signIn(params: SignInParams) -> Promise<SignInResult> {
         return Promise<SignInResult> { seal in
             todoProvider.request(MultiTarget(UserAPI.signIn(userParams: params))) { (result) in
                 switch result {
@@ -41,18 +41,18 @@ class UserRemoteDataSource: UserRemoteDataSourceProtocol {
         }
     }
     
-    func signUp(phoneNumber: String, name: String) -> Promise<Bool> {
-        return Promise<Bool> { seal in
-            todoProvider.request(MultiTarget(UserAPI.signUp(phoneNumber: phoneNumber, name: name))) { (result) in
+    func signUp(params: SignUpParams) -> Promise<SignInResult> {
+        return Promise<SignInResult> { seal in
+            todoProvider.request(MultiTarget(UserAPI.signUp(signUpParams: params))) { (result) in
                 switch result {
                 case let .success(response):
                     do {
                         let filteredResponse = try response.filterSuccessfulStatusCodes()
-                        guard let _ = try? JSONDecoder().decode(BaseResult<SignInResult>.self, from: filteredResponse.data) else {
+                        guard let result = try? JSONDecoder().decode(BaseResult<SignInResult>.self, from: filteredResponse.data) else {
                             seal.reject(NSError(domain: "", code: 0, userInfo: nil))
                             return
                         }
-                        seal.fulfill(true)
+                        seal.fulfill(result.data)
                     } catch let error {
                         seal.reject(error)
                     }

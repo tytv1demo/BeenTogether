@@ -33,10 +33,6 @@ class HomeViewModel: NSObject, HomeViewModelProtocol {
 extension HomeViewModel {
     
     var dateCountedString: String {
-        if dateCouted == 0 {
-            return "0 day"
-        }
-        
         let unitString = dateCouted > 1 ? " days" : " day"
         return String(dateCouted) + unitString
     }

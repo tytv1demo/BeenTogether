@@ -130,7 +130,7 @@
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="GMN-G4-5l9"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                                <state key="normal" title="SIGN IN">
+                                                <state key="normal" title="VERIFY PHONE NUMBER">
                                                     <color key="titleColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                 </state>
                                                 <connections>

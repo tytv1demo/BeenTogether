@@ -11,15 +11,15 @@ import PromiseKit
 
 protocol UserRepositoryProtocol: AnyObject {
     func getUserProfile() -> Promise<User>
-    func signIn(params: UserParams) -> Promise<SignInResult>
-    func signUp(phoneNumber: String, name: String) -> Promise<Bool>
+    func signIn(params: SignInParams) -> Promise<SignInResult>
+    func signUp(params: SignUpParams) -> Promise<SignInResult>
 }
 
 class UserRepository: UserRepositoryProtocol {
     
     var userRemoteDataSource = UserRemoteDataSource()
     
-    func signIn(params: UserParams) -> Promise<SignInResult> {
+    func signIn(params: SignInParams) -> Promise<SignInResult> {
         return Promise<SignInResult> { seal in
             userRemoteDataSource
                 .signIn(params: params)
@@ -29,12 +29,12 @@ class UserRepository: UserRepositoryProtocol {
         }
     }
     
-    func signUp(phoneNumber: String, name: String) -> Promise<Bool> {
-        return Promise<Bool> { seal in
+    func signUp(params: SignUpParams) -> Promise<SignInResult> {
+        return Promise<SignInResult> { seal in
             userRemoteDataSource
-                .signUp(phoneNumber: phoneNumber, name: name)
-                .done { (_) in
-                    seal.fulfill(true)
+                .signUp(params: params)
+                .done { (user) in
+                    seal.fulfill(user)
             }.catch(seal.reject(_:))
         }
     }

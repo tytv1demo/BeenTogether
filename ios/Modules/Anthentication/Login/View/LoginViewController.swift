@@ -25,7 +25,6 @@ class LoginViewController: UIViewController {
     var userRepository = UserRepository()
     var loginViewModel: LoginViewModel!
     var createVC: CreateViewController!
-    var userDefault = UserDefaults.standard
     
     // MARK: - Life Cycle
     
@@ -98,9 +97,10 @@ class LoginViewController: UIViewController {
             if err == nil {
                 guard let verifyID = verifyID else { return }
                 self.verifyID = verifyID
+                self.signInButton.setTitle("SIGN IN", for: .normal)
                 self.showOTPView()
             } else {
-                print("Unable to get verify code from Firebase!")
+                self.showAlertWithOneOption(title: "Oops!", message: "Unable to get OTP code!", option: "OK")
             }
         }
     }
@@ -109,28 +109,32 @@ class LoginViewController: UIViewController {
         guard let phoneNumber = phoneNumberTextField.text else { return }
         guard let otpCode = otpTextField.text else { return }
         
-        let firebaseToken = ["key": "self.verifyID", "code": "otpCode"]
-        let userParam = UserParams(phoneNumber: phoneNumber, firebaseToken: firebaseToken)
+        let firebaseToken = ["key": self.verifyID, "code": otpCode]
+        let userParam = SignInParams(phoneNumber: phoneNumber, firebaseToken: firebaseToken)
         
         loginViewModel.signIn(with: userParam).done { (canLogin) in
             if canLogin {
                 self.goToHomeScreen()
             }
-        }.catch({ (err) in
-            print(err)
+        }.catch({ (_) in
+            self.showAlertWithOneOption(title: "Oops!", message: "Unable to sign in!", option: "OK")
         })
     }
     
     // MARK: - Actions
     
     @IBAction func signInButtonDidTap(_ sender: Any) {
-        getOTPCode()
-//        self.goToHomeScreen()
+//        if signInButton.titleLabel?.text == "SIGN IN" {
+//            signIn()
+//        } else {
+//            getOTPCode()
+//        }
+        
+        signIn()
     }
     
     @IBAction func createAccountButtonDidTap(_ sender: Any) {
         self.goToCreateScreen()
-//        signIn()
     }
 }
 
@@ -143,5 +147,14 @@ extension LoginViewController: UITextFieldDelegate {
             isOTPViewHidden = true
             otpView.isHidden = true
         }
+    }
+}
+
+extension LoginViewController {
+    func showAlertWithOneOption(title: String, message: String, option: String) {
+        let actionSheet = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        actionSheet.addAction(UIAlertAction(title: option, style: .default, handler: nil))
+        
+        self.present(actionSheet, animated: true, completion: nil)
     }
 }

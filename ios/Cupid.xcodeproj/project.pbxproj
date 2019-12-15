@@ -16,6 +16,8 @@
 		2DCD954D1E0B4F2C00145EB5 /* BeenTogetherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BeenTogetherTests.m */; };
 		460F74B0239DF8CB0043A7DD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F74AE239DF8CB0043A7DD /* HomeViewController.swift */; };
 		460F74B1239DF8CB0043A7DD /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 460F74AF239DF8CB0043A7DD /* Home.storyboard */; };
+		4646BE7723A5F7C70092E8A7 /* CreateNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4646BE7623A5F7C70092E8A7 /* CreateNavigator.swift */; };
+		4646BE7923A5F7DD0092E8A7 /* CreateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4646BE7823A5F7DD0092E8A7 /* CreateViewModel.swift */; };
 		4693BF46239B4BBF00EA2EA5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4693BF45239B4BBF00EA2EA5 /* User.swift */; };
 		46AC2FAA23A36A3A00620088 /* LoginNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AC2FA923A36A3A00620088 /* LoginNavigator.swift */; };
 		46AC2FB223A36DD600620088 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AC2FB123A36DD600620088 /* CreateViewController.swift */; };
@@ -160,6 +162,8 @@
 		37FFA031CA3C4A6B260DB914 /* Pods-BeenTogether-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogether-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-BeenTogether-tvOSTests/Pods-BeenTogether-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		460F74AE239DF8CB0043A7DD /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Modules/Home/HomeViewController.swift; sourceTree = SOURCE_ROOT; };
 		460F74AF239DF8CB0043A7DD /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Home.storyboard; path = Modules/Home/Home.storyboard; sourceTree = SOURCE_ROOT; };
+		4646BE7623A5F7C70092E8A7 /* CreateNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNavigator.swift; sourceTree = "<group>"; };
+		4646BE7823A5F7DD0092E8A7 /* CreateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewModel.swift; sourceTree = "<group>"; };
 		4693BF45239B4BBF00EA2EA5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		46AC2FA923A36A3A00620088 /* LoginNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNavigator.swift; sourceTree = "<group>"; };
 		46AC2FB123A36DD600620088 /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
@@ -386,6 +390,7 @@
 		46AC2FAF23A36D4E00620088 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4646BE7823A5F7DD0092E8A7 /* CreateViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -393,6 +398,7 @@
 		46AC2FB023A36D5D00620088 /* Route */ = {
 			isa = PBXGroup;
 			children = (
+				4646BE7623A5F7C70092E8A7 /* CreateNavigator.swift */,
 			);
 			path = Route;
 			sourceTree = "<group>";
@@ -1557,6 +1563,7 @@
 				7FB507DD236FCB3400A00CF6 /* LoadingViewController.swift in Sources */,
 				46AC2FB223A36DD600620088 /* CreateViewController.swift in Sources */,
 				B68E245823922C860014A53E /* MessageRepository.swift in Sources */,
+				4646BE7723A5F7C70092E8A7 /* CreateNavigator.swift in Sources */,
 				7F5D1C49236FC39C005A4961 /* MainTabBarViewModel.swift in Sources */,
 				46C46DCD23A1F59F00966D44 /* LoginViewModel.swift in Sources */,
 				B6E2E2E32362A7F7001046E5 /* UIViewExts.swift in Sources */,
@@ -1626,6 +1633,7 @@
 				B688687C23A5159E00FB155D /* RNUserDataBridge.m in Sources */,
 				B6E2E2E72362AB73001046E5 /* UIColorExts.swift in Sources */,
 				7FF7E78F236FD722006AC2BF /* CollectionViewExt.swift in Sources */,
+				4646BE7923A5F7DD0092E8A7 /* CreateViewModel.swift in Sources */,
 				7F5D1C71236FC441005A4961 /* DatingViewModel.swift in Sources */,
 				B68E248E2392712B0014A53E /* SCUser.swift in Sources */,
 				B690E680239CF53C00C418A7 /* RCTBridgeServices.swift in Sources */,
