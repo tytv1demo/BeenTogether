@@ -25,6 +25,7 @@ public enum UserAPI {
     case signUp(signUpParams: SignUpParams)
     case logout
     case getUserProfile
+    case updateDeviceToken(token: String)
 }
 
 extension UserAPI: AuthorizedTargetType {
@@ -47,12 +48,14 @@ extension UserAPI: AuthorizedTargetType {
             return "/logout"
         case .getUserProfile:
             return "/user/profile"
+        case .updateDeviceToken:
+            return "/user/device-token"
         }
     }
     
     public var method: Moya.Method {
         switch self {
-        case .signIn:
+        case .signIn, .updateDeviceToken:
             return .post
         case .signUp:
             return .post
@@ -86,6 +89,10 @@ extension UserAPI: AuthorizedTargetType {
             return .requestPlain
         case .getUserProfile:
             return .requestPlain
+        case .updateDeviceToken(let token):
+            var params = [String: Any]()
+            params["token"] = token
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
         }
     }
     

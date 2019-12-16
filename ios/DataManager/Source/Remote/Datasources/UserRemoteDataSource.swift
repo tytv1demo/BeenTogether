@@ -15,6 +15,7 @@ protocol UserRemoteDataSourceProtocol: AnyObject {
     func signUp(params: SignUpParams) -> Promise<SignInResult>
     func logout() -> Promise<Any>
     func getUserProfile() -> Promise<User>
+    func updateDeviceToken(token: String) -> Promise<Bool>
 }
 
 class UserRemoteDataSource: UserRemoteDataSourceProtocol {
@@ -82,6 +83,24 @@ class UserRemoteDataSource: UserRemoteDataSourceProtocol {
                         }
                         guard let userInfo = result.data.userInfo else { return }
                         seal.fulfill(userInfo)
+                    } catch let error {
+                        seal.reject(error)
+                    }
+                case let .failure(error):
+                    seal.reject(error)
+                }
+            }
+        }
+    }
+    
+    func updateDeviceToken(token: String) -> Promise<Bool> {
+        return Promise { seal in
+            todoProvider.request(MultiTarget(UserAPI.updateDeviceToken(token: token))) { (result) in
+                switch result {
+                case let .success(response):
+                    do {
+                        _ = try response.filterSuccessfulStatusCodes()
+                        seal.fulfill(true)
                     } catch let error {
                         seal.reject(error)
                     }

@@ -41,6 +41,7 @@ class AppUserData {
                     .done { (user) in
                         self.userInfo = user
                         seal.fulfill(true)
+                        NotificationServices.shared.registerForPushNotifications()
                 }.catch { (_) in
                     seal.fulfill(false)
                 }

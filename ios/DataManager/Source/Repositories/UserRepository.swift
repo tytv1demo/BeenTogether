@@ -13,6 +13,7 @@ protocol UserRepositoryProtocol: AnyObject {
     func getUserProfile() -> Promise<User>
     func signIn(params: SignInParams) -> Promise<SignInResult>
     func signUp(params: SignUpParams) -> Promise<SignInResult>
+    func updateDeviceToken(token: String) -> Promise<Bool>
 }
 
 class UserRepository: UserRepositoryProtocol {
@@ -46,6 +47,16 @@ class UserRepository: UserRepositoryProtocol {
                 .done { (user) in
                     seal.fulfill(user)
             }.catch(seal.reject(_:))
+        }
+    }
+    
+    func updateDeviceToken(token: String) -> Promise<Bool> {
+        return Promise<Bool> { seal in
+            userRemoteDataSource
+                .updateDeviceToken(token: token)
+                .done { (success) in
+                    seal.fulfill(success)
+            }.catch(seal.reject)
         }
     }
 }

@@ -25,4 +25,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         return true
     }
     
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        NotificationServices.shared.notificationServices(application, didFailToRegisterForRemoteNotificationsWithError: error)
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        NotificationServices.shared.notificationServices(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+    }
 }
