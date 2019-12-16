@@ -9,7 +9,7 @@
 import UIKit
 
 enum AddEventCell {
-    case Name, Caption, Location, StartDate, EndDate, Image
+    case name, caption, location, startDate, endDate, image
 }
 
 class AddEventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -19,7 +19,7 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var addingTable: UITableView!
     @IBOutlet weak var postButton: UIButton!
     
-    let cellArray: [AddEventCell] = [.Name, .Caption, .Location, .StartDate, .EndDate, .Image]
+    let cellArray: [AddEventCell] = [.name, .caption, .location, .startDate, .endDate, .image]
     
     // MARK: - Life cycle
     
@@ -54,7 +54,7 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch cellArray[indexPath.row] {
-        case .Name:
+        case .name:
             return UITableViewCell()
         default:
             return UITableViewCell()
