@@ -31,6 +31,8 @@
 		46C46DCF23A2496300966D44 /* AppUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C46DCE23A2496300966D44 /* AppUserData.swift */; };
 		46C46DD223A259F100966D44 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C46DD123A259F100966D44 /* SplashViewController.swift */; };
 		46C46DD423A25F2100966D44 /* SplashNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C46DD323A25F2100966D44 /* SplashNavigator.swift */; };
+		46E7584623A8DF43007A08CA /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E7584423A8DF43007A08CA /* PopupViewController.swift */; };
+		46E7584723A8DF43007A08CA /* PopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46E7584523A8DF43007A08CA /* PopupViewController.xib */; };
 		5EE97E81A77DC1E07841BFF2 /* libPods-CupidTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE1A2B31046312B7E5CE0C22 /* libPods-CupidTests.a */; };
 		6F17F979239AAE54007ECF45 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F17F978239AAE54007ECF45 /* EventTableViewCell.swift */; };
 		6F17F97A239AAE87007ECF45 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F17F976239AADFC007ECF45 /* EventTableViewCell.xib */; };
@@ -189,6 +191,8 @@
 		46C46DCE23A2496300966D44 /* AppUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUserData.swift; sourceTree = "<group>"; };
 		46C46DD123A259F100966D44 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		46C46DD323A25F2100966D44 /* SplashNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashNavigator.swift; sourceTree = "<group>"; };
+		46E7584423A8DF43007A08CA /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = SOURCE_ROOT; };
+		46E7584523A8DF43007A08CA /* PopupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupViewController.xib; sourceTree = SOURCE_ROOT; };
 		4C782350347DE81685E9C150 /* Pods-BeenTogether.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogether.debug.xcconfig"; path = "Target Support Files/Pods-BeenTogether/Pods-BeenTogether.debug.xcconfig"; sourceTree = "<group>"; };
 		50F40441CB0C3AB88992F5E4 /* Pods-CupidTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CupidTests.release.xcconfig"; path = "Target Support Files/Pods-CupidTests/Pods-CupidTests.release.xcconfig"; sourceTree = "<group>"; };
 		5CC0C1EB72A73FDCB598FAC9 /* Pods-Cupid-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cupid-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-Cupid-tvOSTests/Pods-Cupid-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -434,6 +438,8 @@
 			children = (
 				460F74AF239DF8CB0043A7DD /* Home.storyboard */,
 				460F74AE239DF8CB0043A7DD /* HomeViewController.swift */,
+				46E7584423A8DF43007A08CA /* PopupViewController.swift */,
+				46E7584523A8DF43007A08CA /* PopupViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1289,6 +1295,7 @@
 				7F5D1C4A236FC39C005A4961 /* MainTabBar.storyboard in Resources */,
 				7F5D1C5D236FC429005A4961 /* Task.storyboard in Resources */,
 				7F5D1C34236FBE7C005A4961 /* LaunchScreen.xib in Resources */,
+				46E7584723A8DF43007A08CA /* PopupViewController.xib in Resources */,
 				6F17F97A239AAE87007ECF45 /* EventTableViewCell.xib in Resources */,
 				6F846FD3239570C1008C03D3 /* Event.storyboard in Resources */,
 				7FF7E7A2236FDA09006AC2BF /* Localizable.strings in Resources */,
@@ -1660,6 +1667,7 @@
 				B68E24992392712B0014A53E /* MessageNavigator.swift in Sources */,
 				B68E24972392712B0014A53E /* MessageView.swift in Sources */,
 				B6B9D121239559F0003527B4 /* MessageStatusIndicator.swift in Sources */,
+				46E7584623A8DF43007A08CA /* PopupViewController.swift in Sources */,
 				7F5D1C5F236FC429005A4961 /* TaskViewController.swift in Sources */,
 				B6E2E2ED2362F561001046E5 /* Avatar.swift in Sources */,
 				B688687A23A5104300FB155D /* RNUserExts.swift in Sources */,

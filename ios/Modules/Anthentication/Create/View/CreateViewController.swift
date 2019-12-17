@@ -97,7 +97,7 @@ class CreateViewController: UIViewController {
                 self.showOTPView()
                 self.createButton.setTitle("SIGN UP", for: .normal)
             } else {
-                self.showAlertWithOneOption(title: "Oops!", message: "Unable to get OTP code!", option: "OK")
+                self.showAlertWithOneOption(title: "Oops!", message: "Unable to get OTP code!", optionTitle: "OK")
             }
         }
     }
@@ -115,7 +115,7 @@ class CreateViewController: UIViewController {
                 self.goToHomeScreen()
             }
         }.catch({ (_) in
-            self.showAlertWithOneOption(title: "Oops!", message: "Unable to sign up!", option: "OK")
+            self.showAlertWithOneOption(title: "Oops!", message: "Unable to sign up!", optionTitle: "OK")
         })
     }
     
@@ -143,14 +143,5 @@ extension CreateViewController: UITextFieldDelegate {
             otpView.isHidden = true
             stackViewHeight.constant = isOTPViewHidden ? 124 : 186
         }
-    }
-}
-
-extension CreateViewController {
-    func showAlertWithOneOption(title: String, message: String, option: String) {
-        let actionSheet = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        actionSheet.addAction(UIAlertAction(title: option, style: .default, handler: nil))
-        
-        self.present(actionSheet, animated: true, completion: nil)
     }
 }

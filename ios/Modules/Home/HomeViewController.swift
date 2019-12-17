@@ -58,6 +58,14 @@ class HomeViewController: UIViewController {
         addTapGestureForLabel(rightNameLabel)
     }
     
+    func updateLabel(name: String, isLeft: Bool) {
+        if isLeft {
+            leftNameLabel.text = name
+        } else {
+            rightNameLabel.text = name
+        }
+    }
+    
     func setupBackgroundImage() {
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "homeBackground.png")
@@ -110,7 +118,15 @@ class HomeViewController: UIViewController {
     }
     
     @objc func presentChangeNamePopUp() {
-        print("HIHI")
+        presentPopup()
+    }
+    
+    func presentPopup() {
+        let popOverVC = PopupViewController(nibName: "PopupViewController", bundle: nil)
+        popOverVC.modalPresentationStyle = .overFullScreen
+        popOverVC.modalTransitionStyle = .crossDissolve
+        
+        present(popOverVC, animated: true, completion: nil)
     }
     
     func addTapGestureForView(_ view: UIView) {
