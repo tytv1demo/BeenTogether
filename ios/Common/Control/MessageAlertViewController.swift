@@ -44,5 +44,11 @@ extension UIViewController {
         alertViewController.view.backgroundColor = .clear
         RNMessageAlertBridges.shared.alertVCMap["test"] = alertViewController
     }
+    
+    func showAlertWithOneOption(title: String, message: String, optionTitle: String) {
+        let actionSheet = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        actionSheet.addAction(UIAlertAction(title: optionTitle, style: .default, handler: nil))
+        
+        self.present(actionSheet, animated: true, completion: nil)
+    }
 }
-

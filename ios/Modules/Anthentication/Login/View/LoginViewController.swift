@@ -100,7 +100,7 @@ class LoginViewController: UIViewController {
                 self.signInButton.setTitle("SIGN IN", for: .normal)
                 self.showOTPView()
             } else {
-                self.showAlertWithOneOption(title: "Oops!", message: "Unable to get OTP code!", option: "OK")
+                self.showAlertWithOneOption(title: "Oops!", message: "Unable to get OTP code!", optionTitle: "OK")
             }
         }
     }
@@ -117,7 +117,7 @@ class LoginViewController: UIViewController {
                 self.goToHomeScreen()
             }
         }.catch({ (_) in
-            self.showAlertWithOneOption(title: "Oops!", message: "Unable to sign in!", option: "OK")
+            self.showAlertWithOneOption(title: "Oops!", message: "Unable to sign in!", optionTitle: "OK")
         })
     }
     
@@ -147,14 +147,5 @@ extension LoginViewController: UITextFieldDelegate {
             isOTPViewHidden = true
             otpView.isHidden = true
         }
-    }
-}
-
-extension LoginViewController {
-    func showAlertWithOneOption(title: String, message: String, option: String) {
-        let actionSheet = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        actionSheet.addAction(UIAlertAction(title: option, style: .default, handler: nil))
-        
-        self.present(actionSheet, animated: true, completion: nil)
     }
 }

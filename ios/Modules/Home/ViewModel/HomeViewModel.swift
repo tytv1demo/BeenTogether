@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import PromiseKit
 
 protocol HomeViewModelProtocol: AnyObject {
     var userInfo: User! { get set }
@@ -85,29 +86,27 @@ extension HomeViewModel {
         }
     }
     
-    func refFirstPersonAvatar() {
-        threadRef = Database.database().reference(withPath: "couples/\(self.userInfo.coupleId)/coupleConfig/firstPerson/avatar")
-        
+    func refPersonAvatar(avatarURL: String, person: String) -> Promise<Bool> {
+        return Promise<Bool> { _ in
+            threadRef = Database.database().reference(withPath: "couples/\(self.userInfo.coupleId)/coupleConfig/\(person)/avatar")
+            
+            threadRef.setValue(avatarURL)
+        }
     }
     
-    func refSecondPersonAvatar() {
-        threadRef = Database.database().reference(withPath: "couples/\(self.userInfo.coupleId)/coupleConfig/firstPerson/avatar")
+    func refPersonName(name: String, person: String) -> Promise<Bool> {
+        return Promise<Bool> { _ in
+            threadRef = Database.database().reference(withPath: "couples/\(self.userInfo.coupleId)/coupleConfig/\(person)/name")
+            
+            threadRef.setValue(name)
+        }
     }
     
-    func refFirstPersonName(name: String) {
-        threadRef = Database.database().reference(withPath: "couples/\(self.userInfo.coupleId)/coupleConfig/firstPerson/name")
-        
-        threadRef.setValue(name)
-    }
-    
-    func refSecondPersonName(name: String) {
-        threadRef = Database.database().reference(withPath: "couples/\(self.userInfo.coupleId)/coupleConfig/firstPerson/name")
-        
-        threadRef.setValue(name)
-    }
-    
-    func refBackground() {
-        threadRef = Database.database().reference(withPath: "couples/\(self.userInfo.coupleId)/coupleConfig/background")
-        
+    func refBackground(backgroudURL: String) -> Promise<Bool> {
+        return Promise<Bool> { _ in
+            threadRef = Database.database().reference(withPath: "couples/\(self.userInfo.coupleId)/coupleConfig/background")
+            
+            threadRef.setValue(backgroudURL)
+        }
     }
 }
