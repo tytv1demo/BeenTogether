@@ -11,6 +11,7 @@ import PromiseKit
 
 protocol UserRepositoryProtocol: AnyObject {
     func getUserProfile() -> Promise<User>
+    func getFriendProfile(friendId: String) -> Promise<User>
     func signIn(params: SignInParams) -> Promise<SignInResult>
     func signUp(params: SignUpParams) -> Promise<SignInResult>
     func updateDeviceToken(token: String) -> Promise<Bool>
@@ -44,6 +45,16 @@ class UserRepository: UserRepositoryProtocol {
         return Promise<User> { seal in
             userRemoteDataSource
                 .getUserProfile()
+                .done { (user) in
+                    seal.fulfill(user)
+            }.catch(seal.reject(_:))
+        }
+    }
+    
+    func getFriendProfile(friendId: String) -> Promise<User> {
+        return Promise<User> { seal in
+            userRemoteDataSource
+                .getFriendProfile(friendId: friendId)
                 .done { (user) in
                     seal.fulfill(user)
             }.catch(seal.reject(_:))

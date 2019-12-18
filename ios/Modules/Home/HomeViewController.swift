@@ -9,6 +9,10 @@
 import Foundation
 import SnapKit
 
+protocol HomViewControllerDelegate: AnyObject {
+    func updateNameLabelCallBack(name: String)
+}
+
 class HomeViewController: UIViewController {
     
     // MARK: Outlets
@@ -28,8 +32,10 @@ class HomeViewController: UIViewController {
     // MARK: Properties
     
     var selectedImageView: UIImageView?
+    var selectedLabel: UILabel?
     var userRepository = UserRepository()
     var homeViewModel: HomeViewModel!
+    var isLeft: Bool?
     
     // MARK: Life Cycle
     
@@ -58,14 +64,6 @@ class HomeViewController: UIViewController {
         addTapGestureForLabel(rightNameLabel)
     }
     
-    func updateLabel(name: String, isLeft: Bool) {
-        if isLeft {
-            leftNameLabel.text = name
-        } else {
-            rightNameLabel.text = name
-        }
-    }
-    
     func setupBackgroundImage() {
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "homeBackground.png")
@@ -91,6 +89,8 @@ class HomeViewController: UIViewController {
         dateCoutingLabel.text = homeViewModel.dateCountedString
         leftDaysLabel.text = String(homeViewModel.getLeftRightNumbers().leftNumber)
         rightDayLabel.text = String(homeViewModel.getLeftRightNumbers().rightNumber)
+        leftNameLabel.text = AppUserData.shared.userInfo.name
+        rightNameLabel.text = AppUserData.shared.friendInfo?.name ?? "Person 2"
     }
     
     func setupAvatar() {
@@ -113,19 +113,29 @@ class HomeViewController: UIViewController {
     func addTapGestureForLabel(_ label: UILabel) {
         label.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer()
-        tapGesture.addTarget(self, action: #selector(presentChangeNamePopUp))
+        tapGesture.addTarget(self, action: #selector(presentChangeNamePopUp(_:)))
         label.addGestureRecognizer(tapGesture)
     }
     
-    @objc func presentChangeNamePopUp() {
-        presentPopup()
+    @objc func presentChangeNamePopUp(_ sender: UITapGestureRecognizer) {
+        guard let label = sender.view as? UILabel  else { return }
+        
+        selectedLabel = label
+        presentPopup(of: selectedLabel!)
     }
     
-    func presentPopup() {
+    func presentPopup(of lable: UILabel) {
         let popOverVC = PopupViewController(nibName: "PopupViewController", bundle: nil)
         popOverVC.modalPresentationStyle = .overFullScreen
         popOverVC.modalTransitionStyle = .crossDissolve
+        popOverVC.delegate = self
         
+        if selectedLabel == leftNameLabel {
+            popOverVC.isLeft = true
+        } else if selectedLabel == rightNameLabel {
+            popOverVC.isLeft = false
+        }
+    
         present(popOverVC, animated: true, completion: nil)
     }
     
@@ -184,5 +194,18 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
         picker.dismiss(animated: true, completion: {
             self.selectedImageView = nil
         })
+    }
+}
+
+// MARK: - HomViewControllerDelegate
+
+extension HomeViewController: HomViewControllerDelegate {
+    
+    func updateNameLabelCallBack(name: String) {
+        if selectedLabel == leftNameLabel {
+            leftNameLabel.text = name
+        } else if selectedLabel == rightNameLabel {
+            rightNameLabel.text = name
+        }
     }
 }

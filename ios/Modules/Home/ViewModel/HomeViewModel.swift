@@ -88,23 +88,29 @@ extension HomeViewModel {
     
     func refPersonAvatar(avatarURL: String, person: String) -> Promise<Bool> {
         return Promise<Bool> { _ in
-            threadRef = Database.database().reference(withPath: "couples/\(self.userInfo.coupleId)/coupleConfig/\(person)/avatar")
+            threadRef = Database.database().reference(withPath: "couples/\(self.userInfo.coupleId)/configs/\(person)/avatar")
             
             threadRef.setValue(avatarURL)
         }
     }
     
-    func refPersonName(name: String, person: String) -> Promise<Bool> {
-        return Promise<Bool> { _ in
-            threadRef = Database.database().reference(withPath: "couples/\(self.userInfo.coupleId)/coupleConfig/\(person)/name")
+    func refPersonName(name: String, personId: String) -> Promise<Bool> {
+        return Promise<Bool> { seal in
+            threadRef = Database.database().reference(withPath: "couples/\(self.userInfo.coupleId)/configs/\(personId)/name")
             
-            threadRef.setValue(name)
+            threadRef.setValue(name) { (err, _) in
+                if err == nil {
+                    seal.fulfill(true)
+                } else {
+                    seal.fulfill(false)
+                }
+            }
         }
     }
     
     func refBackground(backgroudURL: String) -> Promise<Bool> {
         return Promise<Bool> { _ in
-            threadRef = Database.database().reference(withPath: "couples/\(self.userInfo.coupleId)/coupleConfig/background")
+            threadRef = Database.database().reference(withPath: "couples/\(self.userInfo.coupleId)/configs/background")
             
             threadRef.setValue(backgroudURL)
         }

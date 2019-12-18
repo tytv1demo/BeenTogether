@@ -45,12 +45,37 @@ class SplashViewController: UIViewController {
     func checkSignIn() {
         _ = AppUserData.shared.checkIsSignedIn().done { (isSignedIn) in
             if isSignedIn {
-                self.goToHomeScreen()
+                let otherId = AppUserData.shared.userInfo.id
+                let coupleId = AppUserData.shared.userInfo.coupleId
+                let friendId = self.getFriendId(otherId: String(otherId), coupleId: coupleId)
+                
+                if friendId != "local" {
+                    AppUserData.shared.getFriendProfile(friendId: friendId).done { (_) in
+                        self.goToHomeScreen()
+                    }.catch { (_) in
+                        
+                    }
+                } else {
+                    AppUserData.shared.friendInfo = nil
+                    self.goToHomeScreen()
+                }
             } else {
                 self.goToLoginScreen()
             }
             self.indicatorView.stopAnimating()
         }
+    }
+
+    func getFriendId(otherId: String, coupleId: String) -> String {
+        let splitedArray = coupleId.split(separator: "_")
+        
+        for item in splitedArray {
+            if String(item) != otherId {
+                return String(item)
+            }
+        }
+        
+        return ""
     }
     
 }

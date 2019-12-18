@@ -15,6 +15,7 @@ protocol UserRemoteDataSourceProtocol: AnyObject {
     func signUp(params: SignUpParams) -> Promise<SignInResult>
     func logout() -> Promise<Any>
     func getUserProfile() -> Promise<User>
+    func getFriendProfile(friendId: String) -> Promise<User>
     func updateDeviceToken(token: String) -> Promise<Bool>
 }
 
@@ -73,6 +74,29 @@ class UserRemoteDataSource: UserRemoteDataSourceProtocol {
     func getUserProfile() -> Promise<User> {
         return Promise<User> { seal in
             todoProvider.request(MultiTarget(UserAPI.getUserProfile)) { (result) in
+                switch result {
+                case let .success(response):
+                    do {
+                        let filteredResponse = try response.filterSuccessfulStatusCodes()
+                        guard let result = try? JSONDecoder().decode(BaseResult<UserInfoResult>.self, from: filteredResponse.data) else {
+                            seal.reject(NSError(domain: "", code: 0, userInfo: nil))
+                            return
+                        }
+                        guard let userInfo = result.data.userInfo else { return }
+                        seal.fulfill(userInfo)
+                    } catch let error {
+                        seal.reject(error)
+                    }
+                case let .failure(error):
+                    seal.reject(error)
+                }
+            }
+        }
+    }
+    
+    func getFriendProfile(friendId: String) -> Promise<User> {
+        return Promise<User> { seal in
+            todoProvider.request(MultiTarget(UserAPI.getFriendProfile(friendId: friendId))) { (result) in
                 switch result {
                 case let .success(response):
                     do {
