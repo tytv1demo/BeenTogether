@@ -91,6 +91,7 @@ class MessageViewModel: NSObject, MessageViewModelProtocol {
             return
         }
         messages.append(message)
+        message.loadDataIfNeeded()
         delegate?.messageViewModel(didAddMessage: self, message: message)
         self.messages.onNext(messages)
     }

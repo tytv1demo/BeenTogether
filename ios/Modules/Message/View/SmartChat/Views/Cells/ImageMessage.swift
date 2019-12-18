@@ -106,11 +106,8 @@ class ImageMessageView: UIView, MessageView {
             .dataLoadingStatus
             .skip(1)
             .subscribe(onNext: { [weak self] (nextStatus) in
-                if self == nil {
-                    return
-                }
-                if nextStatus == .done {
-                    self!.delegate?.messageView(contentDidChange: self!)
+                if nextStatus == .done, self?.image.image == nil {
+                    self?.configImage()
                 }
             })
     }
