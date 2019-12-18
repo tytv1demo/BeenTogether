@@ -26,6 +26,9 @@ PODS:
   - Firebase/Messaging (6.12.0):
     - Firebase/CoreOnly
     - FirebaseMessaging (~> 4.1.8)
+  - Firebase/Storage (6.12.0):
+    - Firebase/CoreOnly
+    - FirebaseStorage (~> 3.4.1)
   - FirebaseAnalytics (6.1.5):
     - FirebaseCore (~> 6.3)
     - FirebaseInstanceID (~> 4.2)
@@ -72,6 +75,10 @@ PODS:
     - GoogleUtilities/Reachability (~> 6.2)
     - GoogleUtilities/UserDefaults (~> 6.2)
     - Protobuf (>= 3.9.2, ~> 3.9)
+  - FirebaseStorage (3.4.2):
+    - FirebaseAuthInterop (~> 1.0)
+    - FirebaseCore (~> 6.0)
+    - GTMSessionFetcher/Core (~> 1.1)
   - Folly (2018.10.22.00):
     - boost-for-react-native
     - DoubleConversion
@@ -363,6 +370,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Database
   - Firebase/Messaging
+  - Firebase/Storage
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - FontAwesome.swift
   - FSPagerView
@@ -419,6 +427,7 @@ SPEC REPOS:
     - FirebaseDatabase
     - FirebaseInstanceID
     - FirebaseMessaging
+    - FirebaseStorage
     - FontAwesome.swift
     - FSPagerView
     - GoogleAppMeasurement
@@ -522,6 +531,7 @@ SPEC CHECKSUMS:
   FirebaseDatabase: 963515d232ded06f36f6ce830507c94551866170
   FirebaseInstanceID: ebd2ea79ee38db0cb5f5167b17a0d387e1cc7b6e
   FirebaseMessaging: e8d71368a5c579083da02203146c953f3386d503
+  FirebaseStorage: 046abe9ac4e2a1a0e47d72f536490ffa50896632
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   FontAwesome.swift: 7938d6a03113ff3f39001bde7f50be8a0903d605
   FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
@@ -571,6 +581,6 @@ SPEC CHECKSUMS:
   Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
   YogaKit: 5d1dc899cecd5946e5a758a0c3997704a4b48d01
 
-PODFILE CHECKSUM: 92bc8e317bc3652a1d4726aff543604bd9b77a58
+PODFILE CHECKSUM: 2c09c7043f76dfc883ed1fb0da87d03bffa9b2db
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4
