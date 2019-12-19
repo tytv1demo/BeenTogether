@@ -1,7 +1,9 @@
+import { CoupleModel } from './CoupleModel';
 import { NativeModules, EventSubscription, NativeEventEmitter } from 'react-native'
 import { BehaviorSubject } from 'rxjs'
-import { UserInfo } from './User'
-import { UserInfoDidChangedPayload } from './Types';
+import { GetUserProfileResult, BaseResult, User } from './Types';
+import { UserModel } from './UserModel'
+import { ApiManager } from '@dataManager';
 
 export const ModuleName = 'RNAppUserDataBridge'
 
@@ -9,33 +11,34 @@ const BridgeModule = NativeModules[ModuleName]
 
 const ModuleEventEmitter = new NativeEventEmitter(BridgeModule)
 
+export type FetchStatus = 'INIT' | 'LOADING' | 'DONE' | 'FAIL'
+
 export class AppUserData {
-
-    static instance: AppUserData
-
-    static shared() {
-        if (!AppUserData.instance) {
-            AppUserData.instance = new AppUserData()
-        }
-        return AppUserData.instance
-    }
 
     static userInfoChangedEvent = 'userInfoChangedEvent'
 
-    userInfo: BehaviorSubject<UserInfo>
+    apiManger: ApiManager
 
-    userInfoSubscription: EventSubscription
+    userTokenSubscription: EventSubscription
 
-    constructor() {
-        this.userInfo = new BehaviorSubject<UserInfo>(BridgeModule.data.userInfo)
-        this._onUserInfoDidChange = this._onUserInfoDidChange.bind(this)
-        this.userInfoSubscription = ModuleEventEmitter.addListener(
-            BridgeModule.userInfoChangedEvent,
-            this._onUserInfoDidChange,
+    token: BehaviorSubject<string | undefined>
+
+    constructor(apiManger: ApiManager) {
+        this.apiManger = apiManger
+        this.token = new BehaviorSubject<string | undefined>(undefined)
+        this.userTokenSubscription = ModuleEventEmitter.addListener(
+            BridgeModule.userTokenChanged,
+            this.onUserTokenChanged,
         )
     }
 
-    _onUserInfoDidChange(e: UserInfoDidChangedPayload) {
-        this.userInfo.next(e.userInfo)
+    async fetchUserInfo(): Promise<User> {
+        const { data: response } = await this.apiManger.get<BaseResult<GetUserProfileResult>>('/user/profile')
+        return response.data.userInfo
+    }
+
+    onUserTokenChanged = (token: string) => {
+        this.apiManger.setToken(token)
+        this.token.next(token)
     }
 }

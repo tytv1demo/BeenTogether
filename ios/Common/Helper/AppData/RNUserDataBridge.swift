@@ -12,16 +12,16 @@ import Foundation
 class RNAppUserDataBridge: RCTEventEmitter {
     
     enum RCTEvent: String {
-        case userInfoChanged
+        case userTokenChanged
     }
     
     var hasListener: Bool = false
     
-    var userInfoObservation: NSKeyValueObservation?
+    var userTokenObservation: NSKeyValueObservation?
     
     override init() {
         super.init()
-        subscribeToUserInfoChanging()
+        subscribeUserTokenChanging()
     }
     
     
@@ -31,13 +31,13 @@ class RNAppUserDataBridge: RCTEventEmitter {
     
     override func supportedEvents() -> [String]! {
         return [
-            RCTEvent.userInfoChanged.rawValue
+            RCTEvent.userTokenChanged.rawValue
         ]
     }
     
     override func constantsToExport() -> [AnyHashable: Any]! {
         return [
-            "userInfoChangedEvent": RCTEvent.userInfoChanged.rawValue,
+            "userTokenChanged": RCTEvent.userTokenChanged.rawValue,
             "data": AppUserData.shared.toRCTValue()
         ]
     }
@@ -52,19 +52,20 @@ class RNAppUserDataBridge: RCTEventEmitter {
         hasListener = false
     }
     
-    func subscribeToUserInfoChanging() {
-        let eventName = NSNotification.Name(rawValue: AppUserData.kUserInfoChangedEventName)
-        NotificationCenter.default.addObserver(self, selector: #selector(userInfoDidChange), name: eventName, object: nil)
+    func subscribeUserTokenChanging() {
+        userTokenObservation = AppUserData.shared.observe(\.userToken) { [weak self] (_, _) in
+            self?.sendEvent(type: .userTokenChanged, body: AppUserData.shared.userToken)
+        }
     }
     
-    @objc func userInfoDidChange() {
-        sendEvent(type: .userInfoChanged, body: AppUserData.shared.toRCTValue())
+    @objc func userTokenDidChange() {
+        sendEvent(type: .userTokenChanged, body: AppUserData.shared.toRCTValue())
     }
     
     override func addListener(_ eventName: String!) {
         super.addListener(eventName)
-        if eventName == RCTEvent.userInfoChanged.rawValue {
-            sendEvent(type: .userInfoChanged, body: AppUserData.shared.toRCTValue())
+        if eventName == RCTEvent.userTokenChanged.rawValue {
+            sendEvent(type: .userTokenChanged, body: AppUserData.shared.userToken)
         }
     }
     
@@ -75,6 +76,6 @@ class RNAppUserDataBridge: RCTEventEmitter {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self)
+        userTokenObservation?.invalidate()
     }
 }

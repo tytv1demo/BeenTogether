@@ -86,6 +86,7 @@
 		B607DB3123994CC900C7509F /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B607DB3023994CC900C7509F /* LocationViewModel.swift */; };
 		B607DB332399523E00C7509F /* MapAnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B607DB322399523E00C7509F /* MapAnotation.swift */; };
 		B636B8D623A7C681003842D1 /* NotificationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B636B8D523A7C681003842D1 /* NotificationServices.swift */; };
+		B644B3C323ABB92500966370 /* PulseAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B644B3C223ABB92500966370 /* PulseAnimation.swift */; };
 		B6559E75239A978B00FD6893 /* LocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6559E74239A978B00FD6893 /* LocationServices.swift */; };
 		B67252272397FC1E00E13339 /* RemoteMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67252262397FC1E00E13339 /* RemoteMessage.swift */; };
 		B682021823A5D44F00E32F5F /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B682021723A5D44F00E32F5F /* CircleButton.swift */; };
@@ -255,6 +256,7 @@
 		B607DB322399523E00C7509F /* MapAnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnotation.swift; sourceTree = "<group>"; };
 		B636B8D323A7C26F003842D1 /* Cupid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Cupid.entitlements; sourceTree = "<group>"; };
 		B636B8D523A7C681003842D1 /* NotificationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationServices.swift; sourceTree = "<group>"; };
+		B644B3C223ABB92500966370 /* PulseAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseAnimation.swift; sourceTree = "<group>"; };
 		B6559E74239A978B00FD6893 /* LocationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServices.swift; sourceTree = "<group>"; };
 		B67252262397FC1E00E13339 /* RemoteMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMessage.swift; sourceTree = "<group>"; };
 		B682021723A5D44F00E32F5F /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
@@ -574,6 +576,7 @@
 		7F5D1C1B236FBD5A005A4961 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				B644B3C123ABB90800966370 /* Layers */,
 				7F5D1C1C236FBD5A005A4961 /* Extension */,
 				7F5D1C1D236FBD5A005A4961 /* Helper */,
 				7F5D1C1E236FBD5A005A4961 /* Control */,
@@ -945,6 +948,14 @@
 				B636B8D523A7C681003842D1 /* NotificationServices.swift */,
 			);
 			path = Notification;
+			sourceTree = "<group>";
+		};
+		B644B3C123ABB90800966370 /* Layers */ = {
+			isa = PBXGroup;
+			children = (
+				B644B3C223ABB92500966370 /* PulseAnimation.swift */,
+			);
+			path = Layers;
 			sourceTree = "<group>";
 		};
 		B682021F23A62B0600E32F5F /* RNMessageAlert */ = {
@@ -1656,6 +1667,7 @@
 				B68E24942392712B0014A53E /* InputToolBar.swift in Sources */,
 				7FF7E793236FD7E1006AC2BF /* Logger.swift in Sources */,
 				6FE9079523A62E9D00892C3C /* AddEventViewController.swift in Sources */,
+				B644B3C323ABB92500966370 /* PulseAnimation.swift in Sources */,
 				7F5D1C82236FC452005A4961 /* ProfileNavigator.swift in Sources */,
 				B68E249B239271630014A53E /* Bubble.swift in Sources */,
 				46AC2FAA23A36A3A00620088 /* LoginNavigator.swift in Sources */,

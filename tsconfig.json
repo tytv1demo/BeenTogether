@@ -22,6 +22,9 @@
         ],
         "@bridges": [
           "src/Bridges"
+        ],
+        "@dataManager": [
+          "src/DataManager"
         ]
       },
       "allowSyntheticDefaultImports": true,

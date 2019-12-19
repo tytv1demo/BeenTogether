@@ -31,7 +31,7 @@ extension AppUserData: RCTModel {
             return [:]
         }
         return [
-            "userInfo": userInfo.toRCTValue()
+            "token": userToken
         ]
     }
 }

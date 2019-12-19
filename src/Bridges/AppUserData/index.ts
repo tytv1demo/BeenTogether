@@ -1,2 +1,5 @@
 export * from './AppUserData'
-export * from './User'
+export * from './UserModel'
+export * from './Types'
+export * from './CoupleModel'
+export * from './UserModel'

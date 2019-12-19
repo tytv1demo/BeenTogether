@@ -13,6 +13,9 @@ module.exports = {
           ],
           "@bridges": [
             "./src/Bridges"
+          ],
+          "@dataManager": [
+            "./src/DataManager"
           ]
         }
       }

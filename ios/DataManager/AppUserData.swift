@@ -9,7 +9,7 @@
 import Foundation
 import PromiseKit
 
-class AppUserData {
+@objc class AppUserData: NSObject {
     
     static let kUserInfoChangedEventName = "kUserInfoChangedEventName"
     
@@ -23,14 +23,15 @@ class AppUserData {
         }
     }
     
-    var userToken: String {
+    @objc dynamic var userToken: String {
         didSet {
             UserDefaults.standard.set(userToken, forKey: "token")
         }
     }
     
-    init() {
+    override init() {
         userToken = UserDefaults.standard.string(forKey: "token") ?? ""
+        super.init()
     }
     
     func checkIsSignedIn() -> Promise<Bool> {

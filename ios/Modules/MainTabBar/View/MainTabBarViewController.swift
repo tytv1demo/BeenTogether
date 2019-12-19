@@ -45,7 +45,7 @@ class MainTabBarViewController: UITabBarController {
         
         messageVC = MessageViewController()
         let messageNav = UINavigationController(rootViewController: messageVC)
-
+        
         settingVC = SettingViewController()
         settingVC.moduleName = "SettingScreen"
         settingVC.initRCTView()
@@ -72,7 +72,6 @@ class MainTabBarViewController: UITabBarController {
         homeTabButton.addTarget(self, action: #selector(onHomTabButtonTapped), for: [.touchUpInside])
         
         messageVC.tabBarItem =  UITabBarItem(title: "", image: UIImage(named: "message"), selectedImage: UIImage(named: "message"))
-        
     }
     
     @objc func onHomTabButtonTapped() {
