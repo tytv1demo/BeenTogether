@@ -11,20 +11,25 @@ import PromiseKit
 
 class PopupViewController: UIViewController {
 
+    // MARK: - Outlets
+    
     @IBOutlet weak var popupView: UIView!
     @IBOutlet weak var okButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
     
+    // MARK: - Properties
+    
     var homeViewModel: HomeViewModel!
-    var homeVC: HomeViewController!
+    var isLeft: Bool?
+    weak var delegate: HomViewControllerDelegate?
+    
+    // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         homeViewModel = HomeViewModel()
-        homeVC = HomeViewController()
-        
         setupMainView()
         
         nameTextField.delegate = self
@@ -46,6 +51,8 @@ class PopupViewController: UIViewController {
             self.popupView.transform = CGAffineTransform(translationX: 0, y: (self.view.frame.height + self.popupView.frame.height) / 2)
         }
     }
+    
+    // MARK: - Functions
     
     func setupMainView() {
         popupView.layer.cornerRadius = 7
@@ -89,17 +96,21 @@ class PopupViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
 
+    // MARK: - Actions
+    
     @IBAction func cancelButtonDidTap(_ sender: Any) {
         dismissPopup()
     }
     
     @IBAction func okButtonDidTap(_ sender: Any) {
         guard let name = nameTextField.text, name.trimmingCharacters(in: .whitespacesAndNewlines) != "" else { return }
-        let trimedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        homeViewModel.refPersonName(name: trimedName, person: "firstPerson").done { (success) in
+        let trimedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        let personId = isLeft! ? "0349055710" : "0365021305"
+        
+        homeViewModel.refPersonName(name: trimedName, personId: personId).done { (success) in
             if success {
-                self.homeVC.updateLabel(name: trimedName, isLeft: true)
+                self.delegate?.updateNameLabelCallBack(name: trimedName)
             }
         }.catch { (_) in
             self.showAlertWithOneOption(title: "Opps", message: "Unable to change this name!", optionTitle: "OK")
@@ -107,12 +118,12 @@ class PopupViewController: UIViewController {
         
         dismissPopup()
     }
-    
 }
 
 // MARK: - UITextFieldDelegate
 
 extension PopupViewController: UITextFieldDelegate {
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.2) {
             self.popupView.transform = CGAffineTransform(translationX: 0, y: -50)

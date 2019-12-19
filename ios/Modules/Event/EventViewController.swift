@@ -74,7 +74,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @objc func createEventAction() {
         let addingVC = UIStoryboard(name: "AddEventViewController", bundle: nil).instantiateViewController(withIdentifier: "AddEventViewController") as! AddEventViewController
-        
+
         addingVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(addingVC, animated: true)
     }

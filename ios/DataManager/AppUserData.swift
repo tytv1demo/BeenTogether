@@ -17,6 +17,8 @@ import PromiseKit
     
     var userRepository = UserRepository()
     
+    var friendInfo: User?
+    
     var userInfo: User! {
         didSet {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppUserData.kUserInfoChangedEventName), object: nil, userInfo: nil)
@@ -48,6 +50,19 @@ import PromiseKit
                 }
             } else {
                 seal.fulfill(false)
+            }
+        }
+    }
+    
+    func getFriendProfile(friendId: String) -> Promise<User> {
+        return Promise<User> { seal in
+            userRepository
+                .getFriendProfile(friendId: friendId)
+                .done { (user) in
+                    self.friendInfo = user
+                    seal.fulfill(user)
+            }.catch { (err) in
+                seal.reject(err)
             }
         }
     }

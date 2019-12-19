@@ -25,6 +25,7 @@ public enum UserAPI {
     case signUp(signUpParams: SignUpParams)
     case logout
     case getUserProfile
+    case getFriendProfile(friendId: String)
     case updateDeviceToken(token: String)
 }
 
@@ -48,6 +49,8 @@ extension UserAPI: AuthorizedTargetType {
             return "/logout"
         case .getUserProfile:
             return "/user/profile"
+        case .getFriendProfile:
+            return "/user/friend-profile"
         case .updateDeviceToken:
             return "/user/device-token"
         }
@@ -62,6 +65,8 @@ extension UserAPI: AuthorizedTargetType {
         case .logout:
             return .post
         case .getUserProfile:
+            return .get
+        case .getFriendProfile:
             return .get
         }
     }
@@ -89,6 +94,9 @@ extension UserAPI: AuthorizedTargetType {
             return .requestPlain
         case .getUserProfile:
             return .requestPlain
+        case let .getFriendProfile(friendId):
+            let params = ["id": friendId]
+            return .requestParameters(parameters: params, encoding: URLEncoding.default)
         case .updateDeviceToken(let token):
             var params = [String: Any]()
             params["token"] = token

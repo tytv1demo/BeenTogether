@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        phoneNumberTextField.text = "0365021305"
+        phoneNumberTextField.text = "0975996008"
         phoneNumberTextField.delegate = self
         
         loginViewModel = LoginViewModel()
