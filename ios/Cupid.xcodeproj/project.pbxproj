@@ -193,7 +193,7 @@
 		46C46DCE23A2496300966D44 /* AppUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUserData.swift; sourceTree = "<group>"; };
 		46C46DD123A259F100966D44 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		46C46DD323A25F2100966D44 /* SplashNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashNavigator.swift; sourceTree = "<group>"; };
-		46E7584423A8DF43007A08CA /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = SOURCE_ROOT; };
+		46E7584423A8DF43007A08CA /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PopupViewController.swift; path = Modules/Home/View/PopupViewController.swift; sourceTree = SOURCE_ROOT; };
 		46E7584523A8DF43007A08CA /* PopupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupViewController.xib; sourceTree = SOURCE_ROOT; };
 		4C782350347DE81685E9C150 /* Pods-BeenTogether.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogether.debug.xcconfig"; path = "Target Support Files/Pods-BeenTogether/Pods-BeenTogether.debug.xcconfig"; sourceTree = "<group>"; };
 		50F40441CB0C3AB88992F5E4 /* Pods-CupidTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CupidTests.release.xcconfig"; path = "Target Support Files/Pods-CupidTests/Pods-CupidTests.release.xcconfig"; sourceTree = "<group>"; };
