@@ -129,7 +129,6 @@ class LoginViewController: UIViewController {
 //        } else {
 //            getOTPCode()
 //        }
-        
         signIn()
     }
     

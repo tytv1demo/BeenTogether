@@ -8,10 +8,12 @@
 
 import Foundation
 import SnapKit
+import Kingfisher
 
 protocol HomViewControllerDelegate: AnyObject {
     func updateNameLabelCallBack()
     func updateCoutedViewCallBack()
+    func updateAvatarCallBack()
 }
 
 class HomeViewController: UIViewController {
@@ -37,6 +39,7 @@ class HomeViewController: UIViewController {
     var userRepository = UserRepository()
     var homeViewModel: HomeViewModel!
     var isLeft: Bool?
+    var userInfo = AppUserData.shared.userInfo
     
     // MARK: Life Cycle
     
@@ -106,15 +109,26 @@ class HomeViewController: UIViewController {
     }
     
     func setupLeftAvatar() {
-        let url = "https://thuthuatnhanh.com/wp-content/uploads/2019/10/avatar-me-than-tuong.jpg"
-        leftAvatar.setImage(url: url)
+        let url = homeViewModel.getUserAvatarUrl()
+        
+        if url != "" {
+            leftAvatar.setImage(url: url)
+        } else {
+            leftAvatar.setLocalImage(named: "default-avatar")
+        }
+        
         addTapGestureForView(leftAvatar.imageView)
     }
     
     func setupRightAvatar() {
-        let url = "https://thuthuatnhanh.com/wp-content/uploads/2019/10/avatar-me-than-tuong.jpg"
-        rightAvatar.setImage(url: url)
-        addTapGestureForView(rightAvatar.imageView)
+        let url = homeViewModel.getFriendAvatarUrl()
+        
+        if url != "" {
+            rightAvatar.setImage(url: url)
+            addTapGestureForView(rightAvatar.imageView)
+        } else {
+            rightAvatar.setLocalImage(named: "default-avatar")
+        }
     }
     
     func addTapGestureForLabel(_ label: UILabel) {
@@ -191,11 +205,34 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             selectedImageView!.image = image
+            
+            let userId = selectedImageView == leftAvatar.imageView ? self.userInfo!.id : AppUserData.shared.friendInfo!.id
+            
+            let phoneNumber = selectedImageView == leftAvatar.imageView ? self.userInfo!.phoneNumber : AppUserData.shared.friendInfo!.phoneNumber
+            
+            UploadAPI.shared.uploadAvatar(imageData: image.jpegData(compressionQuality: 0.25)!, for: String(userId)) { (string) in
+                
+                self.homeViewModel.refPersonAvatar(avatarURL: string, person: phoneNumber).done { (_) in
+                    
+                }.catch { (_) in
+                    
+                }
+            }
+            
             picker.dismiss(animated: true, completion: {
                 self.selectedImageView = nil
             })
+            
         }
     }
+    
+//    func loadImage(urlString: String) {
+//          guard let url = URL(string: urlString) else { return }
+//
+//          KingfisherManager.shared.retrieveImage(with: url, options: nil, progressBlock: nil) { [unowned self] (image, _, _, _) in
+//              self.avatarView.imageView.image = image
+//          }
+//      }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: {
@@ -219,5 +256,10 @@ extension HomeViewController: HomViewControllerDelegate {
         rightDayLabel.text = String(homeViewModel.getLeftRightNumbers().rightNumber)
         progressView.progress = homeViewModel.getProgress()
         heartIconLeftContraint.constant = CGFloat(progressView.progress) * progressView.frame.width
+    }
+    
+    func updateAvatarCallBack() {
+        setupLeftAvatar()
+        setupRightAvatar()
     }
 }
