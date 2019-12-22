@@ -10,7 +10,8 @@ import Foundation
 import SnapKit
 
 protocol HomViewControllerDelegate: AnyObject {
-    func updateNameLabelCallBack(name: String)
+    func updateNameLabelCallBack()
+    func updateCoutedViewCallBack()
 }
 
 class HomeViewController: UIViewController {
@@ -43,7 +44,13 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         homeViewModel = HomeViewModel()
+        homeViewModel.delegate = self
         setupMainView()
+        
+//        let date1 = homeViewModel.createDateTimeIntervalFromString(formattedString: "01/03/2016")
+//        homeViewModel.refCoupleStartDate(startDate: date1).done { (_) in
+//
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,8 +96,8 @@ class HomeViewController: UIViewController {
         dateCoutingLabel.text = homeViewModel.dateCountedString
         leftDaysLabel.text = String(homeViewModel.getLeftRightNumbers().leftNumber)
         rightDayLabel.text = String(homeViewModel.getLeftRightNumbers().rightNumber)
-        leftNameLabel.text = AppUserData.shared.userInfo.name
-        rightNameLabel.text = AppUserData.shared.friendInfo?.name ?? "Person 2"
+        leftNameLabel.text = homeViewModel.getUserNickName()
+        rightNameLabel.text = homeViewModel.getFriendNickName()
     }
     
     func setupAvatar() {
@@ -201,11 +208,16 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
 
 extension HomeViewController: HomViewControllerDelegate {
     
-    func updateNameLabelCallBack(name: String) {
-        if selectedLabel == leftNameLabel {
-            leftNameLabel.text = name
-        } else if selectedLabel == rightNameLabel {
-            rightNameLabel.text = name
-        }
+    func updateNameLabelCallBack() {
+        leftNameLabel.text = homeViewModel.getUserNickName()
+        rightNameLabel.text = homeViewModel.getFriendNickName()
+    }
+    
+    func updateCoutedViewCallBack() {
+        dateCoutingLabel.text = homeViewModel.dateCountedString
+        leftDaysLabel.text = String(homeViewModel.getLeftRightNumbers().leftNumber)
+        rightDayLabel.text = String(homeViewModel.getLeftRightNumbers().rightNumber)
+        progressView.progress = homeViewModel.getProgress()
+        heartIconLeftContraint.constant = CGFloat(progressView.progress) * progressView.frame.width
     }
 }

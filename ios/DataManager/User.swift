@@ -8,6 +8,16 @@
 
 import Foundation
 
+class Config: Decodable {
+    var name: String
+    var avatar: String
+    
+    init(name: String, avatar: String) {
+        self.name = name
+        self.avatar = avatar
+    }
+}
+
 class UserLocation: Decodable {
     var coordinate: UserCoordinate?
     var startTime: Date?
