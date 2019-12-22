@@ -27,6 +27,7 @@ public enum UserAPI {
     case getUserProfile
     case getFriendProfile(friendId: String)
     case updateDeviceToken(token: String)
+    case getNewestCoupleMatchRequest
 }
 
 extension UserAPI: AuthorizedTargetType {
@@ -53,6 +54,8 @@ extension UserAPI: AuthorizedTargetType {
             return "/user/friend-profile"
         case .updateDeviceToken:
             return "/user/device-token"
+        case .getNewestCoupleMatchRequest:
+            return "/couple/get-match-request"
         }
     }
     
@@ -64,7 +67,7 @@ extension UserAPI: AuthorizedTargetType {
             return .post
         case .logout:
             return .post
-        case .getUserProfile:
+        case .getUserProfile, .getNewestCoupleMatchRequest:
             return .get
         case .getFriendProfile:
             return .get
@@ -90,7 +93,7 @@ extension UserAPI: AuthorizedTargetType {
             params["age"] = 0
             params["gender"] = "MALE"
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
-        case .logout:
+        case .logout, .getNewestCoupleMatchRequest:
             return .requestPlain
         case .getUserProfile:
             return .requestPlain

@@ -18,8 +18,12 @@ class MainTabBarViewController: UITabBarController {
     
     var uiConfiguration: MainTabBarUIConfiguration = MainTabBarUIConfiguration()
     
+    var viewModel: MainTabBarViewModel!
+    
     var homeVC: HomeViewController!
+    
     var loginVC: LoginViewController!
+    
     var messageVC: MessageViewController!
     
     var settingVC: SettingViewController!
@@ -30,6 +34,7 @@ class MainTabBarViewController: UITabBarController {
         settupViewController()
         settupTabBarUI()
         selectedIndex = 2
+        viewModel = MainTabBarViewModel()
     }
     
     func settupViewController() {

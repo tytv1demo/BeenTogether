@@ -77,3 +77,4 @@ struct UserInfoResult: Decodable {
         userInfo = try container.decode(User.self, forKey: .userInfo)
     }
 }
+

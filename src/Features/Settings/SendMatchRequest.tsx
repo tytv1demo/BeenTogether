@@ -56,7 +56,7 @@ export const SendMatchRequestPopup: React.FC<SendMatchRequestPopupProps> = (prop
             >
                 <View
                     animation='fadeIn'
-                    style={{ backgroundColor: 'rgba(51,51,51,0.3)', flex: 1, justifyContent: "center" }}
+                    style={{ backgroundColor: 'rgba(51,51,51,0.3)', flex: 1, justifyContent: 'center' }}
                 >
                     {renderContent()}
                 </View>

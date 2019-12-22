@@ -144,4 +144,8 @@ class ImageMessageView: UIView, MessageView {
         statusIndicator.prepareForReuse()
         image.image = nil
     }
+    
+    deinit {
+        dataLoadingStatusObservation?.dispose()
+    }
 }

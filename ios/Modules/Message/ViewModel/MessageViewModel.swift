@@ -110,7 +110,7 @@ class MessageViewModel: NSObject, MessageViewModelProtocol {
     
     func sendImage(data: Data) {
         let message: SCMessage = self.createMessage(type: .image, content: "")
-               self.appendMessage(message)
+        self.appendMessage(message)
         messageRepository
             .sendImage(data: data)
             .done { (remoteMessage) in

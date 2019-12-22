@@ -54,7 +54,8 @@ class SCMessage: SCMessageType {
     }
     
     func loadDataIfNeeded() {
-        if type == .image {
+        let status = try? self.status.value()
+        if type == .image, status == .sent {
             self.dataLoadingStatus.onNext(.loading)
             loadImageUrlFromFirebase(path: content)
                 .done { [unowned self] (url) in

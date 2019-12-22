@@ -134,6 +134,7 @@
 		B6972B342393D04E002EE07B /* ImageMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6972B332393D04E002EE07B /* ImageMessageCell.swift */; };
 		B6972B362393D0AD002EE07B /* ImageMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6972B352393D0AD002EE07B /* ImageMessage.swift */; };
 		B697FC6223A3A8D6000981B5 /* RNUserDataBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B697FC6123A3A8D6000981B5 /* RNUserDataBridge.swift */; };
+		B699E8EA23AE6AA100473268 /* Couples.swift in Sources */ = {isa = PBXBuildFile; fileRef = B699E8E923AE6AA100473268 /* Couples.swift */; };
 		B6B9D121239559F0003527B4 /* MessageStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B9D120239559F0003527B4 /* MessageStatusIndicator.swift */; };
 		B6D5B85423A12C2E00942C44 /* LocationServices.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D5B85323A12C2E00942C44 /* LocationServices.m */; };
 		B6D5B85823A12E3200942C44 /* RNLocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D5B85723A12E3200942C44 /* RNLocationServices.swift */; };
@@ -305,6 +306,7 @@
 		B6972B332393D04E002EE07B /* ImageMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMessageCell.swift; sourceTree = "<group>"; };
 		B6972B352393D0AD002EE07B /* ImageMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMessage.swift; sourceTree = "<group>"; };
 		B697FC6123A3A8D6000981B5 /* RNUserDataBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNUserDataBridge.swift; sourceTree = "<group>"; };
+		B699E8E923AE6AA100473268 /* Couples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Couples.swift; sourceTree = "<group>"; };
 		B6B9D120239559F0003527B4 /* MessageStatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStatusIndicator.swift; sourceTree = "<group>"; };
 		B6D5B85323A12C2E00942C44 /* LocationServices.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationServices.m; sourceTree = "<group>"; };
 		B6D5B85723A12E3200942C44 /* RNLocationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNLocationServices.swift; sourceTree = "<group>"; };
@@ -638,6 +640,7 @@
 				4693BF45239B4BBF00EA2EA5 /* User.swift */,
 				B67252262397FC1E00E13339 /* RemoteMessage.swift */,
 				46C46DCE23A2496300966D44 /* AppUserData.swift */,
+				B699E8E923AE6AA100473268 /* Couples.swift */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -1683,6 +1686,7 @@
 				B68E24972392712B0014A53E /* MessageView.swift in Sources */,
 				B6B9D121239559F0003527B4 /* MessageStatusIndicator.swift in Sources */,
 				46E7584623A8DF43007A08CA /* PopupViewController.swift in Sources */,
+				B699E8EA23AE6AA100473268 /* Couples.swift in Sources */,
 				7F5D1C5F236FC429005A4961 /* TaskViewController.swift in Sources */,
 				B6E2E2ED2362F561001046E5 /* Avatar.swift in Sources */,
 				B688687A23A5104300FB155D /* RNUserExts.swift in Sources */,

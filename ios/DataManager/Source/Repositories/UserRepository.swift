@@ -15,6 +15,7 @@ protocol UserRepositoryProtocol: AnyObject {
     func signIn(params: SignInParams) -> Promise<SignInResult>
     func signUp(params: SignUpParams) -> Promise<SignInResult>
     func updateDeviceToken(token: String) -> Promise<Bool>
+    func getNewestCoupleMatchRequest() -> Promise<CoupleMatchRequest?>
 }
 
 class UserRepository: UserRepositoryProtocol {
@@ -61,13 +62,12 @@ class UserRepository: UserRepositoryProtocol {
         }
     }
     
+    @discardableResult
     func updateDeviceToken(token: String) -> Promise<Bool> {
-        return Promise<Bool> { seal in
-            userRemoteDataSource
-                .updateDeviceToken(token: token)
-                .done { (success) in
-                    seal.fulfill(success)
-            }.catch(seal.reject)
-        }
+        return userRemoteDataSource.updateDeviceToken(token: token)
+    }
+    
+    func getNewestCoupleMatchRequest() -> Promise<CoupleMatchRequest?> {
+        return userRemoteDataSource.getNewestCoupleMatchRequest()
     }
 }
