@@ -17,7 +17,6 @@ protocol UserRemoteDataSourceProtocol: AnyObject {
     func getUserProfile() -> Promise<User>
     func getFriendProfile(friendId: String) -> Promise<User>
     func updateDeviceToken(token: String) -> Promise<Bool>
-    func getNewestCoupleMatchRequest() -> Promise<CoupleMatchRequest?>
 }
 
 class UserRemoteDataSource: UserRemoteDataSourceProtocol {
@@ -136,25 +135,4 @@ class UserRemoteDataSource: UserRemoteDataSourceProtocol {
         }
     }
     
-    func getNewestCoupleMatchRequest() -> Promise<CoupleMatchRequest?> {
-        return Promise { seal in
-            todoProvider.request(MultiTarget(UserAPI.getNewestCoupleMatchRequest)) { (result) in
-                switch result {
-                case let .success(response):
-                    do {
-                        let filteredResponse = try response.filterSuccessfulStatusCodes()
-                        guard let result = try? JSONDecoder().decode(BaseResult<GetNewestCoupleMatchRequestResult>.self, from: filteredResponse.data) else {
-                            seal.fulfill(nil)
-                            return
-                        }
-                        seal.fulfill(result.data.request)
-                    } catch let error {
-                        seal.reject(error)
-                    }
-                case let .failure(error):
-                    seal.reject(error)
-                }
-            }
-        }
-    }
 }

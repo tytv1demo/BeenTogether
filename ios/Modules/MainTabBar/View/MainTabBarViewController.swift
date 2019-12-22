@@ -8,6 +8,7 @@
 
 import Foundation
 import YogaKit
+import RxSwift
 import UIKit
 
 class MainTabBarUIConfiguration {
@@ -20,6 +21,8 @@ class MainTabBarViewController: UITabBarController {
     
     var viewModel: MainTabBarViewModel!
     
+    var interactionRequest: CoupleMatchRequest!
+    
     var homeVC: HomeViewController!
     
     var loginVC: LoginViewController!
@@ -28,6 +31,8 @@ class MainTabBarViewController: UITabBarController {
     
     var settingVC: SettingViewController!
     
+    var disposeBag: DisposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -35,7 +40,10 @@ class MainTabBarViewController: UITabBarController {
         settupTabBarUI()
         selectedIndex = 2
         viewModel = MainTabBarViewModel()
+        
+        subscribeViewModel()
     }
+    
     
     func settupViewController() {
         let firstVc = UIStoryboard(name: "Event", bundle: nil).instantiateViewController(withIdentifier: "EventViewControllerNav") as! UINavigationController
@@ -81,6 +89,47 @@ class MainTabBarViewController: UITabBarController {
     
     @objc func onHomTabButtonTapped() {
         selectedIndex = 2
+    }
+    
+    func subscribeViewModel() {
+        viewModel.coupleMatchRequest.subscribe(onNext: { [weak self] request in
+            self?.showMatchRequestPopup(for: request)
+        }).disposed(by: disposeBag)
+    }
+    
+    func showMatchRequestPopup(for request: CoupleMatchRequest?) {
+        guard let request = request else {
+            return
+        }
+        interactionRequest = request
+        let message = "Bạn nhận được yêu cầu ghép đôi từ số điện thoại \(request.from.phoneNumber) - \(request.from.name)"
+        presentConfirmPopup(title: "Ghép đôi!", message: message, delegate: self)
+    }
+}
+
+extension MainTabBarViewController: ConfirmPopupViewControllerDelegate {
+    func confirmPopup(didCancel popup: ConfirmPopupViewController) {
+        viewModel
+            .responseToMatchRequest(request: interactionRequest, action: .reject)
+            .done { (success) in
+                if success {
+                    popup.dismiss(animated: true, completion: nil)
+                }
+        }.catch { (_) in
+            
+        }
+    }
+    
+    func confirmPopup(didAccept popup: ConfirmPopupViewController) {
+        viewModel
+            .responseToMatchRequest(request: interactionRequest, action: .accept)
+            .done { (success) in
+                if success {
+                    popup.dismiss(animated: true, completion: nil)
+                }
+        }.catch { (_) in
+            
+        }
     }
 }
 

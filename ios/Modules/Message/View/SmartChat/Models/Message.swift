@@ -68,10 +68,10 @@ class SCMessage: SCMessageType {
     }
     
     func loadImage() {
-        guard let url = URL(string: content) else { return  }
-        KingfisherManager.shared.retrieveImage(with: url, options: nil, progressBlock: nil) { [unowned self] (image, _, _, _) in
-            self.image = image
-            self.dataLoadingStatus.onNext(.done)
+        guard let url = URL(string: content) else { return }
+        KingfisherManager.shared.retrieveImage(with: url, options: nil, progressBlock: nil) { [weak self] (image, _, _, _) in
+            self?.image = image
+            self?.dataLoadingStatus.onNext(.done)
         }
     }
 }

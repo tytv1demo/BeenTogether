@@ -7,7 +7,7 @@ import { Spacer, ADSwitch, MemoAvatar } from '@components';
 import { LocationServices, AppUserData, UserModel, CoupleModel } from '@bridges';
 import { SettingScreenState } from './Types'
 import { Subscription } from 'rxjs';
-import { ApiManager } from '@dataManager';
+import { ApiManager, CoupleService } from '@dataManager';
 
 import { PulseCircles } from './PulseCircles';
 import { PulseIndicator } from 'react-native-indicators';
@@ -21,6 +21,8 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
 
     subcription!: Subscription
 
+    coupleService: CoupleService
+
     constructor(props: any) {
         super(props)
         this.state = {
@@ -30,8 +32,10 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
         this._onAutomaticUpdateLocationStateChanged = this._onAutomaticUpdateLocationStateChanged.bind(this)
         const apiManger = new ApiManager({
             baseURL: 'https://cupid-api.tranty9597.now.sh',
+            // baseURL: 'http://192.168.15.103:3000',
         })
         this.appUserData = new AppUserData(apiManger)
+        this.coupleService = new CoupleService(apiManger);
     }
 
     componentDidMount() {
@@ -47,7 +51,9 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
         const user = await this.appUserData.fetchUserInfo()
         const userModel = new UserModel(user, this.appUserData.apiManger);
         const coupleModel = new CoupleModel(user, this.appUserData.apiManger)
-        await coupleModel.syncLoverProfile()
+        if (userModel.isPaired) {
+            await coupleModel.syncLoverProfile()
+        }
         this.setState({ userModel, coupleModel })
     }
 
@@ -55,6 +61,15 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
         if (token) {
             this.syncUserData()
         }
+    }
+
+    sendMatchRequest = async (phoneNumber: string) => {
+        try {
+            await this.coupleService.sendMatchRequest(phoneNumber);
+        } catch (error) {
+            console.log(error.response)
+        }
+
     }
 
     onUserModelChanged = () => {
@@ -218,6 +233,7 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
                 <SendMatchRequestPopup
                     onRequestClose={this.onRequestCloseRequestPopup}
                     visible={this.state.requestPopupVisible}
+                    onSend={this.sendMatchRequest}
                 />
             </>
         )

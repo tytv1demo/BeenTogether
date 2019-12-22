@@ -131,6 +131,11 @@
 		B690E67C239CEC0A00C418A7 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690E67B239CEC0A00C418A7 /* SettingViewController.swift */; };
 		B690E67E239CF04000C418A7 /* RCTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690E67D239CF04000C418A7 /* RCTViewController.swift */; };
 		B690E680239CF53C00C418A7 /* RCTBridgeServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B690E67F239CF53C00C418A7 /* RCTBridgeServices.swift */; };
+		B6964F6A23AF0D0100283B9B /* ConfirmPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6964F6923AF0D0100283B9B /* ConfirmPopupViewController.swift */; };
+		B6964F6C23AF140400283B9B /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6964F6B23AF140400283B9B /* GradientView.swift */; };
+		B6964F6E23AF28D900283B9B /* CoupleApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6964F6D23AF28D900283B9B /* CoupleApi.swift */; };
+		B6964F7123AF2A9A00283B9B /* CoupleRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6964F7023AF2A9A00283B9B /* CoupleRemoteDataSource.swift */; };
+		B6964F7323AF2B8300283B9B /* CoupleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6964F7223AF2B8300283B9B /* CoupleRepository.swift */; };
 		B6972B342393D04E002EE07B /* ImageMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6972B332393D04E002EE07B /* ImageMessageCell.swift */; };
 		B6972B362393D0AD002EE07B /* ImageMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6972B352393D0AD002EE07B /* ImageMessage.swift */; };
 		B697FC6223A3A8D6000981B5 /* RNUserDataBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B697FC6123A3A8D6000981B5 /* RNUserDataBridge.swift */; };
@@ -303,6 +308,11 @@
 		B690E67B239CEC0A00C418A7 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		B690E67D239CF04000C418A7 /* RCTViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCTViewController.swift; sourceTree = "<group>"; };
 		B690E67F239CF53C00C418A7 /* RCTBridgeServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCTBridgeServices.swift; sourceTree = "<group>"; };
+		B6964F6923AF0D0100283B9B /* ConfirmPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPopupViewController.swift; sourceTree = "<group>"; };
+		B6964F6B23AF140400283B9B /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		B6964F6D23AF28D900283B9B /* CoupleApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleApi.swift; sourceTree = "<group>"; };
+		B6964F7023AF2A9A00283B9B /* CoupleRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleRemoteDataSource.swift; sourceTree = "<group>"; };
+		B6964F7223AF2B8300283B9B /* CoupleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleRepository.swift; sourceTree = "<group>"; };
 		B6972B332393D04E002EE07B /* ImageMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMessageCell.swift; sourceTree = "<group>"; };
 		B6972B352393D0AD002EE07B /* ImageMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMessage.swift; sourceTree = "<group>"; };
 		B697FC6123A3A8D6000981B5 /* RNUserDataBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNUserDataBridge.swift; sourceTree = "<group>"; };
@@ -622,6 +632,7 @@
 		7F5D1C1E236FBD5A005A4961 /* Control */ = {
 			isa = PBXGroup;
 			children = (
+				B6964F6823AF0CC700283B9B /* ConfirmPopup */,
 				B682021F23A62B0600E32F5F /* RNMessageAlert */,
 				B6E2E2EC2362F561001046E5 /* Avatar.swift */,
 				B690E66E239C9DB500C418A7 /* CollectionEmptyView.swift */,
@@ -629,6 +640,7 @@
 				B690E67D239CF04000C418A7 /* RCTViewController.swift */,
 				B682021723A5D44F00E32F5F /* CircleButton.swift */,
 				B682021923A6171100E32F5F /* MessageAlertViewController.swift */,
+				B6964F6B23AF140400283B9B /* GradientView.swift */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -988,6 +1000,7 @@
 				B68E245E239235620014A53E /* APIConfig.swift */,
 				46BC4BD32392B61E0040E510 /* UserAPI.swift */,
 				6F00EFE023A9397B007B0365 /* UploadAPI.swift */,
+				B6964F6D23AF28D900283B9B /* CoupleApi.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1073,6 +1086,7 @@
 			children = (
 				B68E245723922C860014A53E /* MessageRepository.swift */,
 				7F5D1C21236FBD5A005A4961 /* UserRepository.swift */,
+				B6964F7223AF2B8300283B9B /* CoupleRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1082,6 +1096,7 @@
 			children = (
 				7F5D1C25236FBD5A005A4961 /* UserRemoteDataSource.swift */,
 				B68E245923922EE60014A53E /* MessageRemoteDataSource.swift */,
+				B6964F7023AF2A9A00283B9B /* CoupleRemoteDataSource.swift */,
 			);
 			path = Datasources;
 			sourceTree = "<group>";
@@ -1135,6 +1150,14 @@
 				B690E67B239CEC0A00C418A7 /* SettingViewController.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		B6964F6823AF0CC700283B9B /* ConfirmPopup */ = {
+			isa = PBXGroup;
+			children = (
+				B6964F6923AF0D0100283B9B /* ConfirmPopupViewController.swift */,
+			);
+			path = ConfirmPopup;
 			sourceTree = "<group>";
 		};
 		B697FC6023A3A8B3000981B5 /* AppData */ = {
@@ -1651,6 +1674,7 @@
 				B6E2E2E32362A7F7001046E5 /* UIViewExts.swift in Sources */,
 				7FF7E7A7236FDA36006AC2BF /* L10n-Constants.swift in Sources */,
 				7F5D1C31236FBD5B005A4961 /* UserRemoteDataSource.swift in Sources */,
+				B6964F6C23AF140400283B9B /* GradientView.swift in Sources */,
 				B68E248F2392712B0014A53E /* ActionsView.swift in Sources */,
 				B607DB3123994CC900C7509F /* LocationViewModel.swift in Sources */,
 				B68CD03B239B95E2000BA1D8 /* EmojiCell.swift in Sources */,
@@ -1668,6 +1692,8 @@
 				7F5D1C72236FC441005A4961 /* DatingNavigator.swift in Sources */,
 				B6D5B85423A12C2E00942C44 /* LocationServices.m in Sources */,
 				B690E674239CA07700C418A7 /* UIButton.swift in Sources */,
+				B6964F7323AF2B8300283B9B /* CoupleRepository.swift in Sources */,
+				B6964F6A23AF0D0100283B9B /* ConfirmPopupViewController.swift in Sources */,
 				7F5D1C30236FBD5B005A4961 /* UserLocalDataSource.swift in Sources */,
 				B6F4F919234737E8002B7B36 /* AppDelegate.swift in Sources */,
 				B68E24942392712B0014A53E /* InputToolBar.swift in Sources */,
@@ -1695,6 +1721,7 @@
 				46C46DD223A259F100966D44 /* SplashViewController.swift in Sources */,
 				B68CD036239B8A75000BA1D8 /* LoverLocationViewer.swift in Sources */,
 				B68E245F239235620014A53E /* APIConfig.swift in Sources */,
+				B6964F7123AF2A9A00283B9B /* CoupleRemoteDataSource.swift in Sources */,
 				7FF7E791236FD7AC006AC2BF /* TableViewExt.swift in Sources */,
 				B68E24962392712B0014A53E /* InputView.swift in Sources */,
 				B690E67E239CF04000C418A7 /* RCTViewController.swift in Sources */,
@@ -1728,6 +1755,7 @@
 				B68E248E2392712B0014A53E /* SCUser.swift in Sources */,
 				B690E680239CF53C00C418A7 /* RCTBridgeServices.swift in Sources */,
 				B682021823A5D44F00E32F5F /* CircleButton.swift in Sources */,
+				B6964F6E23AF28D900283B9B /* CoupleApi.swift in Sources */,
 				B682021E23A62AFE00E32F5F /* RNMessageAlertBridges.swift in Sources */,
 				6FE9079E23A6318900892C3C /* AddingLocationTableViewCell.swift in Sources */,
 				B68E248D2392712B0014A53E /* Message.swift in Sources */,

@@ -57,7 +57,8 @@ class HomeViewModel: NSObject, HomeViewModelProtocol {
         coupleRef.observe(.value) { (snapshot) in
             guard let rawConfig = snapshot.value as? [String: [String: String]] else { return }
             guard let userConfig = rawConfig[self.userInfo.phoneNumber] else { return }
-            guard let friendConfig = rawConfig[AppUserData.shared.friendInfo!.phoneNumber] else { return }
+            guard let friendInfo = AppUserData.shared.friendInfo else { return }
+            guard let friendConfig = rawConfig[friendInfo.phoneNumber] else { return }
             
             let config = self.firbaseEntityToConfig(raw: userConfig)
             let config1 = self.firbaseEntityToConfig(raw: friendConfig)

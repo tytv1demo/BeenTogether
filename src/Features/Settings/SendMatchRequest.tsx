@@ -6,11 +6,18 @@ import { Spacer } from '@components';
 
 export interface SendMatchRequestPopupProps {
     visible: boolean
-    onRequestClose: () => void
+    onRequestClose: () => void,
+    onSend?: (phone: string) => void
 }
 
 export const SendMatchRequestPopup: React.FC<SendMatchRequestPopupProps> = (props) => {
     const { visible, onRequestClose } = props
+
+    const [phone, setPhone] = React.useState('');
+
+    const onSend = React.useCallback(() => {
+        props.onSend && props.onSend(phone);
+    }, [phone]);
 
     function renderContent() {
         return (
@@ -22,6 +29,8 @@ export const SendMatchRequestPopup: React.FC<SendMatchRequestPopupProps> = (prop
                 <Text style={{ alignSelf: 'center' }} h4> Gửi lời mời</Text>
                 <Spacer height={8} />
                 <Input
+                    value={phone}
+                    onChangeText={setPhone}
                     inputStyle={{ textAlign: 'center' }}
                     keyboardType='phone-pad'
                     placeholder='Phone number'
@@ -39,6 +48,7 @@ export const SendMatchRequestPopup: React.FC<SendMatchRequestPopupProps> = (prop
                     <Button
                         buttonStyle={{ backgroundColor: '#EE4E9B', paddingVertical: 4, width: 80 }}
                         titleStyle={{ color: '#ffffff' }}
+                        onPress={onSend}
                         title='Send'
                     />
                 </View>

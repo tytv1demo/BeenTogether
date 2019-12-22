@@ -49,16 +49,16 @@ class SplashViewController: UIViewController {
                 let coupleId = AppUserData.shared.userInfo.coupleId
                 let friendId = self.getFriendId(otherId: String(otherId), coupleId: coupleId)
                 
-                if friendId != "local" {
+//                if friendId != "local" {
                     AppUserData.shared.getFriendProfile(friendId: friendId).done { (_) in
                         self.goToHomeScreen()
                     }.catch { (_) in
                         
                     }
-                } else {
-                    AppUserData.shared.friendInfo = nil
-                    self.goToHomeScreen()
-                }
+//                } else {
+//                    AppUserData.shared.friendInfo = nil
+//                    self.goToHomeScreen()
+//                }
             } else {
                 self.goToLoginScreen()
             }
