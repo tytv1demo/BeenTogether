@@ -34,8 +34,8 @@ class UploadAPI {
         }
     }
     
-    func uploadAvatar(imageData: Data, completion: ((String) -> Void)?) {
-        upload(imageData: imageData, to: "avatar_images", name: "\(AppUserData.shared.userInfo.id)_\(Date().timeIntervalSince1970)", completion: completion)
+    func uploadAvatar(imageData: Data, for user: String, completion: ((String) -> Void)?) {
+        upload(imageData: imageData, to: "avatar_images/\(user)", name: "\(AppUserData.shared.userInfo.id)_\(Date().timeIntervalSince1970)", completion: completion)
     }
     
     func uploadEventImages(imageData: Data, completion: ((String) -> Void)?) {

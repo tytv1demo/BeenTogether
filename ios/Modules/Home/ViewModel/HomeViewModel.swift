@@ -30,6 +30,7 @@ class HomeViewModel: NSObject, HomeViewModelProtocol {
     var configs: [Config] = [] {
         didSet {
             self.delegate?.updateNameLabelCallBack()
+            self.delegate?.updateAvatarCallBack()
         }
     }
     
@@ -38,7 +39,6 @@ class HomeViewModel: NSObject, HomeViewModelProtocol {
             self.delegate?.updateCoutedViewCallBack()
         }
     }
-    
 
     override init() {
         userRepository = UserRepository()
@@ -68,11 +68,19 @@ class HomeViewModel: NSObject, HomeViewModelProtocol {
     }
     
     func getUserNickName() -> String {
-        return configs.first?.name ?? ""
+        return configs.first?.name ?? userInfo.name
     }
     
     func getFriendNickName() -> String {
-        return configs.last?.name ?? ""
+        return configs.last?.name ?? AppUserData.shared.friendInfo!.name
+    }
+    
+    func getUserAvatarUrl() -> String {
+        return configs.first?.avatar ?? ""
+    }
+    
+    func getFriendAvatarUrl() -> String {
+        return configs.last?.avatar ?? ""
     }
 }
 
@@ -164,10 +172,16 @@ extension HomeViewModel {
     }
     
     func refPersonAvatar(avatarURL: String, person: String) -> Promise<Bool> {
-        return Promise<Bool> { _ in
+        return Promise<Bool> { seal in
             threadRef = Database.database().reference(withPath: "couples/\(self.userInfo.coupleId)/configs/\(person)/avatar")
             
-            threadRef.setValue(avatarURL)
+            threadRef.setValue(avatarURL) { (err, _) in
+                if err == nil {
+                    seal.fulfill(true)
+                } else {
+                    seal.fulfill(false)
+                }
+            }
         }
     }
     
@@ -186,10 +200,16 @@ extension HomeViewModel {
     }
     
     func refBackground(backgroudURL: String) -> Promise<Bool> {
-        return Promise<Bool> { _ in
+        return Promise<Bool> { seal in
             threadRef = Database.database().reference(withPath: "couples/\(self.userInfo.coupleId)/configs/background")
             
-            threadRef.setValue(backgroudURL)
+            threadRef.setValue(backgroudURL) { (err, _) in
+                if err == nil {
+                    seal.fulfill(true)
+                } else {
+                    seal.fulfill(false)
+                }
+            }
         }
     }
     
