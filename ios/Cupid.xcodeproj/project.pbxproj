@@ -35,9 +35,16 @@
 		46E7584723A8DF43007A08CA /* PopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46E7584523A8DF43007A08CA /* PopupViewController.xib */; };
 		5EE97E81A77DC1E07841BFF2 /* libPods-CupidTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE1A2B31046312B7E5CE0C22 /* libPods-CupidTests.a */; };
 		6F00EFE123A9397B007B0365 /* UploadAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F00EFE023A9397B007B0365 /* UploadAPI.swift */; };
+		6F0E785A23ABBDE10033624D /* AddingImagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0E785823ABBDE10033624D /* AddingImagesTableViewCell.swift */; };
+		6F0E785B23ABBDE10033624D /* AddingImagesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F0E785923ABBDE10033624D /* AddingImagesTableViewCell.xib */; };
+		6F0E785E23ABBECE0033624D /* AddingImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0E785C23ABBECE0033624D /* AddingImageCollectionViewCell.swift */; };
+		6F0E785F23ABBECE0033624D /* AddingImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F0E785D23ABBECE0033624D /* AddingImageCollectionViewCell.xib */; };
 		6F17F979239AAE54007ECF45 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F17F978239AAE54007ECF45 /* EventTableViewCell.swift */; };
 		6F17F97A239AAE87007ECF45 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F17F976239AADFC007ECF45 /* EventTableViewCell.xib */; };
+		6F1DA16323B11C5E00E31564 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1DA16223B11C5E00E31564 /* EventViewModel.swift */; };
+		6F2E51CA23AF93CF000479AF /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2E51C923AF93CF000479AF /* EventModel.swift */; };
 		6F4C6A70239818BC00F4FB4D /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4C6A6F239818BC00F4FB4D /* EventViewController.swift */; };
+		6F69389A23B1393300C0ECB2 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69389923B1393300C0ECB2 /* DateHelper.swift */; };
 		6F846FD3239570C1008C03D3 /* Event.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F846FD2239570C1008C03D3 /* Event.storyboard */; };
 		6FE9079523A62E9D00892C3C /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE9079423A62E9D00892C3C /* AddEventViewController.swift */; };
 		6FE9079823A62FDC00892C3C /* AddingTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE9079623A62FDC00892C3C /* AddingTextTableViewCell.swift */; };
@@ -205,9 +212,16 @@
 		50F40441CB0C3AB88992F5E4 /* Pods-CupidTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CupidTests.release.xcconfig"; path = "Target Support Files/Pods-CupidTests/Pods-CupidTests.release.xcconfig"; sourceTree = "<group>"; };
 		5CC0C1EB72A73FDCB598FAC9 /* Pods-Cupid-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cupid-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-Cupid-tvOSTests/Pods-Cupid-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		6F00EFE023A9397B007B0365 /* UploadAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAPI.swift; sourceTree = "<group>"; };
+		6F0E785823ABBDE10033624D /* AddingImagesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingImagesTableViewCell.swift; sourceTree = "<group>"; };
+		6F0E785923ABBDE10033624D /* AddingImagesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddingImagesTableViewCell.xib; sourceTree = "<group>"; };
+		6F0E785C23ABBECE0033624D /* AddingImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		6F0E785D23ABBECE0033624D /* AddingImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddingImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		6F17F976239AADFC007ECF45 /* EventTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventTableViewCell.xib; sourceTree = "<group>"; };
 		6F17F978239AAE54007ECF45 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		6F1DA16223B11C5E00E31564 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
+		6F2E51C923AF93CF000479AF /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		6F4C6A6F239818BC00F4FB4D /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		6F69389923B1393300C0ECB2 /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		6F846FD2239570C1008C03D3 /* Event.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Event.storyboard; sourceTree = "<group>"; };
 		6FE9079423A62E9D00892C3C /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 		6FE9079623A62FDC00892C3C /* AddingTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingTextTableViewCell.swift; sourceTree = "<group>"; };
@@ -572,6 +586,10 @@
 				6FE9079D23A6318900892C3C /* AddingLocationTableViewCell.xib */,
 				6FE907A023A632BB00892C3C /* AddingTimeTableViewCell.swift */,
 				6FE907A123A632BB00892C3C /* AddingTimeTableViewCell.xib */,
+				6F0E785823ABBDE10033624D /* AddingImagesTableViewCell.swift */,
+				6F0E785923ABBDE10033624D /* AddingImagesTableViewCell.xib */,
+				6F0E785C23ABBECE0033624D /* AddingImageCollectionViewCell.swift */,
+				6F0E785D23ABBECE0033624D /* AddingImageCollectionViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -581,6 +599,7 @@
 			children = (
 				6F4C6A7123981CDA00F4FB4D /* Cell */,
 				6F4C6A6F239818BC00F4FB4D /* EventViewController.swift */,
+				6F1DA16223B11C5E00E31564 /* EventViewModel.swift */,
 				6FE9079423A62E9D00892C3C /* AddEventViewController.swift */,
 				6F846FD2239570C1008C03D3 /* Event.storyboard */,
 			);
@@ -625,6 +644,7 @@
 				7FF7E794236FD7E7006AC2BF /* Constants.swift */,
 				7FF7E792236FD7E1006AC2BF /* Logger.swift */,
 				B690E67F239CF53C00C418A7 /* RCTBridgeServices.swift */,
+				6F69389923B1393300C0ECB2 /* DateHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -653,6 +673,7 @@
 				B67252262397FC1E00E13339 /* RemoteMessage.swift */,
 				46C46DCE23A2496300966D44 /* AppUserData.swift */,
 				B699E8E923AE6AA100473268 /* Couples.swift */,
+				6F2E51C923AF93CF000479AF /* EventModel.swift */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -1330,6 +1351,7 @@
 			files = (
 				7F5D1C84236FC452005A4961 /* Profile.storyboard in Resources */,
 				460F74B1239DF8CB0043A7DD /* Home.storyboard in Resources */,
+				6F0E785B23ABBDE10033624D /* AddingImagesTableViewCell.xib in Resources */,
 				46C46DC723A1EFF300966D44 /* Login.storyboard in Resources */,
 				6FE907A323A632BB00892C3C /* AddingTimeTableViewCell.xib in Resources */,
 				7F5D1C4A236FC39C005A4961 /* MainTabBar.storyboard in Resources */,
@@ -1341,6 +1363,7 @@
 				7FF7E7A2236FDA09006AC2BF /* Localizable.strings in Resources */,
 				B68E248B2392712B0014A53E /* Message.storyboard in Resources */,
 				46AC2FB423A36DE600620088 /* Create.storyboard in Resources */,
+				6F0E785F23ABBECE0033624D /* AddingImageCollectionViewCell.xib in Resources */,
 				6FE9079923A62FDC00892C3C /* AddingTextTableViewCell.xib in Resources */,
 				7F5D1C70236FC441005A4961 /* Dating.storyboard in Resources */,
 				6FE9079F23A6318900892C3C /* AddingLocationTableViewCell.xib in Resources */,
@@ -1684,6 +1707,7 @@
 				46BC4BD42392B61E0040E510 /* UserAPI.swift in Sources */,
 				B68E24982392712B0014A53E /* MessageViewController.swift in Sources */,
 				46C46DD423A25F2100966D44 /* SplashNavigator.swift in Sources */,
+				6F2E51CA23AF93CF000479AF /* EventModel.swift in Sources */,
 				7FF7E78B236FD718006AC2BF /* StoryboardExt.swift in Sources */,
 				B6D5B85823A12E3200942C44 /* RNLocationServices.swift in Sources */,
 				B697FC6223A3A8D6000981B5 /* RNUserDataBridge.swift in Sources */,
@@ -1725,6 +1749,7 @@
 				7FF7E791236FD7AC006AC2BF /* TableViewExt.swift in Sources */,
 				B68E24962392712B0014A53E /* InputView.swift in Sources */,
 				B690E67E239CF04000C418A7 /* RCTViewController.swift in Sources */,
+				6F0E785A23ABBDE10033624D /* AddingImagesTableViewCell.swift in Sources */,
 				B690E66F239C9DB500C418A7 /* CollectionEmptyView.swift in Sources */,
 				460F74B0239DF8CB0043A7DD /* HomeViewController.swift in Sources */,
 				7FF7E795236FD7E7006AC2BF /* Constants.swift in Sources */,
@@ -1741,6 +1766,7 @@
 				7F5D1C85236FC452005A4961 /* ProfileViewController.swift in Sources */,
 				6FE9079823A62FDC00892C3C /* AddingTextTableViewCell.swift in Sources */,
 				B67252272397FC1E00E13339 /* RemoteMessage.swift in Sources */,
+				6F69389A23B1393300C0ECB2 /* DateHelper.swift in Sources */,
 				6F17F979239AAE54007ECF45 /* EventTableViewCell.swift in Sources */,
 				B68E24932392712B0014A53E /* TextMessageCell.swift in Sources */,
 				B6972B362393D0AD002EE07B /* ImageMessage.swift in Sources */,
@@ -1754,6 +1780,7 @@
 				7F5D1C71236FC441005A4961 /* DatingViewModel.swift in Sources */,
 				B68E248E2392712B0014A53E /* SCUser.swift in Sources */,
 				B690E680239CF53C00C418A7 /* RCTBridgeServices.swift in Sources */,
+				6F1DA16323B11C5E00E31564 /* EventViewModel.swift in Sources */,
 				B682021823A5D44F00E32F5F /* CircleButton.swift in Sources */,
 				B6964F6E23AF28D900283B9B /* CoupleApi.swift in Sources */,
 				B682021E23A62AFE00E32F5F /* RNMessageAlertBridges.swift in Sources */,
@@ -1761,6 +1788,7 @@
 				B68E248D2392712B0014A53E /* Message.swift in Sources */,
 				7FB507DA236FCB3400A00CF6 /* LoadingNavigator.swift in Sources */,
 				B68CD039239B95D2000BA1D8 /* EmojiCollection.swift in Sources */,
+				6F0E785E23ABBECE0033624D /* AddingImageCollectionViewCell.swift in Sources */,
 				B682021A23A6171100E32F5F /* MessageAlertViewController.swift in Sources */,
 				7FB507DC236FCB3400A00CF6 /* LoadingViewModel.swift in Sources */,
 			);

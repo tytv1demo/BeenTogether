@@ -32,3 +32,5 @@ enum TimeConstants: Double {
 struct Colors {
     static let kPink: UIColor =  UIColor(rgb: 0xEE4E9B)
 }
+
+let kEventDateFormat = "dd/MM/yyyy"

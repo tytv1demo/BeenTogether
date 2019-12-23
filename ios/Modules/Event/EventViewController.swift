@@ -15,19 +15,8 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var eventTable: UITableView!
     @IBOutlet weak var createLabel: UILabel!
     
-    // TO-DO: delete test
-    let testImgs: [UIImage] = [
-        UIImage(named: "test_img1")!,
-        UIImage(named: "test_img2")!,
-        UIImage(named: "test_img3")!,
-        UIImage(named: "test_img4")!,
-        UIImage(named: "test_img5")!,
-        UIImage(named: "test_img6")!,
-        UIImage(named: "test_img7")!,
-        UIImage(named: "test_img8")!,
-        UIImage(named: "test_img9")!,
-        UIImage(named: "test_img10")!
-    ]
+    var viewModel: EventViewModel = EventViewModel()
+    var dataSource: [EventModel] = []
     
     // MARK: - Life cycle
     
@@ -38,9 +27,11 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         paintLabel()
         let createGesture = UITapGestureRecognizer(target: self, action: #selector(createEventAction))
         createLabel.addGestureRecognizer(createGesture)
+        createLabel.isUserInteractionEnabled = true
     }
     
     private func setUpTable() {
+        reloadTable()
         eventTable.delegate = self
         eventTable.dataSource = self
         eventTable.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: "EventTableViewCell")
@@ -56,7 +47,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // MARK: - Table data source and delegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return testImgs.count
+        return dataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -64,18 +55,23 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             return UITableViewCell()
         }
         
-        cell.dataSource = testImgs
-        cell.pageControl.numberOfPages = testImgs.count
-        
         return cell
     }
     
     // MARK: - Actions
     
     @objc func createEventAction() {
-        let addingVC = UIStoryboard(name: "AddEventViewController", bundle: nil).instantiateViewController(withIdentifier: "AddEventViewController") as! AddEventViewController
+        let addingVC = UIStoryboard(name: "Event", bundle: nil).instantiateViewController(withIdentifier: "AddEventViewController") as! AddEventViewController
 
         addingVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(addingVC, animated: true)
+    }
+    
+    private func reloadTable() {
+        dataSource = viewModel.getEvents(completion: {
+            DispatchQueue.main.async {
+                self.eventTable.reloadData()
+            }
+        })
     }
 }

@@ -12,6 +12,8 @@ class AddingTextTableViewCell: UITableViewCell {
 
     @IBOutlet weak var addingTextField: UITextField!
     
+    var didEndEditingCallback: ((String) -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -124,6 +124,7 @@ PODS:
   - KeychainAccess (3.2.0)
   - Kingfisher (4.10.0)
   - leveldb-library (1.22)
+  - MaterialControls (1.2.2)
   - Moya (13.0.1):
     - Moya/Core (= 13.0.1)
   - Moya/Core (13.0.1):
@@ -378,6 +379,7 @@ DEPENDENCIES:
   - IBAnimatable
   - KeychainAccess
   - Kingfisher (= 4.10.0)
+  - MaterialControls (~> 1.2.2)
   - Moya (~> 13.0)
   - PromiseKit (~> 6.8)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
@@ -439,6 +441,7 @@ SPEC REPOS:
     - KeychainAccess
     - Kingfisher
     - leveldb-library
+    - MaterialControls
     - Moya
     - nanopb
     - PromiseKit
@@ -545,6 +548,7 @@ SPEC CHECKSUMS:
   KeychainAccess: 3b1bf8a77eb4c6ea1ce9404c292e48f948954c6b
   Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
+  MaterialControls: 1c6b29e78d3a13d8dd6a67ed31b6d26eb5de8f72
   Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromiseKit: e4863d06976e7dee5e41c04fc7371c16b3600292
@@ -581,6 +585,6 @@ SPEC CHECKSUMS:
   Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
   YogaKit: 5d1dc899cecd5946e5a758a0c3997704a4b48d01
 
-PODFILE CHECKSUM: 2c09c7043f76dfc883ed1fb0da87d03bffa9b2db
+PODFILE CHECKSUM: a4a0726d6dd0bebdf2bacf118dfe4fb7bbb3c784
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4
