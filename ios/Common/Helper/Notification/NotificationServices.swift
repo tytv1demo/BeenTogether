@@ -10,9 +10,21 @@ import Foundation
 import UserNotifications
 import Firebase
 
+enum NotificationPayloadType: String {
+    case message
+    case matchReqeust
+}
+
+struct NotificationPayload {
+    var type: NotificationPayloadType
+    var payload: Any?
+}
+
 class NotificationServices: NSObject {
     
     static let shared: NotificationServices = NotificationServices()
+    
+    static let kBroadcastNotificationPayload = NSNotification.Name(rawValue: "NotificationService-Payload-Broadcast")
     
     var token: String?
     
@@ -20,8 +32,7 @@ class NotificationServices: NSObject {
     
     func registerForPushNotifications() {
       UNUserNotificationCenter.current()
-        .requestAuthorization(options: [.alert, .sound, .badge]) {
-          [weak self] granted, error in
+        .requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, error in
           guard granted else { return }
           self?.registerForRemoteNotifications()
       }
@@ -63,14 +74,31 @@ class NotificationServices: NSObject {
         }
         
     }
+    
+    func postNotificationPayload(_ userInfo: [String: Any]) {
+        guard
+            let rawType = userInfo["type"] as? String,
+            let type = NotificationPayloadType(rawValue: rawType) else {
+            return
+        }
+        let notificationPayload = NotificationPayload(type: type, payload: nil)
+        
+        NotificationCenter.default.post(name: NotificationServices.kBroadcastNotificationPayload, object: notificationPayload)
+    }
 }
 
 extension NotificationServices: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        
+  
+        guard let userInfo = response.notification.request.content.userInfo as? [String: Any] else {
+            completionHandler()
+            return
+        }
+        postNotificationPayload(userInfo)
+        completionHandler()
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        
+//        completionHandler(nil)
     }
 }

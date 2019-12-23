@@ -16,7 +16,7 @@ export class UserModel {
     }
 
     private _isPaired(): boolean {
-        return !this.userInfo.coupleId.includes('local')
+        return this.userInfo.coupleId.includes('local')
     }
 
 }

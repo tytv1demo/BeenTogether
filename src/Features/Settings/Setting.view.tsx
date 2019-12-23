@@ -31,8 +31,8 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
         this.locationServices = LocationServices.shared()
         this._onAutomaticUpdateLocationStateChanged = this._onAutomaticUpdateLocationStateChanged.bind(this)
         const apiManger = new ApiManager({
-            baseURL: 'https://cupid-api.tranty9597.now.sh',
-            // baseURL: 'http://192.168.15.103:3000',
+            // baseURL: 'https://cupid-api.tranty9597.now.sh',
+            baseURL: 'http://192.168.15.104:3000',
         })
         this.appUserData = new AppUserData(apiManger)
         this.coupleService = new CoupleService(apiManger);
@@ -67,7 +67,7 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
         try {
             await this.coupleService.sendMatchRequest(phoneNumber);
         } catch (error) {
-            console.log(error.response)
+            return
         }
 
     }

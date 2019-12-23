@@ -7,16 +7,19 @@ import { Spacer } from '@components';
 export interface SendMatchRequestPopupProps {
     visible: boolean
     onRequestClose: () => void,
-    onSend?: (phone: string) => void
+    onSend?: (phone: string) => Promise<any>
 }
 
 export const SendMatchRequestPopup: React.FC<SendMatchRequestPopupProps> = (props) => {
     const { visible, onRequestClose } = props
 
     const [phone, setPhone] = React.useState('');
+    const [isSending, setIsSending] = React.useState(false)
 
-    const onSend = React.useCallback(() => {
-        props.onSend && props.onSend(phone);
+    const onSend = React.useCallback(async () => {
+        setIsSending(true)
+        await props.onSend?.(phone)
+        setIsSending(false)
     }, [phone]);
 
     function renderContent() {
@@ -46,6 +49,7 @@ export const SendMatchRequestPopup: React.FC<SendMatchRequestPopupProps> = (prop
                     />
 
                     <Button
+                        loading={isSending}
                         buttonStyle={{ backgroundColor: '#EE4E9B', paddingVertical: 4, width: 80 }}
                         titleStyle={{ color: '#ffffff' }}
                         onPress={onSend}
