@@ -9,7 +9,7 @@
 import Foundation
 
 protocol MessageTableViewDelegate: AnyObject {
-    func messageTableView(didTap messageView: MessageView, onView: UIView?)
+    func messageTableView(didTap messageView: BaseMessageView, onView: UIView?)
 }
 
 class MessageTableView: UIView {
@@ -102,11 +102,11 @@ extension MessageTableView: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension MessageTableView: MessageViewDelegate {
-    func messageView(didTap messageView: MessageView, onView: UIView?) {
+    func messageView(didTap messageView: BaseMessageView, onView: UIView?) {
         delegate?.messageTableView(didTap: messageView, onView: onView)
     }
     
-    func messageView(contentDidChange messageView: MessageView) {
+    func messageView(contentDidChange messageView: BaseMessageView) {
         tableView.reloadRows(at: [messageView.indexPath], with: .automatic)
     }
 }

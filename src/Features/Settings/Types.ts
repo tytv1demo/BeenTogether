@@ -6,11 +6,13 @@ export interface SettingScreenState {
     coupleModel?: CoupleModel
 
     requestPopupVisible: boolean
+
+    isRequestBreakingUp: boolean
 }
 
 import { LayoutRectangle, StyleProp, ViewStyle, Animated } from 'react-native';
 
-export type VAListenState = 'LISTENING' | 'PREPARE' | 'HANDLING' | 'STOP'  | 'ERROR'
+export type VAListenState = 'LISTENING' | 'PREPARE' | 'HANDLING' | 'STOP' | 'ERROR'
 
 export interface SpeechStateIndicatorProps {
 

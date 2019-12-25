@@ -12,7 +12,7 @@ class ImageMessageCell: UITableViewCell, MessageCell {
 
     static let kCellIdentify: String = "ImageMessageCell"
     
-    var messageView: MessageView!
+    var messageView: BaseMessageView!
     
     var user: SCUser!
     

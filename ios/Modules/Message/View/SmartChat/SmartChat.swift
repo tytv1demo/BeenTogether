@@ -101,7 +101,7 @@ extension SmartChat: InputToolBarDelegate {
 }
 
 extension SmartChat: MessageTableViewDelegate {
-    func messageTableView(didTap messageView: MessageView, onView: UIView?) {
+    func messageTableView(didTap messageView: BaseMessageView, onView: UIView?) {
         inputToolBar.requestEndEditing()
     }
 }

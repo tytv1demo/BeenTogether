@@ -1,10 +1,10 @@
 import React from 'react'
 import {
-    ScrollView, View, TouchableWithoutFeedback,
+    ScrollView, View, TouchableWithoutFeedback, Alert,
 } from 'react-native'
 import { Header, ListItem, Text, Icon } from 'react-native-elements'
-import { Spacer, ADSwitch, MemoAvatar } from '@components';
-import { LocationServices, AppUserData, UserModel, CoupleModel } from '@bridges';
+import { Spacer, ADSwitch, MemoAvatar, FullScreenIndicator } from '@components';
+import { LocationServices, AppUserData, UserModel, CoupleModel, showFlashMessage } from '@bridges';
 import { SettingScreenState } from './Types'
 import { Subscription } from 'rxjs';
 import { ApiManager, CoupleService } from '@dataManager';
@@ -27,12 +27,13 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
         super(props)
         this.state = {
             requestPopupVisible: false,
+            isRequestBreakingUp: false,
         }
         this.locationServices = LocationServices.shared()
         this._onAutomaticUpdateLocationStateChanged = this._onAutomaticUpdateLocationStateChanged.bind(this)
         const apiManger = new ApiManager({
             // baseURL: 'https://cupid-api.tranty9597.now.sh',
-            baseURL: 'http://192.168.15.104:3000',
+            baseURL: 'http://localhost:3000',
         })
         this.appUserData = new AppUserData(apiManger)
         this.coupleService = new CoupleService(apiManger);
@@ -66,9 +67,31 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
     sendMatchRequest = async (phoneNumber: string) => {
         try {
             await this.coupleService.sendMatchRequest(phoneNumber);
+            showFlashMessage('Congratulation', 'Send request successfully', 'success')
+            this.setState({ requestPopupVisible: false })
         } catch (error) {
-            return
+            showFlashMessage('Oops!', error.message)
         }
+
+    }
+
+    onLogout = () => {
+        this.appUserData.logout()
+    }
+
+    onBreakUp = () => {
+        const doBreakUp = async () => {
+            this.setState({ isRequestBreakingUp: true })
+            await this.coupleService.breakUp()
+            await this.state.userModel?.syncUserInfo()
+            showFlashMessage('Yeah!', 'Breakup successfully!', 'success')
+            this.setState({ isRequestBreakingUp: false })
+        }
+        const { coupleModel } = this.state
+        Alert.alert('Warning', `Are you sure to break up ${coupleModel?.lover.name}`, [
+            { text: 'Absolutely', onPress: doBreakUp },
+            { text: 'Nope' },
+        ])
 
     }
 
@@ -128,7 +151,7 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
                         />
                     </View>
                 </PulseCircles>
-                <Text style={{ alignSelf: 'center', marginTop: 40 }}>Đồng bộ dữ liệu với người thương</Text>
+                <Text style={{ alignSelf: 'center', margin: 40 }}>Chạm để đồng bộ dữ liệu với người thương</Text>
             </>
         )
     }
@@ -149,6 +172,13 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
                 <ListItem
                     title='Phone number'
                     rightTitle={userInfo.phoneNumber}
+                    bottomDivider
+                />
+                <ListItem
+                    title='Logout'
+                    titleStyle={{ color: 'red' }}
+                    onPress={this.onLogout}
+                // rightIcon={{ name: 'log-out', type: 'ionicon' }}
                 />
                 <Spacer />
             </>
@@ -158,7 +188,7 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
     renderCoupleSection() {
         const { coupleModel, userModel } = this.state
 
-        if (!userModel!.isPaired) {
+        if (!userModel?.isPaired) {
             return this.renderMatchSection()
         }
         const { lover } = coupleModel!
@@ -179,7 +209,13 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
                         onValueChange={this.onToggleAutomaticUpdate}
                         value={LocationServices.shared().isAutomaticUpdateOfLocation.value}
                     />}
-
+                    bottomDivider
+                />
+                <ListItem
+                    title='Breakup'
+                    titleStyle={{ color: 'red' }}
+                    onPress={this.onBreakUp}
+                    chevron
                 />
             </>
         )
@@ -191,9 +227,11 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
                 <ListItem
                     title='Gửi phản hồi'
                     bottomDivider
+                    chevron
                 />
                 <ListItem
-                    title='Coppyright'
+                    title='Copyright'
+                    rightTitle='Tml'
                     bottomDivider
                 />
                 <ListItem
@@ -207,7 +245,7 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
     render() {
         const { userModel } = this.state
         if (typeof userModel === 'undefined') {
-            return <PulseIndicator />
+            return <PulseIndicator color='#EE4E9B' />
         }
         return (
             <>
@@ -235,6 +273,7 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
                     visible={this.state.requestPopupVisible}
                     onSend={this.sendMatchRequest}
                 />
+                <FullScreenIndicator visible={this.state.isRequestBreakingUp} />
             </>
         )
     }

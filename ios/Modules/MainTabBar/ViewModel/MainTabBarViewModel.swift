@@ -10,19 +10,24 @@ import Foundation
 import PromiseKit
 import RxSwift
 
+protocol MainTabBarViewModelDelegate: AnyObject {
+    func mainTabBarViewModel(onLogout viewModel: MainTabBarViewModel)
+}
+
 protocol MainTabBarViewModelProtocol: AnyObject {
     func responseToMatchRequest(request: CoupleMatchRequest, action: MatchRequestAction) -> Promise<Bool>
 }
 
 class MainTabBarViewModel: MainTabBarViewModelProtocol {
+    
+    weak var delegate: MainTabBarViewModelDelegate?
+    
     var coupleRepository: CoupleRepository
     
     var userRepository: UserRepository
     
     var coupleMatchRequest: BehaviorSubject<CoupleMatchRequest?>
-    
-    var notificationPayloadObservation: NSObjectProtocol!
-    
+
     init() {
         userRepository = UserRepository()
         coupleRepository = CoupleRepository()
@@ -52,6 +57,7 @@ class MainTabBarViewModel: MainTabBarViewModelProtocol {
     
     func observeNotificatonCenter() {
         NotificationCenter.default.addObserver(self, selector: #selector(onReceivedNotification), name: NotificationServices.kBroadcastNotificationPayload, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onUserTokenChanged), name: AppUserData.kUserTokenChangedEvent, object: nil)
     }
     
     @objc func onReceivedNotification(_ notification: Notification) {
@@ -60,6 +66,12 @@ class MainTabBarViewModel: MainTabBarViewModelProtocol {
         }
         if payload.type == .matchReqeust {
             syncNewestCoupleMatchRequest()
+        }
+    }
+    
+    @objc func onUserTokenChanged() {
+        if AppUserData.shared.userToken == "" {
+            delegate?.mainTabBarViewModel(onLogout: self)
         }
     }
     

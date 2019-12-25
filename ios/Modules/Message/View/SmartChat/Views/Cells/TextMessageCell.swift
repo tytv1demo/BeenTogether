@@ -10,7 +10,7 @@ import Foundation
 
 protocol MessageCell: UITableViewCell {
     
-    var messageView: MessageView! { get set }
+    var messageView: BaseMessageView! { get set }
     
     var user: SCUser! { get set }
     
@@ -43,7 +43,7 @@ class TextMessageCell: UITableViewCell, MessageCell {
 
     static let kCellIdentify: String = "TextMessageCell"
     
-    var messageView: MessageView!
+    var messageView: BaseMessageView!
     
     var user: SCUser!
     

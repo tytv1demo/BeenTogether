@@ -127,7 +127,7 @@
 		B68E24942392712B0014A53E /* InputToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E24832392712B0014A53E /* InputToolBar.swift */; };
 		B68E24952392712B0014A53E /* GalleryImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E24842392712B0014A53E /* GalleryImage.swift */; };
 		B68E24962392712B0014A53E /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E24852392712B0014A53E /* InputView.swift */; };
-		B68E24972392712B0014A53E /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E24862392712B0014A53E /* MessageView.swift */; };
+		B68E24972392712B0014A53E /* BaseMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E24862392712B0014A53E /* BaseMessageView.swift */; };
 		B68E24982392712B0014A53E /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E24872392712B0014A53E /* MessageViewController.swift */; };
 		B68E24992392712B0014A53E /* MessageNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E24892392712B0014A53E /* MessageNavigator.swift */; };
 		B68E249B239271630014A53E /* Bubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E249A239271630014A53E /* Bubble.swift */; };
@@ -148,6 +148,8 @@
 		B697FC6223A3A8D6000981B5 /* RNUserDataBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B697FC6123A3A8D6000981B5 /* RNUserDataBridge.swift */; };
 		B699E8EA23AE6AA100473268 /* Couples.swift in Sources */ = {isa = PBXBuildFile; fileRef = B699E8E923AE6AA100473268 /* Couples.swift */; };
 		B6B9D121239559F0003527B4 /* MessageStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B9D120239559F0003527B4 /* MessageStatusIndicator.swift */; };
+		B6D2645123B363CF00D4E1A4 /* CommonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D2645023B363CF00D4E1A4 /* CommonHelper.swift */; };
+		B6D2645323B364CD00D4E1A4 /* CommonHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D2645223B364CD00D4E1A4 /* CommonHelper.m */; };
 		B6D5B85423A12C2E00942C44 /* LocationServices.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D5B85323A12C2E00942C44 /* LocationServices.m */; };
 		B6D5B85823A12E3200942C44 /* RNLocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D5B85723A12E3200942C44 /* RNLocationServices.swift */; };
 		B6E2E2E32362A7F7001046E5 /* UIViewExts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2E2E22362A7F7001046E5 /* UIViewExts.swift */; };
@@ -311,7 +313,7 @@
 		B68E24832392712B0014A53E /* InputToolBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputToolBar.swift; sourceTree = "<group>"; };
 		B68E24842392712B0014A53E /* GalleryImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryImage.swift; sourceTree = "<group>"; };
 		B68E24852392712B0014A53E /* InputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
-		B68E24862392712B0014A53E /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		B68E24862392712B0014A53E /* BaseMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseMessageView.swift; sourceTree = "<group>"; };
 		B68E24872392712B0014A53E /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		B68E24892392712B0014A53E /* MessageNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageNavigator.swift; sourceTree = "<group>"; };
 		B68E249A239271630014A53E /* Bubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bubble.swift; sourceTree = "<group>"; };
@@ -332,6 +334,8 @@
 		B697FC6123A3A8D6000981B5 /* RNUserDataBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNUserDataBridge.swift; sourceTree = "<group>"; };
 		B699E8E923AE6AA100473268 /* Couples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Couples.swift; sourceTree = "<group>"; };
 		B6B9D120239559F0003527B4 /* MessageStatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStatusIndicator.swift; sourceTree = "<group>"; };
+		B6D2645023B363CF00D4E1A4 /* CommonHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonHelper.swift; sourceTree = "<group>"; };
+		B6D2645223B364CD00D4E1A4 /* CommonHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonHelper.m; sourceTree = "<group>"; };
 		B6D5B85323A12C2E00942C44 /* LocationServices.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationServices.m; sourceTree = "<group>"; };
 		B6D5B85723A12E3200942C44 /* RNLocationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNLocationServices.swift; sourceTree = "<group>"; };
 		B6E2E2E22362A7F7001046E5 /* UIViewExts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExts.swift; sourceTree = "<group>"; };
@@ -620,6 +624,7 @@
 		7F5D1C1C236FBD5A005A4961 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				B690E673239CA07700C418A7 /* UIButton.swift */,
 				B6E2E2E22362A7F7001046E5 /* UIViewExts.swift */,
 				B6E2E2E62362AB73001046E5 /* UIColorExts.swift */,
 				7FF7E78A236FD718006AC2BF /* StoryboardExt.swift */,
@@ -628,7 +633,6 @@
 				7FF7E790236FD7AC006AC2BF /* TableViewExt.swift */,
 				46B83CA623867E990040D1F1 /* DateExts.swift */,
 				B68CD03C239BF488000BA1D8 /* UIImage.swift */,
-				B690E673239CA07700C418A7 /* UIButton.swift */,
 				B682021B23A618FD00E32F5F /* UIViewControllerExts.swift */,
 			);
 			path = Extension;
@@ -637,6 +641,7 @@
 		7F5D1C1D236FBD5A005A4961 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				B6D2644F23B363CF00D4E1A4 /* RNCommonHelper */,
 				B636B8D423A7C66D003842D1 /* Notification */,
 				B697FC6023A3A8B3000981B5 /* AppData */,
 				B6D5B85223A12C0200942C44 /* LocationService */,
@@ -1126,7 +1131,7 @@
 			isa = PBXGroup;
 			children = (
 				B68E247F2392712B0014A53E /* TextMessage.swift */,
-				B68E24862392712B0014A53E /* MessageView.swift */,
+				B68E24862392712B0014A53E /* BaseMessageView.swift */,
 				B68E24822392712B0014A53E /* TextMessageCell.swift */,
 				B6972B332393D04E002EE07B /* ImageMessageCell.swift */,
 				B6972B352393D0AD002EE07B /* ImageMessage.swift */,
@@ -1189,6 +1194,15 @@
 				B688687B23A5159E00FB155D /* RNUserDataBridge.m */,
 			);
 			path = AppData;
+			sourceTree = "<group>";
+		};
+		B6D2644F23B363CF00D4E1A4 /* RNCommonHelper */ = {
+			isa = PBXGroup;
+			children = (
+				B6D2645023B363CF00D4E1A4 /* CommonHelper.swift */,
+				B6D2645223B364CD00D4E1A4 /* CommonHelper.m */,
+			);
+			path = RNCommonHelper;
 			sourceTree = "<group>";
 		};
 		B6D5B85223A12C0200942C44 /* LocationService */ = {
@@ -1719,6 +1733,7 @@
 				B6964F7323AF2B8300283B9B /* CoupleRepository.swift in Sources */,
 				B6964F6A23AF0D0100283B9B /* ConfirmPopupViewController.swift in Sources */,
 				7F5D1C30236FBD5B005A4961 /* UserLocalDataSource.swift in Sources */,
+				B6D2645323B364CD00D4E1A4 /* CommonHelper.m in Sources */,
 				B6F4F919234737E8002B7B36 /* AppDelegate.swift in Sources */,
 				B68E24942392712B0014A53E /* InputToolBar.swift in Sources */,
 				7FF7E793236FD7E1006AC2BF /* Logger.swift in Sources */,
@@ -1733,7 +1748,7 @@
 				7FF7E797236FD7EE006AC2BF /* AppService.swift in Sources */,
 				B690E676239CA23C00C418A7 /* BaseButton.swift in Sources */,
 				B68E24992392712B0014A53E /* MessageNavigator.swift in Sources */,
-				B68E24972392712B0014A53E /* MessageView.swift in Sources */,
+				B68E24972392712B0014A53E /* BaseMessageView.swift in Sources */,
 				B6B9D121239559F0003527B4 /* MessageStatusIndicator.swift in Sources */,
 				46E7584623A8DF43007A08CA /* PopupViewController.swift in Sources */,
 				B699E8EA23AE6AA100473268 /* Couples.swift in Sources */,
@@ -1778,6 +1793,7 @@
 				7FF7E78F236FD722006AC2BF /* CollectionViewExt.swift in Sources */,
 				4646BE7923A5F7DD0092E8A7 /* CreateViewModel.swift in Sources */,
 				7F5D1C71236FC441005A4961 /* DatingViewModel.swift in Sources */,
+				B6D2645123B363CF00D4E1A4 /* CommonHelper.swift in Sources */,
 				B68E248E2392712B0014A53E /* SCUser.swift in Sources */,
 				B690E680239CF53C00C418A7 /* RCTBridgeServices.swift in Sources */,
 				6F1DA16323B11C5E00E31564 /* EventViewModel.swift in Sources */,

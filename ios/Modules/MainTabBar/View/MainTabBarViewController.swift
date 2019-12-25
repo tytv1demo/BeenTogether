@@ -9,6 +9,7 @@
 import Foundation
 import YogaKit
 import RxSwift
+import PromiseKit
 import UIKit
 
 class MainTabBarUIConfiguration {
@@ -40,6 +41,7 @@ class MainTabBarViewController: UITabBarController {
         settupTabBarUI()
         selectedIndex = 2
         viewModel = MainTabBarViewModel()
+        viewModel.delegate = self
         
         subscribeViewModel()
     }
@@ -108,28 +110,41 @@ class MainTabBarViewController: UITabBarController {
 }
 
 extension MainTabBarViewController: ConfirmPopupViewControllerDelegate {
-    func confirmPopup(didCancel popup: ConfirmPopupViewController) {
-        viewModel
-            .responseToMatchRequest(request: interactionRequest, action: .reject)
-            .done { (success) in
-                if success {
-                    popup.dismiss(animated: true, completion: nil)
-                }
-        }.catch { (_) in
-            
+    
+    func confirmPopup(didCancel popup: ConfirmPopupViewController) -> Promise<Any> {
+        return Promise {seal in
+            viewModel
+                .responseToMatchRequest(request: interactionRequest, action: .reject)
+                .done { (success) in
+                    if success {
+                        popup.dismiss(animated: true, completion: nil)
+                    }
+                    seal.fulfill(true)
+            }.catch(seal.reject)
         }
+        
     }
     
-    func confirmPopup(didAccept popup: ConfirmPopupViewController) {
-        viewModel
-            .responseToMatchRequest(request: interactionRequest, action: .accept)
-            .done { (success) in
-                if success {
-                    popup.dismiss(animated: true, completion: nil)
-                }
-        }.catch { (_) in
-            
+    func confirmPopup(didAccept popup: ConfirmPopupViewController) -> Promise<Any> {
+        return Promise {seal in
+           viewModel
+                .responseToMatchRequest(request: interactionRequest, action: .accept)
+                .done { (success) in
+                    if success {
+                        popup.dismiss(animated: true, completion: nil)
+                    }
+            }.catch(seal.reject)
         }
+    }
+}
+
+extension MainTabBarViewController: MainTabBarViewModelDelegate {
+    func mainTabBarViewModel(onLogout viewModel: MainTabBarViewModel) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        appDelegate.window?.rootViewController = SplashViewController()
+        appDelegate.window?.makeKeyAndVisible()
     }
 }
 

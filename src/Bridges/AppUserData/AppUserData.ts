@@ -1,8 +1,6 @@
-import { CoupleModel } from './CoupleModel';
 import { NativeModules, EventSubscription, NativeEventEmitter } from 'react-native'
 import { BehaviorSubject } from 'rxjs'
 import { GetUserProfileResult, BaseResult, User } from './Types';
-import { UserModel } from './UserModel'
 import { ApiManager } from '@dataManager';
 
 export const ModuleName = 'RNAppUserDataBridge'
@@ -40,5 +38,9 @@ export class AppUserData {
     onUserTokenChanged = (token: string) => {
         this.apiManger.setToken(token)
         this.token.next(token)
+    }
+
+    async logout() {
+        return BridgeModule.logout()
     }
 }

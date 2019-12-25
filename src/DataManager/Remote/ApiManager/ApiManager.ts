@@ -1,10 +1,24 @@
-import axios, { AxiosInstance, AxiosResponse, AxiosRequestConfig } from 'axios';
+import axios, { AxiosInstance, AxiosResponse, AxiosRequestConfig, AxiosError } from 'axios';
+import { BaseResult } from '@bridges';
 
 export class ApiManager {
     axios: AxiosInstance
 
     constructor(config: AxiosRequestConfig) {
         this.axios = axios.create(config)
+        this.axios.interceptors.response.use(this.onReponse, this.onError)
+    }
+
+    onReponse = (response: AxiosResponse) => {
+        return response
+    }
+
+    onError = (error: AxiosError<BaseResult>) => {
+        const { response } = error
+        if (response) {
+            return Promise.reject(new Error(response.data.message))
+        }
+        return Promise.reject(new Error('System error'))
     }
 
     setToken(token: string) {

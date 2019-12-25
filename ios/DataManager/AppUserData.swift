@@ -13,6 +13,8 @@ import PromiseKit
     
     static let kUserInfoChangedEventName = "kUserInfoChangedEventName"
     
+    static let kUserTokenChangedEvent = NSNotification.Name(rawValue: "kUserTokenChangedEvent")
+    
     static let shared = AppUserData()
     
     var userRepository = UserRepository()
@@ -28,12 +30,19 @@ import PromiseKit
     @objc dynamic var userToken: String {
         didSet {
             UserDefaults.standard.set(userToken, forKey: "token")
+            NotificationCenter.default.post(name: AppUserData.kUserTokenChangedEvent, object: nil, userInfo: nil)
         }
     }
     
     override init() {
         userToken = UserDefaults.standard.string(forKey: "token") ?? ""
         super.init()
+    }
+    
+    func logout() {
+        DispatchQueue.main.async {
+            self.userToken = ""
+        }
     }
     
     func checkIsSignedIn() -> Promise<Bool> {

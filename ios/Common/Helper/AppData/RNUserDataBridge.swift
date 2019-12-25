@@ -75,6 +75,10 @@ class RNAppUserDataBridge: RCTEventEmitter {
         }
     }
     
+    @objc func logout() {
+        AppUserData.shared.logout()
+    }
+    
     deinit {
         userTokenObservation?.invalidate()
     }

@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import PromiseKit
 
 protocol ConfirmPopupViewControllerDelegate: AnyObject {
-    func confirmPopup(didAccept popup: ConfirmPopupViewController)
+    func confirmPopup(didAccept popup: ConfirmPopupViewController) -> Promise<Any>
     
-    func confirmPopup(didCancel popup: ConfirmPopupViewController)
+    func confirmPopup(didCancel popup: ConfirmPopupViewController) -> Promise<Any>
 }
 
 class ConfirmPopupViewController: UIViewController {
@@ -138,11 +139,21 @@ class ConfirmPopupViewController: UIViewController {
     }
     
     @objc func cancelButtonTouchUpInside() {
-        delegate?.confirmPopup(didCancel: self)
+        acceptButton.showGradientSkeleton()
+        delegate?.confirmPopup(didCancel: self).done({ [weak self] (_) in
+            self?.acceptButton.hideSkeleton()
+        }).catch({ [weak self] (_) in
+            self?.acceptButton.hideSkeleton()
+        })
     }
     
     @objc func acceptButtonTouchUpInside() {
-        delegate?.confirmPopup(didAccept: self)
+        acceptButton.showGradientSkeleton()
+        delegate?.confirmPopup(didAccept: self).done({ [weak self] (_) in
+            self?.acceptButton.hideSkeleton()
+        }).catch({ [weak self] (_) in
+            self?.acceptButton.hideSkeleton()
+        })
     }
     
     func setBehaviors(title: String, message: String) {

@@ -72,7 +72,7 @@ class HomeViewModel: NSObject, HomeViewModelProtocol {
     }
     
     func getFriendNickName() -> String {
-        return configs.last?.name ?? AppUserData.shared.friendInfo!.name
+        return configs.last?.name ?? AppUserData.shared.friendInfo?.name ?? ""
     }
     
     func getUserAvatarUrl() -> String {

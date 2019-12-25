@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TextMessageView: UIView, MessageView {
+class TextMessageView: UIView, BaseMessageView {
     
     weak var delegate: MessageViewDelegate?
     

@@ -11,4 +11,6 @@
 
 @interface RCT_EXTERN_MODULE(RNAppUserDataBridge, NSObject)
 
+RCT_EXTERN_METHOD(logout)
+
 @end

@@ -9,13 +9,13 @@
 import Foundation
 
 protocol MessageViewDelegate: AnyObject {
-    func messageView(didTap messageView: MessageView, onView: UIView?)
+    func messageView(didTap messageView: BaseMessageView, onView: UIView?)
     
-    func messageView(contentDidChange messageView: MessageView)
+    func messageView(contentDidChange messageView: BaseMessageView)
 }
 
 
-protocol MessageView: UIView {
+protocol BaseMessageView: UIView {
     
     var delegate: MessageViewDelegate? { get set }
     
@@ -48,7 +48,7 @@ protocol MessageView: UIView {
     func prepareForReuse()
 }
 
-extension MessageView {
+extension BaseMessageView {
     
     var isFirstMessageInGroup: Bool {
         let prevMessageIndex = indexPath.item - 1
@@ -82,7 +82,7 @@ extension MessageView {
 
 
 class MessageViewFactory {
-    static func createView(for message: SCMessage) -> MessageView {
+    static func createView(for message: SCMessage) -> BaseMessageView {
         switch message.type {
         case .text:
             return TextMessageView()

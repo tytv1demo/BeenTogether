@@ -27,6 +27,7 @@ export const SendMatchRequestPopup: React.FC<SendMatchRequestPopupProps> = (prop
             <View
                 style={{ backgroundColor: '#ffffff', width: '80%', alignSelf: 'center', padding: 16, borderRadius: 8 }}
                 animation='slideInUp'
+                duration={250}
                 useNativeDriver
             >
                 <Text style={{ alignSelf: 'center' }} h4> Gửi lời mời</Text>
@@ -69,6 +70,7 @@ export const SendMatchRequestPopup: React.FC<SendMatchRequestPopupProps> = (prop
                 transparent
             >
                 <View
+                    duration={250}
                     animation='fadeIn'
                     style={{ backgroundColor: 'rgba(51,51,51,0.3)', flex: 1, justifyContent: 'center' }}
                 >

@@ -13,4 +13,8 @@ export class CoupleService {
         }
         return this.apiManager.post('couple/send-pairing-request', body);
     }
+
+    async breakUp() {
+        return this.apiManager.post('couple/break-up');
+    }
 }

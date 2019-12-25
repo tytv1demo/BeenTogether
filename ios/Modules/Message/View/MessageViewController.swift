@@ -101,7 +101,8 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
     }
     
     deinit {
-        gpsButton.removeTarget(self, action: #selector(onGpsButtonPress), for: [.touchUpInside])
+        gpsButton?.removeTarget(self, action: #selector(onGpsButtonPress), for: [.touchUpInside])
+//        phoneButton?.
     }
     
 }

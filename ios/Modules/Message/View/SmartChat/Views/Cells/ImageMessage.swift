@@ -11,7 +11,7 @@ import Firebase
 import RxSwift
 import SkeletonView
 
-class ImageMessageView: UIView, MessageView {
+class ImageMessageView: UIView, BaseMessageView {
     
     weak var delegate: MessageViewDelegate?
     

@@ -3,7 +3,7 @@ export interface GetUserProfileResult {
     userInfo: User
 }
 
-export interface BaseResult<T> {
+export interface BaseResult<T = any> {
     data: T,
     message: string
 }
