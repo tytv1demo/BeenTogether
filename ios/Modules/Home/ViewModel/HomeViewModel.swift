@@ -45,7 +45,6 @@ class HomeViewModel: NSObject, HomeViewModelProtocol {
         userInfo = AppUserData.shared.userInfo
         threadRef = Database.database().reference()
         
-        
         coupleRef = Database.database().reference(withPath: "couples/\(userInfo.coupleId)/configs")
         super.init()
         
@@ -87,23 +86,11 @@ class HomeViewModel: NSObject, HomeViewModelProtocol {
 extension HomeViewModel {
     
     var dateCountedString: String {
-        if dateCouted < 0 {
-            return ""
-        }
+        if dateCouted < 0 { return "undefined" }
         
         let unitString = dateCouted > 1 ? " days" : " day"
         return String(dateCouted) + unitString
     }
-    
-//    func calculateDate() -> Int {
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "dd-MM-yyyy"
-//        startDate = dateFormatter.date(from: startDateString)!
-//
-//        dateCouted = countDays(from: startDate)
-//
-//        return dateCouted
-//    }
     
     func getStarDateFromFirebase() {
         let currentDate = Date()
@@ -118,29 +105,8 @@ extension HomeViewModel {
         }
     }
     
-    func createDateTimeIntervalFromString(formattedString: String) -> Double {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        let startDate = dateFormatter.date(from: formattedString)!
-        
-        return startDate.timeIntervalSince1970
-    }
-    
-    func createDateTime(timestamp: String) -> String {
-        var strDate = "undefined"
-            
-        if let unixTime = Double("1576642227023") {
-            let date = Date(timeIntervalSince1970: unixTime)
-            
-            let dateFormatter = DateFormatter()
-            let timezone = TimeZone.current.abbreviation() ?? "CET"
-            dateFormatter.timeZone = TimeZone(abbreviation: timezone)
-            dateFormatter.locale = NSLocale.current
-            dateFormatter.dateFormat = "MMM dd yyyy"
-            strDate = dateFormatter.string(from: date)
-        }
-            
-        return strDate
+    func createDateTimeInterval(from date: Date) -> Double {
+        return date.timeIntervalSince1970
     }
     
     func getLeftRightNumbers() -> (leftNumber: Int, rightNumber: Int) {
@@ -214,10 +180,16 @@ extension HomeViewModel {
     }
     
     func refCoupleStartDate(startDate: Double) -> Promise<Bool> {
-        return Promise<Bool> { _ in
+        return Promise<Bool> { seal in
             threadRef = Database.database().reference(withPath: "couples/\(self.userInfo.coupleId)/startDate")
             
-            threadRef.setValue(startDate)
+            threadRef.setValue(startDate) { (err, _) in
+                if err == nil {
+                    seal.fulfill(true)
+                } else {
+                    seal.fulfill(false)
+                }
+            }
         }
     }
 
