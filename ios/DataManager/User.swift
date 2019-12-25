@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftMoment
 
 class Config: Decodable {
     var name: String
@@ -19,13 +20,54 @@ class Config: Decodable {
 }
 
 class UserLocation: Decodable {
-    var coordinate: UserCoordinate?
-    var startTime: Date?
+    var coordinate: UserCoordinate
+    var startTime: Moment
+    
+    init(coordinate: UserCoordinate, startTime: Moment) {
+        self.coordinate = coordinate
+        self.startTime = startTime
+    }
+    
+    enum Keys: String, CodingKey {
+        case coordinate, from
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: Keys.self)
+
+        coordinate = try container.decode(UserCoordinate.self, forKey: .coordinate)
+        let timeStampe = try container.decode(Int.self, forKey: .from)
+        startTime = moment(timeStampe)
+    }
+    
+    var rctValue: [String: Any] {
+        return ["coordinate": coordinate.rctValue, "from": startTime.epoch()]
+    }
 }
 
 class UserCoordinate: Decodable {
     var lat: Float?
     var lng: Float?
+    
+    init(lat: Float, lng: Float) {
+        self.lat = lat
+        self.lng = lng
+    }
+    
+    enum Keys: String, CodingKey {
+        case lat, lng
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: Keys.self)
+
+        lat = try container.decode(Float.self, forKey: .lat)
+        lng = try container.decode(Float.self, forKey: .lng)
+    }
+    
+    var rctValue: [String: Float] {
+        return ["lat": lat ?? 0, "lng": lng ?? 0]
+    }
 }
 
 class User: Decodable {

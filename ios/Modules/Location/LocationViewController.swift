@@ -92,7 +92,7 @@ class LocationViewController: UIViewController, LocationViewControllerType {
         view.addSubview(mapView)
         
         loverLocationViewer = LoverLocationViewer()
-        view.addSubview(loverLocationViewer)
+//        view.addSubview(loverLocationViewer)
        
     }
     
@@ -100,14 +100,14 @@ class LocationViewController: UIViewController, LocationViewControllerType {
         mapView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
-        
-        loverLocationViewer.snp.makeConstraints { (make) in
-            make.trailing.equalToSuperview().inset(16)
-            make.leading.equalToSuperview().inset(16)
-            make.bottom.equalToSuperview().inset(100)
-            make.height.equalTo(200)
-        }
-        view.bringSubviewToFront(loverLocationViewer)
+//        
+//        loverLocationViewer.snp.makeConstraints { (make) in
+//            make.trailing.equalToSuperview().inset(16)
+//            make.leading.equalToSuperview().inset(16)
+//            make.bottom.equalToSuperview().inset(100)
+//            make.height.equalTo(200)
+//        }
+//        view.bringSubviewToFront(loverLocationViewer)
     }
     
     func setupActions() {

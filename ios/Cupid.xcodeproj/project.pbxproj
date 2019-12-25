@@ -94,6 +94,7 @@
 		B607DB3123994CC900C7509F /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B607DB3023994CC900C7509F /* LocationViewModel.swift */; };
 		B607DB332399523E00C7509F /* MapAnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B607DB322399523E00C7509F /* MapAnotation.swift */; };
 		B636B8D623A7C681003842D1 /* NotificationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B636B8D523A7C681003842D1 /* NotificationServices.swift */; };
+		B6428FC923B3A5B100D9F223 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6428FC823B3A5B100D9F223 /* UserModel.swift */; };
 		B644B3C323ABB92500966370 /* PulseAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B644B3C223ABB92500966370 /* PulseAnimation.swift */; };
 		B6559E75239A978B00FD6893 /* LocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6559E74239A978B00FD6893 /* LocationServices.swift */; };
 		B67252272397FC1E00E13339 /* RemoteMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67252262397FC1E00E13339 /* RemoteMessage.swift */; };
@@ -280,6 +281,7 @@
 		B607DB322399523E00C7509F /* MapAnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnotation.swift; sourceTree = "<group>"; };
 		B636B8D323A7C26F003842D1 /* Cupid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Cupid.entitlements; sourceTree = "<group>"; };
 		B636B8D523A7C681003842D1 /* NotificationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationServices.swift; sourceTree = "<group>"; };
+		B6428FC823B3A5B100D9F223 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		B644B3C223ABB92500966370 /* PulseAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseAnimation.swift; sourceTree = "<group>"; };
 		B6559E74239A978B00FD6893 /* LocationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServices.swift; sourceTree = "<group>"; };
 		B67252262397FC1E00E13339 /* RemoteMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMessage.swift; sourceTree = "<group>"; };
@@ -673,6 +675,7 @@
 		7F5D1C1F236FBD5A005A4961 /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
+				B6428FC823B3A5B100D9F223 /* UserModel.swift */,
 				7F5D1C20236FBD5A005A4961 /* Source */,
 				4693BF45239B4BBF00EA2EA5 /* User.swift */,
 				B67252262397FC1E00E13339 /* RemoteMessage.swift */,
@@ -1768,6 +1771,7 @@
 				B690E66F239C9DB500C418A7 /* CollectionEmptyView.swift in Sources */,
 				460F74B0239DF8CB0043A7DD /* HomeViewController.swift in Sources */,
 				7FF7E795236FD7E7006AC2BF /* Constants.swift in Sources */,
+				B6428FC923B3A5B100D9F223 /* UserModel.swift in Sources */,
 				B68E245A23922EE60014A53E /* MessageRemoteDataSource.swift in Sources */,
 				46BC4BD22392B3250040E510 /* HomeViewModel.swift in Sources */,
 				B68E24952392712B0014A53E /* GalleryImage.swift in Sources */,

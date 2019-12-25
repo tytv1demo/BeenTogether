@@ -18,28 +18,35 @@ class LocationServices: NSObject {
     
     var locationManager: CLLocationManager
     
-    @objc dynamic var isAutomaticUpdateOfLocation: Bool {
+    var userModel: UserModel?
+    
+    @objc dynamic var isAutomaticUpdateOfLocation: Bool = false {
         didSet {
             UserDefaults.standard.set(self.isAutomaticUpdateOfLocation, forKey: "isAutomaticUpdateOfLocation")
+            
+            if oldValue != self.isAutomaticUpdateOfLocation && self.isAutomaticUpdateOfLocation {
+                self.startUpdateLocation()
+            }
         }
     }
 
     override init() {
         currentLocation = BehaviorSubject<CLLocation?>(value: nil)
         locationManager = CLLocationManager()
-        isAutomaticUpdateOfLocation = UserDefaults.standard.bool(forKey: "isAutomaticUpdateOfLocation")
         super.init()
         
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
     }
     
+    func bootstrap(userModel: UserModel) {
+        self.userModel = userModel
+        isAutomaticUpdateOfLocation = UserDefaults.standard.bool(forKey: "isAutomaticUpdateOfLocation")
+    }
+    
     func enableLocationAutoUpdate() -> Bool {
         let isLocationServiceEnable = CLLocationManager.locationServicesEnabled()
         if isLocationServiceEnable {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = .zero
-            locationManager.startUpdatingLocation()
             isAutomaticUpdateOfLocation = true
             return true
         }
@@ -54,10 +61,24 @@ class LocationServices: NSObject {
         }
         return false
     }
+    
+    func startUpdateLocation() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = .zero
+        locationManager.startUpdatingLocation()
+    }
 }
 
 extension LocationServices: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        self.currentLocation.onNext(locations.first)
+        guard let location = locations.first else {
+            return
+        }
+        self.currentLocation.onNext(location)
+        if isAutomaticUpdateOfLocation {
+            let lat = Float(location.coordinate.latitude)
+            let lng = Float(location.coordinate.longitude)
+            userModel?.updateLocation(lat, lng)
+        }
     }
 }
