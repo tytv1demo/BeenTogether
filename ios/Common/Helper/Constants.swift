@@ -34,3 +34,4 @@ struct Colors {
 }
 
 let kEventDateFormat = "dd/MM/yyyy"
+let kMonthFormat = "MM/YYYY"

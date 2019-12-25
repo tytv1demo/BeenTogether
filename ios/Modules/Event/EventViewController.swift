@@ -15,7 +15,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var eventTable: UITableView!
     @IBOutlet weak var createLabel: UILabel!
     
-    var viewModel: EventViewModel = EventViewModel()
+    let viewModel: EventViewModel = EventViewModel()
     var dataSource: [EventModel] = []
     
     // MARK: - Life cycle
@@ -63,6 +63,10 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @objc func createEventAction() {
         let addingVC = UIStoryboard(name: "Event", bundle: nil).instantiateViewController(withIdentifier: "AddEventViewController") as! AddEventViewController
 
+        addingVC.dismissCallback = {
+            self.reloadTable()
+        }
+        
         addingVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(addingVC, animated: true)
     }

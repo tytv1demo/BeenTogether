@@ -6,6 +6,7 @@
 //  Created by Melvin Rivera on 7/15/14.
 //  Copyright (c) 2014. All rights reserved.
 //
+// swiftlint:disable all
 
 import Foundation
 
@@ -46,7 +47,7 @@ public enum DateFormat {
     case iso8601(ISO8601Format?), dotNet, rss, altRSS, custom(String)
 }
 
-public enum TimeZone {
+public enum TimeZoneHelper {
     case local, utc
 }
 
@@ -82,7 +83,7 @@ public extension Date {
     - Returns A new date
     */
     
-    init(fromString string: String, format:DateFormat, timeZone: TimeZone = .local, locale: Locale = Locale(identifier: "en_US_POSIX"))
+    init(fromString string: String, format:DateFormat, timeZone: TimeZoneHelper = .local, locale: Locale = Locale(identifier: "en_US_POSIX"))
     {
         if string.isEmpty {
             self.init()
@@ -840,7 +841,7 @@ public extension Date {
     - Parameter timeZone: The time zone to interpret the date can be .Local, .UTC applies to Custom format only
     - Returns The date string representation
     */
-    func toString(_ format: DateFormat, timeZone: TimeZone = .local, locale: Locale = Locale(identifier: "en_US_POSIX")) -> String
+    func toString(_ format: DateFormat, timeZone: TimeZoneHelper = .local, locale: Locale = Locale(identifier: "en_US_POSIX")) -> String
     {
         var dateFormat: String
         let zone: Foundation.TimeZone
