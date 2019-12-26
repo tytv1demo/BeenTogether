@@ -25,4 +25,9 @@ class AddingTextTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func textDidChange(_ sender: UITextField) {
+        if let text = sender.text {
+            didEndEditingCallback?(text)
+        }
+    }
 }

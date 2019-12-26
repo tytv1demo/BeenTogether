@@ -10,7 +10,7 @@
 #import <React/RCTConvert.h>
 #import <React/RCTBundleURLProvider.h>
 #import "React/RCTEventEmitter.h"
-#import "MaterialControls/MaterialControls.h"
 
 @import FSPagerView;
 @import IBAnimatable;
+@import DatePickerDialog;

@@ -8,18 +8,19 @@
 
 import UIKit
 
-class AddingTimeTableViewCell: UITableViewCell, MDDatePickerDialogDelegate {
+class AddingTimeTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var timePickingView: UIView!
     @IBOutlet weak var timeLabel: UILabel!
     
     var didSelectDate: ((String) -> Void)?
+    var isStartDate: Bool = true
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        let displayCalendar = UITapGestureRecognizer(target: self, action: #selector(showCalendar))
+        let displayCalendar = UITapGestureRecognizer(target: self, action: #selector(showDatePicker))
         timePickingView.addGestureRecognizer(displayCalendar)
     }
 
@@ -29,14 +30,13 @@ class AddingTimeTableViewCell: UITableViewCell, MDDatePickerDialogDelegate {
         // Configure the view for the selected state
     }
     
-    @objc private func showCalendar() {
-        let datePicker = MDDatePickerDialog()
-        datePicker.delegate = self
-        datePicker.show()
-    }
-    
-    func datePickerDialogDidSelect(_ date: Date) {
-        let dateText = date.toString(.custom(kEventDateFormat))
-        didSelectDate?(dateText)
+    @objc private func showDatePicker() {
+        DatePickerDialog().show(isStartDate ? "When did it start?" : "When did it end?", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", defaultDate: Date(), datePickerMode: .date) { (date) in
+            if let date = date {
+                let dateString = date.toString(.custom(kEventDateFormat))
+                self.timeLabel.text = dateString
+                self.didSelectDate?(dateString)
+            }
+        }
     }
 }

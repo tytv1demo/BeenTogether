@@ -20,7 +20,8 @@ class UploadAPI {
         let childRef = storageRef.child("\(folder)/\(name).jpg")
         _ = childRef.putData(imageData, metadata: nil) { metadata, error in
             // TO-DO: Handle metadata and error
-            guard let _ = metadata else {
+            guard metadata != nil else {
+                print(error)
                 return
             }
             

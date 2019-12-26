@@ -56,7 +56,7 @@ def ui
   pod 'IBAnimatable'
   pod 'FontAwesome.swift'
   pod 'FSPagerView'
-  pod 'MaterialControls', '~> 1.2.2'
+  pod 'DatePickerDialog'
 end 
 
 def database

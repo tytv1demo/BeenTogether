@@ -45,12 +45,14 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - Actions
     
     @IBAction func backButton(_ sender: UIButton) {
+        // TO-DO: Delete uploaded images
         navigationController?.popViewController(animated: true)
     }
     
     @IBAction func postAction(_ sender: UIButton) {
         viewModel.create(event: newEvent) {
-            self.dismiss(animated: true, completion: self.dismissCallback)
+            self.navigationController?.popViewController(animated: true)
+            self.dismissCallback?()
         }
     }
     
@@ -85,6 +87,8 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
         cell.didEndEditingCallback = { text in
             self.newEvent.name = text
         }
+        
+        cell.addingTextField.placeholder = "Event's name"
         return cell
     }
     
@@ -96,12 +100,18 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
         cell.didEndEditingCallback = { text in
             self.newEvent.description = text
         }
+        
+        cell.addingTextField.placeholder = "Caption"
         return cell
     }
     
     private func cellForLocationRow(indexPath: IndexPath) -> UITableViewCell {
         guard let cell = addingTable.dequeueReusableCell(withIdentifier: "AddingLocationTableViewCell", for: indexPath) as? AddingLocationTableViewCell else {
             return UITableViewCell()
+        }
+        
+        cell.didEndEditingCallback = { text in
+            self.newEvent.location = text
         }
         
         return cell
@@ -115,6 +125,8 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
         cell.didSelectDate = { date in
             self.newEvent.startDate = date
         }
+        
+        cell.titleLabel.text = "When did it start?"
         return cell
     }
     
@@ -126,6 +138,8 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
         cell.didSelectDate = { date in
             self.newEvent.endDate = date
         }
+        
+        cell.titleLabel.text = "When did it end?"
         return cell
     }
     
@@ -137,7 +151,7 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
         cell.parentVC = self
         cell.didSelectImageCallback = { url in
             let media = MediaModel(url: url, type: MediaType.IMAGE.rawValue)
-            if let _ = self.newEvent.attachments {
+            if self.newEvent.attachments != nil {
                 self.newEvent.attachments?.append(media)
             } else {
                 self.newEvent.attachments = [media]

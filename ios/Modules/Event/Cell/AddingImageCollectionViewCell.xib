@@ -72,6 +72,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="ic_add" width="38" height="38"/>
+        <image name="ic_add" width="160" height="160"/>
     </resources>
 </document>

@@ -12,6 +12,8 @@ class AddingLocationTableViewCell: UITableViewCell {
 
     @IBOutlet weak var locationField: UITextField!
     
+    var didEndEditingCallback: ((String) -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -23,4 +25,9 @@ class AddingLocationTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func textDidChange(_ sender: UITextField) {
+        if let text = sender.text {
+            didEndEditingCallback?(text)
+        }
+    }
 }

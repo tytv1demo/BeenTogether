@@ -14,7 +14,7 @@ struct EventViewModel {
     /// - Parameter event: event's model
     /// - Parameter completion: handler after create
     func create(event: EventModel, completion: (() -> Void)?) {
-        
+        completion?()
     }
     
     /// Get events for user
