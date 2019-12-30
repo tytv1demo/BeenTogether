@@ -9,6 +9,7 @@
 import Foundation
 import SnapKit
 import Kingfisher
+import DatePickerDialog
 
 protocol HomViewControllerDelegate: AnyObject {
     func updateNameLabelCallBack()
@@ -49,11 +50,6 @@ class HomeViewController: UIViewController {
         homeViewModel = HomeViewModel()
         homeViewModel.delegate = self
         setupMainView()
-        
-//        let date1 = homeViewModel.createDateTimeIntervalFromString(formattedString: "01/03/2016")
-//        homeViewModel.refCoupleStartDate(startDate: date1).done { (_) in
-//
-//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,8 +66,9 @@ class HomeViewController: UIViewController {
         setupRightAvatar()
         setupProgressView()
         setupDataForLabels()
-        addTapGestureForLabel(leftNameLabel)
-        addTapGestureForLabel(rightNameLabel)
+        addTapGestureForView(leftNameLabel)
+        addTapGestureForView(rightNameLabel)
+        addTapGestureForView(dateCoutingLabel)
     }
     
     func setupBackgroundImage() {
@@ -131,40 +128,35 @@ class HomeViewController: UIViewController {
         }
     }
     
-    func addTapGestureForLabel(_ label: UILabel) {
-        label.isUserInteractionEnabled = true
-        let tapGesture = UITapGestureRecognizer()
-        tapGesture.addTarget(self, action: #selector(presentChangeNamePopUp(_:)))
-        label.addGestureRecognizer(tapGesture)
-    }
-    
-    @objc func presentChangeNamePopUp(_ sender: UITapGestureRecognizer) {
-        guard let label = sender.view as? UILabel  else { return }
-        
-        selectedLabel = label
-        presentPopup(of: selectedLabel!)
-    }
-    
-    func presentPopup(of lable: UILabel) {
-        let popOverVC = PopupViewController(nibName: "PopupViewController", bundle: nil)
-        popOverVC.modalPresentationStyle = .overFullScreen
-        popOverVC.modalTransitionStyle = .crossDissolve
-        popOverVC.delegate = self
-        
-        if selectedLabel == leftNameLabel {
-            popOverVC.isLeft = true
-        } else if selectedLabel == rightNameLabel {
-            popOverVC.isLeft = false
-        }
-    
-        present(popOverVC, animated: true, completion: nil)
-    }
-    
     func addTapGestureForView(_ view: UIView) {
         let tapGesture = UITapGestureRecognizer()
-        tapGesture.addTarget(self, action: #selector(chooseImage(_:)))
-        view.addGestureRecognizer(tapGesture)
         view.isUserInteractionEnabled = true
+        
+        switch view {
+        case leftAvatar.imageView, rightAvatar.imageView:
+            tapGesture.addTarget(self, action: #selector(chooseImage(_:)))
+        case leftNameLabel, rightNameLabel:
+            tapGesture.addTarget(self, action: #selector(presentChangeNamePopUp(_:)))
+        case dateCoutingLabel:
+            tapGesture.addTarget(self, action: #selector(showDatePickerDialog))
+        default:
+            break
+        }
+        
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func showDatePickerDialog() {
+        DatePickerDialog().show("Pick your start date", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", datePickerMode: .date) { (date) -> Void in
+            guard let date = date else { return }
+            
+            if date < Date() {
+                let dateTimeInterval = self.homeViewModel.createDateTimeInterval(from: date) - 86400
+                _ = self.homeViewModel.refCoupleStartDate(startDate: dateTimeInterval).done { (_) in }
+            } else {
+                self.showAlertWithOneOption(title: "Opps!", message: "The date you selected has exceeded today!", optionTitle: "OK")
+            }
+        }
     }
     
     @objc func chooseImage(_ sender: UITapGestureRecognizer) {
@@ -190,10 +182,31 @@ class HomeViewController: UIViewController {
         }))
         
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-        
         selectedImageView = imageView
         
         self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    @objc func presentChangeNamePopUp(_ sender: UITapGestureRecognizer) {
+        guard let label = sender.view as? UILabel  else { return }
+        
+        selectedLabel = label
+        presentPopup(of: selectedLabel!)
+    }
+    
+    func presentPopup(of lable: UILabel) {
+        let popOverVC = PopupViewController(nibName: "PopupViewController", bundle: nil)
+        popOverVC.modalPresentationStyle = .overFullScreen
+        popOverVC.modalTransitionStyle = .crossDissolve
+        popOverVC.delegate = self
+        
+        if selectedLabel == leftNameLabel {
+            popOverVC.isLeft = true
+        } else if selectedLabel == rightNameLabel {
+            popOverVC.isLeft = false
+        }
+    
+        present(popOverVC, animated: true, completion: nil)
     }
 }
 
@@ -205,16 +218,11 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             selectedImageView!.image = image
-            
             let userId = selectedImageView == leftAvatar.imageView ? self.userInfo!.id : AppUserData.shared.friendInfo!.id
-            
             let phoneNumber = selectedImageView == leftAvatar.imageView ? self.userInfo!.phoneNumber : AppUserData.shared.friendInfo!.phoneNumber
             
             UploadAPI.shared.uploadAvatar(imageData: image.jpegData(compressionQuality: 0.25)!, for: String(userId)) { (string) in
-                
-                self.homeViewModel.refPersonAvatar(avatarURL: string, person: phoneNumber).done { (_) in
-                    
-                }.catch { (_) in
+                _ = self.homeViewModel.refPersonAvatar(avatarURL: string, person: phoneNumber).done { (_) in
                     
                 }
             }
