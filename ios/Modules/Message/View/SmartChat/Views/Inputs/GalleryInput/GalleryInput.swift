@@ -77,8 +77,10 @@ extension GalleryInput {
                 PHPhotoLibrary.requestAuthorization { (status) in
                     seal.fulfill(status == .authorized)
                 }
+            } else {
+                seal.fulfill(currentStatus == .authorized)
             }
-            seal.fulfill(currentStatus == .authorized)
+            
         }
     }
     

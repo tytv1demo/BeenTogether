@@ -90,6 +90,7 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
     
     func setupActions() {
         gpsButton.addTarget(self, action: #selector(onGpsButtonPress), for: [.touchUpInside])
+        phoneButton.addTarget(self, action: #selector(onPhoneButtonPress), for: [.touchUpInside])
     }
     
     @objc func onGpsButtonPress() {
@@ -97,12 +98,15 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
     }
     
     @objc func onPhoneButtonPress() {
-        
+        guard let phoneNumber = AppUserData.shared.friendInfo?.phoneNumber else {
+            return
+        }
+        callNumber(phoneNumber: phoneNumber)
     }
     
     deinit {
         gpsButton?.removeTarget(self, action: #selector(onGpsButtonPress), for: [.touchUpInside])
-//        phoneButton?.
+        phoneButton?.removeTarget(self, action: #selector(onPhoneButtonPress), for: [.touchUpInside])
     }
     
 }

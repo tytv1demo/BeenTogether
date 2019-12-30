@@ -23,28 +23,36 @@ class LocationServices: NSObject {
     @objc dynamic var isAutomaticUpdateOfLocation: Bool = false {
         didSet {
             UserDefaults.standard.set(self.isAutomaticUpdateOfLocation, forKey: "isAutomaticUpdateOfLocation")
-            
-            if oldValue != self.isAutomaticUpdateOfLocation && self.isAutomaticUpdateOfLocation {
-                self.startUpdateLocation()
-            }
         }
     }
 
     override init() {
         currentLocation = BehaviorSubject<CLLocation?>(value: nil)
         locationManager = CLLocationManager()
+        isAutomaticUpdateOfLocation = UserDefaults.standard.bool(forKey: "isAutomaticUpdateOfLocation")
         super.init()
-        
-        locationManager.requestAlwaysAuthorization()
-        locationManager.requestWhenInUseAuthorization()
+        locationManager.delegate = self
     }
     
     func bootstrap(userModel: UserModel) {
         self.userModel = userModel
-        isAutomaticUpdateOfLocation = UserDefaults.standard.bool(forKey: "isAutomaticUpdateOfLocation")
+    }
+    
+    func requestLocationIfNeeded() -> Bool {
+        let authorizationStatus = CLLocationManager.authorizationStatus()
+        let isRequestable = authorizationStatus == .notDetermined
+        if isRequestable {
+            locationManager.requestAlwaysAuthorization()
+            locationManager.requestWhenInUseAuthorization()
+            return true
+        }
+        return false
     }
     
     func enableLocationAutoUpdate() -> Bool {
+        if requestLocationIfNeeded() {
+            return true
+        }
         let isLocationServiceEnable = CLLocationManager.locationServicesEnabled()
         if isLocationServiceEnable {
             isAutomaticUpdateOfLocation = true
@@ -55,7 +63,6 @@ class LocationServices: NSObject {
     
     func disableLocationAutoUpdate() -> Bool {
         if isAutomaticUpdateOfLocation {
-            locationManager.stopUpdatingLocation()
             isAutomaticUpdateOfLocation = false
             return true
         }
@@ -63,7 +70,9 @@ class LocationServices: NSObject {
     }
     
     func startUpdateLocation() {
-        locationManager.delegate = self
+        if requestLocationIfNeeded() {
+            return
+        }
         locationManager.desiredAccuracy = .zero
         locationManager.startUpdatingLocation()
     }
@@ -79,6 +88,12 @@ extension LocationServices: CLLocationManagerDelegate {
             let lat = Float(location.coordinate.latitude)
             let lng = Float(location.coordinate.longitude)
             userModel?.updateLocation(lat, lng)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status != .denied {
+            startUpdateLocation()
         }
     }
 }

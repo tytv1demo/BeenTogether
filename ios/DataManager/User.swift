@@ -41,7 +41,7 @@ class UserLocation: Decodable {
     }
     
     var rctValue: [String: Any] {
-        return ["coordinate": coordinate.rctValue, "from": startTime.epoch()]
+        return ["coordinate": coordinate.rctValue, "from": Int(startTime.epoch() * 1000)]
     }
 }
 

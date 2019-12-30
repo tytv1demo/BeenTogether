@@ -39,6 +39,7 @@ class LocationViewModel: LocationViewModelType {
     
     init(loverPath: String) {
         currentLocation = LocationServices.shared.currentLocation
+        LocationServices.shared.startUpdateLocation()
         
         loverLocation = BehaviorSubject<CustomLocation?>(value: nil)
         

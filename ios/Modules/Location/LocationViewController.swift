@@ -64,7 +64,7 @@ class LocationViewController: UIViewController, LocationViewControllerType {
     
     func settupNavigation() {
         navigationController?.navigationBar.backgroundColor = .white
-
+        
         phoneButton = UIButton(type: .custom)
         phoneButton.setImage(UIImage(named: "phone"), for: [])
         let phoneTabBarButton = UIBarButtonItem(customView: phoneButton)
@@ -92,26 +92,34 @@ class LocationViewController: UIViewController, LocationViewControllerType {
         view.addSubview(mapView)
         
         loverLocationViewer = LoverLocationViewer()
-//        view.addSubview(loverLocationViewer)
-       
+        //        view.addSubview(loverLocationViewer)
+        
     }
     
     func makeConstrainsts() {
         mapView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
-//        
-//        loverLocationViewer.snp.makeConstraints { (make) in
-//            make.trailing.equalToSuperview().inset(16)
-//            make.leading.equalToSuperview().inset(16)
-//            make.bottom.equalToSuperview().inset(100)
-//            make.height.equalTo(200)
-//        }
-//        view.bringSubviewToFront(loverLocationViewer)
+        //
+        //        loverLocationViewer.snp.makeConstraints { (make) in
+        //            make.trailing.equalToSuperview().inset(16)
+        //            make.leading.equalToSuperview().inset(16)
+        //            make.bottom.equalToSuperview().inset(100)
+        //            make.height.equalTo(200)
+        //        }
+        //        view.bringSubviewToFront(loverLocationViewer)
     }
     
     func setupActions() {
         backButton.addTarget(self, action: #selector(onBackButtonPress), for: [.touchUpInside])
+        phoneButton.addTarget(self, action: #selector(onPhoneButtonPress), for: [.touchUpInside])
+    }
+    
+    @objc func onPhoneButtonPress() {
+        guard let phoneNumber = AppUserData.shared.friendInfo?.phoneNumber else {
+            return
+        }
+        callNumber(phoneNumber: phoneNumber)
     }
     
     @objc func onBackButtonPress() {
@@ -188,23 +196,28 @@ class LocationViewController: UIViewController, LocationViewControllerType {
         
         let direction = MKDirections(request: request)
         
-        direction.calculate { [unowned self] (response, error) in
-            if let error = error {
-                print(error.localizedDescription)
+        direction.calculate { [weak self] (response, error) in
+            if error != nil {
+                self?.presentAlert(title: "Opps!", message: "Sorry! We can not find the direction between you two, Please try again later!", delegate: nil)
                 return
             }
             
             guard let directionResponse = response, let route = directionResponse.routes.first else {
                 return
             }
-            if let oldRoute = self.directionRoute {
-                self.mapView.removeOverlay(oldRoute.polyline)
+            if let oldRoute = self?.directionRoute {
+                self?.mapView.removeOverlay(oldRoute.polyline)
             }
-            self.mapView.addOverlay(route.polyline, level: .aboveRoads)
+            self?.mapView.addOverlay(route.polyline, level: .aboveRoads)
             let region = MKCoordinateRegion(route.polyline.boundingMapRect)
-            self.directionRoute = route
-            self.mapView.setRegion(region, animated: true)
+            self?.directionRoute = route
+            self?.mapView.setRegion(region, animated: true)
         }
+    }
+    
+    deinit {
+        backButton?.removeTarget(self, action: #selector(onBackButtonPress), for: [.touchUpInside])
+        phoneButton?.removeTarget(self, action: #selector(onPhoneButtonPress), for: [.touchUpInside])
     }
 }
 

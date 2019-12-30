@@ -93,6 +93,7 @@
 		B607DB2E239949BB00C7509F /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B607DB2D239949BB00C7509F /* LocationViewController.swift */; };
 		B607DB3123994CC900C7509F /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B607DB3023994CC900C7509F /* LocationViewModel.swift */; };
 		B607DB332399523E00C7509F /* MapAnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B607DB322399523E00C7509F /* MapAnotation.swift */; };
+		B62A7BA623B9DE3E007F08C1 /* URLSchemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62A7BA523B9DE3E007F08C1 /* URLSchemes.swift */; };
 		B636B8D623A7C681003842D1 /* NotificationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B636B8D523A7C681003842D1 /* NotificationServices.swift */; };
 		B6428FC923B3A5B100D9F223 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6428FC823B3A5B100D9F223 /* UserModel.swift */; };
 		B644B3C323ABB92500966370 /* PulseAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B644B3C223ABB92500966370 /* PulseAnimation.swift */; };
@@ -279,6 +280,7 @@
 		B607DB2D239949BB00C7509F /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		B607DB3023994CC900C7509F /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		B607DB322399523E00C7509F /* MapAnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnotation.swift; sourceTree = "<group>"; };
+		B62A7BA523B9DE3E007F08C1 /* URLSchemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSchemes.swift; sourceTree = "<group>"; };
 		B636B8D323A7C26F003842D1 /* Cupid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Cupid.entitlements; sourceTree = "<group>"; };
 		B636B8D523A7C681003842D1 /* NotificationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationServices.swift; sourceTree = "<group>"; };
 		B6428FC823B3A5B100D9F223 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -615,6 +617,7 @@
 		7F5D1C1B236FBD5A005A4961 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				B62A7BA423B9DE15007F08C1 /* Functions */,
 				B644B3C123ABB90800966370 /* Layers */,
 				7F5D1C1C236FBD5A005A4961 /* Extension */,
 				7F5D1C1D236FBD5A005A4961 /* Helper */,
@@ -986,6 +989,14 @@
 				B68CD035239B8A75000BA1D8 /* LoverLocationViewer.swift */,
 			);
 			path = Location;
+			sourceTree = "<group>";
+		};
+		B62A7BA423B9DE15007F08C1 /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				B62A7BA523B9DE3E007F08C1 /* URLSchemes.swift */,
+			);
+			path = Functions;
 			sourceTree = "<group>";
 		};
 		B636B8D423A7C66D003842D1 /* Notification */ = {
@@ -1796,6 +1807,7 @@
 				B6E2E2E72362AB73001046E5 /* UIColorExts.swift in Sources */,
 				7FF7E78F236FD722006AC2BF /* CollectionViewExt.swift in Sources */,
 				4646BE7923A5F7DD0092E8A7 /* CreateViewModel.swift in Sources */,
+				B62A7BA623B9DE3E007F08C1 /* URLSchemes.swift in Sources */,
 				7F5D1C71236FC441005A4961 /* DatingViewModel.swift in Sources */,
 				B6D2645123B363CF00D4E1A4 /* CommonHelper.swift in Sources */,
 				B68E248E2392712B0014A53E /* SCUser.swift in Sources */,

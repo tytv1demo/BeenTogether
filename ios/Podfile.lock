@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (4.8.2)
   - boost-for-react-native (1.63.0)
+  - D2PDatePicker (0.1.4)
   - DatePickerDialog (3.0)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.61.5)
@@ -364,6 +365,7 @@ PODS:
     - Yoga (~> 1.14)
 
 DEPENDENCIES:
+  - D2PDatePicker
   - DatePickerDialog
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
@@ -418,6 +420,7 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - boost-for-react-native
+    - D2PDatePicker
     - DatePickerDialog
     - Firebase
     - FirebaseAnalytics
@@ -520,6 +523,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
+  D2PDatePicker: e35a6b3dd5fac16de8a17606dc0bb285e8b1a875
   DatePickerDialog: 03dbb8350bfa80302ab2a8c83cee1fec70184444
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
   FBLazyVector: aaeaf388755e4f29cd74acbc9e3b8da6d807c37f
@@ -585,6 +589,6 @@ SPEC CHECKSUMS:
   Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
   YogaKit: 5d1dc899cecd5946e5a758a0c3997704a4b48d01
 
-PODFILE CHECKSUM: efd2b2834db431e6e45f2d488059daf938a9764d
+PODFILE CHECKSUM: c3a0d0230a4d74ee8a89a0c9c982d618d249aca7
 
 COCOAPODS: 1.8.3
