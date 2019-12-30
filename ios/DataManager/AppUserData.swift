@@ -63,17 +63,4 @@ import PromiseKit
             }
         }
     }
-    
-    func getFriendProfile(friendId: String) -> Promise<User> {
-        return Promise<User> { seal in
-            userRepository
-                .getFriendProfile(friendId: friendId)
-                .done { (user) in
-                    self.friendInfo = user
-                    seal.fulfill(user)
-            }.catch { (err) in
-                seal.reject(err)
-            }
-        }
-    }
 }

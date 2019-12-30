@@ -22,18 +22,20 @@ class PopupViewController: UIViewController {
     
     var homeViewModel: HomeViewModel!
     var isLeft: Bool?
-    weak var delegate: HomViewControllerDelegate?
+    var userInfo: User!
     
     // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        homeViewModel = HomeViewModel()
+        homeViewModel = HomeViewModel(userInfo: userInfo!)
         setupMainView()
         
         nameTextField.delegate = self
         popupView.transform = CGAffineTransform(translationX: 0, y: (view.frame.height + popupView.frame.height) / 2)
+        
+        nameTextField.becomeFirstResponder()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -111,15 +113,19 @@ class PopupViewController: UIViewController {
         guard let name = nameTextField.text, name.trimmingCharacters(in: .whitespacesAndNewlines) != "" else { return }
                
         let trimedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
-        let userID = AppUserData.shared.userInfo.phoneNumber
-        let friendID = AppUserData.shared.friendInfo!.phoneNumber
-        let personId = isLeft! ? userID : friendID
         
-        homeViewModel.refPersonNickName(name: trimedName, personId: personId).done { (_) in
-            
-        }.catch { (_) in
-            self.showAlertWithOneOption(title: "Opps", message: "Unable to change this name!", optionTitle: "OK")
-        }
+        let friendID = homeViewModel.coupleModel.getFriendId(otherId: String(userInfo!.id), coupleId: userInfo.coupleId)
+        
+        _ = homeViewModel.coupleModel.syncFriendInfo(friendId: friendID).done({ (success) in
+            if success {
+                guard let friendInfo = self.homeViewModel.coupleModel.friendInfo else { return }
+                let personId = self.isLeft! ? self.userInfo.phoneNumber : friendInfo.phoneNumber
+                self.homeViewModel.coupleModel.refPersonNickName(name: trimedName, personId: personId).done { (_) in
+                }.catch { (_) in
+                    self.showAlertWithOneOption(title: "Opps", message: "Unable to change this name!", optionTitle: "OK")
+                }
+            }
+        })
     }
 }
 
