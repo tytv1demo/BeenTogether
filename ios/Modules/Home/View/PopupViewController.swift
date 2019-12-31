@@ -122,7 +122,7 @@ class PopupViewController: UIViewController {
                 let personId = self.isLeft! ? self.userInfo.phoneNumber : friendInfo.phoneNumber
                 self.homeViewModel.coupleModel.refPersonNickName(name: trimedName, personId: personId).done { (_) in
                 }.catch { (_) in
-                    self.showAlertWithOneOption(title: "Opps", message: "Unable to change this name!", optionTitle: "OK")
+                    self.showAlertWithOneOption(title: "Opps!", message: "Unable to change this name!", optionTitle: "OK")
                 }
             }
         })

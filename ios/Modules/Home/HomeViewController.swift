@@ -192,14 +192,16 @@ class HomeViewController: UIViewController {
         actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
                 imagePickerVC.sourceType = .camera
+                imagePickerVC.allowsEditing = true
                 self.present(imagePickerVC, animated: true, completion: nil)
             } else {
-                print("Camera is not available")
+                self.showAlertWithOneOption(title: "Opps!", message: "Camera is not available!", optionTitle: "OK")
             }
         }))
         
         actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { _ in
             imagePickerVC.sourceType = .photoLibrary
+            imagePickerVC.allowsEditing = true
             self.present(imagePickerVC, animated: true, completion: nil)
         }))
         
