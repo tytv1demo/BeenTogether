@@ -105,6 +105,7 @@ class PopupViewController: UIViewController {
     }
     
     @IBAction func okButtonDidTap(_ sender: Any) {
+        AppLoadingIndicator.shared.show()
         refPersonNickName()
         dismissPopup()
     }
@@ -120,9 +121,11 @@ class PopupViewController: UIViewController {
             if success {
                 guard let friendInfo = self.homeViewModel.coupleModel.friendInfo else { return }
                 let personId = self.isLeft! ? self.userInfo.phoneNumber : friendInfo.phoneNumber
-                self.homeViewModel.coupleModel.refPersonNickName(name: trimedName, personId: personId).done { (_) in
-                }.catch { (_) in
-                    self.showAlertWithOneOption(title: "Opps!", message: "Unable to change this name!", optionTitle: "OK")
+                _ = self.homeViewModel.coupleModel.refPersonNickName(name: trimedName, personId: personId).done { (success) in
+                AppLoadingIndicator.shared.hide()
+                    if !success {
+                        self.showAlertWithOneOption(title: "Opps!", message: "Unable to change this name!", optionTitle: "OK")
+                    }
                 }
             }
         })
