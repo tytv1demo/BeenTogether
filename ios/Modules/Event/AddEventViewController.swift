@@ -31,6 +31,8 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
         
         newEvent.attachments = []
         setUpTable()
+        // TO-DO: add creator ava
+        newEvent.creator = ""
     }
     
     private func setUpTable() {

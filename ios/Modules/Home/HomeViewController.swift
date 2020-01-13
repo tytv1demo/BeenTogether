@@ -10,12 +10,7 @@ import Foundation
 import SnapKit
 import Kingfisher
 import DatePickerDialog
-
-protocol HomViewControllerDelegate: AnyObject {
-    func updateNameLabelCallBack()
-    func updateCoutedViewCallBack()
-    func updateAvatarCallBack()
-}
+import RxSwift
 
 class HomeViewController: UIViewController {
     
@@ -42,14 +37,16 @@ class HomeViewController: UIViewController {
     var isLeft: Bool?
     var userInfo = AppUserData.shared.userInfo
     
+    var disposeBag: DisposeBag!
+    
     // MARK: Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        homeViewModel = HomeViewModel()
-        homeViewModel.delegate = self
+        disposeBag = DisposeBag()
+        homeViewModel = HomeViewModel(userInfo: userInfo!)
         setupMainView()
+        observeViewModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,12 +55,41 @@ class HomeViewController: UIViewController {
     
     // MARK: Functions
     
+    func observeViewModel() {
+        
+        homeViewModel.userConfig.subscribe(onNext: { [unowned self] (data) in
+            guard let config = data else { return }
+            
+            self.leftNameLabel.text = config.name
+            self.setupLeftAvatar(url: config.avatar)
+        }).disposed(by: disposeBag)
+        
+        homeViewModel.friendConfig.subscribe(onNext: { [unowned self] (data) in
+            guard let config = data else { return }
+            
+            self.rightNameLabel.text = config.name
+            self.setupRightAvatar(url: config.avatar)
+        }).disposed(by: disposeBag)
+        
+        homeViewModel.startDate.subscribe(onNext: { [unowned self] (data) in
+            guard let timeInterval = data else { return }
+        
+            let startDate = self.homeViewModel.createDateFrom(timeInterval: timeInterval)
+            
+            self.dateCoutingLabel.text = self.homeViewModel.createDateCountedString(startDate: startDate)
+            self.leftDaysLabel.text = String(self.homeViewModel.getLeftRightNumbers(startDate: startDate).leftNumber)
+            self.rightDayLabel.text = String(self.homeViewModel.getLeftRightNumbers(startDate: startDate).rightNumber)
+            self.progressView.progress = self.homeViewModel.getProgress(startDate: startDate)
+            self.heartIconLeftContraint.constant = CGFloat(self.progressView.progress) * self.progressView.frame.width
+        }).disposed(by: disposeBag)
+    }
+    
     func setupMainView() {
         setupBackgroundImage()
         setupLabelColor()
         setupAvatar()
-        setupLeftAvatar()
-        setupRightAvatar()
+        setupLeftAvatar(url: "")
+        setupRightAvatar(url: "")
         setupProgressView()
         setupDataForLabels()
         addTapGestureForView(leftNameLabel)
@@ -88,16 +114,14 @@ class HomeViewController: UIViewController {
     func setupProgressView() {
         progressView.progressTintColor = Colors.kPink
         progressView.trackTintColor = Colors.kPink
-        progressView.progress = homeViewModel.getProgress()
-        heartIconLeftContraint.constant = CGFloat(progressView.progress) * progressView.frame.width
     }
     
     func setupDataForLabels() {
-        dateCoutingLabel.text = homeViewModel.dateCountedString
-        leftDaysLabel.text = String(homeViewModel.getLeftRightNumbers().leftNumber)
-        rightDayLabel.text = String(homeViewModel.getLeftRightNumbers().rightNumber)
-        leftNameLabel.text = homeViewModel.getUserNickName()
-        rightNameLabel.text = homeViewModel.getFriendNickName()
+        dateCoutingLabel.text = "..."
+        leftDaysLabel.text = "..."
+        rightDayLabel.text = "..."
+        leftNameLabel.text = "..."
+        rightNameLabel.text = "..."
     }
     
     func setupAvatar() {
@@ -105,9 +129,7 @@ class HomeViewController: UIViewController {
         avatarView.setImage(url: url)
     }
     
-    func setupLeftAvatar() {
-        let url = homeViewModel.getUserAvatarUrl()
-        
+    func setupLeftAvatar(url: String) {
         if url != "" {
             leftAvatar.setImage(url: url)
         } else {
@@ -117,9 +139,7 @@ class HomeViewController: UIViewController {
         addTapGestureForView(leftAvatar.imageView)
     }
     
-    func setupRightAvatar() {
-        let url = homeViewModel.getFriendAvatarUrl()
-        
+    func setupRightAvatar(url: String) {
         if url != "" {
             rightAvatar.setImage(url: url)
             addTapGestureForView(rightAvatar.imageView)
@@ -147,12 +167,14 @@ class HomeViewController: UIViewController {
     }
     
     @objc func showDatePickerDialog() {
-        DatePickerDialog().show("Pick your start date", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", datePickerMode: .date) { (date) -> Void in
+        let dialog = DatePickerDialog(textColor: UIColor.black, buttonColor: UIColor.systemPink, font: .boldSystemFont(ofSize: 15), locale: nil, showCancelButton: true)
+        
+        dialog.show("Pick your start date", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", datePickerMode: .date) { (date) -> Void in
             guard let date = date else { return }
             
             if date < Date() {
                 let dateTimeInterval = self.homeViewModel.createDateTimeInterval(from: date) - 86400
-                _ = self.homeViewModel.refCoupleStartDate(startDate: dateTimeInterval).done { (_) in }
+                _ = self.homeViewModel.coupleModel.refCoupleStartDate(startDate: dateTimeInterval).done { (_) in }
             } else {
                 self.showAlertWithOneOption(title: "Opps!", message: "The date you selected has exceeded today!", optionTitle: "OK")
             }
@@ -170,14 +192,16 @@ class HomeViewController: UIViewController {
         actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
                 imagePickerVC.sourceType = .camera
+                imagePickerVC.allowsEditing = true
                 self.present(imagePickerVC, animated: true, completion: nil)
             } else {
-                print("Camera is not available")
+                self.showAlertWithOneOption(title: "Opps!", message: "Camera is not available!", optionTitle: "OK")
             }
         }))
         
         actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { _ in
             imagePickerVC.sourceType = .photoLibrary
+            imagePickerVC.allowsEditing = true
             self.present(imagePickerVC, animated: true, completion: nil)
         }))
         
@@ -198,7 +222,7 @@ class HomeViewController: UIViewController {
         let popOverVC = PopupViewController(nibName: "PopupViewController", bundle: nil)
         popOverVC.modalPresentationStyle = .overFullScreen
         popOverVC.modalTransitionStyle = .crossDissolve
-        popOverVC.delegate = self
+        popOverVC.userInfo = self.userInfo
         
         if selectedLabel == leftNameLabel {
             popOverVC.isLeft = true
@@ -222,9 +246,7 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
             let phoneNumber = selectedImageView == leftAvatar.imageView ? self.userInfo!.phoneNumber : AppUserData.shared.friendInfo!.phoneNumber
             
             UploadAPI.shared.uploadAvatar(imageData: image.jpegData(compressionQuality: 0.25)!, for: String(userId)) { (string) in
-                _ = self.homeViewModel.refPersonAvatar(avatarURL: string, person: phoneNumber).done { (_) in
-                    
-                }
+                _ = self.homeViewModel.coupleModel.refPersonAvatar(avatarURL: string, person: phoneNumber).done { (_) in }
             }
             
             picker.dismiss(animated: true, completion: {
@@ -234,40 +256,9 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
         }
     }
     
-//    func loadImage(urlString: String) {
-//          guard let url = URL(string: urlString) else { return }
-//
-//          KingfisherManager.shared.retrieveImage(with: url, options: nil, progressBlock: nil) { [unowned self] (image, _, _, _) in
-//              self.avatarView.imageView.image = image
-//          }
-//      }
-    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: {
             self.selectedImageView = nil
         })
-    }
-}
-
-// MARK: - HomViewControllerDelegate
-
-extension HomeViewController: HomViewControllerDelegate {
-    
-    func updateNameLabelCallBack() {
-        leftNameLabel.text = homeViewModel.getUserNickName()
-        rightNameLabel.text = homeViewModel.getFriendNickName()
-    }
-    
-    func updateCoutedViewCallBack() {
-        dateCoutingLabel.text = homeViewModel.dateCountedString
-        leftDaysLabel.text = String(homeViewModel.getLeftRightNumbers().leftNumber)
-        rightDayLabel.text = String(homeViewModel.getLeftRightNumbers().rightNumber)
-        progressView.progress = homeViewModel.getProgress()
-        heartIconLeftContraint.constant = CGFloat(progressView.progress) * progressView.frame.width
-    }
-    
-    func updateAvatarCallBack() {
-        setupLeftAvatar()
-        setupRightAvatar()
     }
 }

@@ -16,6 +16,7 @@
 		2DCD954D1E0B4F2C00145EB5 /* BeenTogetherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BeenTogetherTests.m */; };
 		460F74B0239DF8CB0043A7DD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F74AE239DF8CB0043A7DD /* HomeViewController.swift */; };
 		460F74B1239DF8CB0043A7DD /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 460F74AF239DF8CB0043A7DD /* Home.storyboard */; };
+		4636794723B9EF340078F066 /* CoupleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4636794623B9EF340078F066 /* CoupleModel.swift */; };
 		4646BE7723A5F7C70092E8A7 /* CreateNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4646BE7623A5F7C70092E8A7 /* CreateNavigator.swift */; };
 		4646BE7923A5F7DD0092E8A7 /* CreateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4646BE7823A5F7DD0092E8A7 /* CreateViewModel.swift */; };
 		4693BF46239B4BBF00EA2EA5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4693BF45239B4BBF00EA2EA5 /* User.swift */; };
@@ -195,6 +196,7 @@
 		37FFA031CA3C4A6B260DB914 /* Pods-BeenTogether-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeenTogether-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-BeenTogether-tvOSTests/Pods-BeenTogether-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		460F74AE239DF8CB0043A7DD /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Modules/Home/HomeViewController.swift; sourceTree = SOURCE_ROOT; };
 		460F74AF239DF8CB0043A7DD /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Home.storyboard; path = Modules/Home/Home.storyboard; sourceTree = SOURCE_ROOT; };
+		4636794623B9EF340078F066 /* CoupleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleModel.swift; sourceTree = "<group>"; };
 		4646BE7623A5F7C70092E8A7 /* CreateNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNavigator.swift; sourceTree = "<group>"; };
 		4646BE7823A5F7DD0092E8A7 /* CreateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewModel.swift; sourceTree = "<group>"; };
 		4693BF45239B4BBF00EA2EA5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -685,6 +687,7 @@
 				46C46DCE23A2496300966D44 /* AppUserData.swift */,
 				B699E8E923AE6AA100473268 /* Couples.swift */,
 				6F2E51C923AF93CF000479AF /* EventModel.swift */,
+				4636794623B9EF340078F066 /* CoupleModel.swift */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -1725,6 +1728,7 @@
 				B6E2E2E32362A7F7001046E5 /* UIViewExts.swift in Sources */,
 				7FF7E7A7236FDA36006AC2BF /* L10n-Constants.swift in Sources */,
 				7F5D1C31236FBD5B005A4961 /* UserRemoteDataSource.swift in Sources */,
+				4636794723B9EF340078F066 /* CoupleModel.swift in Sources */,
 				B6964F6C23AF140400283B9B /* GradientView.swift in Sources */,
 				B68E248F2392712B0014A53E /* ActionsView.swift in Sources */,
 				B607DB3123994CC900C7509F /* LocationViewModel.swift in Sources */,

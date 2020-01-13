@@ -11,10 +11,19 @@ import UIKit
 class EventTableViewCell: UITableViewCell, UIScrollViewDelegate, FSPagerViewDelegate, FSPagerViewDataSource {
     
     @IBOutlet weak var imageCollection: FSPagerView!
-    @IBOutlet weak var desLabel: UILabel!
     @IBOutlet weak var pageControl: FSPageControl!
+    @IBOutlet weak var desLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var avaImage: UIImageView!
     
-    var dataSource: [UIImage] = []
+    var dataSource: [UIImage] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.imageCollection.reloadData()
+            }
+        }
+    }
+    
     let boundScreen = UIScreen.main.bounds
     
     override func awakeFromNib() {

@@ -14,3 +14,5 @@
 @import FSPagerView;
 @import IBAnimatable;
 @import DatePickerDialog;
+@import Firebase;
+@import PromiseKit;

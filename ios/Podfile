@@ -47,6 +47,7 @@ def networking
   pod 'Firebase/Auth'
   pod 'Firebase/Messaging'
   pod 'Firebase/Storage'
+  pod 'CodableFirebase'
 end
 
 def ui
