@@ -136,6 +136,9 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - NVActivityIndicatorView (4.8.0):
+    - NVActivityIndicatorView/Presenter (= 4.8.0)
+  - NVActivityIndicatorView/Presenter (4.8.0)
   - PromiseKit (6.11.0):
     - PromiseKit/CorePromise (= 6.11.0)
     - PromiseKit/Foundation (= 6.11.0)
@@ -353,7 +356,7 @@ PODS:
   - RxRelay (5.0.1):
     - RxSwift (~> 5)
   - RxSwift (5.0.1)
-  - SkeletonView (1.4.1)
+  - SkeletonView (1.8.2)
   - SnapKit (4.2.0)
   - SwiftMessages (7.0.0):
     - SwiftMessages/App (= 7.0.0)
@@ -383,6 +386,7 @@ DEPENDENCIES:
   - KeychainAccess
   - Kingfisher (= 4.10.0)
   - Moya (~> 13.0)
+  - NVActivityIndicatorView
   - PromiseKit (~> 6.8)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
@@ -409,7 +413,7 @@ DEPENDENCIES:
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - RxCocoa (~> 5)
   - RxSwift (~> 5)
-  - SkeletonView (from `https://github.com/dangthaison91/SkeletonView.git`, branch `develop`)
+  - SkeletonView
   - SnapKit (~> 4.0)
   - SwiftMessages
   - SwiftMoment
@@ -447,12 +451,14 @@ SPEC REPOS:
     - leveldb-library
     - Moya
     - nanopb
+    - NVActivityIndicatorView
     - PromiseKit
     - Protobuf
     - Result
     - RxCocoa
     - RxRelay
     - RxSwift
+    - SkeletonView
     - SnapKit
     - SwiftMessages
     - SwiftMoment
@@ -511,14 +517,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
-  SkeletonView:
-    :branch: develop
-    :git: https://github.com/dangthaison91/SkeletonView.git
-
-CHECKOUT OPTIONS:
-  SkeletonView:
-    :commit: 6498d9cb7c169aa2065112cfb64113cbb3e3252a
-    :git: https://github.com/dangthaison91/SkeletonView.git
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
@@ -555,6 +553,7 @@ SPEC CHECKSUMS:
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
   PromiseKit: e4863d06976e7dee5e41c04fc7371c16b3600292
   Protobuf: dd1aaea7140debfe4dd0683fb8ef208e527ae153
   RCTRequired: b153add4da6e7dbc44aebf93f3cf4fcae392ddf1
@@ -581,7 +580,7 @@ SPEC CHECKSUMS:
   RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
   RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
   RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
-  SkeletonView: 60d6ce7edb0cb4c7758db33c74add50392b3c475
+  SkeletonView: bb27c39857e5492136f02ee8a3aa78de55d12ecd
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftMessages: a952f7a9103d9aeab93730a2861d2d8fcdd8758f
   SwiftMoment: dc6dd27012e267819104cbb03f74ff9192dd0b42
@@ -589,6 +588,6 @@ SPEC CHECKSUMS:
   Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
   YogaKit: 5d1dc899cecd5946e5a758a0c3997704a4b48d01
 
-PODFILE CHECKSUM: 092c0aa8c675dfeb26d7e96fcdd231d90286c4c8
+PODFILE CHECKSUM: 21a14f610085d5b3014b2a547b04f1413827f448
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.8.3

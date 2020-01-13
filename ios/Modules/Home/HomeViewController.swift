@@ -11,6 +11,7 @@ import SnapKit
 import Kingfisher
 import DatePickerDialog
 import RxSwift
+import NVActivityIndicatorView
 
 class HomeViewController: UIViewController {
     
@@ -47,6 +48,10 @@ class HomeViewController: UIViewController {
         homeViewModel = HomeViewModel(userInfo: userInfo!)
         setupMainView()
         observeViewModel()
+        AppLoadingIndicator.shared.show()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            AppLoadingIndicator.shared.hide()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
