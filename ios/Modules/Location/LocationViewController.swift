@@ -71,8 +71,10 @@ class LocationViewController: UIViewController, LocationViewControllerType {
         
         navigationItem.rightBarButtonItems = [phoneTabBarButton]
         
-        backButton = UIButton(type: .detailDisclosure)
+        backButton = UIButton(type: .custom)
         backButton.tintColor = Colors.kPink
+        let backButtonImage = UIImage.awesomeIcon(name: .arrowLeft, textColor: Colors.kPink)
+        backButton.setImage(backButtonImage, for: [])
         let backTabBarButton = UIBarButtonItem(customView: backButton)
         
         loverAvatar = Avatar(url: "https://vcdn-ngoisao.vnecdn.net/2019/07/11/tran-kieu-an-5-6648-1562814204.jpg")

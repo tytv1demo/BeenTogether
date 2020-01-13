@@ -76,7 +76,19 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
     }
 
     onLogout = () => {
-        this.appUserData.logout()
+        Alert.alert(
+            'Cofirmation',
+            'Are you sure you want to log out?',
+            [
+                {
+                    text: 'YES',
+                    onPress: this.appUserData.logout,
+                },
+                {
+                    text: 'NO',
+                },
+            ],
+        )
     }
 
     onBreakUp = () => {
