@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        phoneNumberTextField.text = "0975996008"
+        phoneNumberTextField.text = "0963777597"
         phoneNumberTextField.delegate = self
         
         loginViewModel = LoginViewModel()
@@ -92,14 +92,16 @@ class LoginViewController: UIViewController {
     
     func getOTPCode() {
         guard let phoneNumber = phoneNumberTextField.text else { return }
-        
+        AppLoadingIndicator.shared.show()
         PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verifyID, err) in
             if err == nil {
                 guard let verifyID = verifyID else { return }
                 self.verifyID = verifyID
                 self.signInButton.setTitle("SIGN IN", for: .normal)
                 self.showOTPView()
+                AppLoadingIndicator.shared.hide()
             } else {
+                AppLoadingIndicator.shared.hide()
                 self.showAlertWithOneOption(title: "Oops!", message: "Unable to get OTP code!", optionTitle: "OK")
             }
         }
@@ -111,12 +113,14 @@ class LoginViewController: UIViewController {
         
         let firebaseToken = ["key": self.verifyID, "code": otpCode]
         let userParam = SignInParams(phoneNumber: phoneNumber, firebaseToken: firebaseToken)
-        
+        AppLoadingIndicator.shared.show()
         loginViewModel.signIn(with: userParam).done { (canLogin) in
             if canLogin {
+                AppLoadingIndicator.shared.hide()
                 self.goToHomeScreen()
             }
         }.catch({ (_) in
+            AppLoadingIndicator.shared.hide()
             self.showAlertWithOneOption(title: "Oops!", message: "Unable to sign in!", optionTitle: "OK")
         })
     }

@@ -44,10 +44,14 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         disposeBag = DisposeBag()
         homeViewModel = HomeViewModel(userInfo: userInfo!)
         setupMainView()
-        observeViewModel()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.observeViewModel()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
