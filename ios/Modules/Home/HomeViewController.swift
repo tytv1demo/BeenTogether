@@ -44,13 +44,13 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         disposeBag = DisposeBag()
         homeViewModel = HomeViewModel(userInfo: userInfo!)
         setupMainView()
-        observeViewModel()
-        AppLoadingIndicator.shared.show()
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            AppLoadingIndicator.shared.hide()
+            self.observeViewModel()
         }
     }
     
@@ -65,6 +65,7 @@ class HomeViewController: UIViewController {
         homeViewModel.userConfig.subscribe(onNext: { [unowned self] (data) in
             guard let config = data else { return }
             
+            self.leftNameLabel.hideSkeleton()
             self.leftNameLabel.text = config.name
             self.setupLeftAvatar(url: config.avatar)
         }).disposed(by: disposeBag)
@@ -72,6 +73,7 @@ class HomeViewController: UIViewController {
         homeViewModel.friendConfig.subscribe(onNext: { [unowned self] (data) in
             guard let config = data else { return }
             
+            self.rightNameLabel.hideSkeleton()
             self.rightNameLabel.text = config.name
             self.setupRightAvatar(url: config.avatar)
         }).disposed(by: disposeBag)
@@ -81,8 +83,11 @@ class HomeViewController: UIViewController {
         
             let startDate = self.homeViewModel.createDateFrom(timeInterval: timeInterval)
             
+            self.dateCoutingLabel.hideSkeleton()
             self.dateCoutingLabel.text = self.homeViewModel.createDateCountedString(startDate: startDate)
+            self.leftDaysLabel.hideSkeleton()
             self.leftDaysLabel.text = String(self.homeViewModel.getLeftRightNumbers(startDate: startDate).leftNumber)
+            self.rightDayLabel.hideSkeleton()
             self.rightDayLabel.text = String(self.homeViewModel.getLeftRightNumbers(startDate: startDate).rightNumber)
             self.progressView.progress = self.homeViewModel.getProgress(startDate: startDate)
             self.heartIconLeftContraint.constant = CGFloat(self.progressView.progress) * self.progressView.frame.width
@@ -122,11 +127,11 @@ class HomeViewController: UIViewController {
     }
     
     func setupDataForLabels() {
-        dateCoutingLabel.text = "..."
-        leftDaysLabel.text = "..."
-        rightDayLabel.text = "..."
-        leftNameLabel.text = "..."
-        rightNameLabel.text = "..."
+        dateCoutingLabel.showAnimatedSkeleton()
+        leftDaysLabel.showAnimatedSkeleton()
+        rightDayLabel.showAnimatedSkeleton()
+        leftNameLabel.showAnimatedSkeleton()
+        rightNameLabel.showAnimatedSkeleton()
     }
     
     func setupAvatar() {
@@ -178,8 +183,14 @@ class HomeViewController: UIViewController {
             guard let date = date else { return }
             
             if date < Date() {
+                AppLoadingIndicator.shared.show()
                 let dateTimeInterval = self.homeViewModel.createDateTimeInterval(from: date) - 86400
-                _ = self.homeViewModel.coupleModel.refCoupleStartDate(startDate: dateTimeInterval).done { (_) in }
+                _ = self.homeViewModel.coupleModel.refCoupleStartDate(startDate: dateTimeInterval).done { (success) in
+                    AppLoadingIndicator.shared.hide()
+                    if !success {
+                        self.showAlertWithOneOption(title: "Opps!", message: "Unable to change your start date!", optionTitle: "OK")
+                    }
+                }
             } else {
                 self.showAlertWithOneOption(title: "Opps!", message: "The date you selected has exceeded today!", optionTitle: "OK")
             }
@@ -195,18 +206,23 @@ class HomeViewController: UIViewController {
         let actionSheet = UIAlertController(title: "Photo source", message: "Choose a source", preferredStyle: .actionSheet)
         
         actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
+            AppLoadingIndicator.shared.show()
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
                 imagePickerVC.sourceType = .camera
                 imagePickerVC.allowsEditing = true
+                AppLoadingIndicator.shared.hide()
                 self.present(imagePickerVC, animated: true, completion: nil)
             } else {
+                AppLoadingIndicator.shared.hide()
                 self.showAlertWithOneOption(title: "Opps!", message: "Camera is not available!", optionTitle: "OK")
             }
         }))
         
         actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { _ in
+            AppLoadingIndicator.shared.show()
             imagePickerVC.sourceType = .photoLibrary
             imagePickerVC.allowsEditing = true
+            AppLoadingIndicator.shared.hide()
             self.present(imagePickerVC, animated: true, completion: nil)
         }))
         
@@ -246,18 +262,22 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            selectedImageView!.image = image
-            let userId = selectedImageView == leftAvatar.imageView ? self.userInfo!.id : AppUserData.shared.friendInfo!.id
-            let phoneNumber = selectedImageView == leftAvatar.imageView ? self.userInfo!.phoneNumber : AppUserData.shared.friendInfo!.phoneNumber
-            
+//            selectedImageView!.image = image
+            let userId = selectedImageView == leftAvatar.imageView ? self.userInfo!.id : homeViewModel.coupleModel.friendInfo!.id
+            let phoneNumber = selectedImageView == leftAvatar.imageView ? self.userInfo!.phoneNumber : homeViewModel.coupleModel.friendInfo!.phoneNumber
+            AppLoadingIndicator.shared.show()
             UploadAPI.shared.uploadAvatar(imageData: image.jpegData(compressionQuality: 0.25)!, for: String(userId)) { (string) in
-                _ = self.homeViewModel.coupleModel.refPersonAvatar(avatarURL: string, person: phoneNumber).done { (_) in }
+                _ = self.homeViewModel.coupleModel.refPersonAvatar(avatarURL: string, person: phoneNumber).done { (success) in
+                    AppLoadingIndicator.shared.hide()
+                    if !success {
+                        self.showAlertWithOneOption(title: "Opps!", message: "Unable to change your avatar!", optionTitle: "OK")
+                    }
+                }
             }
             
             picker.dismiss(animated: true, completion: {
                 self.selectedImageView = nil
             })
-            
         }
     }
     

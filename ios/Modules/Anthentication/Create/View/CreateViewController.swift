@@ -90,13 +90,16 @@ class CreateViewController: UIViewController {
     func getOTPCode() {
         guard let phoneNumber = phoneNumberTextField.text else { return }
         
+        AppLoadingIndicator.shared.show()
         PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verifyID, err) in
             if err == nil {
                 guard let verifyID = verifyID else { return }
                 self.verifyID = verifyID
                 self.showOTPView()
                 self.createButton.setTitle("SIGN UP", for: .normal)
+                AppLoadingIndicator.shared.hide()
             } else {
+                AppLoadingIndicator.shared.hide()
                 self.showAlertWithOneOption(title: "Oops!", message: "Unable to get OTP code!", optionTitle: "OK")
             }
         }
@@ -110,11 +113,14 @@ class CreateViewController: UIViewController {
         let firebaseToken = ["key": self.verifyID, "code": otpCode]
         let userParam = SignUpParams(phoneNumber: phoneNumber, name: name, firebaseToken: firebaseToken)
         
+        AppLoadingIndicator.shared.show()
         createViewModel.signUp(with: userParam).done { (canSignUp) in
             if canSignUp {
+                AppLoadingIndicator.shared.hide()
                 self.goToHomeScreen()
             }
         }.catch({ (_) in
+            AppLoadingIndicator.shared.hide()
             self.showAlertWithOneOption(title: "Oops!", message: "Unable to sign up!", optionTitle: "OK")
         })
     }
