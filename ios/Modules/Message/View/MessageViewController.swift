@@ -38,6 +38,7 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
         setupActions()
         
         viewModel.delegate = self
+        subscribeViewModel()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -91,6 +92,13 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
     func setupActions() {
         gpsButton.addTarget(self, action: #selector(onGpsButtonPress), for: [.touchUpInside])
         phoneButton.addTarget(self, action: #selector(onPhoneButtonPress), for: [.touchUpInside])
+    }
+    
+    func subscribeViewModel() {
+        viewModel.viewData.subscribe(onNext: { [weak self] (data) in
+            self?.loverNameLabel.text = data.loverName
+            self?.loverAvatar.setImage(url: data.loverAvatar)
+        }).disposed(by: disposeBag)
     }
     
     @objc func onGpsButtonPress() {

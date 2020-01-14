@@ -44,7 +44,6 @@ class SmartChat: UIView {
     }
     
     func setupUI() {
-        
         messageTableView = MessageTableView(user: user)
         messageTableView.delegate = self
         addSubview(messageTableView)

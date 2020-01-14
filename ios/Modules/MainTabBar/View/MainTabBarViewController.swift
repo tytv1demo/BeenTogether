@@ -10,10 +10,25 @@ import Foundation
 import YogaKit
 import RxSwift
 import PromiseKit
+import RxCocoa
 import UIKit
 
 class MainTabBarUIConfiguration {
     var centerCircleButtonSize: CGFloat = 68
+}
+protocol CustomTabBarDelegate: AnyObject {
+    func tabBar(_ tabBar: CustomTabBar, didSetHidden isHidden: Bool)
+}
+
+class CustomTabBar: UITabBar {
+    
+    weak var customDelegate: CustomTabBarDelegate?
+    
+    override var isHidden: Bool {
+        didSet {
+            customDelegate?.tabBar(self, didSetHidden: self.isHidden)
+        }
+    }
 }
 
 class MainTabBarViewController: UITabBarController {
@@ -24,13 +39,21 @@ class MainTabBarViewController: UITabBarController {
     
     var interactionRequest: CoupleMatchRequest!
     
+    var eventVc: UINavigationController!
+    
     var homeVC: HomeViewController!
     
-    var loginVC: LoginViewController!
+    var locationVc: LocationViewController!
     
     var messageVC: MessageViewController!
     
     var settingVC: SettingViewController!
+    
+    var homeTabButton: UIButton!
+    
+    var homeTabImage: UIImageView!
+    
+    var obs: NSKeyValueObservation!
     
     var disposeBag: DisposeBag = DisposeBag()
     
@@ -42,18 +65,17 @@ class MainTabBarViewController: UITabBarController {
         selectedIndex = 2
         viewModel = MainTabBarViewModel()
         viewModel.delegate = self
-        
+        delegate = self
         subscribeViewModel()
+        obs = tabBar.observe(\.isHidden) { (_, _) in
+            self.homeTabButton.isHidden = self.tabBar.isHidden
+        }
     }
     
-    
     func settupViewController() {
-        let firstVc = UIStoryboard(name: "Event", bundle: nil).instantiateViewController(withIdentifier: "EventViewControllerNav") as! UINavigationController
-        firstVc.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+        eventVc = UIStoryboard(name: "Event", bundle: nil).instantiateViewController(withIdentifier: "EventViewControllerNav") as! UINavigationController
         
-        let storyboard1 = UIStoryboard(name: "Login", bundle: nil)
-        loginVC = storyboard1.instantiateViewController()
-        loginVC.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0)
+        locationVc = LocationViewController()
         
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
         homeVC = storyboard.instantiateViewController()
@@ -66,31 +88,42 @@ class MainTabBarViewController: UITabBarController {
         settingVC.initRCTView()
         let settingImage = UIImage.awesomeIcon(name: .tools, style: .solid)
         let activeSettingImage = UIImage.awesomeIcon(name: .tools, style: .solid, textColor: Colors.kPink)
-        settingVC.tabBarItem = UITabBarItem(title: "Cài đặt", image: settingImage, selectedImage: activeSettingImage)
+        settingVC.tabBarItem = UITabBarItem(title: "Settings", image: settingImage, selectedImage: activeSettingImage)
         
-        viewControllers = [firstVc, loginVC, homeVC, messageNav, settingVC]
+        viewControllers = [eventVc, locationVc, homeVC, messageNav, settingVC]
     }
     
     func settupTabBarUI() {
-        let homeTabButton = UIButton()
-        let img: UIImageView = UIImageView(image: UIImage(named: "heart"))
+        tabBar.tintColor = Colors.kPink
+        
+        homeTabButton = UIButton()
+        homeTabImage = UIImageView(image: UIImage(named: "heart"))
         homeTabButton.frame = CGRect(x: 0.0, y: 0.0, width: uiConfiguration.centerCircleButtonSize, height: uiConfiguration.centerCircleButtonSize)
         homeTabButton.layer.cornerRadius = uiConfiguration.centerCircleButtonSize * 0.5
         homeTabButton.layer.masksToBounds = true
         homeTabButton.setGradientBackground()
         homeTabButton.dropShadow()
-        homeTabButton.center = CGPoint(x: tabBar.center.x, y: tabBar.center.y - (isIphoneX() ? 40 : 20))
-        homeTabButton.addSubview(img)
-        img.center = homeTabButton.center
+        homeTabButton.addSubview(homeTabImage)
         view.addSubview(homeTabButton)
-        view.addSubview(img)
+        homeTabButton.addSubview(homeTabImage)
+        let centerPoint = tabBar.center
+        let yPoint = centerPoint.y - (isIphoneX() ? 40 : 20)
+        homeTabButton.center = CGPoint(x: centerPoint.x, y: yPoint)
+        homeTabImage.snp.makeConstraints { (make) in
+            make.center.equalTo(homeTabButton)
+        }
+        homeVC.tabBarItem = UITabBarItem()
         homeTabButton.addTarget(self, action: #selector(onHomTabButtonTapped), for: [.touchUpInside])
         
-        messageVC.tabBarItem =  UITabBarItem(title: "", image: UIImage(named: "message"), selectedImage: UIImage(named: "message"))
+        eventVc.tabBarItem = UITabBarItem(title: "Events", image: UIImage.awesomeIcon(name: .stickyNote), selectedImage: UIImage.awesomeIcon(name: .stickyNote))
+        
+        locationVc.tabBarItem = UITabBarItem(title: "Location", image: UIImage.awesomeIcon(name: .locationArrow), selectedImage: UIImage.awesomeIcon(name: .locationArrow, textColor: Colors.kPink))
+        messageVC.tabBarItem =  UITabBarItem(title: "Messages", image: UIImage(named: "message"), selectedImage: UIImage(named: "message"))
     }
     
     @objc func onHomTabButtonTapped() {
         selectedIndex = 2
+        updateHomeTabButtonBehavior()
     }
     
     func subscribeViewModel() {
@@ -106,6 +139,22 @@ class MainTabBarViewController: UITabBarController {
         interactionRequest = request
         let message = "Bạn nhận được yêu cầu ghép đôi từ số điện thoại \(request.from.phoneNumber) - \(request.from.name)"
         presentConfirmPopup(title: "Ghép đôi!", message: message, delegate: self)
+    }
+    
+    func updateHomeTabButtonBehavior() {
+        let yPoint = isIphoneX() ? 15 : 30
+        let transform = selectedIndex != 3 ? CGAffineTransform.identity : CGAffineTransform(translationX: 0, y: CGFloat(yPoint)).scaledBy(x: 0.9, y: 0.9)
+        UIView.animate(withDuration: 0.2) { [weak self] in
+            self?.homeTabButton.transform = transform
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.view.bringSubviewToFront(self.homeTabButton)
+    }
+    deinit {
+        obs.invalidate()
     }
 }
 
@@ -127,15 +176,23 @@ extension MainTabBarViewController: ConfirmPopupViewControllerDelegate {
     
     func confirmPopup(didAccept popup: ConfirmPopupViewController) -> Promise<Any> {
         return Promise {seal in
-           viewModel
+            viewModel
                 .responseToMatchRequest(request: interactionRequest, action: .accept)
                 .done { (success) in
                     if success {
                         popup.dismiss(animated: true, completion: nil)
-                    }
+                 }
             }.catch(seal.reject)
         }
     }
+}
+
+extension MainTabBarViewController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        updateHomeTabButtonBehavior()
+    }
+    
+    
 }
 
 extension MainTabBarViewController: MainTabBarViewModelDelegate {

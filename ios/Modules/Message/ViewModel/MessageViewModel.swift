@@ -25,11 +25,21 @@ protocol MessageViewModelProtocol: NSObject {
     
     var user: SCUser { get set }
     
+    var coupleModel: CoupleModel { get set }
+    
+    var viewData: BehaviorSubject<MessageViewData> { get set }
+    
     var messageRepository: MessageRepository { get set }
     
     func sendMessage(type: MessageType, content: String)
     
     func sendImage(data: Data)
+}
+
+struct MessageViewData {
+    var loverName: String
+    
+    var loverAvatar: String
 }
 
 class MessageViewModel: NSObject, MessageViewModelProtocol {
@@ -44,16 +54,24 @@ class MessageViewModel: NSObject, MessageViewModelProtocol {
     
     var user: SCUser
     
+    var coupleModel: CoupleModel
+    
+    var disposeBag: DisposeBag = DisposeBag()
+    
+    var viewData: BehaviorSubject<MessageViewData> = BehaviorSubject(value: MessageViewData(loverName: "", loverAvatar: ""))
+    
     override init() {
         user = SCUser(id: AppUserData.shared.userInfo.id, name: AppUserData.shared.userInfo.name, avatar: "")
         messages = BehaviorSubject<[SCMessage]>(value: [])
         messageRepository = BaseMessageRepository()
         let coupleId = AppUserData.shared.userInfo.coupleId
         threadRef = Database.database().reference(withPath: "message/\(coupleId)/messages")
+        coupleModel = CoupleModel(userInfo: AppUserData.shared.userInfo)
         super.init()
         
         self.loadMessage()
         self.bindChildAddedEvent()
+        subscribeCoupleModel()
     }
     
     func loadMessage() {
@@ -125,6 +143,20 @@ class MessageViewModel: NSObject, MessageViewModelProtocol {
     func createMessage(type: MessageType, content: String) -> SCMessage {
         let message: SCMessage = SCMessage(id: -1, createdAt: "test", author: user, content: content, type: type, status: .sending)
         return message
+    }
+    
+    func subscribeCoupleModel() {
+        coupleModel.friendConfig.subscribe(onNext: { (config) in
+            guard let friendConfig = config else { return }
+            self.updateViewData(friendConfig: friendConfig)
+        }).disposed(by: disposeBag)
+    }
+    
+    func updateViewData(friendConfig: Config) {
+        guard var viewData = try? viewData.value() else { return }
+        viewData.loverName = friendConfig.name
+        viewData.loverAvatar = friendConfig.avatar
+        self.viewData.onNext(viewData)
     }
 }
 

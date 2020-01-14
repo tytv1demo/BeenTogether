@@ -62,7 +62,7 @@ class InputToolBar: UIView {
         case .text:
             return keyboarHeight + inputRow.frame.height + 32
         case .noAction:
-            return 65
+            return 36
         }
     }
     
