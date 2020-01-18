@@ -14,7 +14,7 @@ struct EventViewModel {
     var ref: DatabaseReference!
     
     init() {
-        ref = Database.database().reference()
+        ref = Database.database().reference().child("event/\(AppUserData.shared.userInfo.coupleId)")
     }
     
     /// Create an event
@@ -33,7 +33,7 @@ struct EventViewModel {
             }
         }
         
-        ref.child("event/\(AppUserData.shared.userInfo.coupleId)").childByAutoId().setValue([
+        ref.childByAutoId().setValue([
             "attachments": attachmments,
             "description": event.description ?? "",
             "startDate": event.startDate ?? "",
@@ -52,7 +52,7 @@ struct EventViewModel {
     /// Get events for user
     /// - Parameter completion: handler after get events
     func getEvents(completion: (([EventModel]) -> Void)?) {
-        ref.child("event/\(AppUserData.shared.userInfo.coupleId)").observe(.value) { snapshot in
+        ref.observeSingleEvent(of: .value) { snapshot in
             var listEvent: [EventModel] = []
             for child in snapshot.children.allObjects {
                 guard let snap = child as? DataSnapshot, let value = snap.value else {
@@ -86,7 +86,7 @@ struct EventViewModel {
     /// Handler when event is added
     /// - Parameter completion: UI handler
     func listenToAddEvent(completion: ((EventModel) -> Void)?) {
-        ref.child("event/\(AppUserData.shared.userInfo.coupleId)").observe(.childAdded) { snapshot in
+        ref.observe(.childAdded) { snapshot in
             if let value = snapshot.value, let event = try? FirebaseDecoder().decode(EventModel.self, from: value) {
                 completion?(event)
             }
@@ -96,7 +96,7 @@ struct EventViewModel {
     /// Handler when event is removed
     /// - Parameter completion: UI handler
     func listenToRemoveEvent(completion: ((EventModel) -> Void)?) {
-        ref.child("event/\(AppUserData.shared.userInfo.coupleId)").observe(.childRemoved) { snapshot in
+        ref.observe(.childRemoved) { snapshot in
             if let value = snapshot.value, let event = try? FirebaseDecoder().decode(EventModel.self, from: value) {
                 completion?(event)
             }

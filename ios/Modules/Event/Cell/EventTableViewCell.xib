@@ -95,7 +95,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZkN-8I-D7z" customClass="FSPageControl" customModule="FSPagerView">
-                        <rect key="frame" x="0.0" y="279" width="393" height="24"/>
+                        <rect key="frame" x="0.0" y="255" width="393" height="24"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="m3i-CU-CdJ"/>
@@ -105,7 +105,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqt-W6-cxp">
-                        <rect key="frame" x="16" y="303" width="361" height="20.5"/>
+                        <rect key="frame" x="16" y="287" width="361" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -117,9 +117,9 @@
                 <constraints>
                     <constraint firstItem="vqt-W6-cxp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="7v6-Ep-cbk"/>
                     <constraint firstAttribute="trailing" secondItem="eAt-it-F4Y" secondAttribute="trailing" id="C9g-ed-mgn"/>
-                    <constraint firstItem="ZkN-8I-D7z" firstAttribute="top" secondItem="eAt-it-F4Y" secondAttribute="bottom" id="CAO-Rb-xQD"/>
                     <constraint firstAttribute="trailing" secondItem="FS2-9u-Gc8" secondAttribute="trailing" id="E3M-pH-SrF"/>
                     <constraint firstItem="eAt-it-F4Y" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" id="EKg-M8-PXv"/>
+                    <constraint firstItem="vqt-W6-cxp" firstAttribute="top" secondItem="ZkN-8I-D7z" secondAttribute="bottom" constant="8" id="Iov-GP-xs9"/>
                     <constraint firstAttribute="bottom" secondItem="vqt-W6-cxp" secondAttribute="bottom" constant="12" id="OZq-he-Iyo"/>
                     <constraint firstAttribute="trailing" secondItem="vqt-W6-cxp" secondAttribute="trailing" constant="16" id="Rqt-vj-NTG"/>
                     <constraint firstItem="FS2-9u-Gc8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="S7n-GZ-aUU"/>
@@ -127,7 +127,7 @@
                     <constraint firstItem="eAt-it-F4Y" firstAttribute="top" secondItem="FS2-9u-Gc8" secondAttribute="bottom" id="c4m-4I-FfW"/>
                     <constraint firstItem="FS2-9u-Gc8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="cjh-6h-Cm4"/>
                     <constraint firstItem="ZkN-8I-D7z" firstAttribute="leading" secondItem="eAt-it-F4Y" secondAttribute="leading" id="sre-Os-uRJ"/>
-                    <constraint firstItem="vqt-W6-cxp" firstAttribute="top" secondItem="ZkN-8I-D7z" secondAttribute="bottom" id="vP3-Is-IVH"/>
+                    <constraint firstItem="eAt-it-F4Y" firstAttribute="bottom" secondItem="ZkN-8I-D7z" secondAttribute="bottom" id="vP3-Is-IVH"/>
                     <constraint firstItem="ZkN-8I-D7z" firstAttribute="trailing" secondItem="eAt-it-F4Y" secondAttribute="trailing" id="xeI-5h-vT6"/>
                 </constraints>
                 <userDefinedRuntimeAttributes>
@@ -143,6 +143,7 @@
                 <outlet property="dateLabel" destination="aLB-xE-wWl" id="wr1-cH-IAu"/>
                 <outlet property="desLabel" destination="vqt-W6-cxp" id="T2q-Mq-M9M"/>
                 <outlet property="imageCollection" destination="eAt-it-F4Y" id="Jo9-Rt-GQ1"/>
+                <outlet property="nameLabel" destination="wzi-oz-iK8" id="zTR-JK-RrU"/>
                 <outlet property="pageControl" destination="ZkN-8I-D7z" id="h9B-hO-hUD"/>
             </connections>
             <point key="canvasLocation" x="190.57971014492756" y="176.45089285714286"/>

@@ -22,7 +22,6 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     let cellArray: [AddEventCell] = [.name, .caption, .location, .startDate, .endDate, .image]
     var newEvent: EventModel = EventModel()
     let viewModel: EventViewModel = EventViewModel()
-    var dismissCallback: (() -> Void)?
     
     // MARK: - Life cycle
     
@@ -54,7 +53,6 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func postAction(_ sender: UIButton) {
         viewModel.create(event: newEvent) {
             self.navigationController?.popViewController(animated: true)
-            self.dismissCallback?()
         }
     }
     

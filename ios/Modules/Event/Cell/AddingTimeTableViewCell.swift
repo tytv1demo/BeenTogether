@@ -31,7 +31,8 @@ class AddingTimeTableViewCell: UITableViewCell {
     }
     
     @objc private func showDatePicker() {
-        DatePickerDialog().show(isStartDate ? "When did it start?" : "When did it end?", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", defaultDate: Date(), datePickerMode: .date) { (date) in
+        let dialog = DatePickerDialog(textColor: UIColor.black, buttonColor: UIColor.systemPink, font: .boldSystemFont(ofSize: 15), locale: nil, showCancelButton: true)
+        dialog.show(isStartDate ? "When did it start?" : "When did it end?", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", defaultDate: Date(), datePickerMode: .date) { (date) in
             if let date = date {
                 let dateString = date.toString(.custom(kEventDateFormat))
                 self.timeLabel.text = dateString
