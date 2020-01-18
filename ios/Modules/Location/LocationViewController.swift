@@ -60,6 +60,7 @@ class LocationViewController: UIViewController, LocationViewControllerType {
         makeConstrainsts()
         subscribeViewModel()
         setupActions()
+        LocationServices.shared.startUpdateLocation()
     }
     
     func settupNavigation() {
@@ -136,9 +137,12 @@ class LocationViewController: UIViewController, LocationViewControllerType {
                     return
                 }
                 
+                defer {
+                    self.caculateRoute()
+                }
+                
                 if self.currentAnotation != nil {
                     self.currentAnotation.coordinate = location.coordinate
-                    self.caculateRoute()
                     return
                 }
                 
@@ -152,7 +156,6 @@ class LocationViewController: UIViewController, LocationViewControllerType {
                                                         discipline: "Current",
                                                         coordinate: location.coordinate)
                 self.mapView.addAnnotation(self.currentAnotation)
-                self.caculateRoute()
             }).disposed(by: disposeBag)
         
         viewModel
@@ -162,9 +165,12 @@ class LocationViewController: UIViewController, LocationViewControllerType {
                     return
                 }
                 
+                defer {
+                    self.caculateRoute()
+                }
+                
                 if self.loverAnotation != nil {
                     self.loverAnotation.coordinate = location.coordinate
-                    self.caculateRoute()
                     return
                 }
                 
@@ -178,12 +184,11 @@ class LocationViewController: UIViewController, LocationViewControllerType {
                                                       discipline: "loverAnotation",
                                                       coordinate: location.coordinate)
                 self.mapView.addAnnotation(self.loverAnotation)
-                self.caculateRoute()
             }).disposed(by: disposeBag)
     }
     
     func caculateRoute() {
-        if currentAnotation == nil ||  loverAnotation == nil {
+        if currentAnotation == nil || loverAnotation == nil {
             return
         }
         let request: MKDirections.Request = MKDirections.Request()

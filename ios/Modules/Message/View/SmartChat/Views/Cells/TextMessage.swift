@@ -44,7 +44,7 @@ class TextMessageView: UIView, BaseMessageView {
         statusIndicator = MessageStatusIndicator()
         
         bubble = Bubble()
-        avatar = Avatar(size: CGSize(width: 25, height: 25), url: "https://media.ex-cdn.com/EXP/media.giadinhvietnam.com/files/dothanhhien85/2018/10/01/42975856_2321943271154026_70249855187943424_n-1720.jpg")
+        avatar = Avatar(size: CGSize(width: 25, height: 25), url: "")
         
         let arrangedSubviews: [UIView] = [UIView(), bubble, avatar, statusIndicator]
         
@@ -101,6 +101,7 @@ class TextMessageView: UIView, BaseMessageView {
     
     func startConfigForUse() {
         avatar.isHidden = isUserMessage
+        avatar.setImage(url: message.author.avatar ?? "")
         avatar.imageView.isHidden = !isLastMessageInGroup
         statusIndicator.isHidden = !isUserMessage
         

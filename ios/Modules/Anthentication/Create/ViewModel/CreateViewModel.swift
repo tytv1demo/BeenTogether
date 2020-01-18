@@ -32,6 +32,7 @@ extension CreateViewModel {
                 .done { (result) in
                     AppUserData.shared.userToken = result.token
                     AppUserData.shared.userInfo = result.userInfo
+                    NotificationServices.shared.registerForPushNotifications()
                     seal.fulfill(true)
             }.catch { (err) in
                 seal.reject(err)

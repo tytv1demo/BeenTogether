@@ -107,9 +107,9 @@ extension GalleryInput {
     }
     
     func openSetting() {
-        let alertController = UIAlertController(title: "Thông báo", message: "Đi đến cài đặt?", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Notification", message: "Go to Setting?", preferredStyle: .alert)
         
-        let settingsAction = UIAlertAction(title: "Đồng ý", style: .default) { (_) -> Void in
+        let settingsAction = UIAlertAction(title: "Yes", style: .default) { (_) -> Void in
             
             guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
                 return
@@ -122,10 +122,16 @@ extension GalleryInput {
             }
         }
         alertController.addAction(settingsAction)
-        let cancelAction = UIAlertAction(title: "Thoát", style: .default, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         alertController.addAction(cancelAction)
         
-        self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+        
+        if var topController = UIApplication.shared.keyWindow?.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
+            topController.present(alertController, animated: true, completion: nil)
+        }
     }
 }
 

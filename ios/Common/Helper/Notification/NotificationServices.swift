@@ -32,7 +32,7 @@ class NotificationServices: NSObject {
     
     func registerForPushNotifications() {
       UNUserNotificationCenter.current()
-        .requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, error in
+        .requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, _ in
           guard granted else { return }
           self?.registerForRemoteNotifications()
       }
@@ -61,7 +61,7 @@ class NotificationServices: NSObject {
 
     func updateDeviceToken() {
         InstanceID.instanceID().instanceID { [weak self] (result, error) in
-          if let error = error {
+          if let _ = error {
             
           } else if let result = result {
             self?.userRepository.updateDeviceToken(token: result.token)

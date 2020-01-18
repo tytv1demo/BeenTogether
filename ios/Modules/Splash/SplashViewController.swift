@@ -46,6 +46,7 @@ class SplashViewController: UIViewController {
         _ = AppUserData.shared.checkIsSignedIn().done { (isSignedIn) in
             if isSignedIn {
                 self.goToHomeScreen()
+                NotificationServices.shared.registerForPushNotifications()
             } else {
                 self.goToLoginScreen()
             }

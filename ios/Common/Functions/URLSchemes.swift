@@ -18,3 +18,28 @@ func callNumber(phoneNumber:String) {
         }
     }
 }
+
+func openSetting() {
+    DispatchQueue.main.async {
+        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
+
+        if UIApplication.shared.canOpenURL(settingsUrl) {
+            UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                print("Settings opened: \(success)") // Prints true
+            })
+        }
+    }
+}
+
+func openContactToUs(){
+    DispatchQueue.main.async {
+        let email = "ty.tv01@gmail.com"
+        if let url = URL(string: "mailto:\(email)") {
+          if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url)
+          } else {
+            UIApplication.shared.openURL(url)
+          }
+        }
+    }
+}

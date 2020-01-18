@@ -54,7 +54,6 @@ import PromiseKit
                         self.userInfo = user
                         LocationServices.shared.bootstrap(userModel: UserModel(user: user))
                         seal.fulfill(true)
-                        NotificationServices.shared.registerForPushNotifications()
                 }.catch { (_) in
                     seal.fulfill(false)
                 }

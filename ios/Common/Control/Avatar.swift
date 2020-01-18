@@ -47,7 +47,7 @@ class Avatar: UIView {
     }
     
     func setImage(url: String) {
-        let resource: URL = URL(string: url)!
+        guard let resource: URL = URL(string: url) else { return }
         
         imageView.kf.setImage(with: resource)
     }

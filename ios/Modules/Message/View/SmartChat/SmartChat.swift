@@ -29,6 +29,8 @@ class SmartChat: UIView {
     
     var user: SCUser!
     
+    var tapGestureOnMessageTable: UITapGestureRecognizer!
+    
     required init?(coder: NSCoder) {
         fatalError()
     }
@@ -41,6 +43,7 @@ class SmartChat: UIView {
         self.init(frame: frame)
         self.user = user
         setupUI()
+        setupActions()
     }
     
     func setupUI() {
@@ -67,13 +70,36 @@ class SmartChat: UIView {
         }
     }
     
+    func setupActions() {
+        tapGestureOnMessageTable = UITapGestureRecognizer(target: self, action: #selector(onTableViewTapped))
+        messageTableView.addGestureRecognizer(tapGestureOnMessageTable)
+    }
+    
     func reloadWithMessages(_ messages: [SCMessage]) {
         messageTableView.messages = messages
         messageTableView.tableView.reloadData()
+        if messages.count == 0 {
+//            messageTableView.tableView
+        }
     }
     
     func addMessage(_ message: SCMessage) {
         messageTableView.addMessage(message)
+    }
+    
+    @objc func onTableViewTapped() {
+        inputToolBar.requestEndEditing()
+    }
+    
+    func setEmptyViewForTableView() {
+        let message = "Cho phép Cupid truy cập ảnh để có thể chia sẻ?"
+        let buttonTitle = "Cho phép"
+//        self.messageTableView.tableView.setEmptyMessage(message, buttonTitle: buttonTitle, onButtonPress: openSetting)
+    }
+    
+    deinit {
+        messageTableView.removeGestureRecognizer(tapGestureOnMessageTable)
+        tapGestureOnMessageTable.removeTarget(self, action: #selector(onTableViewTapped))
     }
 }
 

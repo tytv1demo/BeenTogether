@@ -108,6 +108,7 @@ class MessageViewModel: NSObject, MessageViewModelProtocol {
         guard var messages = try? self.messages.value() else {
             return
         }
+        message.author.avatar = try? coupleModel.friendConfig.value()?.avatar
         messages.append(message)
         message.loadDataIfNeeded()
         delegate?.messageViewModel(didAddMessage: self, message: message)

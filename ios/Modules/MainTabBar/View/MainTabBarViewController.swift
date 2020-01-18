@@ -14,7 +14,7 @@ import RxCocoa
 import UIKit
 
 class MainTabBarUIConfiguration {
-    var centerCircleButtonSize: CGFloat = 68
+    var centerCircleButtonSize: CGFloat = 58
 }
 protocol CustomTabBarDelegate: AnyObject {
     func tabBar(_ tabBar: CustomTabBar, didSetHidden isHidden: Bool)

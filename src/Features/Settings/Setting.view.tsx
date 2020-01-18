@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-    ScrollView, View, TouchableWithoutFeedback, Alert,
+    ScrollView, View, TouchableWithoutFeedback, Alert, Linking,
 } from 'react-native'
 import { Header, ListItem, Text, Icon } from 'react-native-elements'
 import { Spacer, ADSwitch, MemoAvatar, FullScreenIndicator } from '@components';
@@ -131,6 +131,21 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
         this.setState({ requestPopupVisible: false })
     }
 
+    onContactUs = async () => {
+        const url = 'mailto:ty.tv01@gmail.com'
+        try {
+            const openable = await Linking.canOpenURL(url)
+            if (openable) {
+                showFlashMessage('Opps!', 'Can not open mail app!', 'warning')
+                return
+            }
+            await Linking.openURL(url)
+        } catch (error) {
+            showFlashMessage('Opps!', 'Can not open mail app!', 'warning')
+        }
+
+    }
+
     renderAvatarSection() {
         const { userInfo } = this.state.userModel!
 
@@ -237,7 +252,8 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
         return (
             <>
                 <ListItem
-                    title='Gửi phản hồi'
+                    onPress={this.onContactUs}
+                    title='Contact us'
                     bottomDivider
                     chevron
                 />
