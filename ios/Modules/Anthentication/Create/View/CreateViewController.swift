@@ -85,6 +85,7 @@ class CreateViewController: UIViewController {
         isOTPViewHidden = !isOTPViewHidden
         otpView.isHidden = isOTPViewHidden
         stackViewHeight.constant = isOTPViewHidden ? 124 : 186
+        otpTextField.becomeFirstResponder()
     }
     
     func getOTPCode(_ phoneNumber: String) {

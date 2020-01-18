@@ -92,6 +92,7 @@ class LoginViewController: UIViewController {
     func showOTPView() {
         isOTPViewHidden = !isOTPViewHidden
         otpView.isHidden = isOTPViewHidden
+        otpTextField.becomeFirstResponder()
     }
     
     func getOTPCode(_ phoneNumber: String) {
