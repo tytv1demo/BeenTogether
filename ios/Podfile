@@ -70,6 +70,7 @@ def ultilities
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
   pod 'SwiftMoment'
+  pod 'PhoneNumberKit', '~> 3.1' 
 end
 
 target 'Cupid' do
