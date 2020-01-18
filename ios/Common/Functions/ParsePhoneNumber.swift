@@ -12,6 +12,7 @@ import PhoneNumberKit
 func parsePhoneNumber(_ phoneNumber: String, _ regionCode: String) throws -> String {
     let phoneNumberKit = PhoneNumberKit()
     let parsedPhoneNumber = try phoneNumberKit.parse(phoneNumber, withRegion: regionCode, ignoreType: true)
+    let internationalNumber = phoneNumberKit.format(parsedPhoneNumber, toType: .international, withPrefix: true)
     
-    return parsedPhoneNumber.numberString
+    return internationalNumber.replacingOccurrences(of: " ", with: "")
 }
