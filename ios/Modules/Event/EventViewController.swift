@@ -72,7 +72,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         if dataSource.isEmpty {
-            cell.showSkeleton()
+            cell.showAnimatedGradientSkeleton()
             return cell
         }
         
@@ -95,6 +95,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         cell.dataSource = images
+        cell.pageControl.numberOfPages = images.count <= 1 ? 0 : images.count
         cell.desLabel.text = event.description
         cell.nameLabel.text = event.name
         
@@ -109,6 +110,15 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         cell.dateLabel.text = dateString
+        
+        cell.optionCallback = {
+            let optionAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            optionAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            optionAlert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { _ in
+                self.viewModel.delete(event: event)
+            }))
+            self.present(optionAlert, animated: true, completion: nil)
+        }
         
         return cell
     }

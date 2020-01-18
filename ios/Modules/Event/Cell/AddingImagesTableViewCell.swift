@@ -61,13 +61,19 @@ class AddingImagesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
     func openImagePicker() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: "Máy ảnh", style: .default, handler: { _ in
-            self.imagePicker(withSource: .camera)
+        alert.addAction(UIAlertAction(title: "Open Camera", style: .default, handler: { _ in
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                self.imagePicker(withSource: .camera)
+            } else {
+                let notAvailAlert = UIAlertController(title: "Opps!", message: "Camera is not available!", preferredStyle: .alert)
+                notAvailAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.parentVC?.present(notAvailAlert, animated: true, completion: nil)
+            }
         }))
-        alert.addAction(UIAlertAction(title: "Thư viện", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Open Library", style: .default, handler: { _ in
             self.imagePicker(withSource: .photoLibrary)
         }))
-        alert.addAction(UIAlertAction(title: "Huỷ bỏ", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         parentVC?.present(alert, animated: true, completion: nil)
     }

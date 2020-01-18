@@ -68,10 +68,10 @@ struct EventViewModel {
         }
     }
     
-    /// Edit an event
+    /// Delete an event
     /// - Parameter event: event going to be edited
     /// - Parameter completion: handler after edit
-    func edit(event: EventModel, completion: (() -> Void)?) {
+    func delete(event: EventModel) {
         
     }
     
