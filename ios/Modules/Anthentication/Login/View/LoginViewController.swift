@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import PhoneNumberKit
 
 class LoginViewController: UIViewController {
     
@@ -25,11 +26,14 @@ class LoginViewController: UIViewController {
     var userRepository = UserRepository()
     var loginViewModel: LoginViewModel!
     var createVC: CreateViewController!
+    var phoneNumberKit: PhoneNumberKit!
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        phoneNumberKit = PhoneNumberKit()
         
         phoneNumberTextField.text = "0963777597"
         phoneNumberTextField.delegate = self
@@ -90,8 +94,7 @@ class LoginViewController: UIViewController {
         otpView.isHidden = isOTPViewHidden
     }
     
-    func getOTPCode() {
-        guard let phoneNumber = phoneNumberTextField.text else { return }
+    func getOTPCode(_ phoneNumber: String) {
         AppLoadingIndicator.shared.show()
         PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verifyID, err) in
             if err == nil {
@@ -107,8 +110,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    func signIn() {
-        guard let phoneNumber = phoneNumberTextField.text else { return }
+    func signIn(_ phoneNumber: String) {
         guard let otpCode = otpTextField.text else { return }
         
         let firebaseToken = ["key": self.verifyID, "code": otpCode]
@@ -128,12 +130,19 @@ class LoginViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func signInButtonDidTap(_ sender: Any) {
-//        if signInButton.titleLabel?.text == "SIGN IN" {
-//            signIn()
-//        } else {
-//            getOTPCode()
-//        }
-        signIn()
+        guard let phoneNumber = phoneNumberTextField.text else { return }
+        
+        do {
+            let parsedPhoneNumber = try parsePhoneNumber(phoneNumber, "VN")
+                    if signInButton.titleLabel?.text == "SIGN IN" {
+                        signIn(parsedPhoneNumber)
+                    } else {
+                        getOTPCode(parsedPhoneNumber)
+                    }
+//            signIn(parsedPhoneNumber)
+        } catch {
+            self.showAlertWithOneOption(title: "Oops!", message: "Your phone number is not available!", optionTitle: "OK")
+        }
     }
     
     @IBAction func createAccountButtonDidTap(_ sender: Any) {

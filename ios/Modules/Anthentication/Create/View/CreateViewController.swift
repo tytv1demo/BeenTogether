@@ -87,9 +87,7 @@ class CreateViewController: UIViewController {
         stackViewHeight.constant = isOTPViewHidden ? 124 : 186
     }
     
-    func getOTPCode() {
-        guard let phoneNumber = phoneNumberTextField.text else { return }
-        
+    func getOTPCode(_ phoneNumber: String) {
         AppLoadingIndicator.shared.show()
         PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verifyID, err) in
             if err == nil {
@@ -105,8 +103,7 @@ class CreateViewController: UIViewController {
         }
     }
     
-    func signUp() {
-        guard let phoneNumber = phoneNumberTextField.text else { return }
+    func signUp(_ phoneNumber: String) {
         guard let otpCode = otpTextField.text else { return }
         guard let name = nameTextField.text else { return }
         
@@ -126,12 +123,19 @@ class CreateViewController: UIViewController {
     }
     
     @IBAction func createButtonDidTap(_ sender: Any) {
-//        if createButton.titleLabel?.text == "SIGN UP" {
-//            signUp()
-//        } else {
-//            getOTPCode()
-//        }
-        signUp()
+        guard let phoneNumber = phoneNumberTextField.text else { return }
+        
+        do {
+            let parsedPhoneNumber = try parsePhoneNumber(phoneNumber, "VN")
+                    if createButton.titleLabel?.text == "SIGN UP" {
+                        signUp(parsedPhoneNumber)
+                    } else {
+                        getOTPCode(parsedPhoneNumber)
+                    }
+//            signUp(parsedPhoneNumber)
+        } catch {
+            self.showAlertWithOneOption(title: "Oops!", message: "Your phone number is not available!", optionTitle: "OK")
+        }
     }
     
     @IBAction func backToLoginButtonDidTap(_ sender: Any) {

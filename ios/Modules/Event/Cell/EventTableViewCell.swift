@@ -15,6 +15,7 @@ class EventTableViewCell: UITableViewCell, UIScrollViewDelegate, FSPagerViewDele
     @IBOutlet weak var desLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var avaImage: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
     
     var dataSource: [UIImage] = [] {
         didSet {

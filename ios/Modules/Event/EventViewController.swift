@@ -29,19 +29,25 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let createGesture = UITapGestureRecognizer(target: self, action: #selector(createEventAction))
         createLabel.addGestureRecognizer(createGesture)
         createLabel.isUserInteractionEnabled = true
+        
+        viewModel.listenToAddEvent { event in
+            self.dataSource.append(event)
+            if self.isFirstLoad {
+                self.eventTable.reloadData()
+                self.isFirstLoad = false
+            } else {
+                let lastIndex = IndexPath(row: self.dataSource.count - 1, section: 0)
+                self.eventTable.insertRows(at: [lastIndex], with: .automatic)
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if isFirstLoad {
-            isFirstLoad = false
-            reloadTable()
-        }
     }
     
     private func setUpTable() {
-        reloadTable()
+//        reloadTable()
         eventTable.delegate = self
         eventTable.dataSource = self
         eventTable.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: "EventTableViewCell")
@@ -57,7 +63,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // MARK: - Table data source and delegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.isEmpty ? 1 : dataSource.count
+        return dataSource.isEmpty ? 3 : dataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -74,9 +80,10 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let event = dataSource[indexPath.row]
         
-        var images: [UIImage] = []
+        var images: [UIImage] = [UIImage(named: "default-event")!]
         
         if let attachments = event.attachments {
+            images.removeAll()
             attachments.forEach { att in
                 if let urlString = att.url,
                     let url = URL(string: urlString),
@@ -89,6 +96,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         cell.dataSource = images
         cell.desLabel.text = event.description
+        cell.nameLabel.text = event.name
         
         var dateString = ""
         
@@ -109,10 +117,6 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @objc func createEventAction() {
         let addingVC = UIStoryboard(name: "Event", bundle: nil).instantiateViewController(withIdentifier: "AddEventViewController") as! AddEventViewController
-
-        addingVC.dismissCallback = {
-            self.reloadTable()
-        }
         
         addingVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(addingVC, animated: true)

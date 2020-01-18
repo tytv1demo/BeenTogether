@@ -139,6 +139,12 @@ PODS:
   - NVActivityIndicatorView (4.8.0):
     - NVActivityIndicatorView/Presenter (= 4.8.0)
   - NVActivityIndicatorView/Presenter (4.8.0)
+  - PhoneNumberKit (3.1.0):
+    - PhoneNumberKit/PhoneNumberKitCore (= 3.1.0)
+    - PhoneNumberKit/UIKit (= 3.1.0)
+  - PhoneNumberKit/PhoneNumberKitCore (3.1.0)
+  - PhoneNumberKit/UIKit (3.1.0):
+    - PhoneNumberKit/PhoneNumberKitCore
   - PromiseKit (6.11.0):
     - PromiseKit/CorePromise (= 6.11.0)
     - PromiseKit/Foundation (= 6.11.0)
@@ -387,6 +393,7 @@ DEPENDENCIES:
   - Kingfisher (= 4.10.0)
   - Moya (~> 13.0)
   - NVActivityIndicatorView
+  - PhoneNumberKit (~> 3.1)
   - PromiseKit (~> 6.8)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
@@ -452,6 +459,7 @@ SPEC REPOS:
     - Moya
     - nanopb
     - NVActivityIndicatorView
+    - PhoneNumberKit
     - PromiseKit
     - Protobuf
     - Result
@@ -554,6 +562,7 @@ SPEC CHECKSUMS:
   Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
+  PhoneNumberKit: adffe4e128af1918386e09e7421d3d851a2987af
   PromiseKit: e4863d06976e7dee5e41c04fc7371c16b3600292
   Protobuf: dd1aaea7140debfe4dd0683fb8ef208e527ae153
   RCTRequired: b153add4da6e7dbc44aebf93f3cf4fcae392ddf1
@@ -588,6 +597,6 @@ SPEC CHECKSUMS:
   Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
   YogaKit: 5d1dc899cecd5946e5a758a0c3997704a4b48d01
 
-PODFILE CHECKSUM: 21a14f610085d5b3014b2a547b04f1413827f448
+PODFILE CHECKSUM: 34cb12d760318e125580740db658fba237aac79d
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4
