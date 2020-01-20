@@ -18,6 +18,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let viewModel: EventViewModel = EventViewModel()
     var dataSource: [EventModel] = []
     var isFirstLoad: Bool = true
+    var didAddListener: Bool = false
     
     // MARK: - Life cycle
     
@@ -29,21 +30,14 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let createGesture = UITapGestureRecognizer(target: self, action: #selector(createEventAction))
         createLabel.addGestureRecognizer(createGesture)
         createLabel.isUserInteractionEnabled = true
-        
-        viewModel.listenToAddEvent { event in
-            self.dataSource.append(event)
-            if self.isFirstLoad {
-                self.eventTable.reloadData()
-                self.isFirstLoad = false
-            } else {
-                let lastIndex = IndexPath(row: self.dataSource.count - 1, section: 0)
-                self.eventTable.insertRows(at: [lastIndex], with: .automatic)
-            }
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if !didAddListener {
+            addListenerEvent()
+        }
     }
     
     private func setUpTable() {
@@ -54,16 +48,24 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     private func paintLabel() {
-        let str = "How is your love today?"
-        let attrStr = NSMutableAttributedString(string: str)
-        attrStr.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hexString: "#D7636D"), range: NSMakeRange(str.count - 11, 4))
-        createLabel.attributedText = attrStr
+        createLabel.text = "Share your memories to keep them alive"
+    }
+    
+    private func addListenerEvent() {
+        viewModel.listenToAddEvent { event in
+            self.isFirstLoad = false
+            if let event = event {
+                self.didAddListener = true
+                self.dataSource.append(event)
+            }
+            self.eventTable.reloadData()
+        }
     }
     
     // MARK: - Table data source and delegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.isEmpty ? 3 : dataSource.count
+        return isFirstLoad ? 3 : dataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -71,12 +73,15 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             return UITableViewCell()
         }
         
-        if dataSource.isEmpty {
+        if isFirstLoad {
             cell.showAnimatedGradientSkeleton()
-            return cell
+        } else {
+            cell.hideSkeleton()
         }
         
-        cell.hideSkeleton()
+        if dataSource.isEmpty {
+            return cell
+        }
         
         let event = dataSource[indexPath.row]
         
@@ -115,7 +120,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let optionAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             optionAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             optionAlert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { _ in
-                self.viewModel.delete(event: event)
+                self.showDeleteAlert(event: event)
             }))
             self.present(optionAlert, animated: true, completion: nil)
         }
@@ -129,15 +134,27 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let addingVC = UIStoryboard(name: "Event", bundle: nil).instantiateViewController(withIdentifier: "AddEventViewController") as! AddEventViewController
         
         addingVC.hidesBottomBarWhenPushed = true
+        addingVC.eventAddedCallback = reloadTable
+        
         navigationController?.pushViewController(addingVC, animated: true)
     }
     
     private func reloadTable() {
-        viewModel.getEvents(completion: { events in
-            self.dataSource = events
-            DispatchQueue.main.async {
-                self.eventTable.reloadData()
+        DispatchQueue.main.async {
+            self.eventTable.reloadData()
+        }
+    }
+    
+    private func showDeleteAlert(event: EventModel) {
+        let deleteAlert = UIAlertController(title: "Warning", message: "You are about to delete this memory and can't be undone. Are you sure?", preferredStyle: .alert)
+        deleteAlert.addAction(UIAlertAction(title: "Yes, please.", style: .default, handler: { _ in
+            self.viewModel.delete(event: event) { id in
+                self.dataSource.removeAll(where: { $0.id == id })
+                self.reloadTable()
             }
-        })
+        }))
+        deleteAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        
+        present(deleteAlert, animated: true, completion: nil)
     }
 }

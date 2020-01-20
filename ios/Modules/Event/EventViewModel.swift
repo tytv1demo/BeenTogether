@@ -33,7 +33,9 @@ struct EventViewModel {
             }
         }
         
-        ref.childByAutoId().setValue([
+        let child = ref.childByAutoId()
+        child.setValue([
+            "id": child.key ?? "",
             "attachments": attachmments,
             "description": event.description ?? "",
             "startDate": event.startDate ?? "",
@@ -70,8 +72,26 @@ struct EventViewModel {
     
     /// Delete an event
     /// - Parameter event: event going to be edited
-    /// - Parameter completion: handler after edit
-    func delete(event: EventModel) {
+    func delete(event: EventModel, completion: ((String) -> Void)?) {
+        guard let id = event.id else {
+            return
+        }
+        
+        removeEvent(id: id, completion: completion)
+        removeImages()
+    }
+    
+    private func removeEvent(id: String, completion: ((String) -> Void)?) {
+        ref.child(id).removeValue { error, _ in
+            if let error = error {
+                print(error)
+            } else {
+                completion?(id)
+            }
+        }
+    }
+    
+    private func removeImages() {
         
     }
     
@@ -85,20 +105,16 @@ struct EventViewModel {
     
     /// Handler when event is added
     /// - Parameter completion: UI handler
-    func listenToAddEvent(completion: ((EventModel) -> Void)?) {
-        ref.observe(.childAdded) { snapshot in
-            if let value = snapshot.value, let event = try? FirebaseDecoder().decode(EventModel.self, from: value) {
-                completion?(event)
-            }
-        }
-    }
-    
-    /// Handler when event is removed
-    /// - Parameter completion: UI handler
-    func listenToRemoveEvent(completion: ((EventModel) -> Void)?) {
-        ref.observe(.childRemoved) { snapshot in
-            if let value = snapshot.value, let event = try? FirebaseDecoder().decode(EventModel.self, from: value) {
-                completion?(event)
+    func listenToAddEvent(completion: ((EventModel?) -> Void)?) {
+        ref.observeSingleEvent(of: .value) { snap in
+            if snap.exists() {
+                self.ref.observe(.childAdded) { snapshot in
+                    if let value = snapshot.value, let event = try? FirebaseDecoder().decode(EventModel.self, from: value) {
+                        completion?(event)
+                    }
+                }
+            } else {
+                completion?(nil)
             }
         }
     }

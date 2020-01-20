@@ -9,6 +9,7 @@
 import Foundation
 
 struct EventModel: Codable, Equatable {
+    var id: String?
     var name: String?
     var description: String?
     var location: String?
@@ -18,7 +19,8 @@ struct EventModel: Codable, Equatable {
     var creator: String?
     
     static func == (lhs: EventModel, rhs: EventModel) -> Bool {
-        return lhs.name == rhs.name
+        return lhs.id == rhs.id
+            && lhs.name == rhs.name
             && lhs.description == rhs.description
             && lhs.location == rhs.location
             && lhs.startDate == rhs.startDate

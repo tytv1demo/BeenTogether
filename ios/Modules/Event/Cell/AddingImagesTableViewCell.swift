@@ -14,13 +14,11 @@ class AddingImagesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
     
     var parentVC: UIViewController?
     var dataSource: [Data] = [UIImage(named: "ic_add")!.jpegData(compressionQuality: 0.8)!]
-    var didSelectImageCallback: ((String) -> Void)?
-    var viewModel: EventViewModel?
+    var didSelectImageCallback: ((Data) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        viewModel = EventViewModel()
         imagesCollection.delegate = self
         imagesCollection.dataSource = self
         imagesCollection.register(UINib(nibName: "AddingImageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AddingImageCollectionViewCell")
@@ -91,12 +89,11 @@ class AddingImagesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
             return
         }
         
-        viewModel?.upload(image: uploadData, completion: { url in
-            self.didSelectImageCallback?(url)
-            self.dataSource.append(uploadData)
-            picker.dismiss(animated: true) {
-                self.imagesCollection.reloadData()
-            }
-        })
+        didSelectImageCallback?(uploadData)
+        
+        dataSource.append(uploadData)
+        picker.dismiss(animated: true) {
+            self.imagesCollection.reloadData()
+        }
     }
 }
