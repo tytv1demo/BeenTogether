@@ -11,7 +11,7 @@ import Photos
 import RxSwift
 
 enum GalleryImageCellAction {
-    case send, timer
+    case send, alarm
 }
 
 protocol GalleryImageCellDelegate: AnyObject {
@@ -65,10 +65,11 @@ class GalleryImageCell: UICollectionViewCell {
         imageView.isUserInteractionEnabled = true
         scrollContentView.addSubview(imageView)
         
-        sendButton = CircleButton(size: 44, title: "Gửi")
+        sendButton = CircleButton(size: 52, title: "Send")
         sendButton.isUserInteractionEnabled = true
 
-        timerButton = CircleButton(size: 44, title: "Sau")
+        timerButton = CircleButton(size: 52, title: "Alarm")
+        timerButton.isHidden = true
         
         actionStackView = UIStackView(arrangedSubviews: [sendButton, timerButton])
         actionStackView.alignment = .center
@@ -89,7 +90,7 @@ class GalleryImageCell: UICollectionViewCell {
             make.edges.equalToSuperview()
         }
         actionStackView.snp.makeConstraints { (make) in
-            make.center.equalToSuperview()
+            make.center.equalTo(self)
         }
     }
     
@@ -103,7 +104,7 @@ class GalleryImageCell: UICollectionViewCell {
     }
     
     @objc func onTimerButtonTap() {
-        delegate?.galleryImageCell(didSelect: self, action: .send)
+        delegate?.galleryImageCell(didSelect: self, action: .alarm)
     }
     
     func showActions() {

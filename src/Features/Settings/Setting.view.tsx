@@ -178,7 +178,7 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
                         />
                     </View>
                 </PulseCircles>
-                <Text style={{ alignSelf: 'center', margin: 40 }}>Chạm để đồng bộ dữ liệu với người thương</Text>
+                <Text style={{ alignSelf: 'center', margin: 40 }}>Touch to make a matching request</Text>
             </>
         )
     }
@@ -188,7 +188,7 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
         return (
             <>
                 <ListItem
-                    title='Họ và tên'
+                    title='Your name'
                     rightTitle={userInfo.name}
                     rightAvatar={<MemoAvatar
                         title={userInfo.name}
@@ -231,7 +231,7 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
                     bottomDivider
                 />
                 <ListItem
-                    title='Tự động cập nhật vị trí'
+                    title='Auto update your location'
                     rightElement={<ADSwitch
                         onValueChange={this.onToggleAutomaticUpdate}
                         value={LocationServices.shared().isAutomaticUpdateOfLocation.value}
@@ -263,7 +263,7 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
                     bottomDivider
                 />
                 <ListItem
-                    title='Phiên bản'
+                    title='Version'
                     rightTitle='1.0.0'
                 />
             </>
@@ -278,7 +278,7 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
         return (
             <>
                 <Header
-                    centerComponent={{ text: 'Cài đặt', style: { fontSize: 20 } }}
+                    centerComponent={{ text: 'Settings', style: { fontSize: 20 } }}
                     backgroundColor='white'
                 />
                 <ScrollView contentContainerStyle={{ backgroundColor: '#EFEFEF', paddingBottom: 83 }}>
@@ -294,7 +294,6 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
                 {this.renderAvatarSection()}
                 {this.renderAccountSettingSection()}
                 {this.renderCoupleSection()}
-                <Spacer />
                 {this.renderAppInfoSection()}
                 <SendMatchRequestPopup
                     onRequestClose={this.onRequestCloseRequestPopup}

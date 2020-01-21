@@ -14,13 +14,11 @@ class AddingImagesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
     
     var parentVC: UIViewController?
     var dataSource: [Data] = [UIImage(named: "ic_add")!.jpegData(compressionQuality: 0.8)!]
-    var didSelectImageCallback: ((String) -> Void)?
-    var viewModel: EventViewModel?
+    var didSelectImageCallback: ((Data) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        viewModel = EventViewModel()
         imagesCollection.delegate = self
         imagesCollection.dataSource = self
         imagesCollection.register(UINib(nibName: "AddingImageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AddingImageCollectionViewCell")
@@ -61,13 +59,19 @@ class AddingImagesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
     func openImagePicker() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: "Máy ảnh", style: .default, handler: { _ in
-            self.imagePicker(withSource: .camera)
+        alert.addAction(UIAlertAction(title: "Open Camera", style: .default, handler: { _ in
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                self.imagePicker(withSource: .camera)
+            } else {
+                let notAvailAlert = UIAlertController(title: "Opps!", message: "Camera is not available!", preferredStyle: .alert)
+                notAvailAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.parentVC?.present(notAvailAlert, animated: true, completion: nil)
+            }
         }))
-        alert.addAction(UIAlertAction(title: "Thư viện", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Open Library", style: .default, handler: { _ in
             self.imagePicker(withSource: .photoLibrary)
         }))
-        alert.addAction(UIAlertAction(title: "Huỷ bỏ", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         parentVC?.present(alert, animated: true, completion: nil)
     }
@@ -85,12 +89,11 @@ class AddingImagesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
             return
         }
         
-        viewModel?.upload(image: uploadData, completion: { url in
-            self.didSelectImageCallback?(url)
-            self.dataSource.append(uploadData)
-            picker.dismiss(animated: true) {
-                self.imagesCollection.reloadData()
-            }
-        })
+        didSelectImageCallback?(uploadData)
+        
+        dataSource.append(uploadData)
+        picker.dismiss(animated: true) {
+            self.imagesCollection.reloadData()
+        }
     }
 }

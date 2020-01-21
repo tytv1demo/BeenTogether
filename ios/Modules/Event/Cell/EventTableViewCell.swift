@@ -16,6 +16,7 @@ class EventTableViewCell: UITableViewCell, UIScrollViewDelegate, FSPagerViewDele
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var avaImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var optionsButton: UIButton!
     
     var dataSource: [UIImage] = [] {
         didSet {
@@ -26,6 +27,7 @@ class EventTableViewCell: UITableViewCell, UIScrollViewDelegate, FSPagerViewDele
     }
     
     let boundScreen = UIScreen.main.bounds
+    var optionCallback: (() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,8 +45,8 @@ class EventTableViewCell: UITableViewCell, UIScrollViewDelegate, FSPagerViewDele
         
         pageControl.contentHorizontalAlignment = .center
         pageControl.contentInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        pageControl.setFillColor(.gray, for: .normal)
-        pageControl.setFillColor(.white, for: .selected)
+        pageControl.setFillColor(.lightGray, for: .normal)
+        pageControl.setFillColor(Colors.kPink, for: .selected)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -75,5 +77,9 @@ class EventTableViewCell: UITableViewCell, UIScrollViewDelegate, FSPagerViewDele
     
     func pagerView(_ pagerView: FSPagerView, shouldHighlightItemAt index: Int) -> Bool {
         return false
+    }
+    
+    @IBAction func optionAction(_ sender: UIButton) {
+        optionCallback?()
     }
 }

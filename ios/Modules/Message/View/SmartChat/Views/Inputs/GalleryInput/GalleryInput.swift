@@ -171,10 +171,24 @@ extension GalleryInput: UICollectionViewDataSource, UICollectionViewDelegate, UI
 }
 
 extension GalleryInput: GalleryImageCellDelegate {
-    func galleryImageCell(didSelect cell: GalleryImageCell, action: GalleryImageCellAction) {
+    func sendImageMessage(fromCell cell: GalleryImageCell) {
         guard let data = try? cell.asset.image.value()?.jpegData(compressionQuality: 1) else {
             return
         }
         delegate?.galleryInput(onSendImage: data)
+    }
+    
+    func sendAlarmImageMessage(fromCell cell: GalleryImageCell) {
+        
+    }
+    
+    func galleryImageCell(didSelect cell: GalleryImageCell, action: GalleryImageCellAction) {
+        switch action {
+        case .send:
+            sendImageMessage(fromCell: cell)
+        default:
+            sendAlarmImageMessage(fromCell: cell)
+        }
+        
     }
 }

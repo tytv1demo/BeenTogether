@@ -3,6 +3,7 @@ import { Modal } from 'react-native';
 import { View } from 'react-native-animatable'
 import { Text, Input, Button } from 'react-native-elements';
 import { Spacer } from '@components';
+import { parsePhoneNumberFromString } from 'libphonenumber-js'
 
 export interface SendMatchRequestPopupProps {
     visible: boolean
@@ -14,18 +15,26 @@ export const SendMatchRequestPopup: React.FC<SendMatchRequestPopupProps> = (prop
     const { visible, onRequestClose } = props
 
     const [phone, setPhone] = React.useState('');
+    const [errorMessage, setErrorMessage] = React.useState('')
     const [isSending, setIsSending] = React.useState(false)
 
     const onSend = React.useCallback(async () => {
         setIsSending(true)
-        await props.onSend?.(phone)
+        const parsedPhone = parsePhoneNumberFromString(phone, 'VN')
+        if (parsedPhone?.isValid()) {
+            await props.onSend?.(parsedPhone.number as string)
+            setErrorMessage('')
+            setIsSending(false)
+            return
+        }
+        setErrorMessage('Invalid phone number!')
         setIsSending(false)
     }, [phone]);
 
     function renderContent() {
         return (
             <View
-                style={{ backgroundColor: '#ffffff', width: '80%', alignSelf: 'center', padding: 16, borderRadius: 8 }}
+                style={{ backgroundColor: '#ffffff', width: '70%', alignSelf: 'center', padding: 16, borderRadius: 8 }}
                 animation='slideInUp'
                 duration={250}
                 useNativeDriver
@@ -38,9 +47,10 @@ export const SendMatchRequestPopup: React.FC<SendMatchRequestPopupProps> = (prop
                     inputStyle={{ textAlign: 'center' }}
                     keyboardType='phone-pad'
                     placeholder='Phone number'
+                    errorMessage={errorMessage}
                 />
                 <Spacer height={16} />
-                <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                     <Button
                         buttonStyle={{ borderColor: '#EE4E9B', paddingVertical: 4, width: 80 }}
                         titleStyle={{ color: '#EE4E9B' }}
