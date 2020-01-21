@@ -22,6 +22,16 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     let cellArray: [AddEventCell] = [.name, .caption, .location, .startDate, .endDate, .image]
     var newEvent: EventModel = EventModel()
     let viewModel: EventViewModel = EventViewModel()
+    var eventAddedCallback: (() -> Void)?
+    var didFinishUploadingImages: Bool = false {
+        didSet {
+            if shouldStartPostAfter {
+                postEvent()
+            }
+        }
+    }
+    var shouldStartPostAfter: Bool = false
+    var uploadData: [Data] = []
     
     // MARK: - Life cycle
     
@@ -51,8 +61,20 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func postAction(_ sender: UIButton) {
+        AppLoadingIndicator.shared.show()
+        
+        if !didFinishUploadingImages, !uploadData.isEmpty {
+            shouldStartPostAfter = true
+        } else {
+            postEvent()
+        }
+    }
+    
+    private func postEvent() {
         viewModel.create(event: newEvent) {
+            AppLoadingIndicator.shared.hide()
             self.navigationController?.popViewController(animated: true)
+            self.eventAddedCallback?()
         }
     }
     
@@ -149,14 +171,22 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         cell.parentVC = self
-        cell.didSelectImageCallback = { url in
-            let media = MediaModel(url: url, type: MediaType.IMAGE.rawValue)
-            if self.newEvent.attachments != nil {
-                self.newEvent.attachments?.append(media)
-            } else {
-                self.newEvent.attachments = [media]
+        cell.didSelectImageCallback = { data in
+            self.didFinishUploadingImages = false
+            self.uploadData.append(data)
+            
+            self.viewModel.upload(image: data) { url in
+                let media = MediaModel(url: url, type: MediaType.IMAGE.rawValue)
+                if self.newEvent.attachments != nil {
+                    self.newEvent.attachments?.append(media)
+                } else {
+                    self.newEvent.attachments = [media]
+                }
+                self.didFinishUploadingImages = true
             }
         }
         return cell
     }
+    
+    // TO-DO: Clear uploaded data, can't post if doesnt have enough info
 }

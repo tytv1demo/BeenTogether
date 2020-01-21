@@ -64,16 +64,32 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lNt-Yd-prF">
+                                <rect key="frame" x="242" y="-113" width="256" height="256"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="16" id="ZDg-7P-HTR"/>
+                                    <constraint firstAttribute="height" constant="16" id="mfJ-Xu-f1b"/>
+                                </constraints>
+                                <state key="normal" image="options"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="optionAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Ku8-Dg-MLN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="2U6-GR-8m1" firstAttribute="top" secondItem="FS2-9u-Gc8" secondAttribute="top" constant="15" id="1fh-bf-S2h"/>
                             <constraint firstItem="aLB-xE-wWl" firstAttribute="trailing" secondItem="wzi-oz-iK8" secondAttribute="trailing" id="3Un-uG-epz"/>
+                            <constraint firstItem="lNt-Yd-prF" firstAttribute="centerY" secondItem="2U6-GR-8m1" secondAttribute="centerY" id="BW5-Ne-5kC"/>
                             <constraint firstItem="2U6-GR-8m1" firstAttribute="leading" secondItem="FS2-9u-Gc8" secondAttribute="leading" constant="20" id="CFC-lQ-Ghc"/>
                             <constraint firstItem="aLB-xE-wWl" firstAttribute="bottom" secondItem="2U6-GR-8m1" secondAttribute="bottom" id="DsS-0j-ssK"/>
                             <constraint firstItem="aLB-xE-wWl" firstAttribute="leading" secondItem="wzi-oz-iK8" secondAttribute="leading" id="GP9-dy-EiO"/>
-                            <constraint firstAttribute="trailing" secondItem="wzi-oz-iK8" secondAttribute="trailing" constant="16" id="UOR-Hq-NdT"/>
+                            <constraint firstItem="lNt-Yd-prF" firstAttribute="leading" secondItem="wzi-oz-iK8" secondAttribute="trailing" constant="4" id="UOR-Hq-NdT"/>
                             <constraint firstItem="wzi-oz-iK8" firstAttribute="leading" secondItem="2U6-GR-8m1" secondAttribute="trailing" constant="16" id="mLX-EQ-HTs"/>
+                            <constraint firstAttribute="trailing" secondItem="lNt-Yd-prF" secondAttribute="trailing" constant="12" id="uGw-Fk-oic"/>
                             <constraint firstAttribute="height" constant="58" id="wYc-uF-IEj"/>
                             <constraint firstItem="wzi-oz-iK8" firstAttribute="top" secondItem="2U6-GR-8m1" secondAttribute="top" id="xqm-Z9-8co"/>
                         </constraints>
@@ -98,7 +114,7 @@
                         <rect key="frame" x="0.0" y="255" width="393" height="24"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="24" id="m3i-CU-CdJ"/>
+                            <constraint firstAttribute="height" constant="12" id="m3i-CU-CdJ"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -119,7 +135,7 @@
                     <constraint firstAttribute="trailing" secondItem="eAt-it-F4Y" secondAttribute="trailing" id="C9g-ed-mgn"/>
                     <constraint firstAttribute="trailing" secondItem="FS2-9u-Gc8" secondAttribute="trailing" id="E3M-pH-SrF"/>
                     <constraint firstItem="eAt-it-F4Y" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" id="EKg-M8-PXv"/>
-                    <constraint firstItem="vqt-W6-cxp" firstAttribute="top" secondItem="ZkN-8I-D7z" secondAttribute="bottom" constant="8" id="Iov-GP-xs9"/>
+                    <constraint firstItem="vqt-W6-cxp" firstAttribute="top" secondItem="ZkN-8I-D7z" secondAttribute="bottom" id="Iov-GP-xs9"/>
                     <constraint firstAttribute="bottom" secondItem="vqt-W6-cxp" secondAttribute="bottom" constant="12" id="OZq-he-Iyo"/>
                     <constraint firstAttribute="trailing" secondItem="vqt-W6-cxp" secondAttribute="trailing" constant="16" id="Rqt-vj-NTG"/>
                     <constraint firstItem="FS2-9u-Gc8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="S7n-GZ-aUU"/>
@@ -127,7 +143,7 @@
                     <constraint firstItem="eAt-it-F4Y" firstAttribute="top" secondItem="FS2-9u-Gc8" secondAttribute="bottom" id="c4m-4I-FfW"/>
                     <constraint firstItem="FS2-9u-Gc8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="cjh-6h-Cm4"/>
                     <constraint firstItem="ZkN-8I-D7z" firstAttribute="leading" secondItem="eAt-it-F4Y" secondAttribute="leading" id="sre-Os-uRJ"/>
-                    <constraint firstItem="eAt-it-F4Y" firstAttribute="bottom" secondItem="ZkN-8I-D7z" secondAttribute="bottom" id="vP3-Is-IVH"/>
+                    <constraint firstItem="eAt-it-F4Y" firstAttribute="bottom" secondItem="ZkN-8I-D7z" secondAttribute="top" id="vP3-Is-IVH"/>
                     <constraint firstItem="ZkN-8I-D7z" firstAttribute="trailing" secondItem="eAt-it-F4Y" secondAttribute="trailing" id="xeI-5h-vT6"/>
                 </constraints>
                 <userDefinedRuntimeAttributes>
@@ -144,12 +160,14 @@
                 <outlet property="desLabel" destination="vqt-W6-cxp" id="T2q-Mq-M9M"/>
                 <outlet property="imageCollection" destination="eAt-it-F4Y" id="Jo9-Rt-GQ1"/>
                 <outlet property="nameLabel" destination="wzi-oz-iK8" id="zTR-JK-RrU"/>
+                <outlet property="optionsButton" destination="lNt-Yd-prF" id="wiO-hJ-wjO"/>
                 <outlet property="pageControl" destination="ZkN-8I-D7z" id="h9B-hO-hUD"/>
             </connections>
             <point key="canvasLocation" x="190.57971014492756" y="176.45089285714286"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="options" width="512" height="512"/>
         <image name="test_img8" width="228" height="222"/>
     </resources>
 </document>
