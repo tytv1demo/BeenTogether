@@ -29,6 +29,8 @@ class SmartChat: UIView {
     
     var user: SCUser!
     
+    var target: SCUser!
+    
     var tapGestureOnMessageTable: UITapGestureRecognizer!
     
     required init?(coder: NSCoder) {
@@ -79,11 +81,12 @@ class SmartChat: UIView {
         messageTableView.messages = messages
         messageTableView.tableView.reloadData()
         if messages.count == 0 {
-//            messageTableView.tableView
+            setEmptyViewForTableView()
         }
     }
     
     func addMessage(_ message: SCMessage) {
+        messageTableView.tableView.removeEmptyView()
         messageTableView.addMessage(message)
     }
     
@@ -92,9 +95,11 @@ class SmartChat: UIView {
     }
     
     func setEmptyViewForTableView() {
-        let message = "Cho phép Cupid truy cập ảnh để có thể chia sẻ?"
-        let buttonTitle = "Cho phép"
-//        self.messageTableView.tableView.setEmptyMessage(message, buttonTitle: buttonTitle, onButtonPress: openSetting)
+        let message = "Hi \(user.name ?? ""), how do you feel today? Let send it for your lover!"
+        let buttonTitle = ""
+        let emptyView = self.messageTableView.tableView.setEmptyMessage(message, buttonTitle: buttonTitle, onButtonPress: openSetting)
+        emptyView.imageView.kf.setImage(with: URL(string: "https://vcdn-ngoisao.vnecdn.net/2019/07/11/tran-kieu-an-5-6648-1562814204.jpg"))
+        emptyView.button.isHidden = true
     }
     
     deinit {

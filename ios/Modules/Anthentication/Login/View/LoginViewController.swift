@@ -35,7 +35,7 @@ class LoginViewController: UIViewController {
         
         phoneNumberKit = PhoneNumberKit()
         
-        phoneNumberTextField.text = "0963777597"
+        phoneNumberTextField.text = "0365021305"
         phoneNumberTextField.delegate = self
         
         loginViewModel = LoginViewModel()
@@ -107,6 +107,7 @@ class LoginViewController: UIViewController {
                 AppLoadingIndicator.shared.hide()
                 self.showAlertWithOneOption(title: "Oops!", message: "Unable to get OTP code!", optionTitle: "OK")
             }
+            
         }
     }
     

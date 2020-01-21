@@ -20,7 +20,7 @@ protocol InputViewDelegate: AnyObject {
 
 class InputView: UIView {
     
-    static let kDefaultHeight: CGFloat = 28
+    static let kDefaultHeight: CGFloat = 32
     
     weak var delegate: InputViewDelegate?
     

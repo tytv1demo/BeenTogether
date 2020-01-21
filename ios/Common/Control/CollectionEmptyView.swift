@@ -45,14 +45,16 @@ class CollectionEmptyView: UIView {
     
     func setupUI() {
         imageView = UIImageView()
-//        imageView.image = UIImage(named: "CupidLogo")
-        let url = URL(string: "https://purepng.com/public/uploads/large/purepng.com-trash-empty-iconsymbolsiconsapple-iosiosios-8-iconsios-8-721522596129yc9hm.png")
-        let resizingProcessor = ResizingImageProcessor(referenceSize: CGSize(width: 80, height: 80))
-        imageView.kf.setImage(with: url, options: [.processor(resizingProcessor)])
+        imageView.layer.masksToBounds = true
+        imageView.image = UIImage(named: "CupidLogo")
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.borderColor = Colors.kPink.cgColor
+        imageView.layer.borderWidth = 2
         
         messageLabel = UILabel()
         messageLabel.textAlignment = .center
         messageLabel.numberOfLines = 3
+        messageLabel.textColor = UIColor.darkGray.withAlphaComponent(0.8)
         
         button = BaseButton()
         
@@ -64,12 +66,20 @@ class CollectionEmptyView: UIView {
         contentView.isLayoutMarginsRelativeArrangement = true
         contentView.layoutMargins = UIEdgeInsets(top: 0, left: 32, bottom: 0, right: 32)
         
-        container = UIStackView(arrangedSubviews: [contentView, UIView()])
+        container = UIStackView(arrangedSubviews: [contentView])
         container.axis = .vertical
+        container.alignment = .center
+        container.isLayoutMarginsRelativeArrangement = true
         addSubview(container)
         
+        imageView.snp.makeConstraints { (make) in
+            make.width.equalTo(self).multipliedBy(0.3)
+            make.height.equalTo(self.snp.width).multipliedBy(0.3)
+        }
+        
         container.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
+            make.center.equalToSuperview()
+            make.width.equalToSuperview().inset(16)
         }
     }
     
@@ -79,6 +89,11 @@ class CollectionEmptyView: UIView {
     
     @objc func onButtonTouchUpInside() {
         onButtonPress?()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        imageView.layer.cornerRadius = bounds.width * 0.15
     }
     
     deinit {

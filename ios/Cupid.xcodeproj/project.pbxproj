@@ -153,6 +153,7 @@
 		B6A8485B23CCA0E000040A09 /* AppLoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A8485A23CCA0E000040A09 /* AppLoadingIndicator.swift */; };
 		B6A8485D23CCA83A00040A09 /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A8485C23CCA83A00040A09 /* UIStackView.swift */; };
 		B6A8485F23CCB15700040A09 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A8485E23CCB15700040A09 /* LoadingIndicator.swift */; };
+		B6AD747D23D59E2300C98824 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C46DC623A1EFF300966D44 /* LoginViewController.swift */; };
 		B6B9D121239559F0003527B4 /* MessageStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B9D120239559F0003527B4 /* MessageStatusIndicator.swift */; };
 		B6D2645123B363CF00D4E1A4 /* CommonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D2645023B363CF00D4E1A4 /* CommonHelper.swift */; };
 		B6D2645323B364CD00D4E1A4 /* CommonHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D2645223B364CD00D4E1A4 /* CommonHelper.m */; };
@@ -1856,6 +1857,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6AD747D23D59E2300C98824 /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2065,6 +2067,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9939EFA61F59F675BBCE3ECC /* Pods-Cupid-tvOSTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -2092,6 +2095,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5CC0C1EB72A73FDCB598FAC9 /* Pods-Cupid-tvOSTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;

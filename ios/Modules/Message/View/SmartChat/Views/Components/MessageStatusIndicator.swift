@@ -58,12 +58,16 @@ class MessageStatusIndicator: UIView {
     }
     
     func configWithMessage(_ message: SCMessage) {
-        statusSubcription = message.status.subscribe(onNext: { [unowned self] (status) in
-            self.configImage(forStatus: status)
+        statusSubcription = message.status.subscribe(onNext: { [weak self] (status) in
+            self?.configImage(forStatus: status)
         })
     }
     
     func prepareForReuse() {
+        statusSubcription?.dispose()
+    }
+    
+    deinit {
         statusSubcription?.dispose()
     }
 }

@@ -75,4 +75,14 @@ extension UITableView {
         self.tableFooterView = UIView(frame: .zero)
     }
     
+    @discardableResult
+    func setEmptyMessage(_ message: String, buttonTitle: String = "Đồng ý", onButtonPress: (() -> Void)? = nil) -> CollectionEmptyView {
+        let messageLabel = CollectionEmptyView(frame: bounds, message: message, buttonTitle: buttonTitle, onButtonPress: onButtonPress)
+        self.backgroundView = messageLabel
+        return messageLabel
+    }
+
+    func removeEmptyView() {
+        self.backgroundView = nil
+    }
 }

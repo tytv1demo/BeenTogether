@@ -60,10 +60,15 @@ class InputToolBar: UIView {
         case .image, .emoji:
             return 308
         case .text:
-            return keyboarHeight + inputRow.frame.height + 32
+            return keyboarHeight + inputRow.frame.height
         case .noAction:
-            return 36
+            return 44
         }
+    }
+    
+    var tabBarHeight: CGFloat {
+        guard let topViewController = UIApplication.topViewController(), let tabController = topViewController.tabBarController else { return 0 }
+        return tabController.tabBar.frame.height - 3
     }
     
     var isKeyboardShowing: Bool = false
@@ -81,9 +86,6 @@ class InputToolBar: UIView {
     }
     
     func initUI() {
-        
-        setGradientBackground(colors: [.groupTableViewBackground, .white])
-        
         actionsView = ActionsView()
         actionsView.delegate = self
         
@@ -92,11 +94,11 @@ class InputToolBar: UIView {
         
         sendButton = UIButton()
         sendButton.tintColor = .red
-        sendButton.setImage(UIImage(named: "send"), for: [])
+        sendButton.setImage(UIImage(named: "send"), for: [.normal])
         
         inputRow = UIStackView(arrangedSubviews: [actionsView, input, sendButton])
         inputRow.isLayoutMarginsRelativeArrangement = true
-        inputRow.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        inputRow.layoutMargins = UIEdgeInsets(top: 8, left: 16, bottom: 0, right: 16)
         inputRow.alignment = .center
         inputRow.distribution = .equalSpacing
         inputRow.spacing = 8
@@ -128,6 +130,7 @@ class InputToolBar: UIView {
         contentView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
+        inputRow.addGradientBackground(backgroundColors: [UIColor.groupTableViewBackground.withAlphaComponent(0.3), UIColor.groupTableViewBackground.withAlphaComponent(0.05)])
     }
     
     func initActions() {
@@ -153,7 +156,7 @@ class InputToolBar: UIView {
             return
         }
         
-        self.keyboarHeight = keyboardSize.cgRectValue.height - 85
+        self.keyboarHeight = keyboardSize.cgRectValue.height - tabBarHeight
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
@@ -261,5 +264,22 @@ extension InputToolBar: ActionViewDelegate {
 extension InputToolBar: EmojiCollectionViewDelegate {
     func emojiCollectionView(didSelectEmoji emojiCollectionView: EmojiCollectionView, emoji: String) {
         input.concatEmoji(emoji)
+    }
+}
+
+extension UIApplication {
+    class func topViewController(of controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let navigationController = controller as? UINavigationController {
+            return topViewController(of: navigationController.visibleViewController)
+        }
+        if let tabController = controller as? UITabBarController {
+            if let selected = tabController.selectedViewController {
+                return topViewController(of: selected)
+            }
+        }
+        if let presented = controller?.presentedViewController {
+            return topViewController(of: presented)
+        }
+        return controller
     }
 }

@@ -13,5 +13,5 @@ func parsePhoneNumber(_ phoneNumber: String, _ regionCode: String) throws -> Str
     let phoneNumberKit = PhoneNumberKit()
     let parsedPhoneNumber = try phoneNumberKit.parse(phoneNumber, withRegion: regionCode, ignoreType: true)
     
-    return parsedPhoneNumber.numberString
+    return "+\(parsedPhoneNumber.countryCode)\(parsedPhoneNumber.nationalNumber)"
 }
