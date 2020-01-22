@@ -23,7 +23,7 @@ protocol LocationViewControllerType: UIViewController {
     
     var loverLocationViewer: LoverLocationViewer! { get }
     
-    var viewModel: LocationViewModel { get set }
+    var viewModel: LocationViewModel! { get set }
     
     func settupViews()
     
@@ -49,12 +49,16 @@ class LocationViewController: UIViewController, LocationViewControllerType {
     
     var directionRoute: MKRoute?
     
-    var viewModel: LocationViewModel = LocationViewModel(loverPath: "0349055710")
+    var viewModel: LocationViewModel!
     
     var disposeBag: DisposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let coupleModel = CoupleModel(userInfo: AppUserData.shared.userInfo)
+        viewModel = LocationViewModel(loverPath: coupleModel.friendInfo?.phoneNumber ?? "0123456789")
+        
         settupNavigation()
         settupViews()
         makeConstrainsts()
@@ -94,8 +98,8 @@ class LocationViewController: UIViewController, LocationViewControllerType {
         mapView.delegate = self
         view.addSubview(mapView)
         
-        loverLocationViewer = LoverLocationViewer()
-        //        view.addSubview(loverLocationViewer)
+        loverLocationViewer = LoverLocationViewer(location: viewModel.loverLocation)
+        view.addSubview(loverLocationViewer)
         
     }
     
@@ -103,14 +107,14 @@ class LocationViewController: UIViewController, LocationViewControllerType {
         mapView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
-        //
-        //        loverLocationViewer.snp.makeConstraints { (make) in
-        //            make.trailing.equalToSuperview().inset(16)
-        //            make.leading.equalToSuperview().inset(16)
-        //            make.bottom.equalToSuperview().inset(100)
-        //            make.height.equalTo(200)
-        //        }
-        //        view.bringSubviewToFront(loverLocationViewer)
+        
+        loverLocationViewer.snp.makeConstraints { (make) in
+            make.trailing.equalToSuperview().inset(16)
+            make.leading.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview().inset(100)
+            make.height.equalTo(200)
+        }
+        view.bringSubviewToFront(loverLocationViewer)
     }
     
     func setupActions() {
