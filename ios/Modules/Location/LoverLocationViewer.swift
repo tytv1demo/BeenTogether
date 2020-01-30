@@ -8,14 +8,15 @@
 
 import Foundation
 import RxSwift
+import MapKit
 
 class LoverLocationViewer: UIView {
     
     // MARK: - Properties
     
-    var messageLabel: UILabel!
+    var addressLabel: UILabel!
     var lastUpdateTimeLabel: UILabel!
-    var collapseExpandButton: UIButton!
+    var imageView: UIImageView!
     var location: BehaviorSubject<CustomLocation?>!
     var disposeBag: DisposeBag!
     
@@ -44,7 +45,7 @@ class LoverLocationViewer: UIView {
     func setupMainViews() {
         setupBackgroundView()
         setupLabels()
-        setupButtons()
+        setupImageView()
         makeConstraints()
     }
     
@@ -55,70 +56,107 @@ class LoverLocationViewer: UIView {
         layer.shadowOpacity = 0.5
         layer.shadowOffset = CGSize(width: 2, height: 8)
         layer.shadowRadius = 5
-        layer.shouldRasterize = true
     }
     
-    func setupButtons() {
-        collapseExpandButton = UIButton(type: .custom)
-        collapseExpandButton.tintColor = Colors.kPink
-        let collapseExpandButtonImage = UIImage.awesomeIcon(name: .expand, textColor: Colors.kPink)
-        collapseExpandButton.setImage(collapseExpandButtonImage, for: [])
+    func setupImageView() {
+        imageView = UIImageView(image: UIImage(named: "ic_location"))
+        imageView.sizeToFit()
         
-        addSubview(collapseExpandButton)
+        addSubview(imageView)
     }
     
     func setupLabels() {
+        addressLabel = UILabel()
+        addressLabel.textColor = .black
+        addressLabel.font = UIFont.systemFont(ofSize: 15)
+        addressLabel.text = "Fetching your lover's location..."
+        addressLabel.numberOfLines = 3
+        
         lastUpdateTimeLabel = UILabel()
         lastUpdateTimeLabel.textColor = .black
-        lastUpdateTimeLabel.font = UIFont.systemFont(ofSize: 15)
+        lastUpdateTimeLabel.font = UIFont.italicSystemFont(ofSize: 15)
+        lastUpdateTimeLabel.textAlignment = .right
         lastUpdateTimeLabel.showSkeleton()
-        
-        messageLabel = UILabel()
-        messageLabel.textColor = .black
-        messageLabel.font = UIFont.systemFont(ofSize: 15)
-        messageLabel.showSkeleton()
-        
+
+        addSubview(addressLabel)
         addSubview(lastUpdateTimeLabel)
-        addSubview(messageLabel)
     }
     
     func makeConstraints() {
-        collapseExpandButton.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().inset(10)
+        imageView.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().inset(5)
             make.centerX.equalToSuperview()
+            make.height.equalTo(25)
+            make.width.equalTo(25)
         }
         
-        messageLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(collapseExpandButton).inset(35)
+        addressLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(imageView).offset(25)
             make.trailing.equalToSuperview().inset(16)
             make.leading.equalToSuperview().inset(16)
         }
         
         lastUpdateTimeLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(collapseExpandButton).inset(35)
+            make.bottom.equalToSuperview().inset(10)
             make.trailing.equalToSuperview().inset(16)
             make.leading.equalToSuperview().inset(16)
         }
     }
     
     // MARK: - Actions
-    
-    func setupActions() {
-        collapseExpandButton.addTarget(self, action: #selector(handleCollapseExpandButtonDidTap), for: [.touchUpInside])
-    }
-    
-    @objc func handleCollapseExpandButtonDidTap() {
-        // todo
-    }
-    
+
     func subcribe() {
         location.subscribe(onNext: { [unowned self] (data) in
             guard let location = data else { return }
             
-            self.lastUpdateTimeLabel.hideSkeleton()
-            self.lastUpdateTimeLabel.text = "Your lover's location is on the map. Last updated in \(location.lastUpdate.format("HH:mm yyyy-MMM-dd"))"
+            let lat = location.coordinate.latitude
+            let lng = location.coordinate.longitude
             
+            self.getAddressFromLatLong(latitude: lat, longitude: lng, completion: { value in
+                self.addressLabel.text = value
+                self.lastUpdateTimeLabel.hideSkeleton()
+                self.lastUpdateTimeLabel.text = "Last updated in \(location.lastUpdate.format("HH:mm - yyyy-MMM-dd"))"
+            })
             
         }).disposed(by: disposeBag)
+    }
+    
+    func getAddressFromLatLong(latitude: CLLocationDegrees, longitude: CLLocationDegrees, completion: @escaping (String) -> Void) {
+        var addressString = ""
+
+        let location = CLLocation(latitude: latitude, longitude: longitude)
+        let geocoder = CLGeocoder()
+        
+        geocoder.reverseGeocodeLocation(location, completionHandler: {(placemarks, error) in
+            if error != nil {
+                print("reverse geodcode fail: \(error!.localizedDescription)")
+                completion("Could not get your lover's address!")
+            } else {
+                guard let placemarks = placemarks else {
+                    completion(addressString)
+                    return
+                }
+                
+                if let placemark = placemarks.first {
+                    if let addressNumber = placemark.subThoroughfare {
+                        addressString += addressNumber + " "
+                    }
+                    
+                    if let street = placemark.thoroughfare {
+                        addressString += street
+                    }
+                    
+                    if let city = placemark.locality {
+                        addressString += ", " + city
+                    }
+                    
+                    if let country = placemark.country {
+                        addressString += ", " + country
+                    }
+                    
+                    completion("Your lover's location is near: \(addressString).")
+                }
+            }
+        })
     }
 }
