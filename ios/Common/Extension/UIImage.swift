@@ -10,7 +10,7 @@ import Foundation
 import FontAwesome_swift
 
 extension UIImage {
-    static func awesomeIcon(name: FontAwesome, style: FontAwesomeStyle = .solid, textColor: UIColor = .groupTableViewBackground) -> UIImage {
+    static func awesomeIcon(name: FontAwesome, style: FontAwesomeStyle = .solid, textColor: UIColor = UIColor(hexString: "DBDBDB")) -> UIImage {
         let defaultSize = CGSize(width: 24, height: 24)
         return UIImage.fontAwesomeIcon(name: name, style: style, textColor: textColor, size: defaultSize)
     }

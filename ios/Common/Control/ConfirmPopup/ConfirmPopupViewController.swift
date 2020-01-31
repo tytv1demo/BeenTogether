@@ -97,7 +97,7 @@ class ConfirmPopupViewController: UIViewController {
     func makeConstrants() {
         container.snp.makeConstraints { (make) in
             make.width.equalToSuperview().multipliedBy(0.7)
-            make.height.equalTo(200)
+            make.height.equalTo(250)
             make.center.equalToSuperview()
         }
         
@@ -162,8 +162,8 @@ class ConfirmPopupViewController: UIViewController {
     }
     
     deinit {
-        cancelButton.removeTarget(self, action: #selector(cancelButtonTouchUpInside), for: [.touchUpInside])
-        acceptButton.removeTarget(self, action: #selector(acceptButtonTouchUpInside), for: [.touchUpInside])
+        cancelButton?.removeTarget(self, action: #selector(cancelButtonTouchUpInside), for: [.touchUpInside])
+        acceptButton?.removeTarget(self, action: #selector(acceptButtonTouchUpInside), for: [.touchUpInside])
     }
 }
 

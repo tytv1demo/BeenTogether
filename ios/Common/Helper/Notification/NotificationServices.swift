@@ -99,6 +99,9 @@ extension NotificationServices: UNUserNotificationCenterDelegate {
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-//        completionHandler(nil)
+        guard let userInfo = notification.request.content.userInfo as? [String: Any] else {            return
+        }
+        postNotificationPayload(userInfo)
+        completionHandler(.sound)
     }
 }
