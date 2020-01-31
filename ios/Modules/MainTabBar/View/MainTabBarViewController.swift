@@ -60,10 +60,23 @@ class MainTabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        tabBar.isHidden = true
+
+        viewModel = MainTabBarViewModel()
+        AppLoadingIndicator.shared.show()
+        viewModel.syncData().done { [weak self] in
+            self?.setUp()
+        }.catch { [weak self] _ in
+            self?.navigationController?.dismiss(animated: true, completion: nil)
+        }.finally {
+            AppLoadingIndicator.shared.hide()
+        }
+    }
+    
+    func setUp() {
         settupViewController()
         settupTabBarUI()
         selectedIndex = 2
-        viewModel = MainTabBarViewModel()
         viewModel.delegate = self
         delegate = self
         subscribeViewModel()
@@ -76,11 +89,13 @@ class MainTabBarViewController: UITabBarController {
         eventVc = UIStoryboard(name: "Event", bundle: nil).instantiateViewController(withIdentifier: "EventViewControllerNav") as! UINavigationController
         
         locationVc = LocationViewController()
+        locationVc.viewModel = LocationViewModel(coupleModel: viewModel.coupleModel)
         
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
         homeVC = storyboard.instantiateViewController()
         
         messageVC = MessageViewController()
+        messageVC.viewModel = MessageViewModel(userInfo: AppUserData.shared.userInfo, coupleModel: viewModel.coupleModel)
         let messageNav = UINavigationController(rootViewController: messageVC)
         
         settingVC = SettingViewController()
@@ -94,6 +109,7 @@ class MainTabBarViewController: UITabBarController {
     }
     
     func settupTabBarUI() {
+        tabBar.isHidden = false
         tabBar.tintColor = Colors.kPink
         
         homeTabButton = UIButton()
@@ -107,7 +123,7 @@ class MainTabBarViewController: UITabBarController {
         view.addSubview(homeTabButton)
         homeTabButton.addSubview(homeTabImage)
         let centerPoint = tabBar.center
-        let yPoint = centerPoint.y - (isIphoneX() ? 40 : 20)
+        let yPoint = centerPoint.y - (isIphoneX() ? 30 : 10)
         homeTabButton.center = CGPoint(x: centerPoint.x, y: yPoint)
         homeTabImage.snp.makeConstraints { (make) in
             make.center.equalTo(homeTabButton)
@@ -137,8 +153,8 @@ class MainTabBarViewController: UITabBarController {
             return
         }
         interactionRequest = request
-        let message = "Bạn nhận được yêu cầu ghép đôi từ số điện thoại \(request.from.phoneNumber) - \(request.from.name)"
-        presentConfirmPopup(title: "Ghép đôi!", message: message, delegate: self)
+        let message = "You have been recieved matching request from phone number: \(request.from.phoneNumber) - \(request.from.name)"
+        presentConfirmPopup(title: "Matching Request!", message: message, delegate: self)
     }
     
     func updateHomeTabButtonBehavior() {
@@ -151,10 +167,12 @@ class MainTabBarViewController: UITabBarController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.view.bringSubviewToFront(self.homeTabButton)
+        if self.homeTabButton != nil {
+            self.view.bringSubviewToFront(self.homeTabButton)
+        }
     }
     deinit {
-        obs.invalidate()
+        obs?.invalidate()
     }
 }
 

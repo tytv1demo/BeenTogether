@@ -31,21 +31,24 @@ protocol LocationViewModelType: AnyObject {
 
 class LocationViewModel: LocationViewModelType {
     
+    var coupleModel: CoupleModel
+    
     var loverLocationRef: DatabaseReference
     
     var currentLocation: BehaviorSubject<CLLocation?>
     
     var loverLocation: BehaviorSubject<CustomLocation?>
     
-    init(loverPath: String) {
+    init(coupleModel: CoupleModel) {
         currentLocation = LocationServices.shared.currentLocation
         LocationServices.shared.startUpdateLocation()
-        
+        self.coupleModel = coupleModel
         loverLocation = BehaviorSubject<CustomLocation?>(value: nil)
-        
-        loverLocationRef = Database.database().reference(withPath: "users/\(loverPath)/location")
-        
-        startSubscribeLoverLocation()
+        loverLocationRef = Database.database().reference()
+        if let friendInfo = coupleModel.friendInfo {
+            loverLocationRef = Database.database().reference(withPath: "users/\(friendInfo.phoneNumber)/location")
+            startSubscribeLoverLocation()
+        }
     }
     
     func startSubscribeLoverLocation() {

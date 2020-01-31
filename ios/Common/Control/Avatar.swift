@@ -11,6 +11,8 @@ import Kingfisher
 
 class Avatar: UIView {
     
+    static let kDefaultAvatar = URL(string: "https://thumbs.dreamstime.com/b/cupid-vector-illustration-cute-arrows-onion-83249929.jpg")
+    
     var imageView: UIImageView!
     
     required init?(coder: NSCoder) {
@@ -47,9 +49,9 @@ class Avatar: UIView {
     }
     
     func setImage(url: String) {
-        guard let resource: URL = URL(string: url) else { return }
+        let resource = URL(string: url)
         
-        imageView.kf.setImage(with: resource)
+        imageView.kf.setImage(with: resource ?? Avatar.kDefaultAvatar)
     }
     
     func setLocalImage(named: String) {

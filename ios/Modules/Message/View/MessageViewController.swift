@@ -17,7 +17,7 @@ protocol MessageViewControllerProtocol: AnyObject {
 
 class MessageViewController: UIViewController, MessageViewControllerProtocol {
     
-    var viewModel: MessageViewModelProtocol! = MessageViewModel()
+    var viewModel: MessageViewModelProtocol!
     
     var gpsButton: UIButton!
     
@@ -59,13 +59,16 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
         
         navigationItem.rightBarButtonItems = [gpsTabBarItem, phoneTabBarButton]
         
-        loverAvatar = Avatar(url: "https://vcdn-ngoisao.vnecdn.net/2019/07/11/tran-kieu-an-5-6648-1562814204.jpg")
+        guard let friendConfig = try? viewModel.coupleModel.friendConfig.value() else {
+            return
+        }
+        loverAvatar = Avatar(url: friendConfig.avatar)
         let avatarBarItem = UIBarButtonItem(customView: loverAvatar)
         
         loverNameLabel = UILabel()
         loverNameLabel.textColor = UIColor(rgb: 0xFA7268)
         let nameLabelTabBarItem = UIBarButtonItem(customView: loverNameLabel)
-        loverNameLabel.text = "Lover"
+        loverNameLabel.text = friendConfig.name
         
         navigationItem.leftBarButtonItems = [avatarBarItem, nameLabelTabBarItem]
     }
@@ -106,7 +109,7 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
     }
     
     @objc func onPhoneButtonPress() {
-        guard let phoneNumber = AppUserData.shared.friendInfo?.phoneNumber else {
+        guard let phoneNumber = viewModel.coupleModel.friendInfo?.phoneNumber else {
             return
         }
         callNumber(phoneNumber: phoneNumber)

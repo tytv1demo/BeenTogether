@@ -55,10 +55,6 @@ class LocationViewController: UIViewController, LocationViewControllerType {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let coupleModel = CoupleModel(userInfo: AppUserData.shared.userInfo)
-        viewModel = LocationViewModel(loverPath: coupleModel.friendInfo?.phoneNumber ?? "0123456789")
-        
         settupNavigation()
         settupViews()
         makeConstrainsts()
@@ -68,6 +64,7 @@ class LocationViewController: UIViewController, LocationViewControllerType {
     }
     
     func settupNavigation() {
+        guard let friendConfig = try? viewModel.coupleModel.friendConfig.value() else { return }
         navigationController?.navigationBar.backgroundColor = .white
         
         phoneButton = UIButton(type: .custom)
@@ -82,13 +79,13 @@ class LocationViewController: UIViewController, LocationViewControllerType {
         backButton.setImage(backButtonImage, for: [])
         let backTabBarButton = UIBarButtonItem(customView: backButton)
         
-        loverAvatar = Avatar(url: "https://vcdn-ngoisao.vnecdn.net/2019/07/11/tran-kieu-an-5-6648-1562814204.jpg")
+        loverAvatar = Avatar(url: friendConfig.avatar)
         let avatarBarItem = UIBarButtonItem(customView: loverAvatar)
         
         loverNameLabel = UILabel()
         loverNameLabel.textColor = UIColor(rgb: 0xFA7268)
         let nameLabelTabBarItem = UIBarButtonItem(customView: loverNameLabel)
-        loverNameLabel.text = "Lover"
+        loverNameLabel.text = friendConfig.name
         
         navigationItem.leftBarButtonItems = [backTabBarButton, avatarBarItem, nameLabelTabBarItem]
     }
@@ -123,7 +120,7 @@ class LocationViewController: UIViewController, LocationViewControllerType {
     }
     
     @objc func onPhoneButtonPress() {
-        guard let phoneNumber = AppUserData.shared.friendInfo?.phoneNumber else {
+        guard let phoneNumber = viewModel.coupleModel.friendInfo?.phoneNumber else {
             return
         }
         callNumber(phoneNumber: phoneNumber)
@@ -252,7 +249,8 @@ extension LocationViewController: MKMapViewDelegate {
         
         if let annotationView = annotationView {
             annotationView.canShowCallout = true
-            let resource = URL(string: "https://vcdn-ngoisao.vnecdn.net/2019/07/11/tran-kieu-an-5-6648-1562814204.jpg")
+            guard let friendConfig = try? viewModel.coupleModel.friendConfig.value() else { return annotationView }
+            let resource = URL(string: friendConfig.avatar) ?? Avatar.kDefaultAvatar
             let resizingProcessor = ResizingImageProcessor(referenceSize: CGSize(width: 36, height: 36)) >> RoundCornerImageProcessor(cornerRadius: 18)
             UIImageView().kf.setImage(with: resource, options: [.processor(resizingProcessor)]) { (image, _, _, _) in
                 annotationView.image = image

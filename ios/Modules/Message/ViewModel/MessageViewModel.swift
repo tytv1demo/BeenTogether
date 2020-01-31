@@ -60,13 +60,13 @@ class MessageViewModel: NSObject, MessageViewModelProtocol {
     
     var viewData: BehaviorSubject<MessageViewData> = BehaviorSubject(value: MessageViewData(loverName: "", loverAvatar: ""))
     
-    override init() {
-        user = SCUser(id: AppUserData.shared.userInfo.id, name: AppUserData.shared.userInfo.name, avatar: "")
+    init(userInfo: User = AppUserData.shared.userInfo, coupleModel: CoupleModel? = nil) {
+        user = SCUser(id: userInfo.id, name: userInfo.name, avatar: "")
         messages = BehaviorSubject<[SCMessage]>(value: [])
         messageRepository = BaseMessageRepository()
-        let coupleId = AppUserData.shared.userInfo.coupleId
+        let coupleId = userInfo.coupleId
         threadRef = Database.database().reference(withPath: "message/\(coupleId)/messages")
-        coupleModel = CoupleModel(userInfo: AppUserData.shared.userInfo)
+        self.coupleModel = coupleModel ?? CoupleModel(userInfo: AppUserData.shared.userInfo)
         super.init()
         
         self.loadMessage()

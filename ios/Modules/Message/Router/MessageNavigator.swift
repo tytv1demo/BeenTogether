@@ -15,6 +15,7 @@ protocol MessageNavigator: AnyObject {
 extension MessageViewController: MessageNavigator {
     func goToLocationScreen() {
         let locationViewController = LocationViewController()
+        locationViewController.viewModel = LocationViewModel(coupleModel: viewModel.coupleModel)
         self.navigationController?.pushViewController(locationViewController, animated: true)
     }
 }

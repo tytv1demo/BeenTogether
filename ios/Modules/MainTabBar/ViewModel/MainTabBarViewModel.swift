@@ -27,18 +27,27 @@ class MainTabBarViewModel: MainTabBarViewModelProtocol {
     var userRepository: UserRepository
     
     var coupleMatchRequest: BehaviorSubject<CoupleMatchRequest?>
+    
+    var coupleModel: CoupleModel
 
     init() {
         userRepository = UserRepository()
         coupleRepository = CoupleRepository()
         coupleMatchRequest = BehaviorSubject<CoupleMatchRequest?>(value: nil)
+        coupleModel = CoupleModel(userInfo: AppUserData.shared.userInfo)
         syncNewestCoupleMatchRequest().done { [weak self] (_) in
             self?.observeNotificatonCenter()
         }.catch {[weak self] (_) in
             self?.observeNotificatonCenter()
         }
-        
     }
+    
+    func syncData() -> Promise<Void> {
+        return when(fulfilled: [coupleModel.syncFriendInfo(friendId: coupleModel.friendId!)]).done { (_) in
+            return
+        }
+    }
+    
     @discardableResult
     func syncNewestCoupleMatchRequest() -> Promise<Any> {
         return Promise {seal in
