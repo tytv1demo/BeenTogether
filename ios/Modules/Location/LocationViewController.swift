@@ -23,7 +23,7 @@ protocol LocationViewControllerType: UIViewController {
     
     var loverLocationViewer: LoverLocationViewer! { get }
     
-    var viewModel: LocationViewModel { get set }
+    var viewModel: LocationViewModel! { get set }
     
     func settupViews()
     
@@ -49,12 +49,16 @@ class LocationViewController: UIViewController, LocationViewControllerType {
     
     var directionRoute: MKRoute?
     
-    var viewModel: LocationViewModel = LocationViewModel(loverPath: "0349055710")
+    var viewModel: LocationViewModel!
     
     var disposeBag: DisposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let coupleModel = CoupleModel(userInfo: AppUserData.shared.userInfo)
+        viewModel = LocationViewModel(loverPath: coupleModel.friendInfo?.phoneNumber ?? "0123456789")
+        
         settupNavigation()
         settupViews()
         makeConstrainsts()
@@ -94,23 +98,23 @@ class LocationViewController: UIViewController, LocationViewControllerType {
         mapView.delegate = self
         view.addSubview(mapView)
         
-        loverLocationViewer = LoverLocationViewer()
-        //        view.addSubview(loverLocationViewer)
-        
+        loverLocationViewer = LoverLocationViewer(location: viewModel.loverLocation)
+        view.addSubview(loverLocationViewer)
     }
     
     func makeConstrainsts() {
         mapView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
-        //
-        //        loverLocationViewer.snp.makeConstraints { (make) in
-        //            make.trailing.equalToSuperview().inset(16)
-        //            make.leading.equalToSuperview().inset(16)
-        //            make.bottom.equalToSuperview().inset(100)
-        //            make.height.equalTo(200)
-        //        }
-        //        view.bringSubviewToFront(loverLocationViewer)
+        
+        loverLocationViewer.snp.makeConstraints { (make) in
+            make.trailing.equalToSuperview().inset(16)
+            make.leading.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview().inset(100)
+            make.height.equalTo(120)
+        }
+        
+        view.bringSubviewToFront(loverLocationViewer)
     }
     
     func setupActions() {
@@ -133,10 +137,8 @@ class LocationViewController: UIViewController, LocationViewControllerType {
         viewModel
             .currentLocation
             .subscribe(onNext: {[unowned self] (location) in
-                guard let location = location else {
-                    return
-                }
-                
+                guard let location = location else { return }
+
                 defer {
                     self.caculateRoute()
                 }
@@ -148,7 +150,8 @@ class LocationViewController: UIViewController, LocationViewControllerType {
                 
                 let regionRadius: CLLocationDistance = 1000
                 let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
-                                                          latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
+                                                          latitudinalMeters: regionRadius,
+                                                          longitudinalMeters: regionRadius)
                 self.mapView.setRegion(coordinateRegion, animated: true)
                 
                 self.currentAnotation = MapViewAnotaion(title: "Current",
@@ -161,9 +164,7 @@ class LocationViewController: UIViewController, LocationViewControllerType {
         viewModel
             .loverLocation
             .subscribe(onNext: {[unowned self] (location) in
-                guard let location = location else {
-                    return
-                }
+                guard let location = location else { return }
                 
                 defer {
                     self.caculateRoute()
@@ -176,7 +177,8 @@ class LocationViewController: UIViewController, LocationViewControllerType {
                 
                 let regionRadius: CLLocationDistance = 1000
                 let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
-                                                          latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
+                                                          latitudinalMeters: regionRadius,
+                                                          longitudinalMeters: regionRadius)
                 self.mapView.setRegion(coordinateRegion, animated: true)
                 
                 self.loverAnotation = MapViewAnotaion(title: "loverAnotation",
@@ -212,9 +214,11 @@ class LocationViewController: UIViewController, LocationViewControllerType {
             guard let directionResponse = response, let route = directionResponse.routes.first else {
                 return
             }
+            
             if let oldRoute = self?.directionRoute {
                 self?.mapView.removeOverlay(oldRoute.polyline)
             }
+            
             self?.mapView.addOverlay(route.polyline, level: .aboveRoads)
             let region = MKCoordinateRegion(route.polyline.boundingMapRect)
             self?.directionRoute = route
