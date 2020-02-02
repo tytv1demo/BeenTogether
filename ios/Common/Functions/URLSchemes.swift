@@ -33,7 +33,7 @@ func openSetting() {
 
 func openContactToUs(){
     DispatchQueue.main.async {
-        let email = "ty.tv01@gmail.com"
+        let email = "tytv01@gmail.com"
         if let url = URL(string: "mailto:\(email)") {
           if #available(iOS 10.0, *) {
             UIApplication.shared.open(url)

@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import MessageUI
 
 @objc(RNMessageAlertBridges)
-class RNMessageAlertBridges: NSObject, RCTBridgeModule {
+class RNMessageAlertBridges: NSObject, RCTBridgeModule, MFMailComposeViewControllerDelegate {
     static func moduleName() -> String! {
         return "RNMessageAlertBridges"
     }
@@ -28,7 +29,7 @@ class RNMessageAlertBridges: NSObject, RCTBridgeModule {
             return
         }
         DispatchQueue.main.async {
-            selectionVC.dismiss(animated: false, completion: nil)
+            selectionVC.dismiss(animated: true, completion: nil)
             if type == "OK" {
                 selectionVC.handleOkButtonPress()
             } else {
@@ -36,5 +37,22 @@ class RNMessageAlertBridges: NSObject, RCTBridgeModule {
             }
             RNMessageAlertBridges.shared.alertVCMap.removeValue(forKey: id)
         }
+    }
+    
+    @objc func contactUs() {
+        DispatchQueue.main.async {
+            if MFMailComposeViewController.canSendMail() {
+                let mailVc = MFMailComposeViewController()
+                mailVc.mailComposeDelegate = self
+                mailVc.setToRecipients(["ty.tv01@gmail.com"])
+                guard let topViewController = UIApplication.topViewController() else { return }
+                topViewController.present(mailVc, animated: true)
+            } else {
+                showMessage(title: "Oops!", message: "Can not open mail app!", theme: .warning)
+            }
+        }
+    }
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
     }
 }

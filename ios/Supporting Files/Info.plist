@@ -20,6 +20,10 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>mailto</string>
+	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -49,15 +53,15 @@
 		</dict>
 	</dict>
 	<key>NSAppleMusicUsageDescription</key>
-	<string>This app wants to use your photos !</string>
+	<string>$(PRODUCT_NAME) wants to access your library for image messaging and avatar updating</string>
 	<key>NSCameraUsageDescription</key>
-	<string>This app wants to take pictures !</string>
+	<string>$(PRODUCT_NAME) wants to take pictures for using in messaging and event sharing.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>$(PRODUCT_NAME) want to access your location</string>
+	<string>$(PRODUCT_NAME) wants to access your location to help your lover tracking your&apos;s location </string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>$(PRODUCT_NAME) wants to access your location to help your lover tracking your&apos;s location </string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>$(PRODUCT_NAME) want to access</string>
+	<string>$(PRODUCT_NAME) wants to access your library for image messaging and avatar updating</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>

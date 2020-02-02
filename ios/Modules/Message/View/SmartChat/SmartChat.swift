@@ -98,7 +98,6 @@ class SmartChat: UIView {
         let message = "Hi \(user.name ?? ""), how do you feel today? Let send it for your lover!"
         let buttonTitle = ""
         let emptyView = self.messageTableView.tableView.setEmptyMessage(message, buttonTitle: buttonTitle, onButtonPress: openSetting)
-        emptyView.imageView.kf.setImage(with: URL(string: "https://vcdn-ngoisao.vnecdn.net/2019/07/11/tran-kieu-an-5-6648-1562814204.jpg"))
         emptyView.button.isHidden = true
     }
     

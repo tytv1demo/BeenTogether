@@ -97,6 +97,7 @@ class LocationViewController: UIViewController, LocationViewControllerType {
         
         loverLocationViewer = LoverLocationViewer(location: viewModel.loverLocation)
         view.addSubview(loverLocationViewer)
+        loverLocationViewer.delegate = self
     }
     
     func makeConstrainsts() {
@@ -108,7 +109,7 @@ class LocationViewController: UIViewController, LocationViewControllerType {
             make.trailing.equalToSuperview().inset(16)
             make.leading.equalToSuperview().inset(16)
             make.bottom.equalToSuperview().inset(100)
-            make.height.equalTo(120)
+            make.height.equalTo(175)
         }
         
         view.bringSubviewToFront(loverLocationViewer)
@@ -135,10 +136,6 @@ class LocationViewController: UIViewController, LocationViewControllerType {
             .currentLocation
             .subscribe(onNext: {[unowned self] (location) in
                 guard let location = location else { return }
-
-                defer {
-                    self.caculateRoute()
-                }
                 
                 if self.currentAnotation != nil {
                     self.currentAnotation.coordinate = location.coordinate
@@ -151,9 +148,9 @@ class LocationViewController: UIViewController, LocationViewControllerType {
                                                           longitudinalMeters: regionRadius)
                 self.mapView.setRegion(coordinateRegion, animated: true)
                 
-                self.currentAnotation = MapViewAnotaion(title: "Current",
-                                                        locationName: "Current",
-                                                        discipline: "Current",
+                self.currentAnotation = MapViewAnotaion(title: "Your location",
+                                                        locationName: "Current location",
+                                                        discipline: "Current location",
                                                         coordinate: location.coordinate)
                 self.mapView.addAnnotation(self.currentAnotation)
             }).disposed(by: disposeBag)
@@ -161,11 +158,7 @@ class LocationViewController: UIViewController, LocationViewControllerType {
         viewModel
             .loverLocation
             .subscribe(onNext: {[unowned self] (location) in
-                guard let location = location else { return }
-                
-                defer {
-                    self.caculateRoute()
-                }
+                guard let location = location, let friendConfig = try? self.viewModel.coupleModel.friendConfig.value() else { return  }
                 
                 if self.loverAnotation != nil {
                     self.loverAnotation.coordinate = location.coordinate
@@ -178,15 +171,15 @@ class LocationViewController: UIViewController, LocationViewControllerType {
                                                           longitudinalMeters: regionRadius)
                 self.mapView.setRegion(coordinateRegion, animated: true)
                 
-                self.loverAnotation = MapViewAnotaion(title: "loverAnotation",
-                                                      locationName: "loverAnotation",
-                                                      discipline: "loverAnotation",
+                self.loverAnotation = MapViewAnotaion(title: "Lover location",
+                                                      locationName: friendConfig.name,
+                                                      discipline: friendConfig.name,
                                                       coordinate: location.coordinate)
                 self.mapView.addAnnotation(self.loverAnotation)
             }).disposed(by: disposeBag)
     }
     
-    func caculateRoute() {
+    func caculateRoute(completion: (() -> Void)? ) {
         if currentAnotation == nil || loverAnotation == nil {
             return
         }
@@ -204,11 +197,13 @@ class LocationViewController: UIViewController, LocationViewControllerType {
         
         direction.calculate { [weak self] (response, error) in
             if error != nil {
-                self?.presentAlert(title: "Opps!", message: "Sorry! We can not find the direction between you two, Please try again later!", delegate: nil)
+                showMessage(title: "Opps!", message: "Sorry! We can not find the direction between you two, Please try again later!", theme: .warning)
+                completion?()
                 return
             }
             
             guard let directionResponse = response, let route = directionResponse.routes.first else {
+                completion?()
                 return
             }
             
@@ -220,6 +215,7 @@ class LocationViewController: UIViewController, LocationViewControllerType {
             let region = MKCoordinateRegion(route.polyline.boundingMapRect)
             self?.directionRoute = route
             self?.mapView.setRegion(region, animated: true)
+            completion?()
         }
     }
     
@@ -249,8 +245,11 @@ extension LocationViewController: MKMapViewDelegate {
         
         if let annotationView = annotationView {
             annotationView.canShowCallout = true
-            guard let friendConfig = try? viewModel.coupleModel.friendConfig.value() else { return annotationView }
-            let resource = URL(string: friendConfig.avatar) ?? Avatar.kDefaultAvatar
+            let isLoverAnotation = annotation.title == loverAnotation.title
+            guard let friendConfig = try? viewModel.coupleModel.friendConfig.value(),
+                let userConfig = try? viewModel.coupleModel.userConfig.value() else { return annotationView }
+            let avatar = isLoverAnotation ? friendConfig.avatar : userConfig.avatar
+            let resource = URL(string: avatar) ?? Avatar.kDefaultAvatar
             let resizingProcessor = ResizingImageProcessor(referenceSize: CGSize(width: 36, height: 36)) >> RoundCornerImageProcessor(cornerRadius: 18)
             UIImageView().kf.setImage(with: resource, options: [.processor(resizingProcessor)]) { (image, _, _, _) in
                 annotationView.image = image
@@ -266,5 +265,14 @@ extension LocationViewController: MKMapViewDelegate {
         renderer.lineWidth = 4
         
         return renderer
+    }
+}
+
+extension LocationViewController: LoverLocationViewerDelegate {
+    func loverLocationViewer(requestShowDirection loverLocationViewer: LoverLocationViewer) {
+        AppLoadingIndicator.shared.show()
+        caculateRoute {
+            AppLoadingIndicator.shared.hide()
+        }
     }
 }

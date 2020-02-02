@@ -19,6 +19,8 @@ class ConfirmPopupViewController: UIViewController {
     
     weak var delegate: ConfirmPopupViewControllerDelegate?
     
+    var data: Any?
+    
     var container: UIView!
     
     var headerBackground: UIView!
@@ -168,8 +170,9 @@ class ConfirmPopupViewController: UIViewController {
 }
 
 extension UIViewController {
-    func presentConfirmPopup(title: String, message: String, delegate: ConfirmPopupViewControllerDelegate? = nil) {
+    func presentConfirmPopup(title: String, message: String, delegate: ConfirmPopupViewControllerDelegate? = nil, data: Any? = nil) {
         let popup = ConfirmPopupViewController()
+        popup.data = data
         popup.modalPresentationStyle = .overCurrentContext
         popup.delegate = delegate
         present(popup, animated: true) {

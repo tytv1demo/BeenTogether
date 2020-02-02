@@ -14,4 +14,5 @@ RCT_EXTERN_METHOD(
             selectAction: (NSString)id
             type: (NSString)type
 )
+RCT_EXTERN_METHOD(contactUs)
 @end

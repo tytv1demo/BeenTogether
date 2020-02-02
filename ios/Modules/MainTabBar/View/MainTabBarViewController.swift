@@ -37,8 +37,6 @@ class MainTabBarViewController: UITabBarController {
     
     var viewModel: MainTabBarViewModel!
     
-    var interactionRequest: CoupleMatchRequest!
-    
     var eventVc: UINavigationController!
     
     var homeVC: HomeViewController!
@@ -152,14 +150,13 @@ class MainTabBarViewController: UITabBarController {
         guard let request = request else {
             return
         }
-        interactionRequest = request
         let message = "You have been recieved matching request from phone number: \(request.from.phoneNumber) - \(request.from.name)"
-        presentConfirmPopup(title: "Matching Request!", message: message, delegate: self)
+        presentConfirmPopup(title: "Matching Request!", message: message, delegate: self, data: request)
     }
     
     func updateHomeTabButtonBehavior() {
-        let yPoint = isIphoneX() ? 15 : 30
-        let transform = selectedIndex != 3 ? CGAffineTransform.identity : CGAffineTransform(translationX: 0, y: CGFloat(yPoint)).scaledBy(x: 0.9, y: 0.9)
+        let yPoint = 15
+        let transform = selectedIndex != 3 ? CGAffineTransform.identity : CGAffineTransform(translationX: 0, y: CGFloat(yPoint)).scaledBy(x: 0.8, y: 0.8)
         UIView.animate(withDuration: 0.2) { [weak self] in
             self?.homeTabButton.transform = transform
         }
@@ -178,10 +175,22 @@ class MainTabBarViewController: UITabBarController {
 
 extension MainTabBarViewController: ConfirmPopupViewControllerDelegate {
     
-    func confirmPopup(didCancel popup: ConfirmPopupViewController) -> Promise<Any> {
+    func doAcceptMatchRequest(_ request: CoupleMatchRequest, onPopup popup: ConfirmPopupViewController) -> Promise<Any> {
+        return Promise {[weak self] seal in
+            viewModel
+                .responseToMatchRequest(request: request, action: .accept)
+                .done { (success) in
+                    if success {
+                        popup.dismiss(animated: true, completion: self?.goToSplash)
+                 }
+            }.catch(seal.reject)
+        }
+    }
+    
+    func doCancelMatchRequest(_ request: CoupleMatchRequest, onPopup popup: ConfirmPopupViewController) -> Promise<Any> {
         return Promise {seal in
             viewModel
-                .responseToMatchRequest(request: interactionRequest, action: .reject)
+                .responseToMatchRequest(request: request, action: .reject)
                 .done { (success) in
                     if success {
                         popup.dismiss(animated: true, completion: nil)
@@ -189,19 +198,22 @@ extension MainTabBarViewController: ConfirmPopupViewControllerDelegate {
                     seal.fulfill(true)
             }.catch(seal.reject)
         }
-        
+    }
+    
+    func confirmPopup(didCancel popup: ConfirmPopupViewController) -> Promise<Any> {
+        if let request = popup.data as? CoupleMatchRequest {
+            return doCancelMatchRequest(request, onPopup: popup)
+        }
+        popup.dismiss(animated: true, completion: nil)
+        return Promise.value(true)
     }
     
     func confirmPopup(didAccept popup: ConfirmPopupViewController) -> Promise<Any> {
-        return Promise {seal in
-            viewModel
-                .responseToMatchRequest(request: interactionRequest, action: .accept)
-                .done { (success) in
-                    if success {
-                        popup.dismiss(animated: true, completion: nil)
-                 }
-            }.catch(seal.reject)
+        if let request = popup.data as? CoupleMatchRequest {
+            return doAcceptMatchRequest(request, onPopup: popup)
         }
+        popup.dismiss(animated: true, completion: goToSplash)
+        return Promise.value(true)
     }
 }
 
@@ -215,11 +227,11 @@ extension MainTabBarViewController: UITabBarControllerDelegate {
 
 extension MainTabBarViewController: MainTabBarViewModelDelegate {
     func mainTabBarViewModel(onLogout viewModel: MainTabBarViewModel) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        appDelegate.window?.rootViewController = SplashViewController()
-        appDelegate.window?.makeKeyAndVisible()
+        goToSplash()
+    }
+    
+    func mainTabBarViewModel(onFriendAcceptMatchRequest viewModel: MainTabBarViewModel) {
+        presentConfirmPopup(title: "Notification", message: "You have just become a couple with another. Reload app sync data?", delegate: self)
     }
 }
 

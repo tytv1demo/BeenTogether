@@ -13,5 +13,11 @@ protocol MainTabBarNavigator: AnyObject {
 }
 
 extension MainTabBarViewController: MainTabBarNavigator {
-
+    func goToSplash() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        appDelegate.window?.rootViewController = SplashViewController()
+        appDelegate.window?.makeKeyAndVisible()
+    }
 }

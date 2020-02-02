@@ -12,6 +12,8 @@ import RxSwift
 
 protocol MainTabBarViewModelDelegate: AnyObject {
     func mainTabBarViewModel(onLogout viewModel: MainTabBarViewModel)
+    
+    func mainTabBarViewModel(onFriendAcceptMatchRequest viewModel: MainTabBarViewModel)
 }
 
 protocol MainTabBarViewModelProtocol: AnyObject {
@@ -75,6 +77,9 @@ class MainTabBarViewModel: MainTabBarViewModelProtocol {
         }
         if payload.type == .matchReqeust {
             syncNewestCoupleMatchRequest()
+        }
+        if payload.type == .coupleMatch {
+            delegate?.mainTabBarViewModel(onFriendAcceptMatchRequest: self)
         }
     }
     

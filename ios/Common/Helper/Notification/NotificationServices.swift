@@ -13,6 +13,7 @@ import Firebase
 enum NotificationPayloadType: String {
     case message
     case matchReqeust
+    case coupleMatch
 }
 
 struct NotificationPayload {

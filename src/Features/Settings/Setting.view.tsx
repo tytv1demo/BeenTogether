@@ -12,6 +12,7 @@ import { ApiManager, CoupleService } from '@dataManager';
 import { PulseCircles } from './PulseCircles';
 import { PulseIndicator } from 'react-native-indicators';
 import { SendMatchRequestPopup } from './SendMatchRequest';
+import { contactUs } from '../MessageAlert/MessageAlertBridge';
 
 export class SettingScreen extends React.PureComponent<any, SettingScreenState> {
 
@@ -132,18 +133,7 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
     }
 
     onContactUs = async () => {
-        const url = 'mailto:ty.tv01@gmail.com'
-        try {
-            const openable = await Linking.canOpenURL(url)
-            if (openable) {
-                showFlashMessage('Opps!', 'Can not open mail app!', 'warning')
-                return
-            }
-            await Linking.openURL(url)
-        } catch (error) {
-            showFlashMessage('Opps!', 'Can not open mail app!', 'warning')
-        }
-
+        await contactUs()
     }
 
     renderAvatarSection() {
@@ -189,6 +179,7 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
             <>
                 <ListItem
                     title='Your name'
+                    rightContentContainerStyle={{ flex: 1 }}
                     rightTitle={userInfo.name}
                     rightAvatar={<MemoAvatar
                         title={userInfo.name}
@@ -199,6 +190,7 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
                 <ListItem
                     title='Phone number'
                     rightTitle={userInfo.phoneNumber}
+                    rightContentContainerStyle={{ flex: 1 }}
                     bottomDivider
                 />
                 <ListItem
@@ -222,8 +214,9 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
         return (
             <>
                 <ListItem
-                    title='Đã ghép đôi với'
+                    title='Match with'
                     rightTitle={lover.name}
+                    rightContentContainerStyle={{ flex: 1 }}
                     rightAvatar={<MemoAvatar
                         title={lover.name}
                         rounded
@@ -244,6 +237,7 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
                     onPress={this.onBreakUp}
                     chevron
                 />
+                <Spacer />
             </>
         )
     }
@@ -259,12 +253,12 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
                 />
                 <ListItem
                     title='Copyright'
-                    rightTitle='Tml'
+                    rightTitle='Tmlq'
                     bottomDivider
                 />
                 <ListItem
                     title='Version'
-                    rightTitle='1.0.0'
+                    rightTitle='1.0.1'
                 />
             </>
         )

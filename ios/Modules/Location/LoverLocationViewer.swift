@@ -10,12 +10,19 @@ import Foundation
 import RxSwift
 import MapKit
 
+protocol LoverLocationViewerDelegate: AnyObject {
+    func loverLocationViewer(requestShowDirection loverLocationViewer: LoverLocationViewer)
+}
+
 class LoverLocationViewer: UIView {
     
     // MARK: - Properties
     
+    weak var delegate: LoverLocationViewerDelegate?
+    
     var addressLabel: UILabel!
     var lastUpdateTimeLabel: UILabel!
+    var directButton: UIButton!
     var imageView: UIImageView!
     var location: BehaviorSubject<CustomLocation?>!
     var disposeBag: DisposeBag!
@@ -30,6 +37,7 @@ class LoverLocationViewer: UIView {
         super.init(frame: frame)
         
         setupMainViews()
+        makeConstraints()
         disposeBag = DisposeBag()
     }
     
@@ -46,7 +54,7 @@ class LoverLocationViewer: UIView {
         setupBackgroundView()
         setupLabels()
         setupImageView()
-        makeConstraints()
+        setUpDirectButton()
     }
     
     func setupBackgroundView() {
@@ -56,6 +64,18 @@ class LoverLocationViewer: UIView {
         layer.shadowOpacity = 0.5
         layer.shadowOffset = CGSize(width: 2, height: 8)
         layer.shadowRadius = 5
+    }
+    
+    func setUpDirectButton() {
+        directButton = UIButton()
+        directButton.setTitle("Show direction", for: [])
+        directButton.backgroundColor = Colors.kPink
+        directButton.setTitleColor(.white, for: [])
+        directButton.layer.masksToBounds = true
+        directButton.layer.cornerRadius = 22
+        addSubview(directButton)
+        
+        directButton.addTarget(self, action: #selector(directButtonDidTap), for: [.touchUpInside])
     }
     
     func setupImageView() {
@@ -100,6 +120,13 @@ class LoverLocationViewer: UIView {
             make.bottom.equalToSuperview().inset(10)
             make.trailing.equalToSuperview().inset(16)
             make.leading.equalToSuperview().inset(16)
+        }
+        
+        directButton.snp.makeConstraints { (make) in
+            make.top.equalTo(self.addressLabel.snp_bottom).offset(16)
+            make.trailing.equalToSuperview().inset(16)
+            make.leading.equalToSuperview().inset(16)
+            make.height.equalTo(44)
         }
     }
     
@@ -158,5 +185,13 @@ class LoverLocationViewer: UIView {
                 }
             }
         })
+    }
+    
+    @objc func directButtonDidTap() {
+        delegate?.loverLocationViewer(requestShowDirection: self)
+    }
+    
+    deinit {
+        directButton.removeTarget(self, action: #selector(directButtonDidTap), for: [.touchUpInside])
     }
 }

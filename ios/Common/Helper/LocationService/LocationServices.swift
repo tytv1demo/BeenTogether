@@ -83,6 +83,10 @@ extension LocationServices: CLLocationManagerDelegate {
         guard let location = locations.first else {
             return
         }
+        let currentCoor = try? currentLocation.value()?.coordinate
+        if (currentCoor?.latitude == location.coordinate.latitude && currentCoor?.longitude == location.coordinate.longitude) {
+            return
+        }
         self.currentLocation.onNext(location)
         if isAutomaticUpdateOfLocation {
             let lat = Float(location.coordinate.latitude)

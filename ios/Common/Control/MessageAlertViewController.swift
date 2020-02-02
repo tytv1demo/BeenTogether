@@ -33,7 +33,7 @@ extension UIViewController {
         let alertViewController = MessageAlertViewController()
         alertViewController.moduleName = "MessageAlertView"
         let properties: [String: Any] = [
-            "id": "test",
+            "id": "MessageAlertView",
             "title": title,
             "message": message
         ]
@@ -42,7 +42,7 @@ extension UIViewController {
         alertViewController.modalPresentationStyle = .overCurrentContext
         present(alertViewController, animated: false, completion: nil)
         alertViewController.view.backgroundColor = .clear
-        RNMessageAlertBridges.shared.alertVCMap["test"] = alertViewController
+        RNMessageAlertBridges.shared.alertVCMap["MessageAlertView"] = alertViewController
     }
     
     func showAlertWithOneOption(title: String, message: String, optionTitle: String) {

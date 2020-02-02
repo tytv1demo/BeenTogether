@@ -57,11 +57,13 @@ class GalleryImageCell: UICollectionViewCell {
         scrollContentView.delegate = self
         
         scrollContentView.minimumZoomScale = 1
+        scrollContentView.showsVerticalScrollIndicator = false
+        scrollContentView.showsHorizontalScrollIndicator = false
         scrollContentView.maximumZoomScale = 4.0
         scrollContentView.zoomScale = 1
         
         imageView = UIImageView()
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFill
         imageView.isUserInteractionEnabled = true
         scrollContentView.addSubview(imageView)
         
@@ -76,7 +78,7 @@ class GalleryImageCell: UICollectionViewCell {
         actionStackView.spacing = 8
         actionStackView.isUserInteractionEnabled = true
         
-        scrollContentView.addSubview(actionStackView)
+        addSubview(actionStackView)
         actionStackView.bringSubviewToFront(actionStackView)
         actionStackView.isHidden = true
     }
@@ -87,7 +89,7 @@ class GalleryImageCell: UICollectionViewCell {
         }
         
         imageView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.edges.equalTo(self)
         }
         actionStackView.snp.makeConstraints { (make) in
             make.center.equalTo(self)
@@ -110,17 +112,18 @@ class GalleryImageCell: UICollectionViewCell {
     func showActions() {
         UIView.animate(withDuration: 0.2) {
             self.scrollContentView.zoomScale = 1.5
+            self.actionStackView.isHidden = false
         }
-        imageView.addBlurEffect()
-        actionStackView.isHidden = false
+        addBlurEffect()
+        bringSubviewToFront(actionStackView)
     }
     
     func hideActions() {
         UIView.animate(withDuration: 0.2) {
             self.scrollContentView.zoomScale = 1
+            self.actionStackView.isHidden = true
         }
-        imageView.removeBlurEffect()
-        actionStackView.isHidden = true
+        removeBlurEffect()
     }
     
     func configCellWithAsset(_ asset: GalleryAsset) {
