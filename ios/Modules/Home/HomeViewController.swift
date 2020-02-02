@@ -68,6 +68,7 @@ class HomeViewController: UIViewController {
             self.leftNameLabel.hideSkeleton()
             self.leftNameLabel.text = config.name
             self.setupLeftAvatar(url: config.avatar)
+            self.setupAvatar(url: config.avatar)
         }).disposed(by: disposeBag)
         
         homeViewModel.friendConfig.subscribe(onNext: { [unowned self] (data) in
@@ -97,7 +98,7 @@ class HomeViewController: UIViewController {
     func setupMainView() {
         setupBackgroundImage()
         setupLabelColor()
-        setupAvatar()
+        setupAvatar(url: "")
         setupLeftAvatar(url: "")
         setupRightAvatar(url: "")
         setupProgressView()
@@ -134,9 +135,12 @@ class HomeViewController: UIViewController {
         rightNameLabel.showAnimatedSkeleton()
     }
     
-    func setupAvatar() {
-        let url = "https://thuthuatnhanh.com/wp-content/uploads/2019/10/avatar-me-than-tuong.jpg"
-        avatarView.setImage(url: url)
+    func setupAvatar(url: String) {
+        if url != "" {
+            avatarView.setImage(url: url)
+        } else {
+            avatarView.setLocalImage(named: "default-avatar")
+        }
     }
     
     func setupLeftAvatar(url: String) {

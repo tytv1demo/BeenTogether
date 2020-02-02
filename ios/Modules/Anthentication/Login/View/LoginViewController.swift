@@ -18,7 +18,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var otpTextField: UITextField!
     @IBOutlet weak var otpView: UIView!
     @IBOutlet weak var signInButton: UIButton!
-    
+    @IBOutlet weak var phoneNumberImage: UIImageView!
+    @IBOutlet weak var otpImage: UIImageView!
     // MARK: - Properties
     
     var isOTPViewHidden = true
@@ -51,9 +52,15 @@ class LoginViewController: UIViewController {
     func setupMainView() {
         setupBackgroundImage()
         setupTextField()
+        setupImageView()
         setupSignInButton()
         setupOTPView()
         addTapGestureForView()
+    }
+    
+    func setupImageView() {
+        phoneNumberImage.setImage(UIImage.fontAwesomeIcon(name: .phone, style: .solid, textColor: .white, size: CGSize(width: 25, height: 25)))
+        otpImage.setImage(UIImage.fontAwesomeIcon(name: .mobileAlt, style: .solid, textColor: .white, size: CGSize(width: 25, height: 25)))
     }
     
     func setupOTPView() {
@@ -108,7 +115,6 @@ class LoginViewController: UIViewController {
                 AppLoadingIndicator.shared.hide()
                 self.showAlertWithOneOption(title: "Oops!", message: "Unable to get OTP code!", optionTitle: "OK")
             }
-            
         }
     }
     
@@ -136,12 +142,11 @@ class LoginViewController: UIViewController {
         
         do {
             let parsedPhoneNumber = try parsePhoneNumber(phoneNumber, "VN")
-                    if signInButton.titleLabel?.text == "SIGN IN" {
-                        signIn(parsedPhoneNumber)
-                    } else {
-                        getOTPCode(parsedPhoneNumber)
-                    }
-//            signIn(parsedPhoneNumber)
+            if signInButton.titleLabel?.text == "SIGN IN" {
+                signIn(parsedPhoneNumber)
+            } else {
+                getOTPCode(parsedPhoneNumber)
+            }
         } catch {
             self.showAlertWithOneOption(title: "Oops!", message: "Your phone number is not available!", optionTitle: "OK")
         }
@@ -157,6 +162,7 @@ class LoginViewController: UIViewController {
 extension LoginViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == phoneNumberTextField {
+            signInButton.setTitle("VERIFY PHONE NUMBER", for: .normal)
             otpTextField.text = nil
             isOTPViewHidden = true
             otpView.isHidden = true

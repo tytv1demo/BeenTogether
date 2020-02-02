@@ -17,6 +17,9 @@ class CreateViewController: UIViewController {
     @IBOutlet weak var createButton: UIButton!
     @IBOutlet weak var stackViewHeight: NSLayoutConstraint!
     @IBOutlet weak var otpView: UIView!
+    @IBOutlet weak var phoneNumberImage: UIImageView!
+    @IBOutlet weak var nameImage: UIImageView!
+    @IBOutlet weak var otpImage: UIImageView!
     
     var isOTPViewHidden = true
     var verifyID = ""
@@ -37,12 +40,19 @@ class CreateViewController: UIViewController {
         setupBackgroundImage()
         setupOTPView()
         setupTextField()
+        setupImageView()
         setupCreateButton()
         addTapGestureForView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    func setupImageView() {
+        phoneNumberImage.setImage(UIImage.fontAwesomeIcon(name: .phone, style: .solid, textColor: .white, size: CGSize(width: 25, height: 25)))
+        nameImage.setImage(UIImage.fontAwesomeIcon(name: .userAlt, style: .solid, textColor: .white, size: CGSize(width: 25, height: 25)))
+        otpImage.setImage(UIImage.fontAwesomeIcon(name: .mobileAlt, style: .solid, textColor: .white, size: CGSize(width: 25, height: 25)))
     }
     
     func setupOTPView() {
@@ -128,12 +138,11 @@ class CreateViewController: UIViewController {
         
         do {
             let parsedPhoneNumber = try parsePhoneNumber(phoneNumber, "VN")
-                    if createButton.titleLabel?.text == "SIGN UP" {
-                        signUp(parsedPhoneNumber)
-                    } else {
-                        getOTPCode(parsedPhoneNumber)
-                    }
-//            signUp(parsedPhoneNumber)
+            if createButton.titleLabel?.text == "SIGN UP" {
+                signUp(parsedPhoneNumber)
+            } else {
+                getOTPCode(parsedPhoneNumber)
+            }
         } catch {
             self.showAlertWithOneOption(title: "Oops!", message: "Your phone number is not available!", optionTitle: "OK")
         }
@@ -148,7 +157,8 @@ class CreateViewController: UIViewController {
 
 extension CreateViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == phoneNumberTextField || textField == nameTextField {
+        if textField == phoneNumberTextField {
+            createButton.setTitle("VERIFY PHONE NUMBER", for: .normal)
             otpTextField.text = nil
             isOTPViewHidden = true
             otpView.isHidden = true

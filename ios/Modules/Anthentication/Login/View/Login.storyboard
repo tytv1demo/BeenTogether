@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PhN-Xf-tmH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PhN-Xf-tmH">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,7 +31,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j0f-t2-vKp" userLabel="phoneNumView">
                                                 <rect key="frame" x="0.0" y="0.0" width="334" height="61.5"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emailIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Zag-26-bAN">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zag-26-bAN">
                                                         <rect key="frame" x="0.0" y="18.5" width="25" height="25"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="25" id="5l4-ND-b4g"/>
@@ -68,7 +68,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VSk-Kc-dj4">
                                                 <rect key="frame" x="0.0" y="62.5" width="334" height="61.5"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emailIcon" translatesAutoresizingMaskIntoConstraints="NO" id="npE-X4-oFS">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="npE-X4-oFS">
                                                         <rect key="frame" x="0.0" y="18.5" width="25" height="25"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="25" id="5ay-vN-cnR"/>
@@ -182,8 +182,10 @@
                         <viewLayoutGuide key="safeArea" id="ffR-o1-jal"/>
                     </view>
                     <connections>
+                        <outlet property="otpImage" destination="npE-X4-oFS" id="3eP-Im-EgP"/>
                         <outlet property="otpTextField" destination="RCu-tc-Xe9" id="0R6-KW-DOJ"/>
                         <outlet property="otpView" destination="VSk-Kc-dj4" id="riS-RD-NWL"/>
+                        <outlet property="phoneNumberImage" destination="Zag-26-bAN" id="2yn-Bu-2Xu"/>
                         <outlet property="phoneNumberTextField" destination="aYy-3J-L5i" id="nKl-om-6iQ"/>
                         <outlet property="signInButton" destination="jkn-dT-B8s" id="4Oj-0A-7R7"/>
                     </connections>
@@ -193,7 +195,4 @@
             <point key="canvasLocation" x="-7.2463768115942031" y="-71.651785714285708"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="emailIcon" width="18" height="18"/>
-    </resources>
 </document>
