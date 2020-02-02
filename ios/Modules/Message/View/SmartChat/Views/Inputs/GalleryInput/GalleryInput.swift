@@ -107,7 +107,7 @@ extension GalleryInput {
     }
     
     func openSetting() {
-        let alertController = UIAlertController(title: "Notification", message: "Go to Setting?", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Oops!", message: "We don't have permission to read your photo! Go to Setting and then allow to access your photo?", preferredStyle: .alert)
         
         let settingsAction = UIAlertAction(title: "Yes", style: .default) { (_) -> Void in
             
@@ -116,22 +116,15 @@ extension GalleryInput {
             }
             
             if UIApplication.shared.canOpenURL(settingsUrl) {
-                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                    print("Settings opened: \(success)") // Prints true
-                })
+                UIApplication.shared.open(settingsUrl, completionHandler: nil)
             }
         }
         alertController.addAction(settingsAction)
         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         alertController.addAction(cancelAction)
-        
-        
-        if var topController = UIApplication.shared.keyWindow?.rootViewController {
-            while let presentedViewController = topController.presentedViewController {
-                topController = presentedViewController
-            }
-            topController.present(alertController, animated: true, completion: nil)
-        }
+ 
+        guard let topController = UIApplication.topViewController() else { return }
+        topController.present(alertController, animated: true, completion: nil)
     }
 }
 

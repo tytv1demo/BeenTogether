@@ -10,13 +10,31 @@ import Foundation
 import MapKit
 import RxSwift
 
+protocol LocationServicesDelegate: AnyObject {
+    func locationServices(didChangeAuthorization locationServices: LocationServices, status: CLAuthorizationStatus)
+}
+
 class LocationServices: NSObject {
     
     static let shared: LocationServices = LocationServices()
     
+    weak var delegate: LocationServicesDelegate?
+    
     var currentLocation: BehaviorSubject<CLLocation?>
     
     var locationManager: CLLocationManager
+    
+    var authorizationStatus: CLAuthorizationStatus {
+        didSet {
+//            if !isAuthorization && isAutomaticUpdateOfLocation {
+//                isAutomaticUpdateOfLocation = false
+//            }
+        }
+    }
+    
+    var isAuthorization: Bool {
+        return authorizationStatus == .authorizedAlways || authorizationStatus == .authorizedWhenInUse
+    }
     
     var userModel: UserModel?
     
@@ -30,6 +48,7 @@ class LocationServices: NSObject {
         currentLocation = BehaviorSubject<CLLocation?>(value: nil)
         locationManager = CLLocationManager()
         isAutomaticUpdateOfLocation = UserDefaults.standard.bool(forKey: "isAutomaticUpdateOfLocation")
+        authorizationStatus = CLLocationManager.authorizationStatus()
         super.init()
         locationManager.delegate = self
     }
@@ -38,7 +57,7 @@ class LocationServices: NSObject {
         self.userModel = userModel
     }
     
-    func requestLocationIfNeeded() -> Bool {
+    func requestAuthorizationIfNeeded() -> Bool {
         let authorizationStatus = CLLocationManager.authorizationStatus()
         let isRequestable = authorizationStatus == .notDetermined
         if isRequestable {
@@ -50,8 +69,9 @@ class LocationServices: NSObject {
     }
     
     func enableLocationAutoUpdate() -> Bool {
-        if requestLocationIfNeeded() {
-            return true
+        if !isAuthorization {
+            openSettingForLocation()
+            return false
         }
         let isLocationServiceEnable = CLLocationManager.locationServicesEnabled()
         if isLocationServiceEnable {
@@ -70,9 +90,6 @@ class LocationServices: NSObject {
     }
     
     func startUpdateLocation() {
-        if requestLocationIfNeeded() {
-            return
-        }
         locationManager.desiredAccuracy = .zero
         locationManager.startUpdatingLocation()
     }
@@ -84,7 +101,7 @@ extension LocationServices: CLLocationManagerDelegate {
             return
         }
         let currentCoor = try? currentLocation.value()?.coordinate
-        if (currentCoor?.latitude == location.coordinate.latitude && currentCoor?.longitude == location.coordinate.longitude) {
+        if currentCoor?.latitude == location.coordinate.latitude && currentCoor?.longitude == location.coordinate.longitude {
             return
         }
         self.currentLocation.onNext(location)
@@ -96,8 +113,7 @@ extension LocationServices: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status != .denied {
-            startUpdateLocation()
-        }
+        authorizationStatus = status
+        delegate?.locationServices(didChangeAuthorization: self, status: status)
     }
 }

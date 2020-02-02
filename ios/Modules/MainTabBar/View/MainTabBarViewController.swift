@@ -68,6 +68,7 @@ class MainTabBarViewController: UITabBarController {
         }.finally {
             AppLoadingIndicator.shared.hide()
         }
+        LocationServices.shared.requestAuthorizationIfNeeded()
     }
     
     func setUp() {

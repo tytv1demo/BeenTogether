@@ -53,9 +53,13 @@
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) wants to take pictures for using in messaging and event sharing.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>$(PRODUCT_NAME) wants to access your location to help your lover tracking your's location every time</string>
+	<string>$(PRODUCT_NAME) wants to access your location to help your lover tracking your&apos;s location every time</string>
+	<key>NSLocationUsageDescription</key>
+	<string>$(PRODUCT_NAME) wants to access your location to help your lover tracking your&apos;s location every time</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>$(PRODUCT_NAME) wants to access your location to help your lover tracking your&apos;s location every time</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>$(PRODUCT_NAME) wants to access your location to help your lover tracking your's location </string>
+	<string>$(PRODUCT_NAME) wants to access your location to help your lover tracking your&apos;s location </string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>$(PRODUCT_NAME) wants to access your library for image messaging and avatar updating</string>
 	<key>UIAppFonts</key>

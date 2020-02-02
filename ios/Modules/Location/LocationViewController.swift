@@ -62,7 +62,11 @@ class LocationViewController: UIViewController, LocationViewControllerType {
         makeConstrainsts()
         subscribeViewModel()
         setupActions()
-        LocationServices.shared.startUpdateLocation()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        startUpdateLocation()
     }
     
     func settupNavigation() {
@@ -127,6 +131,14 @@ class LocationViewController: UIViewController, LocationViewControllerType {
         phoneButton.addTarget(self, action: #selector(onPhoneButtonPress), for: [.touchUpInside])
     }
     
+    func startUpdateLocation() {
+        if LocationServices.shared.isAuthorization {
+            LocationServices.shared.startUpdateLocation()
+            return
+        }
+        openSettingForLocation()
+    }
+
     @objc func onPhoneButtonPress() {
         guard let phoneNumber = viewModel.coupleModel.friendInfo?.phoneNumber else {
             return
@@ -285,5 +297,28 @@ extension LocationViewController: LoverLocationViewerDelegate {
         caculateRoute {
             AppLoadingIndicator.shared.hide()
         }
+    }
+}
+
+func openSettingForLocation() {
+    DispatchQueue.main.async {
+        let alertController = UIAlertController(title: "Oops!", message: "We don't have permission to access your location! Go to Setting and then allow us to access your location?", preferredStyle: .alert)
+        
+        let settingsAction = UIAlertAction(title: "Yes", style: .default) { (_) -> Void in
+            
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: nil)
+            }
+        }
+        alertController.addAction(settingsAction)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alertController.addAction(cancelAction)
+
+        guard let topViewController = UIApplication.topViewController() else { return }
+        topViewController.present(alertController, animated: true, completion: nil)
     }
 }
