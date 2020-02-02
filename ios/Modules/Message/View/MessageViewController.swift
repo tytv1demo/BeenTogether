@@ -51,13 +51,13 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
         
         gpsButton = UIButton(type: .custom)
         gpsButton.setImage(UIImage(named: "gps"), for: [])
-        let gpsTabBarItem = UIBarButtonItem(customView: gpsButton)
+//        let gpsTabBarItem = UIBarButtonItem(customView: gpsButton)
         
         phoneButton = UIButton(type: .custom)
         phoneButton.setImage(UIImage(named: "phone"), for: [])
         let phoneTabBarButton = UIBarButtonItem(customView: phoneButton)
         
-        navigationItem.rightBarButtonItems = [gpsTabBarItem, phoneTabBarButton]
+        navigationItem.rightBarButtonItems = [phoneTabBarButton]
         
         guard let friendConfig = try? viewModel.coupleModel.friendConfig.value() else {
             return

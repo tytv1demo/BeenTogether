@@ -35,7 +35,7 @@ class LoginViewController: UIViewController {
         
         phoneNumberKit = PhoneNumberKit()
         
-        phoneNumberTextField.text = "0365021305"
+        phoneNumberTextField.text = ""
         phoneNumberTextField.delegate = self
         
         loginViewModel = LoginViewModel()

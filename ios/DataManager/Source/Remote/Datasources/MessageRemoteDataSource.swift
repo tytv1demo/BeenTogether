@@ -25,7 +25,7 @@ class BaseMessageRemoteDataSource: MessageRemoteDataSource {
                     do {
                         let filteredResponse = try response.filterSuccessfulStatusCodes()
                         guard let result = try? JSONDecoder().decode(BaseResult<RemoteMessage>.self, from: filteredResponse.data) else {
-                            seal.reject(NSError(domain: "", code: 0, userInfo:nil))
+                            seal.reject(NSError(domain: "", code: 0, userInfo: nil))
                             return
                         }
                         seal.fulfill(result.data)

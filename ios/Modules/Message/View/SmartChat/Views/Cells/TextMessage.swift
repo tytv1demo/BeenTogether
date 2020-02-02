@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxSwift
 
 class TextMessageView: UIView, BaseMessageView {
     
@@ -29,6 +30,8 @@ class TextMessageView: UIView, BaseMessageView {
     var statusIndicator: MessageStatusIndicator!
     
     var tapGestureOnBubble: UITapGestureRecognizer?
+    
+    var disposeBag: DisposeBag = DisposeBag()
     
     required init?(coder: NSCoder) {
         fatalError()
@@ -109,6 +112,10 @@ class TextMessageView: UIView, BaseMessageView {
         
         bubble.setupWithMessage(message, isUserMessage: isUserMessage, roundCorners: bubbleRoundedCorners)
         rowContentStack.semanticContentAttribute = isUserMessage ? .forceLeftToRight : .forceRightToLeft
+        
+        message.status.subscribe(onNext: {[weak self] _ in
+            self?.bubble.messageLabel.text = self?.message.content
+            }).disposed(by: disposeBag)
     }
     
     func configActions() {

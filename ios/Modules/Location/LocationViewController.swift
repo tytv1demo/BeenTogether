@@ -37,6 +37,8 @@ class LocationViewController: UIViewController, LocationViewControllerType {
     
     var phoneButton: UIButton!
     
+    var gpsButton: UIButton!
+    
     var loverNameLabel: UILabel!
     
     var loverAvatar: Avatar!
@@ -67,17 +69,21 @@ class LocationViewController: UIViewController, LocationViewControllerType {
         guard let friendConfig = try? viewModel.coupleModel.friendConfig.value() else { return }
         navigationController?.navigationBar.backgroundColor = .white
         
+        gpsButton = UIButton(type: .custom)
+        gpsButton.setImage(UIImage(named: "gps"), for: [])
+        let gpsTabBarItem = UIBarButtonItem(customView: gpsButton)
+        
         phoneButton = UIButton(type: .custom)
         phoneButton.setImage(UIImage(named: "phone"), for: [])
         let phoneTabBarButton = UIBarButtonItem(customView: phoneButton)
         
-        navigationItem.rightBarButtonItems = [phoneTabBarButton]
+        navigationItem.rightBarButtonItems = [phoneTabBarButton, gpsTabBarItem]
         
         backButton = UIButton(type: .custom)
         backButton.tintColor = Colors.kPink
         let backButtonImage = UIImage.awesomeIcon(name: .arrowLeft, textColor: Colors.kPink)
         backButton.setImage(backButtonImage, for: [])
-        let backTabBarButton = UIBarButtonItem(customView: backButton)
+//        let backTabBarButton = UIBarButtonItem(customView: backButton)
         
         loverAvatar = Avatar(url: friendConfig.avatar)
         let avatarBarItem = UIBarButtonItem(customView: loverAvatar)
@@ -87,7 +93,7 @@ class LocationViewController: UIViewController, LocationViewControllerType {
         let nameLabelTabBarItem = UIBarButtonItem(customView: loverNameLabel)
         loverNameLabel.text = friendConfig.name
         
-        navigationItem.leftBarButtonItems = [backTabBarButton, avatarBarItem, nameLabelTabBarItem]
+        navigationItem.leftBarButtonItems = [avatarBarItem, nameLabelTabBarItem]
     }
     
     func settupViews() {
@@ -116,6 +122,7 @@ class LocationViewController: UIViewController, LocationViewControllerType {
     }
     
     func setupActions() {
+        gpsButton.addTarget(self, action: #selector(onGpsButtonPress), for: [.touchUpInside])
         backButton.addTarget(self, action: #selector(onBackButtonPress), for: [.touchUpInside])
         phoneButton.addTarget(self, action: #selector(onPhoneButtonPress), for: [.touchUpInside])
     }
@@ -141,12 +148,6 @@ class LocationViewController: UIViewController, LocationViewControllerType {
                     self.currentAnotation.coordinate = location.coordinate
                     return
                 }
-                
-                let regionRadius: CLLocationDistance = 1000
-                let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
-                                                          latitudinalMeters: regionRadius,
-                                                          longitudinalMeters: regionRadius)
-                self.mapView.setRegion(coordinateRegion, animated: true)
                 
                 self.currentAnotation = MapViewAnotaion(title: "Your location",
                                                         locationName: "Current location",
@@ -219,7 +220,17 @@ class LocationViewController: UIViewController, LocationViewControllerType {
         }
     }
     
+    @objc func onGpsButtonPress() {
+        guard let location = try? viewModel.currentLocation.value() else { return }
+        let regionRadius: CLLocationDistance = 1000
+        let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
+                                                  latitudinalMeters: regionRadius,
+                                                  longitudinalMeters: regionRadius)
+        mapView.setRegion(coordinateRegion, animated: true)
+    }
+    
     deinit {
+        gpsButton.removeTarget(self, action: #selector(onGpsButtonPress), for: [.touchUpInside])
         backButton?.removeTarget(self, action: #selector(onBackButtonPress), for: [.touchUpInside])
         phoneButton?.removeTarget(self, action: #selector(onPhoneButtonPress), for: [.touchUpInside])
     }

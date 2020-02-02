@@ -41,10 +41,10 @@ end
 
 def networking
   pod 'Moya', '~> 13.0'
-  pod 'Kingfisher', '4.10.0'
+  pod 'Kingfisher', '~> 5.0'
   pod 'Firebase/Analytics'
   pod 'Firebase/Database'
-  pod 'Firebase/Auth'
+  pod 'Firebase/Auth', '~> 6.13.0'
   pod 'Firebase/Messaging'
   pod 'Firebase/Storage'
   pod 'CodableFirebase'
@@ -68,7 +68,7 @@ end
 def ultilities
   pod "PromiseKit", "~> 6.8"
   pod 'RxSwift', '~> 5'
-  pod 'RxCocoa', '~> 5'
+  # pod 'RxCocoa', '~> 5'
   pod 'SwiftMoment'
   pod 'PhoneNumberKit', '~> 3.1' 
 end

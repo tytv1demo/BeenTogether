@@ -10,7 +10,6 @@ import Foundation
 import YogaKit
 import RxSwift
 import PromiseKit
-import RxCocoa
 import UIKit
 
 class MainTabBarUIConfiguration {
@@ -88,6 +87,7 @@ class MainTabBarViewController: UITabBarController {
         
         locationVc = LocationViewController()
         locationVc.viewModel = LocationViewModel(coupleModel: viewModel.coupleModel)
+        let locationNav = UINavigationController(rootViewController: locationVc)
         
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
         homeVC = storyboard.instantiateViewController()
@@ -103,7 +103,7 @@ class MainTabBarViewController: UITabBarController {
         let activeSettingImage = UIImage.awesomeIcon(name: .tools, style: .solid, textColor: Colors.kPink)
         settingVC.tabBarItem = UITabBarItem(title: "Settings", image: settingImage, selectedImage: activeSettingImage)
         
-        viewControllers = [eventVc, locationVc, homeVC, messageNav, settingVC]
+        viewControllers = [eventVc, locationNav, homeVC, messageNav, settingVC]
     }
     
     func settupTabBarUI() {

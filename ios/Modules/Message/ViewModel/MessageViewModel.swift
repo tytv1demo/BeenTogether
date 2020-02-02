@@ -120,7 +120,8 @@ class MessageViewModel: NSObject, MessageViewModelProtocol {
         self.appendMessage(message)
         messageRepository
             .sendText(content: content)
-            .done { (_) in
+            .done { (sendMessage) in
+                message.content = sendMessage.content
                 message.status.onNext(.sent)
         }.catch { (err) in
             print(err)

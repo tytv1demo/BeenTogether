@@ -18,7 +18,7 @@ export const MessageAlertView: React.FC<MessageAlertViewProps> = (props) => {
         return (
             <MemoAvatar
                 containerStyle={{ alignSelf: 'center', position: 'absolute', top: -35, borderWidth: 2, borderColor: '#FFFFFF' }}
-                source={{ uri: 'https://vcdn-ngoisao.vnecdn.net/2019/07/11/tran-kieu-an-5-6648-1562814204.jpg' }}
+                source={{ uri: 'https://miro.medium.com/max/712/1*c3cQvYJrVezv_Az0CoDcbA.jpeg' }}
                 size='large'
                 rounded
             />

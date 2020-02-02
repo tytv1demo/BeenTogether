@@ -48,7 +48,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     private func paintLabel() {
-        createLabel.text = "Share your memories to keep them alive"
+        createLabel.text = "Share your memorable event"
     }
     
     private func addListenerEvent() {
