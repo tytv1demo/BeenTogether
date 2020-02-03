@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,7 +23,7 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2U6-GR-8m1" customClass="AnimatableView" customModule="IBAnimatable">
                                 <rect key="frame" x="20" y="15" width="28" height="28"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test_img8" translatesAutoresizingMaskIntoConstraints="NO" id="6nI-aj-YRz">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CupidLogo" translatesAutoresizingMaskIntoConstraints="NO" id="6nI-aj-YRz">
                                         <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -47,8 +47,8 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tên" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wzi-oz-iK8">
-                                <rect key="frame" x="64" y="15" width="313" height="13.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <rect key="frame" x="64" y="15" width="297" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
@@ -56,8 +56,8 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ngày post" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aLB-xE-wWl">
-                                <rect key="frame" x="64" y="31" width="313" height="12"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <rect key="frame" x="64" y="31" width="297" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
@@ -65,7 +65,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lNt-Yd-prF">
-                                <rect key="frame" x="242" y="-113" width="256" height="256"/>
+                                <rect key="frame" x="365" y="21" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="16" id="ZDg-7P-HTR"/>
                                     <constraint firstAttribute="height" constant="16" id="mfJ-Xu-f1b"/>
@@ -90,7 +90,7 @@
                             <constraint firstItem="lNt-Yd-prF" firstAttribute="leading" secondItem="wzi-oz-iK8" secondAttribute="trailing" constant="4" id="UOR-Hq-NdT"/>
                             <constraint firstItem="wzi-oz-iK8" firstAttribute="leading" secondItem="2U6-GR-8m1" secondAttribute="trailing" constant="16" id="mLX-EQ-HTs"/>
                             <constraint firstAttribute="trailing" secondItem="lNt-Yd-prF" secondAttribute="trailing" constant="12" id="uGw-Fk-oic"/>
-                            <constraint firstAttribute="height" constant="58" id="wYc-uF-IEj"/>
+                            <constraint firstAttribute="height" constant="70" id="wYc-uF-IEj"/>
                             <constraint firstItem="wzi-oz-iK8" firstAttribute="top" secondItem="2U6-GR-8m1" secondAttribute="top" id="xqm-Z9-8co"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -111,7 +111,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZkN-8I-D7z" customClass="FSPageControl" customModule="FSPagerView">
-                        <rect key="frame" x="0.0" y="255" width="393" height="24"/>
+                        <rect key="frame" x="0.0" y="279" width="393" height="12"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="m3i-CU-CdJ"/>
@@ -121,7 +121,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqt-W6-cxp">
-                        <rect key="frame" x="16" y="287" width="361" height="20.5"/>
+                        <rect key="frame" x="16" y="291" width="361" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -167,7 +167,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="CupidLogo" width="88" height="35"/>
         <image name="options" width="512" height="512"/>
-        <image name="test_img8" width="228" height="222"/>
     </resources>
 </document>

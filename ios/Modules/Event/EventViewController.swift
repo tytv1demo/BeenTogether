@@ -24,7 +24,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupBackgroundImage()
         setUpTable()
         paintLabel()
         let createGesture = UITapGestureRecognizer(target: self, action: #selector(createEventAction))
@@ -38,6 +38,13 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         if !didAddListener {
             addListenerEvent()
         }
+    }
+    
+    func setupBackgroundImage() {
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "homeBackground.png")
+        backgroundImage.contentMode = .scaleAspectFill
+        self.view.insertSubview(backgroundImage, at: 0)
     }
     
     private func setUpTable() {
@@ -85,22 +92,6 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let event = dataSource[indexPath.row]
         
-        var images: [UIImage] = [UIImage(named: "default-event")!]
-        
-        if let attachments = event.attachments {
-            images.removeAll()
-            attachments.forEach { att in
-                if let urlString = att.url,
-                    let url = URL(string: urlString),
-                    let data = try? Data(contentsOf: url),
-                    let image = UIImage(data: data) {
-                    images.append(image)
-                }
-            }
-        }
-        
-        cell.dataSource = images
-        cell.pageControl.numberOfPages = images.count <= 1 ? 0 : images.count
         cell.desLabel.text = event.description
         cell.nameLabel.text = event.name
         
@@ -124,7 +115,8 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }))
             self.present(optionAlert, animated: true, completion: nil)
         }
-        
+    
+        cell.dataSource = event.attachments ?? []
         return cell
     }
     

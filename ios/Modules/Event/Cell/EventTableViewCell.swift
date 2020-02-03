@@ -18,11 +18,20 @@ class EventTableViewCell: UITableViewCell, UIScrollViewDelegate, FSPagerViewDele
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var optionsButton: UIButton!
     
-    var dataSource: [UIImage] = [] {
+    var emptyView: UIImageView!
+    
+    var dataSource: [MediaModel] = [] {
         didSet {
-            DispatchQueue.main.async {
-                self.imageCollection.reloadData()
+            if dataSource.isEmpty {
+                let defaultImage = UIImage(named: "default-event")
+                emptyView = UIImageView(image: defaultImage)
+                
+                imageCollection.insertSubview(emptyView, at: 0)
+                emptyView.frame = imageCollection.bounds
             }
+            emptyView?.removeFromSuperview()
+            imageCollection.reloadData()
+            pageControl.numberOfPages = dataSource.count <= 1 ? 0 : dataSource.count
         }
     }
     
@@ -61,7 +70,10 @@ class EventTableViewCell: UITableViewCell, UIScrollViewDelegate, FSPagerViewDele
     
     func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "ImageCell", at: index)
-        cell.imageView?.image = dataSource[index]
+        guard let url = dataSource[index].url, let resource = URL(string: url) else {
+            return cell
+        }
+        cell.imageView?.kf.setImage(with: resource)
         cell.imageView?.contentMode = .scaleAspectFit
         
         return cell
