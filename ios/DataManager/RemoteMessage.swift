@@ -45,3 +45,21 @@ struct BaseResult<T: Decodable>: Decodable {
         message = try? container.decode(String.self, forKey: .message)
     }
 }
+
+struct NetWorkApiError: Error {
+    var data: NetWorkApiErrorData?
+}
+
+struct NetWorkApiErrorData: Decodable {
+    enum BaseErrorResponse: String, CodingKey {
+        case statusCode, message
+    }
+    var statusCode: Int
+    var message: String?
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: BaseErrorResponse.self)
+        statusCode = try container.decode(Int.self, forKey: .statusCode)
+        message = try? container.decode(String.self, forKey: .message)
+    }
+}

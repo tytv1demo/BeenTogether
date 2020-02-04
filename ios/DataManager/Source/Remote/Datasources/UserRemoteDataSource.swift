@@ -33,8 +33,9 @@ class UserRemoteDataSource: UserRemoteDataSourceProtocol {
                             return
                         }
                         seal.fulfill(result.data)
-                    } catch let error {
-                        seal.reject(error)
+                    } catch _ {
+                        let errorResponse = try? JSONDecoder().decode(NetWorkApiErrorData.self, from: response.data)
+                        seal.reject(NetWorkApiError(data: errorResponse))
                     }
                 case let .failure(error):
                     seal.reject(error)
@@ -55,8 +56,9 @@ class UserRemoteDataSource: UserRemoteDataSourceProtocol {
                             return
                         }
                         seal.fulfill(result.data)
-                    } catch let error {
-                        seal.reject(error)
+                    } catch _ {
+                        let errorResponse = try? JSONDecoder().decode(NetWorkApiErrorData.self, from: response.data)
+                        seal.reject(NetWorkApiError(data: errorResponse))
                     }
                 case let .failure(error):
                     seal.reject(error)

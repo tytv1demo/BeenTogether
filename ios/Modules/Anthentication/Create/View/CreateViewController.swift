@@ -127,9 +127,13 @@ class CreateViewController: UIViewController {
                 AppLoadingIndicator.shared.hide()
                 self.goToHomeScreen()
             }
-        }.catch({ (_) in
+        }.catch({ (error) in
+            if let apiError = error as? NetWorkApiError, let data = apiError.data, let message = data.message {
+                self.showAlertWithOneOption(title: "Oops!", message: message, optionTitle: "OK")
+            } else {
+                self.showAlertWithOneOption(title: "Oops!", message: "Unable to sign up!", optionTitle: "OK")
+            }
             AppLoadingIndicator.shared.hide()
-            self.showAlertWithOneOption(title: "Oops!", message: "Unable to sign up!", optionTitle: "OK")
         })
     }
     
