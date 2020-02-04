@@ -15,11 +15,22 @@ protocol UserRepositoryProtocol: AnyObject {
     func signIn(params: SignInParams) -> Promise<SignInResult>
     func signUp(params: SignUpParams) -> Promise<SignInResult>
     func updateDeviceToken(token: String) -> Promise<Bool>
+    func report(phoneNumber: String, reason: String, type: String) -> Promise<Bool>
 }
 
 class UserRepository: UserRepositoryProtocol {
     
     var userRemoteDataSource = UserRemoteDataSource()
+    
+    func report(phoneNumber: String, reason: String, type: String) -> Promise<Bool> {
+        return Promise<Bool> { seal in
+            userRemoteDataSource
+                .report(phoneNumber: phoneNumber, reason: reason, type: type)
+                .done { (result) in
+                    seal.fulfill(result)
+            }.catch(seal.reject(_:))
+        }
+    }
     
     func signIn(params: SignInParams) -> Promise<SignInResult> {
         return Promise<SignInResult> { seal in

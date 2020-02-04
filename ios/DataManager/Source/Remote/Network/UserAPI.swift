@@ -27,6 +27,7 @@ public enum UserAPI {
     case getUserProfile
     case getFriendProfile(friendId: String)
     case updateDeviceToken(token: String)
+    case report(phoneNumber: String, reason: String, type: String)
 }
 
 extension UserAPI: AuthorizedTargetType {
@@ -53,6 +54,8 @@ extension UserAPI: AuthorizedTargetType {
             return "/user/friend-profile"
         case .updateDeviceToken:
             return "/user/device-token"
+        case .report:
+            return "/user/report"
         }
     }
     
@@ -68,6 +71,8 @@ extension UserAPI: AuthorizedTargetType {
             return .get
         case .getFriendProfile:
             return .get
+        case .report:
+            return .post
         }
     }
     
@@ -100,6 +105,12 @@ extension UserAPI: AuthorizedTargetType {
         case .updateDeviceToken(let token):
             var params = [String: Any]()
             params["token"] = token
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+        case .report(let phoneNumber, let reason, let type):
+            var params = [String: Any]()
+            params["phoneNumber"] = phoneNumber
+            params["reason"] = reason
+            params["type"] = type
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
         }
     }

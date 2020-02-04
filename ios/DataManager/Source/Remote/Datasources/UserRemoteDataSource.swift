@@ -17,9 +17,28 @@ protocol UserRemoteDataSourceProtocol: AnyObject {
     func getUserProfile() -> Promise<User>
     func getFriendProfile(friendId: String) -> Promise<User>
     func updateDeviceToken(token: String) -> Promise<Bool>
+    func report(phoneNumber: String, reason: String, type: String) -> Promise<Bool>
 }
 
 class UserRemoteDataSource: UserRemoteDataSourceProtocol {
+    
+    func report(phoneNumber: String, reason: String, type: String) -> Promise<Bool> {
+        return Promise<Bool> { seal in
+            todoProvider.request(MultiTarget(UserAPI.report(phoneNumber: phoneNumber, reason: reason, type: type))) { (result) in
+                switch result {
+                case let .success(response):
+                    do {
+                        _ = try response.filterSuccessfulStatusCodes()
+                        seal.fulfill(true)
+                    } catch let error {
+                        seal.reject(error)
+                    }
+                case let .failure(error):
+                    seal.reject(error)
+                }
+            }
+        }
+    }
     
     func signIn(params: SignInParams) -> Promise<SignInResult> {
         return Promise<SignInResult> { seal in
