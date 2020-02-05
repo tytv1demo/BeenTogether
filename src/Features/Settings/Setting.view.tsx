@@ -258,7 +258,7 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
                 />
                 <ListItem
                     title='Version'
-                    rightTitle='1.0.3'
+                    rightTitle='1.0.4'
                 />
             </>
         )

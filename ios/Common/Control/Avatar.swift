@@ -37,6 +37,8 @@ class Avatar: UIView {
     
     func setupUI() {
         imageView = UIImageView()
+        imageView.layer.borderWidth = 2
+        imageView.layer.borderColor = Colors.kPink.cgColor
         addSubview(imageView)
         
         imageView.snp.makeConstraints { (make) in

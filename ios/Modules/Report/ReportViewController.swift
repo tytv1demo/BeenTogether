@@ -104,12 +104,12 @@ class ReportViewController: UIViewController {
     func setupReportButtons() {
         for item in reportTitleButtons {
             item.backgroundColor = Colors.kLightGray
-            item.layer.cornerRadius = item.bounds.size.height / 2
+            item.layer.cornerRadius = item.bounds.size.height / 3
         }
         
         for item in reportDetailButtons {
             item.backgroundColor = Colors.kLightGray
-            item.layer.cornerRadius = item.bounds.size.height / 2
+            item.layer.cornerRadius = item.bounds.size.height / 3
         }
     }
     
@@ -196,7 +196,7 @@ class ReportViewController: UIViewController {
         let type = isFromMessageVC ? "MESSAGE" : "EVENT"
         
         AppLoadingIndicator.shared.show()
-        _ = userRepository.report(phoneNumber: coupleModel.friendInfo?.phoneNumber ?? "0123456789", reason: reportTitleString, type: type).done { (success) in
+        userRepository.report(phoneNumber: coupleModel.friendInfo?.phoneNumber ?? "0123456789", reason: reportTitleString, type: type).done { (success) in
             AppLoadingIndicator.shared.hide()
             
             if success {
@@ -210,6 +210,9 @@ class ReportViewController: UIViewController {
             } else {
                 self.showAlertWithOneOption(title: "Opps!", message: "Unable to send your feedback! Please, try again later.", optionTitle: "OK")
             }
+        }.catch { (err) in
+            AppLoadingIndicator.shared.hide()
+            self.showAlertWithOneOption(title: "Opps!", message: err.localizedDescription, optionTitle: "OK")
         }
     }
 }
