@@ -112,7 +112,7 @@ class MainTabBarViewController: UITabBarController {
         tabBar.tintColor = Colors.kPink
         
         homeTabButton = UIButton()
-        homeTabImage = UIImageView(image: UIImage(named: "heart"))
+        homeTabImage = UIImageView(image: UIImage.fontAwesomeIcon(name: .heart, style: .solid, textColor: .white, size: CGSize(width: 30, height: 30)))
         homeTabButton.frame = CGRect(x: 0.0, y: 0.0, width: uiConfiguration.centerCircleButtonSize, height: uiConfiguration.centerCircleButtonSize)
         homeTabButton.layer.cornerRadius = uiConfiguration.centerCircleButtonSize * 0.5
         homeTabButton.layer.masksToBounds = true
@@ -122,7 +122,7 @@ class MainTabBarViewController: UITabBarController {
         view.addSubview(homeTabButton)
         homeTabButton.addSubview(homeTabImage)
         let centerPoint = tabBar.center
-        let yPoint = centerPoint.y - (isIphoneX() ? 30 : 10)
+        let yPoint = centerPoint.y - returnValueByDevice()
         homeTabButton.center = CGPoint(x: centerPoint.x, y: yPoint)
         homeTabImage.snp.makeConstraints { (make) in
             make.center.equalTo(homeTabButton)
@@ -237,15 +237,28 @@ extension MainTabBarViewController: MainTabBarViewModelDelegate {
 }
 
 
-func isIphoneX() -> Bool {
+func returnValueByDevice() -> CGFloat {
     let device = UIDevice()
     if device.userInterfaceIdiom == .phone {
         switch UIScreen.main.nativeBounds.height {
-        case 2436, 2688, 1792:
-            return true
+        case 1136:
+            return 15  //.iPhones: 5_5s_5c_SE
+        case 1334:
+            return 15  //.iPhones: 6_6s_7_8
+        case 1792:
+            return 30  //.iPhone: XR_11
+        case 1920, 2208:
+            return 15  //.iPhones: 6Plus_6sPlus_7Plus_8Plus
+        case 2426:
+            return 30  //.iPhone: 11Pro
+        case 2436:
+            return 30  //.iPhones: X_XS
+        case 2688:
+            return 30  //.iPhones: XSMax_11ProMax
         default:
-            return false
+            return 30
         }
     }
-    return false
+    
+    return 30
 }

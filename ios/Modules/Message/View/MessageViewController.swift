@@ -56,15 +56,16 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
 //        let gpsTabBarItem = UIBarButtonItem(customView: gpsButton)
         
         phoneButton = UIButton(type: .custom)
-        phoneButton.setImage(UIImage(named: "phone"), for: [])
+        phoneButton.setImage(UIImage.fontAwesomeIcon(name: .phone, style: .solid, textColor: Colors.kPink, size: CGSize(width: 25, height: 25)), for: .normal)
         let phoneTabBarButton = UIBarButtonItem(customView: phoneButton)
+        phoneTabBarButton.customView?.translatesAutoresizingMaskIntoConstraints = false
+        phoneTabBarButton.customView?.widthAnchor.constraint(equalToConstant: 35).isActive = true
        
         moreButton = UIButton(type: .custom)
-        moreButton.setImage(UIImage(named: "options"), for: .normal)
+        moreButton.setImage(UIImage.fontAwesomeIcon(name: .flag, style: .solid, textColor: Colors.kPink, size: CGSize(width: 25, height: 25)), for: .normal)
         let moreTabBarButton = UIBarButtonItem(customView: moreButton)
         moreTabBarButton.customView?.translatesAutoresizingMaskIntoConstraints = false
-        moreTabBarButton.customView?.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        moreTabBarButton.customView?.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        moreTabBarButton.customView?.widthAnchor.constraint(equalToConstant: 35).isActive = true
         
         navigationItem.rightBarButtonItems = [moreTabBarButton, phoneTabBarButton]
         

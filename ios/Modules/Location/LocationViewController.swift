@@ -76,12 +76,15 @@ class LocationViewController: UIViewController, LocationViewControllerType {
         gpsButton = UIButton(type: .custom)
         gpsButton.setImage(UIImage(named: "gps"), for: [])
         let gpsTabBarItem = UIBarButtonItem(customView: gpsButton)
+        gpsTabBarItem.customView?.translatesAutoresizingMaskIntoConstraints = false
+        gpsTabBarItem.customView?.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        gpsTabBarItem.customView?.heightAnchor.constraint(equalToConstant: 25).isActive = true
         
-        phoneButton = UIButton(type: .custom)
-        phoneButton.setImage(UIImage(named: "phone"), for: [])
-        let phoneTabBarButton = UIBarButtonItem(customView: phoneButton)
+//        phoneButton = UIButton(type: .custom)
+//        phoneButton.setImage(UIImage(named: "phone"), for: [])
+//        let phoneTabBarButton = UIBarButtonItem(customView: phoneButton)
         
-        navigationItem.rightBarButtonItems = [phoneTabBarButton, gpsTabBarItem]
+        navigationItem.rightBarButtonItems = [gpsTabBarItem]
         
         backButton = UIButton(type: .custom)
         backButton.tintColor = Colors.kPink
@@ -128,7 +131,7 @@ class LocationViewController: UIViewController, LocationViewControllerType {
     func setupActions() {
         gpsButton.addTarget(self, action: #selector(onGpsButtonPress), for: [.touchUpInside])
         backButton.addTarget(self, action: #selector(onBackButtonPress), for: [.touchUpInside])
-        phoneButton.addTarget(self, action: #selector(onPhoneButtonPress), for: [.touchUpInside])
+//        phoneButton.addTarget(self, action: #selector(onPhoneButtonPress), for: [.touchUpInside])
     }
     
     func startUpdateLocation() {
@@ -244,7 +247,7 @@ class LocationViewController: UIViewController, LocationViewControllerType {
     deinit {
         gpsButton.removeTarget(self, action: #selector(onGpsButtonPress), for: [.touchUpInside])
         backButton?.removeTarget(self, action: #selector(onBackButtonPress), for: [.touchUpInside])
-        phoneButton?.removeTarget(self, action: #selector(onPhoneButtonPress), for: [.touchUpInside])
+//        phoneButton?.removeTarget(self, action: #selector(onPhoneButtonPress), for: [.touchUpInside])
     }
 }
 
