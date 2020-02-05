@@ -29,7 +29,7 @@ class EventTableViewCell: UITableViewCell, UIScrollViewDelegate, FSPagerViewDele
                 imageCollection.insertSubview(emptyView, at: 0)
                 emptyView.frame = imageCollection.bounds
             }
-            emptyView?.removeFromSuperview()
+//            emptyView?.removeFromSuperview()
             imageCollection.reloadData()
             pageControl.numberOfPages = dataSource.count <= 1 ? 0 : dataSource.count
         }

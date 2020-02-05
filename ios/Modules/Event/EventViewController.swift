@@ -48,7 +48,6 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     private func setUpTable() {
-//        reloadTable()
         eventTable.delegate = self
         eventTable.dataSource = self
         eventTable.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: "EventTableViewCell")
@@ -64,6 +63,17 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             if let event = event {
                 self.didAddListener = true
                 self.dataSource.append(event)
+            }
+            
+            self.dataSource.sort {
+                if let eStart = $0.startDate, let fStart = $1.startDate {
+                    let eDate = Date(fromString: eStart, format: .custom(kEventDateFormat))
+                    let fDate = Date(fromString: fStart, format: .custom(kEventDateFormat))
+                    
+                    return eDate < fDate
+                } else {
+                    return true
+                }
             }
             self.eventTable.reloadData()
         }
@@ -101,7 +111,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             dateString = startDate
         }
         
-        if let endDate = event.endDate {
+        if let endDate = event.endDate, !endDate.isEmpty {
             dateString += " - \(endDate)"
         }
         

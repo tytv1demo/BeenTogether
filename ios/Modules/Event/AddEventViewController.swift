@@ -40,7 +40,6 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
         
         newEvent.attachments = []
         setUpTable()
-        // TO-DO: add creator ava
         newEvent.creator = ""
     }
     
@@ -56,11 +55,19 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - Actions
     
     @IBAction func backButton(_ sender: UIButton) {
-        // TO-DO: Delete uploaded images
         navigationController?.popViewController(animated: true)
     }
     
     @IBAction func postAction(_ sender: UIButton) {
+        guard newEvent.name != nil, newEvent.startDate != nil else {
+            let alert = UIAlertController(title: "Oops!", message: "An event must have at least name and start date. Please provide before post!", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            
+            present(alert, animated: true, completion: nil)
+            return
+        }
+        
         AppLoadingIndicator.shared.show()
         
         if !didFinishUploadingImages, !uploadData.isEmpty {
