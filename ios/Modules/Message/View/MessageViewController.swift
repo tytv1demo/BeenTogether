@@ -51,17 +51,20 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
     func settupNavigation() {
         navigationController?.navigationBar.backgroundColor = .white
         
-        gpsButton = UIButton(type: .custom)
-        gpsButton.setImage(UIImage(named: "gps"), for: [])
+//        gpsButton = UIButton(type: .custom)
+//        gpsButton.setImage(UIImage(named: "gps"), for: [])
 //        let gpsTabBarItem = UIBarButtonItem(customView: gpsButton)
         
         phoneButton = UIButton(type: .custom)
         phoneButton.setImage(UIImage(named: "phone"), for: [])
         let phoneTabBarButton = UIBarButtonItem(customView: phoneButton)
-        
+       
         moreButton = UIButton(type: .custom)
-        moreButton.setImage(UIImage(named: "gps"), for: [])
+        moreButton.setImage(UIImage(named: "options"), for: .normal)
         let moreTabBarButton = UIBarButtonItem(customView: moreButton)
+        moreTabBarButton.customView?.translatesAutoresizingMaskIntoConstraints = false
+        moreTabBarButton.customView?.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        moreTabBarButton.customView?.widthAnchor.constraint(equalToConstant: 24).isActive = true
         
         navigationItem.rightBarButtonItems = [moreTabBarButton, phoneTabBarButton]
         
@@ -99,7 +102,7 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
     }
     
     func setupActions() {
-        gpsButton.addTarget(self, action: #selector(onGpsButtonPress), for: [.touchUpInside])
+//        gpsButton.addTarget(self, action: #selector(onGpsButtonPress), for: [.touchUpInside])
         phoneButton.addTarget(self, action: #selector(onPhoneButtonPress), for: [.touchUpInside])
         moreButton.addTarget(self, action: #selector(handleMoreButtonDidTap), for: [.touchUpInside])
     }
@@ -125,7 +128,6 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
     @objc func handleMoreButtonDidTap() {
         let reportVC = ReportViewController(nibName: "ReportViewController", bundle: nil)
         reportVC.isFromMessageVC = true
-        reportVC.phoneNumber = viewModel.coupleModel.friendInfo?.phoneNumber ?? "0123456789"
         reportVC.modalPresentationStyle = .formSheet
         reportVC.modalTransitionStyle = .coverVertical
         
@@ -133,7 +135,7 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
     }
     
     deinit {
-        gpsButton?.removeTarget(self, action: #selector(onGpsButtonPress), for: [.touchUpInside])
+//        gpsButton?.removeTarget(self, action: #selector(onGpsButtonPress), for: [.touchUpInside])
         phoneButton?.removeTarget(self, action: #selector(onPhoneButtonPress), for: [.touchUpInside])
         moreButton?.removeTarget(self, action: #selector(handleMoreButtonDidTap), for: [.touchUpInside])
     }

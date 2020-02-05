@@ -90,49 +90,49 @@
                             <rect key="frame" x="0.0" y="81" width="414" height="236"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ykr-aF-Dw2">
-                                    <rect key="frame" x="20" y="10" width="115" height="36.5"/>
+                                    <rect key="frame" x="20" y="10" width="115" height="34.5"/>
                                     <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="0.80203874143835618" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="    Harassment    ">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WHw-3r-uL1">
-                                    <rect key="frame" x="150" y="12" width="175" height="32.5"/>
+                                    <rect key="frame" x="150" y="10" width="175" height="34.5"/>
                                     <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="0.80203874143835618" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="    Suicide or Self-Injury    ">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sXL-op-y9k">
-                                    <rect key="frame" x="20" y="58.5" width="215" height="32.5"/>
+                                    <rect key="frame" x="20" y="56.5" width="215" height="35"/>
                                     <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="0.80203874143835618" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="    Pretending to Be Someone    ">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VCr-MS-4I0">
-                                    <rect key="frame" x="20" y="103" width="231" height="32.5"/>
+                                    <rect key="frame" x="20" y="103.5" width="231" height="34.5"/>
                                     <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="0.80203874143835618" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="    Sharing Inappropriate Things    ">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QW9-rN-Mf2">
-                                    <rect key="frame" x="20" y="147.5" width="121" height="32.5"/>
+                                    <rect key="frame" x="20" y="150" width="121" height="35"/>
                                     <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="0.80203874143835618" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="    Hate Speech    ">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r1e-Qx-bpm">
-                                    <rect key="frame" x="156" y="147.5" width="166" height="32"/>
+                                    <rect key="frame" x="156" y="150.5" width="166" height="34"/>
                                     <color key="backgroundColor" red="0.83921568627450982" green="0.83921568627450982" blue="0.83921568627450982" alpha="0.80203874143835618" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="    Unauthorized Sales    ">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZg-2G-lBt">
-                                    <rect key="frame" x="20" y="192" width="72" height="32.5"/>
+                                    <rect key="frame" x="20" y="197" width="72" height="34.5"/>
                                     <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="0.80203874143835618" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="    Other    ">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -141,22 +141,22 @@
                             </subviews>
                             <constraints>
                                 <constraint firstItem="ykr-aF-Dw2" firstAttribute="leading" secondItem="TZB-I4-xKW" secondAttribute="leading" constant="20" symbolic="YES" id="1l0-cp-Cgl"/>
-                                <constraint firstItem="ykr-aF-Dw2" firstAttribute="height" secondItem="TZB-I4-xKW" secondAttribute="height" multiplier="1/6.5" id="6me-dP-OD9"/>
+                                <constraint firstItem="ykr-aF-Dw2" firstAttribute="height" secondItem="TZB-I4-xKW" secondAttribute="height" multiplier="1/6.8" id="6me-dP-OD9"/>
                                 <constraint firstItem="WHw-3r-uL1" firstAttribute="leading" secondItem="ykr-aF-Dw2" secondAttribute="trailing" constant="15" id="7fj-aB-iQC"/>
                                 <constraint firstItem="r1e-Qx-bpm" firstAttribute="height" secondItem="QW9-rN-Mf2" secondAttribute="height" multiplier="0.983607" id="C05-f8-DRL"/>
                                 <constraint firstItem="dZg-2G-lBt" firstAttribute="top" secondItem="QW9-rN-Mf2" secondAttribute="bottom" constant="12" id="DYA-pr-UMp"/>
                                 <constraint firstItem="QW9-rN-Mf2" firstAttribute="top" secondItem="VCr-MS-4I0" secondAttribute="bottom" constant="12" id="HAT-ue-RHJ"/>
                                 <constraint firstItem="r1e-Qx-bpm" firstAttribute="centerY" secondItem="QW9-rN-Mf2" secondAttribute="centerY" id="IGg-68-VL3"/>
-                                <constraint firstItem="sXL-op-y9k" firstAttribute="height" secondItem="ykr-aF-Dw2" secondAttribute="height" multiplier="0.895522" id="IbV-mt-NBf"/>
+                                <constraint firstItem="sXL-op-y9k" firstAttribute="height" secondItem="ykr-aF-Dw2" secondAttribute="height" id="IbV-mt-NBf"/>
                                 <constraint firstItem="ykr-aF-Dw2" firstAttribute="top" secondItem="TZB-I4-xKW" secondAttribute="top" constant="10" id="Ipg-EF-1Qs"/>
                                 <constraint firstItem="WHw-3r-uL1" firstAttribute="centerY" secondItem="ykr-aF-Dw2" secondAttribute="centerY" id="M5j-BT-e25"/>
-                                <constraint firstItem="WHw-3r-uL1" firstAttribute="height" secondItem="ykr-aF-Dw2" secondAttribute="height" multiplier="0.895522" id="Qgn-Hx-1eT"/>
+                                <constraint firstItem="WHw-3r-uL1" firstAttribute="height" secondItem="ykr-aF-Dw2" secondAttribute="height" id="Qgn-Hx-1eT"/>
                                 <constraint firstItem="QW9-rN-Mf2" firstAttribute="leading" secondItem="TZB-I4-xKW" secondAttribute="leading" constant="20" symbolic="YES" id="R91-Xi-Ni4"/>
                                 <constraint firstItem="VCr-MS-4I0" firstAttribute="top" secondItem="sXL-op-y9k" secondAttribute="bottom" constant="12" id="Vng-Gg-88C"/>
-                                <constraint firstItem="dZg-2G-lBt" firstAttribute="height" secondItem="ykr-aF-Dw2" secondAttribute="height" multiplier="0.895522" id="Vsp-3m-6YY"/>
+                                <constraint firstItem="dZg-2G-lBt" firstAttribute="height" secondItem="ykr-aF-Dw2" secondAttribute="height" id="Vsp-3m-6YY"/>
                                 <constraint firstItem="sXL-op-y9k" firstAttribute="top" secondItem="ykr-aF-Dw2" secondAttribute="bottom" constant="12" id="Wo6-Hp-biC"/>
                                 <constraint firstItem="VCr-MS-4I0" firstAttribute="leading" secondItem="TZB-I4-xKW" secondAttribute="leading" constant="20" symbolic="YES" id="a3M-nZ-EE5"/>
-                                <constraint firstItem="VCr-MS-4I0" firstAttribute="height" secondItem="ykr-aF-Dw2" secondAttribute="height" multiplier="0.895522" id="bFd-Sv-bic"/>
+                                <constraint firstItem="VCr-MS-4I0" firstAttribute="height" secondItem="ykr-aF-Dw2" secondAttribute="height" id="bFd-Sv-bic"/>
                                 <constraint firstItem="QW9-rN-Mf2" firstAttribute="height" secondItem="VCr-MS-4I0" secondAttribute="height" id="bGi-5w-S2L"/>
                                 <constraint firstItem="sXL-op-y9k" firstAttribute="leading" secondItem="TZB-I4-xKW" secondAttribute="leading" constant="20" symbolic="YES" id="dht-GF-xtf"/>
                                 <constraint firstItem="r1e-Qx-bpm" firstAttribute="leading" secondItem="QW9-rN-Mf2" secondAttribute="trailing" constant="15" id="pzq-1B-ery"/>
@@ -180,64 +180,64 @@
                     <rect key="frame" x="0.0" y="437.5" width="414" height="286.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QrD-ss-rai">
-                            <rect key="frame" x="20" y="10" width="374" height="21.5"/>
+                            <rect key="frame" x="20" y="15" width="374" height="21.5"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVT-Up-PEQ">
-                            <rect key="frame" x="20" y="51.5" width="115" height="30.5"/>
+                            <rect key="frame" x="20" y="56.5" width="122" height="35"/>
                             <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="0.80203874139999998" colorSpace="custom" customColorSpace="sRGB"/>
-                            <state key="normal" title="    Harassment    ">
+                            <state key="normal" title="    Harassment 1   ">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YkL-60-bCT">
-                            <rect key="frame" x="175" y="52" width="115" height="29.5"/>
+                            <rect key="frame" x="182" y="56.5" width="124" height="35"/>
                             <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="0.80203874139999998" colorSpace="custom" customColorSpace="sRGB"/>
-                            <state key="normal" title="    Harassment    ">
+                            <state key="normal" title="    Harassment 2   ">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IZn-S6-g70" userLabel="Harassment">
-                            <rect key="frame" x="20" y="97" width="115" height="30"/>
+                            <rect key="frame" x="20" y="106.5" width="124" height="34.5"/>
                             <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="0.80203874139999998" colorSpace="custom" customColorSpace="sRGB"/>
-                            <state key="normal" title="    Harassment    ">
+                            <state key="normal" title="    Harassment 3   ">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BWr-2L-sBy" userLabel="Harassment">
-                            <rect key="frame" x="175" y="97" width="115" height="30"/>
+                            <rect key="frame" x="184" y="106.5" width="124" height="34.5"/>
                             <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="0.80203874139999998" colorSpace="custom" customColorSpace="sRGB"/>
-                            <state key="normal" title="    Harassment    ">
+                            <state key="normal" title="    Harassment 4   ">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FKu-lu-ZtX" userLabel="Harassment">
-                            <rect key="frame" x="20" y="142" width="115" height="29"/>
+                            <rect key="frame" x="20" y="156" width="124" height="35"/>
                             <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="0.80203874139999998" colorSpace="custom" customColorSpace="sRGB"/>
-                            <state key="normal" title="    Harassment    ">
+                            <state key="normal" title="    Harassment 5   ">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                         </button>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="IZn-S6-g70" firstAttribute="height" secondItem="YkL-60-bCT" secondAttribute="height" multiplier="1.01695" id="0Hy-Y6-YXK"/>
+                        <constraint firstItem="IZn-S6-g70" firstAttribute="height" secondItem="YkL-60-bCT" secondAttribute="height" id="0Hy-Y6-YXK"/>
                         <constraint firstItem="YkL-60-bCT" firstAttribute="leading" secondItem="fVT-Up-PEQ" secondAttribute="trailing" constant="40" id="2dV-f6-h0N"/>
                         <constraint firstItem="FKu-lu-ZtX" firstAttribute="leading" secondItem="tPj-Z7-lxk" secondAttribute="leading" constant="20" id="4r6-8g-Ut8"/>
                         <constraint firstItem="FKu-lu-ZtX" firstAttribute="top" secondItem="IZn-S6-g70" secondAttribute="bottom" constant="15" id="9IM-Ds-Isg"/>
                         <constraint firstAttribute="trailing" secondItem="QrD-ss-rai" secondAttribute="trailing" constant="20" id="BGR-NM-1JH"/>
-                        <constraint firstItem="YkL-60-bCT" firstAttribute="height" secondItem="fVT-Up-PEQ" secondAttribute="height" multiplier="0.983607" id="F4B-An-ybo"/>
+                        <constraint firstItem="BWr-2L-sBy" firstAttribute="height" secondItem="fVT-Up-PEQ" secondAttribute="height" id="E19-rU-NDY"/>
+                        <constraint firstItem="YkL-60-bCT" firstAttribute="height" secondItem="fVT-Up-PEQ" secondAttribute="height" id="F4B-An-ybo"/>
                         <constraint firstItem="QrD-ss-rai" firstAttribute="leading" secondItem="tPj-Z7-lxk" secondAttribute="leading" constant="20" id="FeG-GV-EqN"/>
                         <constraint firstItem="BWr-2L-sBy" firstAttribute="centerY" secondItem="IZn-S6-g70" secondAttribute="centerY" id="NxB-4R-sNO"/>
                         <constraint firstItem="BWr-2L-sBy" firstAttribute="leading" secondItem="IZn-S6-g70" secondAttribute="trailing" constant="40" id="OGS-Qp-Ijo"/>
-                        <constraint firstItem="FKu-lu-ZtX" firstAttribute="height" secondItem="fVT-Up-PEQ" secondAttribute="height" multiplier="0.95082" id="Q6q-S4-gkR"/>
-                        <constraint firstItem="BWr-2L-sBy" firstAttribute="height" secondItem="fVT-Up-PEQ" secondAttribute="height" multiplier="0.983607" id="VLU-9b-Oj8"/>
+                        <constraint firstItem="FKu-lu-ZtX" firstAttribute="height" secondItem="fVT-Up-PEQ" secondAttribute="height" id="Q6q-S4-gkR"/>
                         <constraint firstItem="fVT-Up-PEQ" firstAttribute="leading" secondItem="tPj-Z7-lxk" secondAttribute="leading" constant="20" id="c2o-iO-Zen"/>
                         <constraint firstItem="YkL-60-bCT" firstAttribute="centerY" secondItem="fVT-Up-PEQ" secondAttribute="centerY" id="eIX-I0-9bb"/>
                         <constraint firstItem="IZn-S6-g70" firstAttribute="top" secondItem="fVT-Up-PEQ" secondAttribute="bottom" constant="15" id="eod-FR-24m"/>
                         <constraint firstItem="fVT-Up-PEQ" firstAttribute="top" secondItem="QrD-ss-rai" secondAttribute="bottom" constant="20" id="hEf-Ld-a64"/>
-                        <constraint firstItem="QrD-ss-rai" firstAttribute="top" secondItem="tPj-Z7-lxk" secondAttribute="top" constant="10" id="p7O-6F-qCl"/>
+                        <constraint firstItem="QrD-ss-rai" firstAttribute="top" secondItem="tPj-Z7-lxk" secondAttribute="top" constant="15" id="p7O-6F-qCl"/>
                         <constraint firstItem="IZn-S6-g70" firstAttribute="leading" secondItem="tPj-Z7-lxk" secondAttribute="leading" constant="20" id="x3f-pl-nIo"/>
                     </constraints>
                 </view>
@@ -272,7 +272,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="0bu-3I-lJs" secondAttribute="trailing" id="3nJ-hE-YGi"/>
                 <constraint firstItem="pah-t5-VhK" firstAttribute="top" secondItem="n2C-Aq-aYe" secondAttribute="bottom" id="70m-ck-mIp"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="n2C-Aq-aYe" secondAttribute="trailing" id="9lA-zd-WqV"/>
-                <constraint firstItem="fVT-Up-PEQ" firstAttribute="height" secondItem="ykr-aF-Dw2" secondAttribute="height" multiplier="0.833333" id="A0w-WY-jg6"/>
+                <constraint firstItem="fVT-Up-PEQ" firstAttribute="height" secondItem="ykr-aF-Dw2" secondAttribute="height" id="A0w-WY-jg6"/>
                 <constraint firstItem="0bu-3I-lJs" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Jhf-4c-gkd"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="tPj-Z7-lxk" secondAttribute="trailing" id="Nwd-lr-ec0"/>
                 <constraint firstItem="tPj-Z7-lxk" firstAttribute="height" secondItem="fnl-2z-Ty3" secondAttribute="height" multiplier="3.5/10" id="QU3-bJ-jdy"/>
