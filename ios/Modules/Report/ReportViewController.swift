@@ -33,22 +33,23 @@ class ReportViewController: UIViewController {
     
     var reportTitleString = ""
     var isFromMessageVC: Bool!
-    var phoneNumber = ""
     var userRepository: UserRepository!
+    var coupleModel: CoupleModel!
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        userRepository = UserRepository()
+        coupleModel = CoupleModel(userInfo: AppUserData.shared.userInfo)
+        
         setupMainView()
     }
     
     // MARK: - Functions
     
     func setupMainView() {
-        userRepository = UserRepository()
-        
         setupSendButton()
         setupReportButtons()
         addTargetForButton()
@@ -195,7 +196,7 @@ class ReportViewController: UIViewController {
         let type = isFromMessageVC ? "MESSAGE" : "EVENT"
         
         AppLoadingIndicator.shared.show()
-        _ = userRepository.report(phoneNumber: phoneNumber, reason: reportTitleString, type: type).done { (success) in
+        _ = userRepository.report(phoneNumber: coupleModel.friendInfo?.phoneNumber ?? "0123456789", reason: reportTitleString, type: type).done { (success) in
             AppLoadingIndicator.shared.hide()
             
             if success {

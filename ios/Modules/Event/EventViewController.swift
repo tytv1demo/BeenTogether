@@ -110,8 +110,13 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.optionCallback = {
             let optionAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             optionAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            optionAlert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { _ in
+            
+            optionAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
                 self.showDeleteAlert(event: event)
+            }))
+            
+            optionAlert.addAction(UIAlertAction(title: "Report", style: .default, handler: { _ in
+                self.showReportVC()
             }))
             self.present(optionAlert, animated: true, completion: nil)
         }
@@ -148,5 +153,14 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         deleteAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         
         present(deleteAlert, animated: true, completion: nil)
+    }
+    
+    private func showReportVC() {
+        let reportVC = ReportViewController(nibName: "ReportViewController", bundle: nil)
+        reportVC.isFromMessageVC = false
+        reportVC.modalPresentationStyle = .formSheet
+        reportVC.modalTransitionStyle = .coverVertical
+        
+        present(reportVC, animated: true, completion: nil)
     }
 }
