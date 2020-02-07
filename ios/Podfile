@@ -53,7 +53,7 @@ end
 def ui
   pod 'SwiftyGif'
   pod 'SwiftMessages'
-  pod "SkeletonView"
+  pod "SkeletonView", '1.8.1'
   pod 'NVActivityIndicatorView'
   pod 'IBAnimatable'
   pod 'FontAwesome.swift'

@@ -359,7 +359,7 @@ PODS:
   - RNVectorIcons (6.6.0):
     - React
   - RxSwift (5.0.1)
-  - SkeletonView (1.8.3)
+  - SkeletonView (1.8.1)
   - SnapKit (4.2.0)
   - SwiftMessages (7.0.1):
     - SwiftMessages/App (= 7.0.1)
@@ -416,7 +416,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - RxSwift (~> 5)
-  - SkeletonView
+  - SkeletonView (= 1.8.1)
   - SnapKit (~> 4.0)
   - SwiftMessages
   - SwiftMoment
@@ -581,7 +581,7 @@ SPEC CHECKSUMS:
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
-  SkeletonView: ce0c2a2e8154c57b32f5b31b65f4cb92ca119861
+  SkeletonView: 9e4db6c1478bce9da695109dd0972bff7b6efe65
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftMessages: b577dc7043be8b299857ab35bb663dbff6483bd0
   SwiftMoment: dc6dd27012e267819104cbb03f74ff9192dd0b42
@@ -589,6 +589,6 @@ SPEC CHECKSUMS:
   Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: dc5ad0be1afd2fe589a3a7d11fc8e5cc40ded817
+PODFILE CHECKSUM: 1a5acc5c9164c3520b6fe1f98c9f11fdaf8ef321
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.8.3

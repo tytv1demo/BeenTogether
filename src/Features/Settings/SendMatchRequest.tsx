@@ -39,7 +39,7 @@ export const SendMatchRequestPopup: React.FC<SendMatchRequestPopupProps> = (prop
                 duration={250}
                 useNativeDriver
             >
-                <Text style={{ alignSelf: 'center' }} h4> Gửi lời mời</Text>
+                <Text style={{ alignSelf: 'center' }} h4>Send Request</Text>
                 <Spacer height={8} />
                 <Input
                     value={phone}

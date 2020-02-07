@@ -87,7 +87,7 @@ extension GalleryInput {
     func fetchPhotos() {
         DispatchQueue.global(qos: .background).async {
             let fetchOptions: PHFetchOptions = PHFetchOptions()
-            fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+            fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
             let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
             
             var assets: [GalleryAsset] = []
