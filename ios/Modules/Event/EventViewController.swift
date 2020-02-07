@@ -70,7 +70,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     let eDate = Date(fromString: eStart, format: .custom(kEventDateFormat))
                     let fDate = Date(fromString: fStart, format: .custom(kEventDateFormat))
                     
-                    return eDate < fDate
+                    return eDate > fDate
                 } else {
                     return true
                 }

@@ -207,7 +207,7 @@ class HomeViewController: UIViewController {
         let imagePickerVC = UIImagePickerController()
         imagePickerVC.delegate = self
         
-        let actionSheet = UIAlertController(title: "Photo source", message: "Choose a source", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "Photo source", message: "Choose a source to change this avatar", preferredStyle: .actionSheet)
         
         actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
             AppLoadingIndicator.shared.show()
@@ -222,7 +222,7 @@ class HomeViewController: UIViewController {
             }
         }))
         
-        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { _ in
+        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .cancel, handler: { _ in
             AppLoadingIndicator.shared.show()
             imagePickerVC.sourceType = .photoLibrary
             imagePickerVC.allowsEditing = true
