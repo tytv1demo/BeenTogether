@@ -57,11 +57,27 @@ class LocationViewController: UIViewController, LocationViewControllerType {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         settupNavigation()
         settupViews()
         makeConstrainsts()
         subscribeViewModel()
         setupActions()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if viewModel.coupleModel.friendId == "local" {
+            let actionSheet = UIAlertController(title: "Opps!", message: "Sorry, we could not find your lover.", preferredStyle: .alert)
+            actionSheet.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                self.tabBarController?.selectedIndex = 2
+            }))
+                   
+            self.present(actionSheet, animated: true, completion: nil)
+        } else {
+            loverLocationViewer.isHidden = false
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -125,7 +141,11 @@ class LocationViewController: UIViewController, LocationViewControllerType {
             make.height.equalTo(175)
         }
         
-        view.bringSubviewToFront(loverLocationViewer)
+        if viewModel.coupleModel.friendId != "local" {
+            view.bringSubviewToFront(loverLocationViewer)
+        } else {
+            loverLocationViewer.isHidden = true
+        }
     }
     
     func setupActions() {

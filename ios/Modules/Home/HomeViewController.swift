@@ -156,10 +156,11 @@ class HomeViewController: UIViewController {
     func setupRightAvatar(url: String) {
         if url != "" {
             rightAvatar.setImage(url: url)
-            addTapGestureForView(rightAvatar.imageView)
         } else {
             rightAvatar.setLocalImage(named: "default-avatar")
         }
+
+        addTapGestureForView(rightAvatar.imageView)
     }
     
     func addTapGestureForView(_ view: UIView) {
@@ -207,7 +208,7 @@ class HomeViewController: UIViewController {
         let imagePickerVC = UIImagePickerController()
         imagePickerVC.delegate = self
         
-        let actionSheet = UIAlertController(title: "Photo source", message: "Choose a source to change this avatar", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "Photo source", message: "Choose a source to change this avatar.", preferredStyle: .actionSheet)
         
         actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
             AppLoadingIndicator.shared.show()
@@ -222,7 +223,7 @@ class HomeViewController: UIViewController {
             }
         }))
         
-        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .cancel, handler: { _ in
+        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { _ in
             AppLoadingIndicator.shared.show()
             imagePickerVC.sourceType = .photoLibrary
             imagePickerVC.allowsEditing = true
@@ -230,7 +231,7 @@ class HomeViewController: UIViewController {
             self.present(imagePickerVC, animated: true, completion: nil)
         }))
         
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         selectedImageView = imageView
         
         self.present(actionSheet, animated: true, completion: nil)
@@ -268,7 +269,9 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
 //            selectedImageView!.image = image
             let userId = selectedImageView == leftAvatar.imageView ? self.userInfo!.id : homeViewModel.coupleModel.friendInfo!.id
+            
             let phoneNumber = selectedImageView == leftAvatar.imageView ? self.userInfo!.phoneNumber : homeViewModel.coupleModel.friendInfo!.phoneNumber
+            
             AppLoadingIndicator.shared.show()
             UploadAPI.shared.uploadAvatar(imageData: image.jpegData(compressionQuality: 0.25)!, for: String(userId)) { (string) in
                 _ = self.homeViewModel.coupleModel.refPersonAvatar(avatarURL: string, person: phoneNumber).done { (success) in
