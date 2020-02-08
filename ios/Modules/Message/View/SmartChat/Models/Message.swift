@@ -22,7 +22,11 @@ enum SCMessageDataLoadingStaus {
     case initial, loading, done, failed
 }
 
-class SCMessage: SCMessageType {
+class SCMessage: SCMessageType, Equatable {
+    static func == (lhs: SCMessage, rhs: SCMessage) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     var id: Int
     var author: SCUser
     var createdAt: String
@@ -72,6 +76,7 @@ class SCMessage: SCMessageType {
         KingfisherManager.shared.retrieveImage(with: url, options: nil, progressBlock: nil) { [weak self] (image, _, _, _) in
             self?.image = image
             self?.dataLoadingStatus.onNext(.done)
+            self?.dataLoadingStatus.onCompleted()
         }
     }
 }

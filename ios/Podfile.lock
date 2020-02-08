@@ -123,6 +123,7 @@ PODS:
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.3.1)
   - IBAnimatable (6.0.0)
+  - ImageViewer (6.0.0)
   - KeychainAccess (4.1.0)
   - Kingfisher (5.13.0):
     - Kingfisher/Core (= 5.13.0)
@@ -386,6 +387,7 @@ DEPENDENCIES:
   - FSPagerView
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - IBAnimatable
+  - ImageViewer
   - KeychainAccess
   - Kingfisher (~> 5.0)
   - Moya (~> 13.0)
@@ -449,6 +451,7 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMSessionFetcher
     - IBAnimatable
+    - ImageViewer
     - KeychainAccess
     - Kingfisher
     - leveldb-library
@@ -550,6 +553,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: 06eb53bb579efe7099152735900dd04bf09e7275
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
   IBAnimatable: d49f9fee0c401b5b08d31b77256b77fb067e0e92
+  ImageViewer: cb88ef1c0ba19161bc10702adfdcebc116a7a59d
   KeychainAccess: 445e28864fe6d3458b41fa211bcdc39890e8bd5a
   Kingfisher: 0d334cada987fcddbe9b5cec516406e1ee9d4748
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
@@ -589,6 +593,6 @@ SPEC CHECKSUMS:
   Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 1a5acc5c9164c3520b6fe1f98c9f11fdaf8ef321
+PODFILE CHECKSUM: 0881ddeb3c58e73b9652c1054a59ccfe10075e9f
 
 COCOAPODS: 1.8.3

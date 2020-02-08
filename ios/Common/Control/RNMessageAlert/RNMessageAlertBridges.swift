@@ -52,7 +52,18 @@ class RNMessageAlertBridges: NSObject, RCTBridgeModule, MFMailComposeViewControl
             }
         }
     }
+    
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
+    }
+    
+    @objc func reloadApp() {
+        DispatchQueue.main.async {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                return
+            }
+            appDelegate.window?.rootViewController = SplashViewController()
+            appDelegate.window?.makeKeyAndVisible()
+        }
     }
 }

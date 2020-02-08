@@ -12,7 +12,7 @@ import { ApiManager, CoupleService } from '@dataManager';
 import { PulseCircles } from './PulseCircles';
 import { PulseIndicator } from 'react-native-indicators';
 import { SendMatchRequestPopup } from './SendMatchRequest';
-import { contactUs } from '../MessageAlert/MessageAlertBridge';
+import { contactUs, reloadApp } from '../MessageAlert/MessageAlertBridge';
 
 export class SettingScreen extends React.PureComponent<any, SettingScreenState> {
 
@@ -96,9 +96,10 @@ export class SettingScreen extends React.PureComponent<any, SettingScreenState> 
         const doBreakUp = async () => {
             this.setState({ isRequestBreakingUp: true })
             await this.coupleService.breakUp()
-            await this.state.userModel?.syncUserInfo()
+            // await this.state.userModel?.syncUserInfo()
             showFlashMessage('Yeah!', 'Breakup successfully!', 'success')
-            this.setState({ isRequestBreakingUp: false })
+            // this.setState({ isRequestBreakingUp: false })
+            reloadApp()
         }
         const { coupleModel } = this.state
         Alert.alert('Warning', `Are you sure to break up ${coupleModel?.lover.name}`, [

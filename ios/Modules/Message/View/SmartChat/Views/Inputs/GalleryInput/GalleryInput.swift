@@ -22,6 +22,8 @@ class GalleryInput: UIView {
     
     weak var selectedCell: GalleryImageCell?
     
+    var galleryButton: UIButton!
+    
     var assets: [GalleryAsset] = [] {
         didSet {
             DispatchQueue.main.async {
@@ -62,9 +64,28 @@ class GalleryInput: UIView {
         
         addSubview(collectionView)
         
+        galleryButton = UIButton()
+        galleryButton.layer.masksToBounds = true
+        galleryButton.layer.cornerRadius = 28
+        galleryButton.backgroundColor = UIColor.darkGray.withAlphaComponent(0.4)
+        galleryButton.setImage(UIImage.awesomeIcon(name: .fileImage, textColor: .white), for: [])
+        
+        galleryButton.addTarget(self, action: #selector(openGallery), for: [.touchUpInside])
+        
+        addSubview(galleryButton)
+        
         collectionView.snp.makeConstraints { (make) in
             make.edges.equalTo(self)
         }
+        galleryButton.snp.makeConstraints { (make) in
+            make.size.equalTo(56)
+            make.leading.equalToSuperview().inset(8)
+            make.bottom.equalToSuperview().inset(8)
+        }
+    }
+    
+    deinit {
+        galleryButton.removeTarget(self, action: #selector(openGallery), for: [.touchUpInside])
     }
 }
 
@@ -126,6 +147,15 @@ extension GalleryInput {
         guard let topController = UIApplication.topViewController() else { return }
         topController.present(alertController, animated: true, completion: nil)
     }
+    
+    @objc func openGallery() {
+        guard let topViewcontroller = UIApplication.topViewController() else { return }
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.delegate = self
+        topViewcontroller.present(imagePickerController, animated: true, completion: nil)
+    }
+
 }
 
 extension GalleryInput: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -161,6 +191,20 @@ extension GalleryInput: UICollectionViewDataSource, UICollectionViewDelegate, UI
         selectedCell = cell
     }
     
+}
+
+extension GalleryInput: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        guard let imageData = (info[UIImagePickerController.InfoKey.originalImage] as? UIImage)?.jpegData(compressionQuality: 0.5) else {
+            return
+        }
+        delegate?.galleryInput(onSendImage: imageData)
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension GalleryInput: GalleryImageCellDelegate {

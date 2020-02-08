@@ -43,12 +43,7 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
         subscribeViewModel()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-    }
-    
-    func settupNavigation() {
+    func settupNavigation(completion: (() -> Void)? = nil) {
         navigationController?.navigationBar.backgroundColor = .white
         
 //        gpsButton = UIButton(type: .custom)
@@ -110,8 +105,8 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
     
     func subscribeViewModel() {
         viewModel.viewData.subscribe(onNext: { [weak self] (data) in
-            self?.loverNameLabel.text = data.loverName
-            self?.loverAvatar.setImage(url: data.loverAvatar)
+            self?.loverNameLabel?.text = data.loverName
+            self?.loverAvatar?.setImage(url: data.loverAvatar)
         }).disposed(by: disposeBag)
     }
     

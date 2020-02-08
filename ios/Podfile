@@ -52,6 +52,7 @@ end
 
 def ui
   pod 'SwiftyGif'
+  pod 'ImageViewer'
   pod 'SwiftMessages'
   pod "SkeletonView", '1.8.1'
   pod 'NVActivityIndicatorView'

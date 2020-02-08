@@ -70,7 +70,7 @@ class LocationViewController: UIViewController, LocationViewControllerType {
     }
     
     func settupNavigation() {
-        guard let friendConfig = try? viewModel.coupleModel.friendConfig.value() else { return }
+
         navigationController?.navigationBar.backgroundColor = .white
         
         gpsButton = UIButton(type: .custom)
@@ -90,8 +90,8 @@ class LocationViewController: UIViewController, LocationViewControllerType {
         backButton.tintColor = Colors.kPink
         let backButtonImage = UIImage.awesomeIcon(name: .arrowLeft, textColor: Colors.kPink)
         backButton.setImage(backButtonImage, for: [])
-//        let backTabBarButton = UIBarButtonItem(customView: backButton)
-        
+
+        guard let friendConfig = try? viewModel.coupleModel.friendConfig.value() else { return }
         loverAvatar = Avatar(url: friendConfig.avatar)
         let avatarBarItem = UIBarButtonItem(customView: loverAvatar)
         
@@ -276,9 +276,10 @@ extension LocationViewController: MKMapViewDelegate {
                 let userConfig = try? viewModel.coupleModel.userConfig.value() else { return annotationView }
             let avatar = isLoverAnotation ? friendConfig.avatar : userConfig.avatar
             let resource = URL(string: avatar) ?? Avatar.kDefaultAvatar
-            let resizingProcessor = ResizingImageProcessor(referenceSize: CGSize(width: 36, height: 36)) >> RoundCornerImageProcessor(cornerRadius: 18)
-            UIImageView().kf.setImage(with: resource, options: [.processor(resizingProcessor)]) { (image, _, _, _) in
-                annotationView.image = image
+            let resizingProcessor = ResizingImageProcessor(referenceSize: CGSize(width: 36, height: 36)) |> RoundCornerImageProcessor(cornerRadius: 18)
+            KingfisherManager.shared.retrieveImage(with: resource!, options: [.processor(resizingProcessor)]) { (res) in
+                guard let image = try? res.get() else { return }
+                annotationView.image = image.image
             }
         }
         return annotationView
@@ -324,4 +325,30 @@ func openSettingForLocation() {
         guard let topViewController = UIApplication.topViewController() else { return }
         topViewController.present(alertController, animated: true, completion: nil)
     }
+}
+
+func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
+    let size = image.size
+
+    let widthRatio  = targetSize.width  / size.width
+    let heightRatio = targetSize.height / size.height
+
+    // Figure out what our orientation is, and use that to form the rectangle
+    var newSize: CGSize
+    if widthRatio > heightRatio {
+        newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+    } else {
+        newSize = CGSize(width: size.width * widthRatio, height: size.height * widthRatio)
+    }
+
+    // This is the rect that we've calculated out and this is what is actually used below
+    let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+
+    // Actually do the resizing to the rect using the ImageContext stuff
+    UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+    image.draw(in: rect)
+    let newImage = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+
+    return newImage!
 }

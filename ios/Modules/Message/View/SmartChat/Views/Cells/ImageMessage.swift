@@ -10,6 +10,7 @@ import Foundation
 import Firebase
 import RxSwift
 import SkeletonView
+import ImageViewer
 
 class ImageMessageView: UIView, BaseMessageView {
     
@@ -33,9 +34,17 @@ class ImageMessageView: UIView, BaseMessageView {
     
     var tapGestureOnBubble: UITapGestureRecognizer?
     
+    var tapGestureOnImage: UITapGestureRecognizer?
+    
     var dataLoadingStatusObservation: Disposable?
     
     var isConfigedImage: Bool = false
+    
+    var disposeBag = DisposeBag()
+    
+    var messageImages: [SCMessage] {
+        return messages.filter { $0.type == .image }
+    }
     
     required init?(coder: NSCoder) {
         fatalError()
@@ -134,10 +143,21 @@ class ImageMessageView: UIView, BaseMessageView {
     func configActions() {
         tapGestureOnBubble = UITapGestureRecognizer(target: self, action: #selector(didTap))
         self.addGestureRecognizer(tapGestureOnBubble!)
+        
+        tapGestureOnImage = UITapGestureRecognizer(target: self, action: #selector(tapOnImage))
+        image.addGestureRecognizer(tapGestureOnImage!)
+        image.isUserInteractionEnabled = true
     }
     
     @objc func didTap(_ sender: UIView?) {
         delegate?.messageView(didTap: self, onView: sender)
+    }
+    
+    @objc func tapOnImage() {
+        guard let topViewController = UIApplication.topViewController() else { return }
+        let currentIndex = messageImages.firstIndex { $0 == message! } ?? 0
+        let galleryView = GalleryViewController(startIndex: currentIndex, itemsDataSource: self, configuration: [.deleteButtonMode(.none)])
+        topViewController.presentImageGallery(galleryView)
     }
     
     func prepareForReuse() {
@@ -148,5 +168,32 @@ class ImageMessageView: UIView, BaseMessageView {
     
     deinit {
         dataLoadingStatusObservation?.dispose()
+    }
+}
+
+extension ImageMessageView: GalleryItemsDataSource {
+    func itemCount() -> Int {
+        return messageImages.count
+    }
+
+    func provideGalleryItem(_ index: Int) -> GalleryItem {
+        let message = messageImages[index]
+        return .image { completion in
+            let resolve = { (status: SCMessageDataLoadingStaus) -> Bool in
+                if status == .done || message.image != nil {
+                    completion(message.image)
+                    return true
+                }
+                return false
+            }
+            
+            guard let status = try? message.dataLoadingStatus.value() else { return }
+            
+            if resolve(status) { return }
+            
+            message.dataLoadingStatus.subscribe(onNext: { status in
+                _ = resolve(status)
+            }).disposed(by: self.disposeBag)
+        }
     }
 }

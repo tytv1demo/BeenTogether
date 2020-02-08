@@ -62,7 +62,7 @@ class NotificationServices: NSObject {
 
     func updateDeviceToken() {
         InstanceID.instanceID().instanceID { [weak self] (result, error) in
-          if let _ = error {
+          if error == nil {
             
           } else if let result = result {
             self?.userRepository.updateDeviceToken(token: result.token)
@@ -100,8 +100,7 @@ extension NotificationServices: UNUserNotificationCenterDelegate {
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        guard let userInfo = notification.request.content.userInfo as? [String: Any] else {            return
-        }
+        guard let userInfo = notification.request.content.userInfo as? [String: Any] else { return }
         postNotificationPayload(userInfo)
         completionHandler(.sound)
     }

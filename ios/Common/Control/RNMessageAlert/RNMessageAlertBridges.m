@@ -15,4 +15,5 @@ RCT_EXTERN_METHOD(
             type: (NSString)type
 )
 RCT_EXTERN_METHOD(contactUs)
+RCT_EXTERN_METHOD(reloadApp)
 @end
