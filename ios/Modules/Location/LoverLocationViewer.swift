@@ -170,18 +170,18 @@ class LoverLocationViewer: UIView {
                     }
                     
                     if let street = placemark.thoroughfare {
-                        addressString += street
+                        addressString += street + ", "
                     }
                     
                     if let city = placemark.locality {
-                        addressString += ", " + city
+                        addressString += city + ", "
                     }
                     
                     if let country = placemark.country {
-                        addressString += ", " + country
+                        addressString += country + "."
                     }
                     
-                    completion("Your lover's location is near: \(addressString).")
+                    completion("Your lover's location is near: \(addressString)")
                 }
             }
         })
