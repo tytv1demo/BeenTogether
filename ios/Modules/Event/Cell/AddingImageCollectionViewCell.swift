@@ -11,10 +11,15 @@ import UIKit
 class AddingImageCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var deleteButton: UIButton!
+    
+    var didDeleteCallback: ((UIImage?) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
+    @IBAction func deleteAction(_ sender: UIButton) {
+        didDeleteCallback?(imgView.image)
+    }
 }

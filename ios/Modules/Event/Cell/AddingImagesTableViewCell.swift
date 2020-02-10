@@ -15,6 +15,7 @@ class AddingImagesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
     var parentVC: UIViewController?
     var dataSource: [Data] = [UIImage(named: "ic_add")!.jpegData(compressionQuality: 0.8)!]
     var didSelectImageCallback: ((Data) -> Void)?
+    var didDeleteCallback: ((Int) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,6 +44,15 @@ class AddingImagesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
         
         let imageData = dataSource[indexPath.row]
         cell.imgView.image = UIImage(data: imageData)
+        cell.deleteButton.isHidden = indexPath.row == 0
+        cell.didDeleteCallback = { image in
+            self.didDeleteCallback?(indexPath.row - 1)
+            self.dataSource.remove(at: indexPath.row)
+            let index = IndexPath(row: indexPath.row, section: 0)
+            self.imagesCollection.deleteItems(at: [index])
+            self.imagesCollection.reloadData()
+        }
+        
         return cell
     }
     

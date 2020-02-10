@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,6 +24,17 @@
                                 <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zPV-yf-X81">
+                                <rect key="frame" x="104" y="-18" width="66" height="67"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="8Lr-XW-HgK"/>
+                                    <constraint firstAttribute="width" constant="30" id="pXG-wh-jyK"/>
+                                </constraints>
+                                <state key="normal" image="ic_delete"/>
+                                <connections>
+                                    <action selector="deleteAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Lxk-lQ-T0Y"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -32,6 +43,8 @@
                             <constraint firstItem="p3c-A1-oIH" firstAttribute="leading" secondItem="O5Q-QL-zkx" secondAttribute="leading" id="Ziw-RB-nht"/>
                             <constraint firstAttribute="trailing" secondItem="p3c-A1-oIH" secondAttribute="trailing" id="ewb-ei-0TK"/>
                             <constraint firstAttribute="width" constant="160" id="jV3-py-4Kj"/>
+                            <constraint firstItem="zPV-yf-X81" firstAttribute="top" secondItem="O5Q-QL-zkx" secondAttribute="top" id="jZA-HU-v7s"/>
+                            <constraint firstAttribute="trailing" secondItem="zPV-yf-X81" secondAttribute="trailing" id="kBa-5M-sVu"/>
                             <constraint firstItem="p3c-A1-oIH" firstAttribute="top" secondItem="O5Q-QL-zkx" secondAttribute="top" id="r7x-0f-ZVC"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -66,6 +79,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="106" height="177"/>
             <connections>
+                <outlet property="deleteButton" destination="zPV-yf-X81" id="wk5-sy-4bN"/>
                 <outlet property="imgView" destination="p3c-A1-oIH" id="UKt-GR-JzA"/>
             </connections>
             <point key="canvasLocation" x="178.2608695652174" y="134.93303571428569"/>
@@ -73,5 +87,6 @@
     </objects>
     <resources>
         <image name="ic_add" width="160" height="160"/>
+        <image name="ic_delete" width="40" height="40"/>
     </resources>
 </document>

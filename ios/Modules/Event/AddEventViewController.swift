@@ -46,6 +46,7 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     private func setUpTable() {
         addingTable.delegate = self
         addingTable.dataSource = self
+        addingTable.register(UINib(nibName: "AddingNameTableViewCell", bundle: nil), forCellReuseIdentifier: "AddingNameTableViewCell")
         addingTable.register(UINib(nibName: "AddingTextTableViewCell", bundle: nil), forCellReuseIdentifier: "AddingTextTableViewCell")
         addingTable.register(UINib(nibName: "AddingLocationTableViewCell", bundle: nil), forCellReuseIdentifier: "AddingLocationTableViewCell")
         addingTable.register(UINib(nibName: "AddingTimeTableViewCell", bundle: nil), forCellReuseIdentifier: "AddingTimeTableViewCell")
@@ -109,15 +110,14 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     private func cellForNameRow(indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = addingTable.dequeueReusableCell(withIdentifier: "AddingTextTableViewCell", for: indexPath) as? AddingTextTableViewCell else {
+        guard let cell = addingTable.dequeueReusableCell(withIdentifier: "AddingNameTableViewCell", for: indexPath) as? AddingNameTableViewCell else {
             return UITableViewCell()
         }
         
-        cell.didEndEditingCallback = { text in
-            self.newEvent.name = text
+        cell.didChangeTextCallback = { text in
+            self.newEvent.description = text
         }
         
-        cell.addingTextField.placeholder = "Event's name"
         return cell
     }
     
@@ -127,10 +127,10 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         cell.didEndEditingCallback = { text in
-            self.newEvent.description = text
+            self.newEvent.name = text
         }
         
-        cell.addingTextField.placeholder = "Caption"
+        cell.addingTextField.placeholder = "Event's name"
         return cell
     }
     
@@ -192,6 +192,11 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
                 self.didFinishUploadingImages = true
             }
         }
+        
+        cell.didDeleteCallback = { index in
+            self.uploadData.remove(at: index)
+        }
+        
         return cell
     }
     
