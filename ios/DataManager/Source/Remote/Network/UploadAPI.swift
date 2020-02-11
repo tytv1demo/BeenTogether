@@ -18,8 +18,10 @@ class UploadAPI {
     private func upload(imageData: Data, to folder: String, name: String, completion: ((String) -> Void)?) {
         let storageRef = fbStorage.reference()
         let childRef = storageRef.child("\(folder)/\(name).jpg")
+        AppLoadingIndicator.shared.show()
         _ = childRef.putData(imageData, metadata: nil) { metadata, error in
-            // TO-DO: Handle metadata and error
+            
+            AppLoadingIndicator.shared.hide()
             guard metadata != nil else {
                 print(error)
                 return

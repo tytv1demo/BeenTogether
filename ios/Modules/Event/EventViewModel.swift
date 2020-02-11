@@ -78,7 +78,16 @@ struct EventViewModel {
         }
         
         removeEvent(id: id, completion: completion)
-        removeImages()
+        
+        if let attachments = event.attachments {
+            attachments.forEach { att in
+                guard att.type == "IMAGE", let imageUrl = att.url else {
+                    return
+                }
+                
+                self.removeImages(url: imageUrl)
+            }
+        }
     }
     
     private func removeEvent(id: String, completion: ((String) -> Void)?) {
@@ -91,8 +100,16 @@ struct EventViewModel {
         }
     }
     
-    private func removeImages() {
+    func removeImages(url: String) {
+        let fbStorage = Storage.storage()
+        let storageRef = fbStorage.reference()
+        let childRef = storageRef.child("event_images/" + getImageUrl(wholeUrl: url))
         
+        childRef.delete { error in
+            if let error = error {
+                print(error)
+            }
+        }
     }
     
     /// Upload an image
@@ -117,5 +134,11 @@ struct EventViewModel {
                 completion?(nil)
             }
         }
+    }
+    
+    private func getImageUrl(wholeUrl: String) -> String {
+        let subSlash = wholeUrl.components(separatedBy: "%2F")
+        let imageUrl = subSlash[1].components(separatedBy: "?alt=")
+        return imageUrl[0]
     }
 }

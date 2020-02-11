@@ -100,10 +100,6 @@ class AddingImagesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
         }
         
         didSelectImageCallback?(uploadData)
-        
-        dataSource.append(uploadData)
-        picker.dismiss(animated: true) {
-            self.imagesCollection.reloadData()
-        }
+        picker.dismiss(animated: true, completion: nil)
     }
 }

@@ -32,6 +32,7 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     }
     var shouldStartPostAfter: Bool = false
     var uploadData: [Data] = []
+    var uploadedImage: [String] = []
     
     // MARK: - Life cycle
     
@@ -56,6 +57,10 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - Actions
     
     @IBAction func backButton(_ sender: UIButton) {
+        uploadedImage.forEach { image in
+            self.viewModel.removeImages(url: image)
+        }
+        
         navigationController?.popViewController(animated: true)
     }
     
@@ -189,16 +194,21 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
                 } else {
                     self.newEvent.attachments = [media]
                 }
+                self.uploadedImage.append(url)
+                cell.dataSource.append(data)
                 self.didFinishUploadingImages = true
+                DispatchQueue.main.async {
+                    cell.imagesCollection.reloadData()
+                }
             }
         }
         
         cell.didDeleteCallback = { index in
             self.uploadData.remove(at: index)
+            self.viewModel.removeImages(url: self.uploadedImage[index])
+            self.newEvent.attachments?.remove(at: index)
         }
         
         return cell
     }
-    
-    // TO-DO: Clear uploaded data, can't post if doesnt have enough info
 }
