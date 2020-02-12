@@ -43,14 +43,17 @@ class SplashViewController: UIViewController {
     }
     
     func checkSignIn() {
-        _ = AppUserData.shared.checkIsSignedIn().done { (isSignedIn) in
+        AppUserData.shared.checkIsSignedIn().done { (isSignedIn) in
             if isSignedIn {
                 self.goToHomeScreen()
                 NotificationServices.shared.registerForPushNotifications()
             } else {
                 self.goToLoginScreen()
             }
-            self.indicatorView.stopAnimating()
+        }.catch({ (_) in
+            self.goToLoginScreen()
+        }).finally {
+             self.indicatorView.stopAnimating()
         }
     }
 }

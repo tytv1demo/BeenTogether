@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import ImageViewer
+import Kingfisher
 
 class EventTableViewCell: UITableViewCell, UIScrollViewDelegate, FSPagerViewDelegate, FSPagerViewDataSource {
     
@@ -46,12 +48,14 @@ class EventTableViewCell: UITableViewCell, UIScrollViewDelegate, FSPagerViewDele
     }
     
     func setUpPager() {
+        contentView.layer.masksToBounds = true
+        contentView.layer.cornerRadius = 8
         imageCollection.dataSource = self
         imageCollection.delegate = self
         imageCollection.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "ImageCell")
         
         imageCollection.itemSize = CGSize(width: boundScreen.width, height: boundScreen.width * 9 / 16)
-        imageCollection.transformer = FSPagerViewTransformer(type: .depth)
+        imageCollection.transformer = FSPagerViewTransformer(type: .overlap)
         
         pageControl.contentHorizontalAlignment = .center
         pageControl.contentInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
@@ -75,9 +79,16 @@ class EventTableViewCell: UITableViewCell, UIScrollViewDelegate, FSPagerViewDele
             return cell
         }
         cell.imageView?.kf.setImage(with: resource)
-        cell.imageView?.contentMode = .scaleAspectFit
+        cell.imageView?.contentMode = .scaleAspectFill
         
         return cell
+    }
+    
+    
+    func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
+        guard let topViewController = UIApplication.topViewController() else { return }
+        let galleryView = GalleryViewController(startIndex: index, itemsDataSource: self, configuration: [.deleteButtonMode(.none)])
+        topViewController.presentImageGallery(galleryView)
     }
     
     func pagerViewWillEndDragging(_ pagerView: FSPagerView, targetIndex: Int) {
@@ -89,10 +100,28 @@ class EventTableViewCell: UITableViewCell, UIScrollViewDelegate, FSPagerViewDele
     }
     
     func pagerView(_ pagerView: FSPagerView, shouldHighlightItemAt index: Int) -> Bool {
-        return false
+        return true
     }
     
     @IBAction func optionAction(_ sender: UIButton) {
         optionCallback?()
+    }
+}
+
+extension EventTableViewCell: GalleryItemsDataSource {
+    func itemCount() -> Int {
+        return dataSource.count
+    }
+
+    func provideGalleryItem(_ index: Int) -> GalleryItem {
+        return .image { [weak self] completion in
+            guard let url = URL(string: self?.dataSource[index].url ?? "") else {
+                return
+            }
+            KingfisherManager.shared.retrieveImage(with: url) { (result) in
+                guard let image = try? result.get() else { return }
+                completion(image.image)
+            }
+        }
     }
 }

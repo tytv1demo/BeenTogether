@@ -9,11 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".features.lockscreen.LockScreenActivity"></activity>
+        <activity android:name=".features.sign_in.SignInActivity"></activity>
+        <activity android:name=".features.lockscreen.LockScreenActivity" />
         <activity
             android:name=".features.main.MainActivity"
             android:label="@string/title_activity_main" />
-        <activity android:name=".SplashActivity">
+        <activity android:name=".features.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

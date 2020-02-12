@@ -1,4 +1,4 @@
-package com.tytv.beentogether;
+package com.tytv.beentogether.features.splash;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 
+import com.tytv.beentogether.R;
 import com.tytv.beentogether.features.lockscreen.LockScreenActivity;
 import com.tytv.beentogether.features.main.MainActivity;
 
