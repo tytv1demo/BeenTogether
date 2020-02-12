@@ -30,7 +30,7 @@ class AddingNameTableViewCell: UITableViewCell, UITextViewDelegate {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "Caption" {
+        if textView.text == "Write something..." {
             textView.text = ""
             if #available(iOS 13.0, *) {
                 textView.textColor = .label
@@ -42,7 +42,7 @@ class AddingNameTableViewCell: UITableViewCell, UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Caption"
+            textView.text = "Write something..."
             textView.textColor = .lightGray
         }
     }

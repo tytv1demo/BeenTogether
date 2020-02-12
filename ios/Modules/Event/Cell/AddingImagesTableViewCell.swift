@@ -59,7 +59,7 @@ class AddingImagesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 176, height: 176)
+        return CGSize(width: self.contentView.bounds.width / 3, height: self.contentView.bounds.width / 3)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

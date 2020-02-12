@@ -154,7 +154,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     private func showDeleteAlert(event: EventModel) {
         let deleteAlert = UIAlertController(title: "Warning", message: "You are about to delete this memory and can't be undone. Are you sure?", preferredStyle: .alert)
-        deleteAlert.addAction(UIAlertAction(title: "Yes, please.", style: .default, handler: { _ in
+        deleteAlert.addAction(UIAlertAction(title: "Yes, please.", style: .destructive, handler: { _ in
             self.viewModel.delete(event: event) { id in
                 self.dataSource.removeAll(where: { $0.id == id })
                 self.reloadTable()

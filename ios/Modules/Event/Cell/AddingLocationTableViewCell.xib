@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,9 +18,9 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdU-cE-h6f">
-                        <rect key="frame" x="24" y="8" width="55.5" height="30"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.6588235294117647" green="0.6588235294117647" blue="0.6588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                        <rect key="frame" x="24" y="8" width="60.5" height="30"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Where did it happen?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QEz-1k-XdA">
@@ -35,7 +35,7 @@
                         </connections>
                     </textField>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HaB-rK-SYo">
-                        <rect key="frame" x="8" y="76" width="345" height="1"/>
+                        <rect key="frame" x="20" y="76" width="321" height="1"/>
                         <color key="backgroundColor" red="0.62352941179999999" green="0.66666666669999997" blue="0.70588235290000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="6KV-0U-6Nh"/>
@@ -45,9 +45,9 @@
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="HaB-rK-SYo" secondAttribute="bottom" id="3e8-KV-c3e"/>
                     <constraint firstAttribute="trailing" secondItem="QEz-1k-XdA" secondAttribute="trailing" constant="24" id="6gS-DG-2Rk"/>
-                    <constraint firstItem="HaB-rK-SYo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="8X8-UP-GrH"/>
+                    <constraint firstItem="HaB-rK-SYo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="8X8-UP-GrH"/>
                     <constraint firstItem="HaB-rK-SYo" firstAttribute="top" secondItem="QEz-1k-XdA" secondAttribute="bottom" constant="8" id="KYJ-NZ-MhE"/>
-                    <constraint firstAttribute="trailing" secondItem="HaB-rK-SYo" secondAttribute="trailing" constant="8" id="MeB-H1-uUx"/>
+                    <constraint firstAttribute="trailing" secondItem="HaB-rK-SYo" secondAttribute="trailing" constant="20" id="MeB-H1-uUx"/>
                     <constraint firstItem="QEz-1k-XdA" firstAttribute="leading" secondItem="cdU-cE-h6f" secondAttribute="leading" id="RDW-qd-Ufz"/>
                     <constraint firstItem="cdU-cE-h6f" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="qZn-wI-1Z3"/>
                     <constraint firstItem="cdU-cE-h6f" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="vG5-XT-CbI"/>

@@ -42,6 +42,9 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
         newEvent.attachments = []
         setUpTable()
         newEvent.creator = ""
+        
+        self.addingTable.estimatedRowHeight = 64.0
+        self.addingTable.rowHeight = UITableView.automaticDimension
     }
     
     private func setUpTable() {
@@ -210,5 +213,13 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == cellArray.count - 1 {
+            return view.bounds.height / 2
+        }
+        
+        return UITableView.automaticDimension
     }
 }

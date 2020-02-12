@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,8 +19,8 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kae-p1-syL">
                         <rect key="frame" x="24" y="8" width="311" height="37"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.6588235294" green="0.6588235294" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I2D-j1-qja">
@@ -53,7 +53,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OpC-k3-haR">
-                        <rect key="frame" x="8" y="89" width="343" height="1"/>
+                        <rect key="frame" x="20" y="89" width="319" height="1"/>
                         <color key="backgroundColor" red="0.62352941179999999" green="0.66666666669999997" blue="0.70588235290000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="RD1-Vm-wFc"/>
@@ -62,11 +62,11 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="kae-p1-syL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="4Nu-A8-mZ9"/>
-                    <constraint firstItem="OpC-k3-haR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="76d-4S-Oba"/>
+                    <constraint firstItem="OpC-k3-haR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="76d-4S-Oba"/>
                     <constraint firstAttribute="bottom" secondItem="OpC-k3-haR" secondAttribute="bottom" id="Dwb-Ye-cr5"/>
                     <constraint firstItem="OpC-k3-haR" firstAttribute="top" secondItem="I2D-j1-qja" secondAttribute="bottom" constant="8" id="FCw-5X-X6S"/>
                     <constraint firstAttribute="trailing" secondItem="I2D-j1-qja" secondAttribute="trailing" constant="24" id="GNa-g6-Smc"/>
-                    <constraint firstAttribute="trailing" secondItem="OpC-k3-haR" secondAttribute="trailing" constant="8" id="Joh-Uj-Brr"/>
+                    <constraint firstAttribute="trailing" secondItem="OpC-k3-haR" secondAttribute="trailing" constant="20" id="Joh-Uj-Brr"/>
                     <constraint firstItem="I2D-j1-qja" firstAttribute="leading" secondItem="kae-p1-syL" secondAttribute="leading" id="e4s-s0-v6p"/>
                     <constraint firstItem="kae-p1-syL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="hNN-id-tgq"/>
                     <constraint firstAttribute="trailing" secondItem="kae-p1-syL" secondAttribute="trailing" constant="24" id="k7S-fT-F65"/>
