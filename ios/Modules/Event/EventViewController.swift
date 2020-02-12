@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -54,7 +55,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     private func paintLabel() {
-        createLabel.text = "Share your memorable event"
+        createLabel.text = "Tap to share your memorable event"
     }
     
     private func addListenerEvent() {
@@ -82,6 +83,15 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // MARK: - Table data source and delegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if !isFirstLoad {
+            if dataSource.isEmpty {
+                let emptyView = eventTable.setEmptyMessage("You have no events yet. Let's create your first event!")
+                emptyView.button.isHidden = true
+            } else {
+                eventTable.removeEmptyView()
+            }
+        }
+        
         return isFirstLoad ? 3 : dataSource.count
     }
     

@@ -60,11 +60,18 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - Actions
     
     @IBAction func backButton(_ sender: UIButton) {
-        uploadedImage.forEach { image in
-            self.viewModel.removeImages(url: image)
-        }
+        let warningAlert = UIAlertController(title: nil, message: "Are you sure you want to delete this post?", preferredStyle: .alert)
+        warningAlert.addAction(UIAlertAction(title: "Yes, please", style: .destructive, handler: { _ in
+            self.uploadedImage.forEach { image in
+                self.viewModel.removeImages(url: image)
+            }
+            
+            self.navigationController?.popViewController(animated: true)
+        }))
         
-        navigationController?.popViewController(animated: true)
+        warningAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        
+        present(warningAlert, animated: true, completion: nil)
     }
     
     @IBAction func postAction(_ sender: UIButton) {

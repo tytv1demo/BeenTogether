@@ -20,23 +20,25 @@ class AddingTimeTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        timeLabel.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         let displayCalendar = UITapGestureRecognizer(target: self, action: #selector(showDatePicker))
         timePickingView.addGestureRecognizer(displayCalendar)
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     @objc private func showDatePicker() {
         let dialog = DatePickerDialog(textColor: UIColor.black, buttonColor: UIColor.systemPink, font: .boldSystemFont(ofSize: 15), locale: nil, showCancelButton: true)
+        
         dialog.show(isStartDate ? "When did it start?" : "When did it end?", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", defaultDate: Date(), datePickerMode: .date) { (date) in
-            if let date = date {
+            guard let date = date else { return }
+            
+            if date < Date() {
                 let dateString = date.toString(.custom(kEventDateFormat))
+                self.timeLabel.textColor = .black
                 self.timeLabel.text = dateString
                 self.didSelectDate?(dateString)
+            } else {
+                self.timeLabel.text = "Invalid date!"
+                self.timeLabel.textColor = .red
             }
         }
     }
