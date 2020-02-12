@@ -46,4 +46,3 @@ func fetchUIImageFromAsset(_ asset: PHAsset) -> Promise<UIImage?> {
         }
     }
 }
-

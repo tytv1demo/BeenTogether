@@ -51,6 +51,7 @@ def networking
 end
 
 def ui
+  pod 'OpalImagePicker'
   pod 'SwiftyGif'
   pod 'ImageViewer'
   pod 'SwiftMessages'

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import OpalImagePicker
+import Photos
 
 class AddingImagesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
@@ -79,7 +81,10 @@ class AddingImagesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
             }
         }))
         alert.addAction(UIAlertAction(title: "Open Library", style: .default, handler: { _ in
-            self.imagePicker(withSource: .photoLibrary)
+            let imagePicker = OpalImagePickerController()
+            imagePicker.imagePickerDelegate = self
+            guard let topViewController = UIApplication.topViewController() else { return }
+            topViewController.present(imagePicker, animated: true, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
@@ -100,6 +105,22 @@ class AddingImagesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
         }
         
         didSelectImageCallback?(uploadData)
+        picker.dismiss(animated: true, completion: nil)
+    }
+}
+extension AddingImagesTableViewCell: OpalImagePickerControllerDelegate {
+    func imagePicker(_ picker: OpalImagePickerController, didFinishPickingAssets assets: [PHAsset]) {
+        assets.forEach {
+            _ = fetchUIImageFromAsset($0).done { [weak self] (image) in
+                guard let data = image?.jpegData(compressionQuality: 0.7) else {
+                    return
+                }
+                self?.didSelectImageCallback?(data)
+            }
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+    func imagePickerDidCancel(_ picker: OpalImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
 }

@@ -143,6 +143,7 @@ PODS:
   - NVActivityIndicatorView (4.8.0):
     - NVActivityIndicatorView/Presenter (= 4.8.0)
   - NVActivityIndicatorView/Presenter (4.8.0)
+  - OpalImagePicker (2.1.2)
   - PhoneNumberKit (3.2.0):
     - PhoneNumberKit/PhoneNumberKitCore (= 3.2.0)
     - PhoneNumberKit/UIKit (= 3.2.0)
@@ -394,6 +395,7 @@ DEPENDENCIES:
   - Kingfisher (~> 5.0)
   - Moya (~> 13.0)
   - NVActivityIndicatorView
+  - OpalImagePicker
   - PhoneNumberKit (~> 3.1)
   - PromiseKit (~> 6.8)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
@@ -461,6 +463,7 @@ SPEC REPOS:
     - Moya
     - nanopb
     - NVActivityIndicatorView
+    - OpalImagePicker
     - PhoneNumberKit
     - PromiseKit
     - Protobuf
@@ -564,6 +567,7 @@ SPEC CHECKSUMS:
   Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
+  OpalImagePicker: 51cbf714f337a93c2631219f1a90389ba936077f
   PhoneNumberKit: df411d46177d1492da84e10b6c093846dd861452
   PromiseKit: 28fda91c973cc377875d8c0ea4f973013c05b6db
   Protobuf: dd1aaea7140debfe4dd0683fb8ef208e527ae153
@@ -597,6 +601,6 @@ SPEC CHECKSUMS:
   Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 2d0c97c46a81483c1101a5951db0c416d5000357
+PODFILE CHECKSUM: 6e9cfe1fca61ecb1589a9ba617bd1f33e768f8b5
 
 COCOAPODS: 1.8.3
