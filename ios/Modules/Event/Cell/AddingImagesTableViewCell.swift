@@ -48,11 +48,7 @@ class AddingImagesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
         cell.imgView.image = UIImage(data: imageData)
         cell.deleteButton.isHidden = indexPath.row == 0
         cell.didDeleteCallback = { image in
-            self.didDeleteCallback?(indexPath.row - 1)
-            self.dataSource.remove(at: indexPath.row)
-            let index = IndexPath(row: indexPath.row, section: 0)
-            self.imagesCollection.deleteItems(at: [index])
-            self.imagesCollection.reloadData()
+            self.deleteImageAt(cell: cell)
         }
         
         return cell
@@ -65,6 +61,20 @@ class AddingImagesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             openImagePicker()
+        }
+    }
+    
+    private func deleteImageAt(cell: UICollectionViewCell) {
+        guard let indexData = imagesCollection.indexPath(for: cell) else {
+            return
+        }
+        
+        self.didDeleteCallback?(indexData.row - 1)
+        self.dataSource.remove(at: indexData.row)
+        let index = IndexPath(row: indexData.row, section: 0)
+        self.imagesCollection.deleteItems(at: [index])
+        DispatchQueue.main.async {
+            self.imagesCollection.reloadData()
         }
     }
     
