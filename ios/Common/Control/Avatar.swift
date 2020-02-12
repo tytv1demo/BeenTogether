@@ -11,7 +11,7 @@ import Kingfisher
 
 class Avatar: UIView {
     
-    static let kDefaultAvatar = URL(string: "https://thumbs.dreamstime.com/b/cupid-vector-illustration-cute-arrows-onion-83249929.jpg")
+    static let kDefaultAvatar = URL(string: "https://www.clearone.com/sites/default/files/default_images/default-user-icon-4.jpg")
     
     var imageView: UIImageView!
     

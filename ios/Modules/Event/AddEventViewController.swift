@@ -125,18 +125,6 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     private func cellForNameRow(indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = addingTable.dequeueReusableCell(withIdentifier: "AddingNameTableViewCell", for: indexPath) as? AddingNameTableViewCell else {
-            return UITableViewCell()
-        }
-        
-        cell.didChangeTextCallback = { text in
-            self.newEvent.description = text
-        }
-        
-        return cell
-    }
-    
-    private func cellForCaptionRow(indexPath: IndexPath) -> UITableViewCell {
         guard let cell = addingTable.dequeueReusableCell(withIdentifier: "AddingTextTableViewCell", for: indexPath) as? AddingTextTableViewCell else {
             return UITableViewCell()
         }
@@ -146,6 +134,18 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         cell.addingTextField.placeholder = "Event's name"
+        return cell
+    }
+    
+    private func cellForCaptionRow(indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = addingTable.dequeueReusableCell(withIdentifier: "AddingNameTableViewCell", for: indexPath) as? AddingNameTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        cell.didChangeTextCallback = { text in
+            self.newEvent.description = text
+        }
+        
         return cell
     }
     
