@@ -156,11 +156,12 @@ class InputToolBar: UIView {
             return
         }
         
-        self.keyboarHeight = keyboardSize.cgRectValue.height - tabBarHeight
+        keyboarHeight = keyboardSize.cgRectValue.height - tabBarHeight
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        self.keyboarHeight = 0
+        keyboarHeight = 0
+        updateStateBehavior()
     }
     
     func updateStateBehavior(withDuration: TimeInterval = 0.25) {

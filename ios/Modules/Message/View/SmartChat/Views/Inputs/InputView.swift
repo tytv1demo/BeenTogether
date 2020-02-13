@@ -51,6 +51,7 @@ class InputView: UIView {
         
         inputField = UITextView()
         inputField.backgroundColor = .clear
+        inputField.font = UIFont.systemFont(ofSize: 15)
         inputField.delegate = self
         
         emojiButton = UIButton()
