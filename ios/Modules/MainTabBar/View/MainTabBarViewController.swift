@@ -130,9 +130,9 @@ class MainTabBarViewController: UITabBarController {
         homeVC.tabBarItem = UITabBarItem()
         homeTabButton.addTarget(self, action: #selector(onHomTabButtonTapped), for: [.touchUpInside])
         
-        eventVc.tabBarItem = UITabBarItem(title: "Events", image: UIImage.awesomeIcon(name: .stickyNote), selectedImage: UIImage.awesomeIcon(name: .stickyNote))
+        eventVc.tabBarItem = UITabBarItem(title: "Events", image: UIImage(named: "eventIcon"), selectedImage: UIImage(named: "eventIcon"))
         
-        locationVc.tabBarItem = UITabBarItem(title: "Location", image: UIImage.awesomeIcon(name: .locationArrow), selectedImage: UIImage.awesomeIcon(name: .locationArrow, textColor: Colors.kPink))
+        locationVc.tabBarItem = UITabBarItem(title: "Location", image: UIImage.awesomeIcon(name: .searchLocation), selectedImage: UIImage.awesomeIcon(name: .searchLocation, textColor: Colors.kPink))
         messageVC.tabBarItem =  UITabBarItem(title: "Messages", image: UIImage(named: "message"), selectedImage: UIImage(named: "message"))
     }
     
