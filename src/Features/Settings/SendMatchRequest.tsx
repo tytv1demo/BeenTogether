@@ -39,21 +39,21 @@ export const SendMatchRequestPopup: React.FC<SendMatchRequestPopupProps> = (prop
                 duration={250}
                 useNativeDriver
             >
-                <Text style={{ alignSelf: 'center' }} h4>Send Request</Text>
+                <Text style={{ alignSelf: 'center', fontSize: 18, fontWeight: 'bold' }}>COUPLE  REQUEST</Text>
                 <Spacer height={8} />
                 <Input
                     value={phone}
                     onChangeText={setPhone}
-                    inputStyle={{ textAlign: 'center' }}
+                    inputStyle={{ textAlign: 'center', fontSize: 15 }}
                     keyboardType='phone-pad'
-                    placeholder='Phone number'
+                    placeholder= "Your lover's phone number"
                     errorMessage={errorMessage}
                 />
                 <Spacer height={16} />
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                     <Button
-                        buttonStyle={{ borderColor: '#EE4E9B', paddingVertical: 4, width: 80 }}
-                        titleStyle={{ color: '#EE4E9B' }}
+                        buttonStyle={{ borderColor: '#EE4E9B', paddingVertical: 5, width: 100 }}
+                        titleStyle={{ color: '#EE4E9B', fontWeight: '500' }}
                         onPress={onRequestClose}
                         title='Cancel'
                         type='outline'
@@ -61,8 +61,8 @@ export const SendMatchRequestPopup: React.FC<SendMatchRequestPopupProps> = (prop
 
                     <Button
                         loading={isSending}
-                        buttonStyle={{ backgroundColor: '#EE4E9B', paddingVertical: 4, width: 80 }}
-                        titleStyle={{ color: '#ffffff' }}
+                        buttonStyle={{ backgroundColor: '#EE4E9B', paddingVertical: 5, width: 100 }}
+                        titleStyle={{ color: '#ffffff', fontWeight: '500' }}
                         onPress={onSend}
                         title='Send'
                     />

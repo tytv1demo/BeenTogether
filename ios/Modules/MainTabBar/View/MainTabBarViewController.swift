@@ -54,6 +54,8 @@ class MainTabBarViewController: UITabBarController {
     
     var disposeBag: DisposeBag = DisposeBag()
     
+    var isTheFirstTime: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -92,6 +94,7 @@ class MainTabBarViewController: UITabBarController {
         
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
         homeVC = storyboard.instantiateViewController()
+        homeVC.isTheFirstTime = isTheFirstTime
         
         messageVC = MessageViewController()
         messageVC.viewModel = MessageViewModel(userInfo: AppUserData.shared.userInfo, coupleModel: viewModel.coupleModel)

@@ -16,6 +16,7 @@ extension CreateViewController: CreateNavigator {
     
     func goToHomeScreen() {
         let mainVC = MainTabBarViewController()
+        mainVC.isTheFirstTime = true
         let navigationController = UINavigationController(rootViewController: mainVC)
         navigationController.modalPresentationStyle = .fullScreen
         
