@@ -16,6 +16,7 @@ enum MatchRequestAction: String {
 enum CoupleApi {
     case responseMatchRequest(fromUserId: Int, action: MatchRequestAction)
     case getNewestCoupleMatchRequest
+    case matchRequest(targetPhoneNumber: String)
 }
 
 extension CoupleApi: AuthorizedTargetType {
@@ -34,6 +35,8 @@ extension CoupleApi: AuthorizedTargetType {
             return "/get-match-request"
         case .responseMatchRequest:
             return "/response-match-request"
+        case .matchRequest:
+            return "/send-pairing-request"
         }
     }
     
@@ -42,6 +45,8 @@ extension CoupleApi: AuthorizedTargetType {
         case .getNewestCoupleMatchRequest:
             return .get
         case .responseMatchRequest:
+            return .post
+        case .matchRequest:
             return .post
         }
     }
@@ -57,12 +62,13 @@ extension CoupleApi: AuthorizedTargetType {
         case .responseMatchRequest(let fromId, let action):
             let params: [String: Any] = ["fromUserId": fromId, "action": action.rawValue]
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+        case .matchRequest(let targetPhoneNumber):
+            let params = ["targetPhoneNumber": targetPhoneNumber]
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
         }
     }
     
     var headers: [String: String]? {
         return [:]
     }
-    
-    
 }

@@ -17,11 +17,14 @@ class RequestPopupViewController: UIViewController {
     @IBOutlet weak var laterButton: UIButton!
     @IBOutlet weak var phoneTextField: UITextField!
     
+    var coupleRepository: CoupleRepository!
+    
     // MARK: Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        coupleRepository = CoupleRepository()
         setupMainView()
         
         phoneTextField.delegate = self
@@ -97,8 +100,30 @@ class RequestPopupViewController: UIViewController {
     }
     
     @IBAction func sendButtonDidTap(_ sender: Any) {
-        AppLoadingIndicator.shared.show()
-        dismissPopup()
+        guard let phoneNumber = phoneTextField.text else { return }
+        
+        do {
+            let parsedPhoneNumber = try parsePhoneNumber(phoneNumber, "VN")
+            AppLoadingIndicator.shared.show()
+            coupleRepository.matchRequest(phoneNumber: parsedPhoneNumber.trimmingCharacters(in: .whitespacesAndNewlines)).done { (success) in
+                self.dismissPopup()
+                if success {
+                    showMessage(title: "Successfully!", message: "Request has been sent!", theme: .success)
+                } else {
+                    showMessage(title: "Opps!", message: "Unable to send a request to your lover!", theme: .error)
+                }
+            }.catch { (error) in
+                if let apiError = error as? NetWorkApiError, let data = apiError.data, let message = data.message {
+                    self.showAlertWithOneOption(title: "Oops!", message: message, optionTitle: "OK")
+                } else {
+                    self.showAlertWithOneOption(title: "Oops!", message: "Unable to send a request to your lover!", optionTitle: "OK")
+                }
+            }.finally {
+                AppLoadingIndicator.shared.hide()
+            }
+        } catch {
+            self.showAlertWithOneOption(title: "Oops!", message: "This phone number is not available!", optionTitle: "OK")
+        }
     }
 }
 
