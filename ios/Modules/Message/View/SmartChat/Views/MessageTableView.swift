@@ -68,11 +68,11 @@ class MessageTableView: UIView {
 
 extension MessageTableView {
     func scrollToBottomIfNeeded() {
-        guard let lastIndexPath = tableView.indexPathsForVisibleRows?.last else {
+        guard let lastVisibleIndexPath = tableView.indexPathsForVisibleRows?.last else {
             return
         }
-    
-        if lastIndexPath.item > messages.count - 8 {
+        let lastIndexPath = IndexPath(item: messages.count - 1, section: 0)
+        if lastVisibleIndexPath.item > messages.count - 8 {
             tableView.scrollToRow(at: lastIndexPath, at: .bottom, animated: true)
         }
     }
@@ -96,7 +96,6 @@ extension MessageTableView: UITableViewDelegate, UITableViewDataSource {
         let cell: MessageCell = tableView.dequeueReusableCell(withIdentifier: identifer, for: indexPath) as! MessageCell
         cell.configCell(messages, at: indexPath, andUser: user)
         cell.messageView.delegate = self
-        
         return cell
     }
 }
@@ -108,5 +107,17 @@ extension MessageTableView: MessageViewDelegate {
     
     func messageView(contentDidChange messageView: BaseMessageView) {
         tableView.reloadRows(at: [messageView.indexPath], with: .automatic)
+    }
+}
+extension UITableView {
+    func scrollToBottom(animated: Bool = true) {
+        let section = self.numberOfSections
+        if section > 0 {
+            let row = self.numberOfRows(inSection: section - 1)
+            if row > 0 {
+
+                self.scrollToRow(at: IndexPath(row: row-1, section: section-1), at: .bottom, animated: animated)
+            }
+        }
     }
 }

@@ -80,6 +80,7 @@ class SmartChat: UIView {
     func reloadWithMessages(_ messages: [SCMessage]) {
         messageTableView.messages = messages
         messageTableView.tableView.reloadData()
+        messageTableView.tableView.scrollToBottom()
         if messages.count == 0 {
             setEmptyViewForTableView()
         }

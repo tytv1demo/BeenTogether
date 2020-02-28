@@ -76,7 +76,7 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func postAction(_ sender: UIButton) {
         guard newEvent.name != nil, newEvent.startDate != nil, newEvent.attachments!.count > 0 else {
-            let alert = UIAlertController(title: "Oops!", message: "An event must have at least name and start date. Please provide before post!", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Oops!", message: "An event must have at least name, start date and attachments. Please provide before post!", preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             
