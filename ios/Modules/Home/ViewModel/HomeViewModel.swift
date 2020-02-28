@@ -54,7 +54,7 @@ extension HomeViewModel {
     
     func createDateCountedString(startDate: Date) -> String {
         guard let dateCounted = Date().days(sinceDate: startDate) else { return "" }
-        if dateCounted < 0 { return "undefined" }
+        if dateCounted < 0 { return "--/--/--" }
         
         let unitString = dateCounted > 1 ? " days" : " day"
         return String(dateCounted) + unitString

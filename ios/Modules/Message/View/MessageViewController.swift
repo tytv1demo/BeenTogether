@@ -115,7 +115,8 @@ class MessageViewController: UIViewController, MessageViewControllerProtocol {
     }
     
     @objc func onPhoneButtonPress() {
-        guard let phoneNumber = viewModel.coupleModel.friendInfo?.phoneNumber else {
+        guard let phoneNumber = viewModel.coupleModel.friendInfo?.phoneNumber, phoneNumber != "0123456789" else {
+            showAlertWithOneOption(title: "Opps!", message: "Sorry, we could not find your lover.", optionTitle: "OK")
             return
         }
         callNumber(phoneNumber: phoneNumber)

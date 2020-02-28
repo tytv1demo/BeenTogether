@@ -61,7 +61,6 @@ def ui
   pod 'FontAwesome.swift'
   pod 'FSPagerView'
   pod 'DatePickerDialog'
-  pod 'IQKeyboardManager'
 end 
 
 def database

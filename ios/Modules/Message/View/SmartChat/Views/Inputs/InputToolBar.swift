@@ -83,6 +83,17 @@ class InputToolBar: UIView {
         makeConstraints()
         initActions()
         initObservers()
+        updateStatusSendButton()
+    }
+    
+    func updateStatusSendButton() {
+        if input.value == "".trimmingCharacters(in: .whitespacesAndNewlines) {
+            sendButton.isEnabled = false
+            sendButton.setImage(UIImage.fontAwesomeIcon(name: .paperPlane, style: .solid, textColor: Colors.kLightGray, size: CGSize(width: 25, height: 25)), for: .disabled)
+        } else {
+            sendButton.isEnabled = true
+            sendButton.setImage(UIImage.fontAwesomeIcon(name: .paperPlane, style: .solid, textColor: Colors.kPink, size: CGSize(width: 25, height: 25)), for: .normal)
+        }
     }
     
     func initUI() {
@@ -94,7 +105,7 @@ class InputToolBar: UIView {
         
         sendButton = UIButton()
         sendButton.tintColor = .red
-        sendButton.setImage(UIImage(named: "send"), for: [.normal])
+//        sendButton.setImage(UIImage(named: "send"), for: [.normal])
         
         inputRow = UIStackView(arrangedSubviews: [actionsView, input, sendButton])
         inputRow.isLayoutMarginsRelativeArrangement = true
@@ -146,6 +157,7 @@ class InputToolBar: UIView {
     @objc func onSendButtonPress() {
         delegate?.inputToolBar(onSendMessage: .text, content: input.value)
         input.clearValue()
+        updateStatusSendButton()
         self.updateStateBehavior()
     }
     
@@ -215,6 +227,7 @@ extension InputToolBar: InputViewDelegate {
         UIView.animate(withDuration: 0.2) { [unowned self] in
             self.inputRow.distribution = .fill
         }
+        updateStatusSendButton()
     }
     
     func inputViewDidChange(_ inputView: InputView) {
@@ -222,6 +235,7 @@ extension InputToolBar: InputViewDelegate {
             actionsView.state = .collapse
         }
         self.updateStateBehavior()
+        updateStatusSendButton()
     }
     
     func inputViewDidEndEditing(_ inputView: InputView) {
@@ -231,6 +245,7 @@ extension InputToolBar: InputViewDelegate {
                 self.inputRow.distribution = .equalSpacing
             }
         }
+        updateStatusSendButton()
     }
     
 }

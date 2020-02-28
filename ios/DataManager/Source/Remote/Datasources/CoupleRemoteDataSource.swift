@@ -14,9 +14,30 @@ protocol CoupleRemoteDataSourceProtocol: AnyObject {
     func getNewestCoupleMatchRequest() -> Promise<CoupleMatchRequest?>
     
     func responseToMatchRequest(request: CoupleMatchRequest, action: MatchRequestAction) -> Promise<Bool>
+    
+    func matchRequest(phoneNumber: String) -> Promise<Bool>
 }
 
 class CoupleRemoteDataSource: CoupleRemoteDataSourceProtocol {
+    
+    func matchRequest(phoneNumber: String) -> Promise<Bool> {
+          return Promise<Bool> { seal in
+            todoProvider.request(MultiTarget(CoupleApi.matchRequest(targetPhoneNumber: phoneNumber))) { (result) in
+                  switch result {
+                  case let .success(response):
+                      do {
+                          _ = try response.filterSuccessfulStatusCodes()
+                          seal.fulfill(true)
+                      } catch _ {
+                          let errorResponse = try? JSONDecoder().decode(NetWorkApiErrorData.self, from: response.data)
+                          seal.reject(NetWorkApiError(data: errorResponse))
+                      }
+                  case let .failure(error):
+                      seal.reject(error)
+                  }
+              }
+          }
+      }
     
     func getNewestCoupleMatchRequest() -> Promise<CoupleMatchRequest?> {
         return Promise { seal in

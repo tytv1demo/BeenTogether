@@ -37,7 +37,7 @@ class HomeViewController: UIViewController {
     var homeViewModel: HomeViewModel!
     var isLeft: Bool?
     var userInfo = AppUserData.shared.userInfo
-    
+    var isTheFirstTime: Bool = false
     var disposeBag: DisposeBag!
     
     // MARK: Life Cycle
@@ -93,6 +93,10 @@ class HomeViewController: UIViewController {
             self.progressView.progress = self.homeViewModel.getProgress(startDate: startDate)
             self.heartIconLeftContraint.constant = CGFloat(self.progressView.progress) * self.progressView.frame.width
         }).disposed(by: disposeBag)
+        
+        if self.isTheFirstTime && self.homeViewModel.coupleModel.friendInfo!.phoneNumber == "0123456789" {
+             self.presentRequestPopup()
+        }
     }
     
     func setupMainView() {
@@ -256,6 +260,14 @@ class HomeViewController: UIViewController {
             popOverVC.isLeft = false
         }
     
+        present(popOverVC, animated: true, completion: nil)
+    }
+    
+    func presentRequestPopup() {
+        let popOverVC = RequestPopupViewController(nibName: "RequestPopupViewController", bundle: nil)
+        popOverVC.modalPresentationStyle = .overFullScreen
+        popOverVC.modalTransitionStyle = .crossDissolve
+        
         present(popOverVC, animated: true, completion: nil)
     }
 }

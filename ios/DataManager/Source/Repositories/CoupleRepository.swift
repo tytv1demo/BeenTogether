@@ -13,6 +13,8 @@ protocol CoupleRepositoryProtocol: AnyObject {
     func getNewestCoupleMatchRequest() -> Promise<CoupleMatchRequest?>
     
     func responseToMatchRequest(request: CoupleMatchRequest, action: MatchRequestAction) -> Promise<Bool>
+    
+    func matchRequest(phoneNumber: String) -> Promise<Bool>
 }
 
 class CoupleRepository: CoupleRepositoryProtocol {
@@ -25,5 +27,15 @@ class CoupleRepository: CoupleRepositoryProtocol {
     
     func responseToMatchRequest(request: CoupleMatchRequest, action: MatchRequestAction) -> Promise<Bool> {
         return coupleRemoteDataSource.responseToMatchRequest(request: request, action: action)
+    }
+    
+    func matchRequest(phoneNumber: String) -> Promise<Bool> {
+        return Promise<Bool> { seal in
+            coupleRemoteDataSource
+                .matchRequest(phoneNumber: phoneNumber)
+                .done { (result) in
+                    seal.fulfill(result)
+            }.catch(seal.reject(_:))
+        }
     }
 }

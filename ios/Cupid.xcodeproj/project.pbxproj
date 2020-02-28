@@ -17,6 +17,8 @@
 		460F74B0239DF8CB0043A7DD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F74AE239DF8CB0043A7DD /* HomeViewController.swift */; };
 		460F74B1239DF8CB0043A7DD /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 460F74AF239DF8CB0043A7DD /* Home.storyboard */; };
 		4636794723B9EF340078F066 /* CoupleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4636794623B9EF340078F066 /* CoupleModel.swift */; };
+		4644143823FA7DDE005D32F8 /* RequestPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4644143623FA7DDE005D32F8 /* RequestPopupViewController.swift */; };
+		4644143923FA7DDE005D32F8 /* RequestPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4644143723FA7DDE005D32F8 /* RequestPopupViewController.xib */; };
 		4646BE7723A5F7C70092E8A7 /* CreateNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4646BE7623A5F7C70092E8A7 /* CreateNavigator.swift */; };
 		4646BE7923A5F7DD0092E8A7 /* CreateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4646BE7823A5F7DD0092E8A7 /* CreateViewModel.swift */; };
 		4693BF46239B4BBF00EA2EA5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4693BF45239B4BBF00EA2EA5 /* User.swift */; };
@@ -205,6 +207,8 @@
 		460F74AE239DF8CB0043A7DD /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Modules/Home/HomeViewController.swift; sourceTree = SOURCE_ROOT; };
 		460F74AF239DF8CB0043A7DD /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Home.storyboard; path = Modules/Home/Home.storyboard; sourceTree = SOURCE_ROOT; };
 		4636794623B9EF340078F066 /* CoupleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleModel.swift; sourceTree = "<group>"; };
+		4644143623FA7DDE005D32F8 /* RequestPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPopupViewController.swift; sourceTree = "<group>"; };
+		4644143723FA7DDE005D32F8 /* RequestPopupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestPopupViewController.xib; sourceTree = "<group>"; };
 		4646BE7623A5F7C70092E8A7 /* CreateNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNavigator.swift; sourceTree = "<group>"; };
 		4646BE7823A5F7DD0092E8A7 /* CreateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewModel.swift; sourceTree = "<group>"; };
 		4693BF45239B4BBF00EA2EA5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -495,6 +499,8 @@
 				460F74AE239DF8CB0043A7DD /* HomeViewController.swift */,
 				46E7584423A8DF43007A08CA /* PopupViewController.swift */,
 				46E7584523A8DF43007A08CA /* PopupViewController.xib */,
+				4644143623FA7DDE005D32F8 /* RequestPopupViewController.swift */,
+				4644143723FA7DDE005D32F8 /* RequestPopupViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1429,6 +1435,7 @@
 				7F5D1C34236FBE7C005A4961 /* LaunchScreen.xib in Resources */,
 				46E7584723A8DF43007A08CA /* PopupViewController.xib in Resources */,
 				6F17F97A239AAE87007ECF45 /* EventTableViewCell.xib in Resources */,
+				4644143923FA7DDE005D32F8 /* RequestPopupViewController.xib in Resources */,
 				6F846FD3239570C1008C03D3 /* Event.storyboard in Resources */,
 				7FF7E7A2236FDA09006AC2BF /* Localizable.strings in Resources */,
 				B68E248B2392712B0014A53E /* Message.storyboard in Resources */,
@@ -1833,6 +1840,7 @@
 				B690E66F239C9DB500C418A7 /* CollectionEmptyView.swift in Sources */,
 				460F74B0239DF8CB0043A7DD /* HomeViewController.swift in Sources */,
 				7FF7E795236FD7E7006AC2BF /* Constants.swift in Sources */,
+				4644143823FA7DDE005D32F8 /* RequestPopupViewController.swift in Sources */,
 				B6428FC923B3A5B100D9F223 /* UserModel.swift in Sources */,
 				B68E245A23922EE60014A53E /* MessageRemoteDataSource.swift in Sources */,
 				46BC4BD22392B3250040E510 /* HomeViewModel.swift in Sources */,
