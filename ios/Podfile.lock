@@ -12,6 +12,9 @@ PODS:
     - React-Core (= 0.61.5)
     - React-jsi (= 0.61.5)
     - ReactCommon/turbomodule/core (= 0.61.5)
+  - Firebase/AdMob (6.13.0):
+    - Firebase/CoreOnly
+    - Google-Mobile-Ads-SDK (~> 7.50)
   - Firebase/Analytics (6.13.0):
     - Firebase/Core
   - Firebase/Auth (6.13.0):
@@ -93,6 +96,8 @@ PODS:
   - FontAwesome.swift (1.8.3)
   - FSPagerView (0.8.3)
   - glog (0.3.5)
+  - Google-Mobile-Ads-SDK (7.55.1):
+    - GoogleAppMeasurement (~> 6.0)
   - GoogleAppMeasurement (6.1.6):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
@@ -378,6 +383,7 @@ DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/Libraries/FBReactNativeSpec`)
+  - Firebase/AdMob
   - Firebase/Analytics
   - Firebase/Auth (~> 6.13.0)
   - Firebase/Database
@@ -387,6 +393,7 @@ DEPENDENCIES:
   - FontAwesome.swift
   - FSPagerView
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - Google-Mobile-Ads-SDK
   - IBAnimatable
   - ImageViewer
   - KeychainAccess
@@ -447,6 +454,7 @@ SPEC REPOS:
     - FirebaseStorage
     - FontAwesome.swift
     - FSPagerView
+    - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
@@ -550,6 +558,7 @@ SPEC CHECKSUMS:
   FontAwesome.swift: 2a3235131a6caffc6b2ccba318e94d793b2fd342
   FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
+  Google-Mobile-Ads-SDK: f206aff290f26fde422495c6cd187e50efbed57e
   GoogleAppMeasurement: dfe55efa543e899d906309eaaac6ca26d249862f
   GoogleDataTransport: 0048df6388dab1c254799f2a30365b1dffe20422
   GoogleDataTransportCCTSupport: f880d70972efa2ed1be4e9173a0f4c5f3dc2d176
@@ -597,6 +606,6 @@ SPEC CHECKSUMS:
   Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 353e9bd29d64f1a0722e5629539e19ba6d755386
+PODFILE CHECKSUM: 1241d0c264a2835647a76ad391d0a8e2ee960367
 
 COCOAPODS: 1.8.3

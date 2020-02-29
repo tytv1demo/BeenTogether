@@ -75,6 +75,12 @@ def ultilities
   pod 'PhoneNumberKit', '~> 3.1' 
 end
 
+def googleAdMob
+  pod 'Google-Mobile-Ads-SDK'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/AdMob'
+end
+
 target 'Cupid' do
   # use_frameworks!
   # Pods for Cupid
@@ -83,6 +89,7 @@ target 'Cupid' do
   networking
   database
   ultilities
+  googleAdMob
   ui
   
   target 'CupidTests' do

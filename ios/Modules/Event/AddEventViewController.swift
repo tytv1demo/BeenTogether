@@ -7,17 +7,19 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 enum AddEventCell {
     case name, caption, location, startDate, endDate, image
 }
 
-class AddEventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AddEventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADInterstitialDelegate {
     
     // MARK: - IBOutlets and variables
     
     @IBOutlet weak var addingTable: UITableView!
     @IBOutlet weak var postButton: UIButton!
+    @IBOutlet weak var tableViewToBottomConstraints: NSLayoutConstraint!
     
     let cellArray: [AddEventCell] = [.name, .caption, .location, .startDate, .endDate, .image]
     var newEvent: EventModel = EventModel()
@@ -34,10 +36,15 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     var uploadData: [Data] = []
     var uploadedImage: [String] = []
     
+    var bannerView: GADBannerView!
+    var interstitial: GADInterstitial!
+    
     // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableViewToBottomConstraints.constant = checkIsIphoneX() ? 75 : 50
         
         newEvent.attachments = []
         setUpTable()
@@ -45,6 +52,51 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
         
         self.addingTable.estimatedRowHeight = 64.0
         self.addingTable.rowHeight = UITableView.automaticDimension
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setupBannerView()
+        setupInterstitialView()
+        interstitial = createAndLoadInterstitial()
+    }
+    
+    func createAndLoadInterstitial() -> GADInterstitial {
+        let interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
+        interstitial.delegate = self
+        interstitial.load(GADRequest())
+        return interstitial
+    }
+    
+    func interstitialDidDismissScreen(_ ads: GADInterstitial) {
+        interstitial = createAndLoadInterstitial()
+    }
+    
+    func setupInterstitialView() {
+        interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
+        interstitial.delegate = self
+        let request = GADRequest()
+        interstitial.load(request)
+    }
+    
+    func setupBannerView() {
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        bannerView.adUnitID = "ca-app-pub-8922649592904313/9299700284" //"ca-app-pub-3940256099942544/6300978111"
+        //ca-app-pub-8922649592904313/5268590972
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        bannerView.delegate = self
+    }
+    
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        
+        bannerView.snp.makeConstraints { (make) in
+            make.bottom.equalToSuperview().inset(checkIsIphoneX() ? 25 : 0)
+            make.centerX.equalToSuperview()
+        }
     }
     
     private func setUpTable() {
@@ -75,6 +127,12 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func postAction(_ sender: UIButton) {
+        if interstitial.isReady {
+            interstitial.present(fromRootViewController: self)
+        } else {
+          print("Ad wasn't ready")
+        }
+        
         guard newEvent.name != nil, newEvent.startDate != nil, newEvent.attachments!.count > 0 else {
             let alert = UIAlertController(title: "Oops!", message: "An event must have at least name, start date and attachments. Please provide before post!", preferredStyle: .alert)
             
@@ -229,4 +287,58 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
         
         return UITableView.automaticDimension
     }
+}
+
+
+extension AddEventViewController: GADBannerViewDelegate {
+    /// Tells the delegate an ad request loaded an ad.
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        addBannerViewToView(bannerView)
+        
+        bannerView.alpha = 0
+        UIView.animate(withDuration: 1, animations: {
+          bannerView.alpha = 1
+        })
+    }
+
+    /// Tells the delegate an ad request failed.
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+
+    /// Tells the delegate that a full-screen view will be presented in response
+    /// to the user clicking on an ad.
+    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
+        print("adViewWillPresentScreen")
+    }
+
+    /// Tells the delegate that the full-screen view will be dismissed.
+    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
+        print("adViewWillDismissScreen")
+    }
+
+    /// Tells the delegate that the full-screen view has been dismissed.
+    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
+        print("adViewDidDismissScreen")
+    }
+
+    /// Tells the delegate that a user click will open another app (such as
+    /// the App Store), backgrounding the current app.
+    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
+        print("adViewWillLeaveApplication")
+    }
+}
+
+func checkIsIphoneX() -> Bool {
+    let device = UIDevice()
+    if device.userInterfaceIdiom == .phone {
+        switch UIScreen.main.nativeBounds.height {
+        case 1792, 2426, 2436, 2688:
+            return true
+        default:
+            return false
+        }
+    }
+    
+    return false
 }

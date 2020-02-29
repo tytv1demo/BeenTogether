@@ -124,7 +124,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="p95-LA-y5M">
-                                <rect key="frame" x="0.0" y="110.5" width="414" height="751.5"/>
+                                <rect key="frame" x="0.0" y="110.5" width="414" height="691.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
@@ -136,7 +136,7 @@
                             <constraint firstItem="EhR-Dx-GJb" firstAttribute="top" secondItem="0TN-9U-KKT" secondAttribute="top" constant="16" id="PEY-yq-bnj"/>
                             <constraint firstItem="p95-LA-y5M" firstAttribute="leading" secondItem="0TN-9U-KKT" secondAttribute="leading" id="UVO-S2-yL3"/>
                             <constraint firstItem="6eu-op-5kj" firstAttribute="centerY" secondItem="EhR-Dx-GJb" secondAttribute="centerY" id="XoN-jE-d7z"/>
-                            <constraint firstItem="0TN-9U-KKT" firstAttribute="bottom" secondItem="p95-LA-y5M" secondAttribute="bottom" id="b0c-uK-k6V"/>
+                            <constraint firstItem="0TN-9U-KKT" firstAttribute="bottom" secondItem="p95-LA-y5M" secondAttribute="bottom" constant="60" id="b0c-uK-k6V"/>
                             <constraint firstItem="wxS-mn-hne" firstAttribute="centerY" secondItem="EhR-Dx-GJb" secondAttribute="centerY" id="dnq-TU-LXc"/>
                             <constraint firstItem="0TN-9U-KKT" firstAttribute="trailing" secondItem="6eu-op-5kj" secondAttribute="trailing" constant="24" id="f5z-gr-H2T"/>
                             <constraint firstItem="EhR-Dx-GJb" firstAttribute="leading" secondItem="0TN-9U-KKT" secondAttribute="leading" constant="16" id="gf1-fg-1Qn"/>
@@ -146,6 +146,7 @@
                     <connections>
                         <outlet property="addingTable" destination="p95-LA-y5M" id="XcB-Ne-gxv"/>
                         <outlet property="postButton" destination="6eu-op-5kj" id="NMR-SZ-KTX"/>
+                        <outlet property="tableViewToBottomConstraints" destination="b0c-uK-k6V" id="fpc-56-lQ6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Po7-4K-MuZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
